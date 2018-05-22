@@ -1751,16 +1751,20 @@ class ResourceController {
   //     $form->addFieldRuleError( $fieldName, false, __( 'Error setting values' ) );
   //   }
   // } // setFormTax( $form, $fieldName, $taxGroup, $taxTermIds, $baseObj )
-
-
-
   public function setFormTax( $form, $fieldName, $taxGroup, $taxTermIds, $baseObj ) {
-    // error_log(__METHOD__);
+    $taxError = $this->setTaxValues($taxGroup, $taxTermIds, $baseObj);
 
+    if(!$taxError){
+      $form->addFieldRuleError( $fieldName, false, __( 'Error setting values' ) );
+    }
+  }
+
+
+  public function setTaxValues( $taxGroup, $taxTermIds, $baseObj ) {
+    // error_log(__METHOD__);
     $relPrevInfo = false;
     $baseId = $baseObj->getter( 'id' );
-    // $taxTermIds = $form->getFieldValue( $fieldName );
-
+    
     if( $taxTermIds !== false && !is_array( $taxTermIds ) ) {
       $taxTermIds = ( $taxTermIds !== '' &&  is_numeric( $taxTermIds ) ) ? array( $taxTermIds ) : false;
     }
@@ -1793,11 +1797,12 @@ class ResourceController {
         }
       }
     }
-
+    $result = true;
     // Creamos-Editamos todas las relaciones
     if( $taxTermIds !== false ) {
       $weight = 0;
       foreach( $taxTermIds as $value ) {
+
         $weight++;
         $info = array( 'resource' => $baseId, 'taxonomyterm' => $value, 'weight' => $weight );
         if( $relPrevInfo !== false && isset( $relPrevInfo[ $value ] ) ) { // Update
@@ -1806,11 +1811,12 @@ class ResourceController {
 
         $relObj = new ResourceTaxonomytermModel( $info );
         if( !$relObj->save() ) {
-          $form->addFieldRuleError( $fieldName, false, __( 'Error setting values' ) );
+          $result = false;
           break;
         }
       }
     }
+    return $result;
   } // setFormTax( $form, $fieldName, $taxGroup, $taxTermIds, $baseObj )
 
 
