@@ -9,22 +9,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
+msgid "Select Dates"
+msgstr "Selecciona las fechas"
+
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerPrintDayView.js:26
 msgid "Print Day"
 msgstr ""
-
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:184
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:182
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:180
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:168
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:55
-msgid "Day"
-msgstr "Día"
-
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
-msgid "Select Dates"
-msgstr "Selecciona las fechas"
 
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:44
 msgid "Add to Plan"
@@ -39,6 +31,14 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:102
 msgid "Introduce entre 0 y 59 minutos"
 msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:184
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:182
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:180
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:168
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:55
+msgid "Day"
+msgstr "Día"
 
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
@@ -120,6 +120,8 @@ msgstr "Añadir sitios"
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
 #: /home/proxectos/canlers/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:13
+#: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:13
+#: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
 msgid "Filtros :"
 msgstr ""
 
@@ -152,6 +154,8 @@ msgstr "Optimizar"
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
 #: /home/proxectos/canlers/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:89
+#: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:89
+#: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
 msgid "Plan"
 msgstr ""
 
@@ -321,6 +325,8 @@ msgstr "¿Comenzamos?"
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:14
 #: /home/proxectos/canlers/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:14
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:14
+#: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:14
+#: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:14
 msgid "Sólo favoritos"
 msgstr ""
 
@@ -339,6 +345,10 @@ msgstr "Imprimir día"
 #: /home/proxectos/canlers/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:383
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:352
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:383
+#: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:352
+#: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:383
+#: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:352
+#: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:383
 msgid "Comienzo"
 msgstr ""
 
@@ -352,5 +362,9 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:417
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:401
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:417
+#: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:401
+#: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:417
+#: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:401
+#: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:417
 msgid "Llegada"
 msgstr ""

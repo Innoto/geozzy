@@ -77,6 +77,8 @@ msgstr "Colecciones"
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/canlers/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/becarios/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
 msgid ""
 "Haz click en el lugar donde se ubica tu centro educativo con la mayor "
 "precisión que puedas, podrás arrastrar y soltar la localización"
@@ -350,6 +352,9 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1057
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1662
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1809
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1058
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1663
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1759
 msgid "Error setting values"
 msgstr "Error estableciendo valores"
 
@@ -361,6 +366,7 @@ msgstr "Error estableciendo valores"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1835
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1837
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1870
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1877
 msgid "Error setting collection values"
 msgstr "Error estableciendo los valores de la colección"
 
@@ -372,6 +378,7 @@ msgstr "Error estableciendo los valores de la colección"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1934
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1936
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1969
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1976
 msgid "Error setting URL alias"
 msgstr "Error estableciendo alias de URL"
 
@@ -383,6 +390,7 @@ msgstr "Error estableciendo alias de URL"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1948
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1950
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1983
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1990
 msgid "Error setting URL alias 2"
 msgstr "Error estableciendo alias 2 de URL"
 
