@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 
-  setTimeout(function(){
+  setTimeout(function(){ // non pode colisionar cos ready
     $('.audioPlayer').html(audioGuideTagSource);
 
     var all_url = window.location.href.split('?');
