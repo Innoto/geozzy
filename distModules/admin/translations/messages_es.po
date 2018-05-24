@@ -9,9 +9,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:62
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:68
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
 msgid "Select options"
@@ -157,6 +157,8 @@ msgstr "Lista de términos para"
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/menuTermEditor.tpl:11
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:11
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:11
+#: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:11
+#: /home/proxectos/becarios/app/tmp/tpl/menuTermEditor.tpl:11
 msgid "Menu management"
 msgstr ""
 
@@ -166,6 +168,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/menuTermEditor.tpl:16
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:16
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:16
+#: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:16
+#: /home/proxectos/becarios/app/tmp/tpl/menuTermEditor.tpl:16
 msgid "Add menu term"
 msgstr ""
 
@@ -175,6 +179,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/menuTermEditor.tpl:34
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:34
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:34
+#: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:34
+#: /home/proxectos/becarios/app/tmp/tpl/menuTermEditor.tpl:34
 msgid "List of menu terms"
 msgstr ""
 
@@ -184,6 +190,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/menuTermEditor.tpl:52
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:52
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:52
+#: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:52
+#: /home/proxectos/becarios/app/tmp/tpl/menuTermEditor.tpl:52
 msgid "Add term menu"
 msgstr ""
 
@@ -590,6 +598,8 @@ msgstr "Enviar"
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:37
 #: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:37
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:37
+#: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:37
+#: /home/proxectos/becarios/app/tmp/tpl/loginForm.tpl:37
 msgid "He olvidado mi contraseña"
 msgstr ""
 
@@ -599,6 +609,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:39
 #: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:39
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:39
+#: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:39
+#: /home/proxectos/becarios/app/tmp/tpl/loginForm.tpl:39
 msgid "Recuperar contraseña"
 msgstr ""
 
@@ -608,6 +620,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:40
 #: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:40
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:40
+#: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:40
+#: /home/proxectos/becarios/app/tmp/tpl/loginForm.tpl:40
 msgid ""
 "Introduce la dirección de correo electrónico asociada a tu cuenta y te "
 "enviaremos un enlace para restablecer tu contraseña"
@@ -619,6 +633,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:45
 #: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:45
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:45
+#: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:45
+#: /home/proxectos/becarios/app/tmp/tpl/loginForm.tpl:45
 msgid "Hay errores en el formulario"
 msgstr ""
 
@@ -628,6 +644,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:46
 #: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:46
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:46
+#: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:46
+#: /home/proxectos/becarios/app/tmp/tpl/loginForm.tpl:46
 msgid "Recuperar"
 msgstr ""
 
@@ -637,6 +655,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:51
 #: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:51
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:51
+#: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:51
+#: /home/proxectos/becarios/app/tmp/tpl/loginForm.tpl:51
 msgid ""
 "Se ha enviado un correo electrónico para recuperar tu cuenta de usuario."
 msgstr ""

@@ -9,6 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/becarios/app/tmp/tpl/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
+#: /home/proxectos/becarios/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/canlers/app/tmp/tpl/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
@@ -17,7 +19,6 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21
-#: /home/proxectos/becarios/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
 msgid "If not uploaded, an automatic thumbnail will be created"
 msgstr ""

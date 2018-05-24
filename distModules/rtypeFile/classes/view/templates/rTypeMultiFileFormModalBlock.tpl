@@ -15,7 +15,7 @@
     {$res.dataForm.formFieldsArray.rExtFile_author}
 
     {$res.dataForm.formFieldsArray.rExtFile_file}
-    <label class="resImageMoreInfo">*{t}Files up to 5MB can be upload in JPG and PNG format{/t}</label>
+    <label class="resImageMoreInfo">*{t}Files up to 8MB can be upload in JPG and PNG format{/t}</label>
 
     {$res.dataForm.formFieldsArray.submit}
 

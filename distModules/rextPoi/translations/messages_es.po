@@ -19,6 +19,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:11
 #: /home/proxectos/canlers/app/tmp/tpl/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
+#: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:11
+#: /home/proxectos/becarios/app/tmp/tpl/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
 msgid "Datos Panorama"
 msgstr ""
 
@@ -32,4 +34,11 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextPoi/classes/controller/RExtPoiController.php:82
 msgid "Yaw (Horizontal)"
+msgstr ""
+
+#: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:22
+#: /home/proxectos/becarios/app/tmp/tpl/rextPoi_classes_view_templates_rExtViewBlock.tpl:22
+msgid ""
+"Haz click en el lugar donde se ubica el recurso, podrás arrastrar y soltar "
+"la localización"
 msgstr ""
