@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+
+
+  $('.audioPlayer').html(audioGuideTagSource);
+/*
   var all_url = window.location.href.split('?');
   if(all_url[1]){
     var url = all_url[1].split('=');
@@ -7,9 +11,5 @@ $(document).ready(function(){
       $('.audioguideBlock audio').attr('autoplay', true)
     }
   }
-
-  $('.audioPlayer').html(audioGuideTagSource);
-
-
-
+*/
 });
