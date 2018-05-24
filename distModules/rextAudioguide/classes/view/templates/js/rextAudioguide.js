@@ -8,8 +8,7 @@ $(document).ready(function(){
     }
   }
 
-  $('.audioPlayer').html('<audio id="myPlayer" controls><source src="{$cogumelo.publicConf.mediaHost}cgmlformfilews/{$rExt.data.audioFile.id}/{$rExt.data.audioFile.originalName}" type="{$rExt.data.audioFile.type}">'+
-       'Your browser does not support the audio element.</audio>');
+  $('.audioPlayer').html(audioGuideTagSource);
 
 
 

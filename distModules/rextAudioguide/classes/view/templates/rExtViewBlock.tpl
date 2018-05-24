@@ -1,3 +1,8 @@
+<script>
+  var audioGuideTagSource = '<audio id="myPlayer" controls><source src="{$cogumelo.publicConf.mediaHost}cgmlformfilews/{$rExt.data.audioFile.id}/{$rExt.data.audioFile.originalName}" type="{$rExt.data.audioFile.type}">'+
+       'Your browser does not support the audio element.</audio>';
+</script>
+
 <div class="audioguideBlock">
     <div class="audioClosed">
       <div class="bg-icon">
