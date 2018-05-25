@@ -31,7 +31,30 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
 
     if( that.options.container !== false) {
 
-      // Create a JSON data table
+      // asignamos locale según idioma
+      switch ( cogumelo.publicConf.C_LANG ) {
+        case 'es':
+            var tl_locale = 'es_ES';
+          break;
+        case 'gl':
+            var tl_locale = 'es_ES';
+          break;
+        case 'ca':
+          var tl_locale = 'ca_ES';
+          break;
+        case 'fr':
+          var tl_locale = 'fr_FR';
+          break;
+        case 'de':
+          var tl_locale = 'de_DE';
+          break;
+
+        case 'en':
+        default:
+          var tl_locale = 'en_US';
+
+      }
+
 
       // specify options
       var options = {
@@ -41,7 +64,8 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
           'style': 'box',
           /*'locale':'es',*/
           'zoomable': false,
-          'unselectable':false
+          'unselectable':false,
+          'locale':tl_locale
       };
 
       // Instantiate our timeline object.
