@@ -1,0 +1,16 @@
+
+@rExtLike-color: #006600;
+
+.rExtLike { display: inline-block; }
+
+.rExtLike { color: @rExtLike-color; }
+
+.rExtLike .like-off { display: inline; }
+
+.rExtLike .like-on { display: none; }
+
+.rExtLike.selected .like-off { display: none; }
+
+.rExtLike.selected .like-on { display: inline; }
+
+.rExtLike:hover { color: fade( @rExtLike-color, 50% ); }
