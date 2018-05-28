@@ -956,16 +956,17 @@ class ResourceController {
   }
 
   public function setFormFilegroup( $form, $fieldName, $colName, $modelObj ) {
-    $result = false;
 
     $fileGroupField = $form->getFieldValue( $fieldName );
     $filePrivateMode = $form->getFieldParam( $fieldName, 'privateMode' );
     $fileGroupField['privateMode'] = $filePrivateMode;
 
     $result = $this->setFilegroupValues($fileGroupField, $fieldName, $colName, $modelObj);
-    if(!$result){
-      $form->addFieldRuleError( $fieldName, false, 'Se ha producido un problema' );
-    }
+
+    // Para xestion de erros
+    /*if( !empty($result['error']) ) {
+      $form->addFieldRuleError( $fieldName, false, $result['error'] );
+    }*/
 
     return $result;
   }

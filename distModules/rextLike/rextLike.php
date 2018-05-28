@@ -1,0 +1,90 @@
+<?php
+Cogumelo::load('coreController/Module.php');
+
+
+class rextLike extends Module {
+
+  public $name = 'rextLike';
+  public $version = 1;
+
+
+  public $models = ['LikeViewModel'];
+
+  public $taxonomies = [];
+
+  public $dependences = [];
+  // public $dependences = array(
+  //   array(
+  //    'id' =>'underscore',
+  //    'params' => array('underscore#1.8.3'),
+  //    'installer' => 'bower',
+  //    'includes' => array('underscore-min.js')
+  //   ),
+  //   array(
+  //    'id' =>'backbonejs',
+  //    'params' => array('backbone#1.1.2'),
+  //    'installer' => 'bower',
+  //    'includes' => array('backbone.js')
+  //   )
+  // );
+
+
+  public $autoIncludeAlways = true;
+  public $includesCommon = [
+    'js/rExtLikeController.js',
+    'controller/RExtLikeController.php',
+    'model/LikeViewModel.php'
+  ];
+
+
+  public function __construct() {
+    // $this->addUrlPatterns( '#^geozzyLike/command$#', 'view:RExtLikeView::execCommand' );
+  }
+
+  function setGeozzyUrlPatternsAPI() {
+
+    user::load('controller/UserAccessController.php');
+    $useraccesscontrol = new UserAccessController();
+
+    if( $useraccesscontrol->isLogged() ) {
+      $this->addUrlPatterns( '#^api/like$#', 'view:RExtLikeAPIView::apiQuery' );
+      $this->addUrlPatterns( '#^api/doc/like.json$#', 'view:RExtLikeAPIView::apiInfoJson' );
+    }
+  }
+
+  function getGeozzyDocAPI() {
+    $ret = [];
+
+    user::load('controller/UserAccessController.php');
+    $useraccesscontrol = new UserAccessController();
+
+    if( $useraccesscontrol->isLogged() ) {
+      $ret = [
+        [
+          'path'=> '/doc/like.json',
+          'description' => 'Like API'
+        ]
+      ];
+    }
+
+    return $ret;
+  }
+
+
+
+  public function moduleRc() {
+    geozzy::load('controller/RTUtilsController.php');
+
+    $rtUtilsControl = new RTUtilsController(__CLASS__);
+    $rtUtilsControl->rExtModuleRc();
+  }
+
+  public function moduleDeploy() {
+    geozzy::load('controller/RTUtilsController.php');
+
+    $rtUtilsControl = new RTUtilsController(__CLASS__);
+    $rtUtilsControl->rExtModuleDeploy();
+  }
+
+
+}
