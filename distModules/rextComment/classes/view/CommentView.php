@@ -187,7 +187,7 @@ class CommentView extends View {
         $commentCtrl = new RExtCommentController();
         $permissionsInfo = $commentCtrl->getPermissions( $valuesArray['resource'] );
         $permissions = isset( $permissionsInfo[ $valuesArray['resource'] ] ) ? $permissionsInfo[ $valuesArray['resource'] ] : false;
-      
+
         if( empty($valuesArray['user']) && empty($permissions['anonymous']) ){
           Cogumelo::error("Comentarios anónimos no permitidos Resource:".$valuesArray['resource']);
           exit;
@@ -216,6 +216,30 @@ class CommentView extends View {
       }
       $comment = new CommentModel( $valuesArray );
       $comment->save();
+
+      $resControl = new ResourceViewModel();
+      $res = $resControl->listItems( ['filters' => [ 'id' => $valuesArray['resource'] ]] )->fetch();
+      $resData = $res->getAllData('onlydata');
+
+
+      $userCommentControl = new UserCommentModel();
+      $userCommentList = $userCommentControl->listItems(['filters' => ['user' => $resData['user']  ]]);
+
+      $userCommentObj = is_object( $userCommentList ) ? $userCommentList->fetch() : false;
+      $userComment = is_object( $userCommentObj ) ? $userCommentObj->getAllData( 'onlydata' ) : false;
+
+      if( !empty($userComment['notify']) || !empty(Cogumelo::getSetupValue('mod:geozzy:resource:commentRules:default:notify')) ){
+        /*
+        $mailCtrl = new MailController();
+        $bodyPlain = new Template();
+        $bodyHtml = new Template();
+        $bodyPlain->setTpl( 'partAdminMailPlain.tpl' );
+        $bodyHtml->setTpl( 'partAdminMailHtml.tpl' );
+        $mailCtrl->setBody( $bodyPlain, $bodyHtml, $vars );
+        $mailCtrl->send( Cogumelo::getSetupValue('contactAdminMail'), __('Baía de Santa Cruz: Novo servizo turístico suxerido') );
+        */
+      }
+
 
       // Consultamos el valor de valoracion media y lo guardamos en el recurso
       // $averageVotesModel = new AverageVotesViewModel();
