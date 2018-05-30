@@ -4,6 +4,8 @@ geozzy::load( 'controller/RExtController.php' );
 class RExtLikeController extends RExtController implements RExtInterface {
 
   public function __construct( $defRTypeCtrl = false ) {
+    error_log(__METHOD__);
+
     // Este RExt funciona tambien como modulo "autonomo"
     if( $defRTypeCtrl !== false ) {
       parent::__construct( $defRTypeCtrl, new rextLike(), 'rExtLike_' );
@@ -15,7 +17,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
     //   $this->cacheQuery = $cache;
     // }
     /**
-     *  TODO - IMPORTANTE: Los modelos de Favoritos hay que manejarlos SIN CACHEO
+     *  TODO - IMPORTANTE: Los modelos de Likes hay que manejarlos SIN CACHEO
      */
   }
 
@@ -28,6 +30,8 @@ class RExtLikeController extends RExtController implements RExtInterface {
    * @return array OR false
    */
   public function getRExtData( $resId = false ) {
+    error_log(__METHOD__);
+
     $rExtData = false;
 
     if( $resId === false ) {
@@ -74,6 +78,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
   public function getViewBlockInfo( $resId = false ) {
+    error_log(__METHOD__);
 
     $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
 
@@ -102,6 +107,8 @@ class RExtLikeController extends RExtController implements RExtInterface {
    * @return array OR false
    */
   public function getAllLike( $likeUser ) {
+    error_log(__METHOD__);
+
     $likeData = false;
 
     $likeModel = new LikeListViewModel();
@@ -111,7 +118,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
     ]);
     $likeObj = ( $likeList ) ? $likeList->fetch() : false;
     if( $likeObj ) {
-      $likeData = ( $likeObj->getter('resourceList') ) ? explode( ',', $likeObj->getter('resourceList') ) : array();
+      $likeData = ( $likeObj->getter('resourceList') ) ? explode( ',', $likeObj->getter('resourceList') ) : [];
     }
 
     return $likeData;
@@ -125,6 +132,8 @@ class RExtLikeController extends RExtController implements RExtInterface {
    * @return integer
    */
   public function getCollectionId( $likeUser ) {
+    error_log(__METHOD__);
+
     $colId = false;
 
     $likeModel = new LikeViewModel();
@@ -148,6 +157,8 @@ class RExtLikeController extends RExtController implements RExtInterface {
    * @return array OR false
    */
   public function getStatusInfo( $resId, $likeUser ) {
+    error_log(__METHOD__);
+
     $likeData = false;
 
     $likeModel = new LikeViewModel();
@@ -162,6 +173,25 @@ class RExtLikeController extends RExtController implements RExtInterface {
   }
 
 
+  public function getLikeUsers( $resId ) {
+    error_log(__METHOD__);
+
+    $likeUsers = false;
+
+    $likeModel = new LikeUsersListViewModel();
+    $likeList = $likeModel->listItems([
+      'filters' => [ 'id' => $resId ],
+      'cache' => false // Sin cache para actualizacion continua
+    ]);
+    $likeObj = ( $likeList ) ? $likeList->fetch() : false;
+    $likeData = ( $likeObj ) ? $likeObj->getter('userList') : false;
+
+    $likeUsers = !empty( $likeData ) ? explode( ',', $likeData ) : false;
+
+    return $likeUsers;
+  }
+
+
   /**
    * Carga el estado del like
    *
@@ -171,11 +201,13 @@ class RExtLikeController extends RExtController implements RExtInterface {
    * @return integer
    */
   public function getStatus( $resId, $likeUser ) {
+    error_log(__METHOD__);
+
     if( !is_array( $resId ) ) {
       $status = ( $this->getStatusInfo( $resId, $likeUser ) ) ? 1 : 0;
     }
     else {
-      $status = array();
+      $status = [];
       $likeResources = $this->getAllLike( $likeUser );
       foreach( $resId as $id ) {
         $status[ $id ] = ( in_array( $id, $likeResources ) ) ? 1 : 0;
@@ -195,63 +227,69 @@ class RExtLikeController extends RExtController implements RExtInterface {
    * @return bool
    */
   public function setStatus( $resId, $newStatus, $likeUser ) {
-    $newStatus = ( $newStatus ) ? 1 : 0;
+    error_log(__METHOD__);
 
-    $likeData = $this->getStatusInfo( $resId, $likeUser );
-    $preStatus = ( $likeData ) ? 1 : 0;
-    if( $preStatus === 1 && $newStatus === 0 ) {
-      // Estamos con status 1 y queremos status 0
-      $crModel = new CollectionResourcesModel( array( 'id' => $likeData['id'] ) );
-      // error_log( 'Borrando crModel' );
-      $crModel->delete();
+    $result = [ 'count' => 0 ];
+    $preStatus = 0;
+
+    $newStatus = !empty( $newStatus ) ? 1 : 0;
+    $result['value'] = $newStatus;
+
+    $likeUsers = $this->getLikeUsers( $resId );
+    if( !empty( $likeUsers ) ) {
+      $result['count'] = sizeof( $likeUsers );
+      $preStatus = in_array( $likeUser, $likeUsers ) ? 1 : 0;
     }
 
-    if( $preStatus === 0 && $newStatus === 1 ) {
-      // Estamos con status 0 y queremos status 1
-      $colId = $this->getCollectionId( $likeUser );
 
-      if( !$colId ) {
-        // Hai que crear toda la estructura: resource rtypeLike, collection, resource-collection
-        $likesStructure = $this->newLikeStructure( $likeUser );
-        $colId = $likesStructure['colId'];
-        /*
-          // Hai que crear toda la estructura previa: res rtypeLike, col, rc
-          $likesResInfo = array( 'rTypeId' => $this->getFavRTypeId(), 'user' => $likeUser,
-            'title' => 'Favs. user '.$likeUser,
-            'title_'.Cogumelo::getSetupValue( 'lang:default' ) => 'Favs. user '.$likeUser,
-            'published' => true, 'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) );
-          $resModel = new ResourceModel( $likesResInfo );
-          $resModel->save();
-          $resMainId = $resModel->getter('id');
-
-          $colModel = new CollectionModel( array( 'idName' => 'FAV_'.$likeUser, 'collectionType' => 'like',
-            'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) ) );
-          $colModel->save();
-
-          $colId = $colModel->getter('id');
-
-          $rcModel = new ResourceCollectionsModel( array( 'resource' => $resMainId, 'collection' => $colId ) );
-          $rcModel->save();
-        */
+    if( $preStatus !== $newStatus ) {
+      if( $preStatus === 1 && $result['count'] > 0 ) {
+        $result['count']--;
       }
-
-      $crModel = new CollectionResourcesModel( array( 'collection' => $colId, 'resource' => $resId,
-        'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) ) );
-      $crModel->save();
-      // error_log( 'Creando crModel' );
     }
 
-    return( $newStatus === $this->getStatus( $resId, $likeUser ) );
+
+    // $likeData = $this->getStatusInfo( $resId, $likeUser );
+    // $preStatus = ( $likeData ) ? 1 : 0;
+    // if( $preStatus === 1 && $newStatus === 0 ) {
+    //   // Estamos con status 1 y queremos status 0
+    //   $crModel = new CollectionResourcesModel( [ 'id' => $likeData['id'] ] );
+    //   // error_log( 'Borrando crModel' );
+    //   $crModel->delete();
+    // }
+
+    // if( $preStatus === 0 && $newStatus === 1 ) {
+    //   // Estamos con status 0 y queremos status 1
+    //   $colId = $this->getCollectionId( $likeUser );
+
+    //   if( !$colId ) {
+    //     // Hai que crear toda la estructura: resource rtypeLike, collection, resource-collection
+    //     $likesStructure = $this->newLikeStructure( $likeUser );
+    //     $colId = $likesStructure['colId'];
+    //   }
+
+    //   $crModel = new CollectionResourcesModel( array( 'collection' => $colId, 'resource' => $resId,
+    //     'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) ) );
+    //   $crModel->save();
+    //   // error_log( 'Creando crModel' );
+    // }
+
+    // $result = ( $newStatus === $this->getStatus( $resId, $likeUser ) );
+
+
+    return $result;
   }
 
 
   public function newLikeStructure( $likeUser ) {
+    error_log(__METHOD__);
+
     // Hai que crear toda la estructura: resource rtypeLike, collection, resource-collection
 
     // Creamos el recurso de likes
-    $likesResInfo = array( 'rTypeId' => $this->getFavRTypeId(), 'user' => $likeUser,
-      'title' => 'Favs. user '.$likeUser,
-      'title_'.Cogumelo::getSetupValue( 'lang:default' ) => 'Favs. user '.$likeUser,
+    $likesResInfo = array( 'rTypeId' => $this->getLikeRTypeId(), 'user' => $likeUser,
+      'title' => 'Likes. user '.$likeUser,
+      'title_'.Cogumelo::getSetupValue( 'lang:default' ) => 'Likes. user '.$likeUser,
       'published' => true, 'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) );
     $resModel = new ResourceModel( $likesResInfo );
     $resModel->save();
@@ -267,7 +305,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
     }
 
     // Creamos la coleccion de likes
-    $colModel = new CollectionModel( array( 'idName' => 'FAV_'.$likeUser, 'collectionType' => 'like',
+    $colModel = new CollectionModel( array( 'idName' => 'LIKE_'.$likeUser, 'collectionType' => 'likes',
       'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) ) );
     $colModel->save();
     $colId = $colModel->getter('id');
@@ -281,17 +319,21 @@ class RExtLikeController extends RExtController implements RExtInterface {
 
 
 
-  public function getFavRTypeId() {
+  public function getLikeRTypeId() {
+    error_log(__METHOD__);
+
     $rTypeModel = new ResourcetypeModel();
-    $rTypeList = $rTypeModel->listItems( [ 'filters' => [ 'idName' => 'rtypeLike' ], 'cache' => $this->cacheQuery ] );
-    $rTypeObj = ( $rTypeList ) ? $rTypeList->fetch() : false;
-    $rTypeId = ( $rTypeObj ) ? $rTypeObj->getter( 'id' ) : false;
+    $rTypeList = $rTypeModel->listItems( [ 'filters' => [ 'idName' => 'rtypeLikes' ], 'cache' => $this->cacheQuery ] );
+    $rTypeObj = is_object( $rTypeList ) ? $rTypeList->fetch() : false;
+    $rTypeId = is_object( $rTypeObj ) ? $rTypeObj->getter( 'id' ) : false;
 
     return( $rTypeId );
   }
 
 
   public function getLikeUrl( $likeUser ) {
+    error_log(__METHOD__);
+
     $likesUrl = false;
 
     $likeModel = new LikeListViewModel();

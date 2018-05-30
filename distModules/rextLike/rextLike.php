@@ -5,7 +5,7 @@ Cogumelo::load('coreController/Module.php');
 class rextLike extends Module {
 
   public $name = 'rextLike';
-  public $version = 1;
+  public $version = 2;
 
 
   public $models = ['LikeViewModel'];
@@ -62,7 +62,7 @@ class rextLike extends Module {
       $ret = [
         [
           'path'=> '/doc/like.json',
-          'description' => 'Like API'
+          'description' => 'Likes API'
         ]
       ];
     }

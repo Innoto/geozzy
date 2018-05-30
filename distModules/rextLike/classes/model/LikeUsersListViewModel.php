@@ -3,9 +3,9 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
-class LikeListViewModel extends Model {
+class LikeUsersListViewModel extends Model {
 
-  static $tableName = 'geozzy_like_list_view';
+  static $tableName = 'geozzy_like_users_list_view';
 
   /**
    * Listado de recursos likes con su coleccion 'like' y recurso RTypeLike
@@ -18,32 +18,15 @@ class LikeListViewModel extends Model {
       'key' => 'id',
       'primarykey' => true
     ),
-    'timeCreation' => array(
-      'type' => 'DATETIME'
-    ),
-    'user' => array(
-      'type'=>'FOREIGN',
-      'vo' => 'UserModel',
-      'key'=> 'id'
-    ),
-    'published' => array(
-      'type' => 'BOOLEAN'
-    ),
-    'colId' => array(
-      'type' => 'FOREIGN',
-      'vo' => 'CollectionModel',
-      'key' => 'id'
-    ),
-    'resourceList' => array(
+    'userList' => array(
       'type' => 'VARCHAR',
     ),
   );
 
   static $extraFilters = array(
-    'idIn' => ' geozzy_like_list_view.id IN (?) ',
-    'userIn' => ' geozzy_like_list_view.user IN (?) ',
-    'resourceListNotNull' => ' resourceList IS NOT NULL ',
-    'inResourceList' => ' ( resourceList LIKE CONCAT(?,",%") OR resourceList LIKE CONCAT("%,",?,",%") OR resourceList LIKE CONCAT("%,",?) OR resourceList = ? ) '
+    'idIn' => ' geozzy_like_users_list_view.id IN (?) ',
+    'userListNotNull' => ' geozzy_like_users_list_view.userList IS NOT NULL ',
+    'inUserList' => ' ( geozzy_like_users_list_view.userList LIKE CONCAT(?,",%") OR geozzy_like_users_list_view.userList LIKE CONCAT("%,",?,",%") OR geozzy_like_users_list_view.userList LIKE CONCAT("%,",?) OR geozzy_like_users_list_view.userList = ? ) '
   );
 
   var $notCreateDBTable = true;
@@ -54,16 +37,12 @@ class LikeListViewModel extends Model {
       'version' => 'rextLike#2',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
-        DROP VIEW IF EXISTS geozzy_like_list_view;
+        DROP VIEW IF EXISTS geozzy_like_users_list_view;
 
-        CREATE VIEW geozzy_like_list_view AS
+        CREATE VIEW geozzy_like_users_list_view AS
 
-          SELECT RES.id as id,
-            RES.timeCreation as timeCreation,
-            RES.user,
-            RES.published,
-            COL.id as colId,
-            GROUP_CONCAT( CR.resource ) as resourceList
+          SELECT CR.resource as id,
+            GROUP_CONCAT( RES.user ) as userList
 
           FROM geozzy_resource as RES, geozzy_resourcetype as RT, geozzy_resource_collections as RC,
             geozzy_collection COL left OUTER JOIN geozzy_collection_resources as CR ON CR.collection = COL.id
@@ -71,7 +50,7 @@ class LikeListViewModel extends Model {
           WHERE RES.rTypeId=RT.id AND RT.idName="rtypeLikes" AND
             RES.id = RC.resource AND RC.collection = COL.id AND COL.collectionType = "likes"
 
-          GROUP BY RES.id
+          GROUP BY CR.resource
         ;
       '
     )

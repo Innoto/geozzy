@@ -56,7 +56,7 @@ class LikeViewModel extends Model {
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'rextLike#1.0',
+      'version' => 'rextLike#2',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_like_view;
@@ -70,8 +70,8 @@ class LikeViewModel extends Model {
           FROM geozzy_resource as RES, geozzy_resourcetype as RT, geozzy_resource_collections as RC,
             geozzy_collection COL left OUTER JOIN  geozzy_collection_resources as CR ON CR.collection = COL.id
 
-          WHERE RES.rTypeId=RT.id AND RT.idName="rtypeLike" AND
-            RES.id = RC.resource AND RC.collection = COL.id AND COL.collectionType = "like"
+          WHERE RES.rTypeId=RT.id AND RT.idName="rtypeLikes" AND
+            RES.id = RC.resource AND RC.collection = COL.id AND COL.collectionType = "likes"
         ;
       '
     )

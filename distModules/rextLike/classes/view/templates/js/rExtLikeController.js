@@ -13,7 +13,7 @@ var geozzy = geozzy || {};
 
 geozzy.rExtLikeController = geozzy.rExtLikeController || {
   getUrlApi: function getUrlApi() {
-    var url = '/api/likes';
+    var url = '/api/like';
 
     if( typeof(cogumelo.publicConf.C_LANG) === 'string' ) {
       url = '/'+cogumelo.publicConf.C_LANG+url;
