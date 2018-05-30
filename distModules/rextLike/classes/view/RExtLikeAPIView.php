@@ -9,7 +9,7 @@ class RExtLikeAPIView extends View {
   var $userSession = false;
   var $extendAPIAccess = false;
 
-  public function __construct( $base_dir ) {
+  public function __construct() {
     user::load( 'controller/UserAccessController.php' );
     $userCtrl = new UserAccessController();
     $userInfo = $userCtrl->getSessiondata();
@@ -24,10 +24,10 @@ class RExtLikeAPIView extends View {
     }
 
     $this->apiParams = array( 'cmd', 'status' );
-    $this->apiCommands = array( 'setStatus', 'getStatus', 'getLikeUrl', 'listFavs', 'listResources', 'listUsers' );
+    $this->apiCommands = array( 'setStatus', 'getStatus', 'getLikeUrl', 'listLikes', 'listResources', 'listUsers' );
     $this->apiFilters = array( 'likeId', 'resourceId', 'userId' );
 
-    parent::__construct( $base_dir ); // Esto lanza el accessCheck
+    parent::__construct(); // Esto lanza el accessCheck
   }
 
   /**
@@ -64,8 +64,8 @@ class RExtLikeAPIView extends View {
       case 'getStatus':
         $result = $this->apiGetStatus( $filters['resourceId'], $filters['userId'] );
         break;
-      case 'listFavs':
-        $result = $this->apiListFavs( $filters );
+      case 'listLikes':
+        $result = $this->apiListLikes( $filters );
         break;
       case 'listResources':
         $result = $this->apiListResources( $filters );
@@ -99,10 +99,10 @@ class RExtLikeAPIView extends View {
 
     if( $status !== null && $resourceId !== null && $userId !== null ) {
       $likeCtrl = new RExtLikeController();
-      if( $likeCtrl->setStatus( $resourceId, $status, $userId ) ) {
+      if( $ctrlResult = $likeCtrl->setStatus( $resourceId, $status, $userId ) ) {
         $result = [
           'result' => 'ok',
-          'status' => $status
+          'status' => $ctrlResult
         ];
       }
       else {
@@ -147,7 +147,7 @@ class RExtLikeAPIView extends View {
   }
 
 
-  public function apiListFavs( $filters ) {
+  public function apiListLikes( $filters ) {
     $result = [ 'result' => 'error', 'msg' => __('Access denied') ];
 
     $access = $this->extendAPIAccess;
@@ -161,7 +161,7 @@ class RExtLikeAPIView extends View {
 
     // Solo se puede acceder si $this->extendAPIAccess o un usuario a su propios datos
     if( $access ) {
-      $listFilters = array();
+      $listFilters = [];
       if( $filters['resourceId'] !== null ) {
         $listFilters['inResourceList'] = $filters['resourceId'];
       }
@@ -189,14 +189,14 @@ class RExtLikeAPIView extends View {
       if( $likeList ) {
         $result = array(
           'result' => 'ok',
-          'like' => array()
+          'like' => []
         );
         while( $likeObj = $likeList->fetch() ) {
           $likeData = $likeObj->getAllData( 'onlydata' );
           $result['like'][ $likeData['id'] ] = array(
             'id' => $likeData['id'],
             'user' => $likeData['user'],
-            'resourceList' => ( isset( $likeData['resourceList'] ) ) ? explode( ',', $likeData['resourceList'] ) : array(),
+            'resourceList' => ( isset( $likeData['resourceList'] ) ) ? explode( ',', $likeData['resourceList'] ) : [],
             'timeCreation' => $likeData['timeCreation'],
             // 'colId' => $likeData['colId'],
             'published' => $likeData['published']
@@ -223,7 +223,7 @@ class RExtLikeAPIView extends View {
 
     // Solo se puede acceder si $this->extendAPIAccess o un usuario a su propios datos
     if( $access ) {
-      $listFilters = array();
+      $listFilters = [];
       if( $filters['resourceId'] !== null ) {
         $listFilters['inResourceList'] = $filters['resourceId'];
       }
@@ -251,7 +251,7 @@ class RExtLikeAPIView extends View {
       if( $likeList ) {
         $result = array(
           'result' => 'ok',
-          'resource' => array()
+          'resource' => []
         );
         while( $likeObj = $likeList->fetch() ) {
           $likeId = $likeObj->getter( 'id' );
@@ -263,7 +263,7 @@ class RExtLikeAPIView extends View {
                 if( !isset( $result['resource'][ $resourceId ] ) ) {
                   $result['resource'][ $resourceId ] = array(
                     'id' => $resourceId,
-                    'like' => array()
+                    'like' => []
                   );
                 }
                 $result['resource'][ $resourceId ]['like'][] = $likeId;
@@ -284,7 +284,7 @@ class RExtLikeAPIView extends View {
 
     // Solo pueden acceder si $this->extendAPIAccess
     if( $this->extendAPIAccess ) {
-      $listFilters = array();
+      $listFilters = [];
       if( $filters['resourceId'] !== null ) {
         $listFilters['inResourceList'] = $filters['resourceId'];
       }
@@ -312,7 +312,7 @@ class RExtLikeAPIView extends View {
       if( $likeList ) {
         $result = array(
           'result' => 'ok',
-          'user' => array()
+          'user' => []
         );
         while( $likeObj = $likeList->fetch() ) {
           $likeId = $likeObj->getter( 'id' );
@@ -321,7 +321,7 @@ class RExtLikeAPIView extends View {
           if( !isset( $result['user'][ $userId ] ) ) {
             $result['user'][ $userId ] = array(
               'id' => $userId,
-              'like' => array()
+              'like' => []
             );
           }
           $result['user'][ $userId ]['like'][] = $likeId;
