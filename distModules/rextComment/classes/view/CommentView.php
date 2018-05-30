@@ -221,7 +221,6 @@ class CommentView extends View {
       $res = $resControl->listItems( ['filters' => [ 'id' => $valuesArray['resource'] ]] )->fetch();
       $resData = $res->getAllData('onlydata');
 
-
       $userCommentControl = new UserCommentModel();
       $userCommentList = $userCommentControl->listItems(['filters' => ['user' => $resData['user']  ]]);
 
@@ -229,15 +228,27 @@ class CommentView extends View {
       $userComment = is_object( $userCommentObj ) ? $userCommentObj->getAllData( 'onlydata' ) : false;
 
       if( !empty($userComment['notify']) || !empty(Cogumelo::getSetupValue('mod:geozzy:resource:commentRules:default:notify')) ){
-        /*
+        Cogumelo::load( 'coreController/MailController.php' );
         $mailCtrl = new MailController();
         $bodyPlain = new Template();
         $bodyHtml = new Template();
-        $bodyPlain->setTpl( 'partAdminMailPlain.tpl' );
-        $bodyHtml->setTpl( 'partAdminMailHtml.tpl' );
+        $bodyPlain->setTpl( 'notificationCommentMailPlain.tpl', 'rextComment');
+        $bodyHtml->setTpl( 'notificationCommentMailHtml.tpl', 'rextComment' );
+
+        $useraccesscontrol = new UserAccessController();
+        $user = $useraccesscontrol->getSessiondata();
+        $adresses = $resData['userEmail'];
+
+        $vars = array(
+          'userName' => $user['data']['name'],
+          'userSurname' => $user['data']['surname'],
+          'userLogin' => $user['data']['login'],
+          'res_title' => $res->getter('title')
+        );
+
         $mailCtrl->setBody( $bodyPlain, $bodyHtml, $vars );
-        $mailCtrl->send( Cogumelo::getSetupValue('contactAdminMail'), __('Baía de Santa Cruz: Novo servizo turístico suxerido') );
-        */
+        $mailCtrl->send( $adresses, __('You have received a comment') );
+
       }
 
 
