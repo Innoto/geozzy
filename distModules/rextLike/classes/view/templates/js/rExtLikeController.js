@@ -127,10 +127,20 @@ geozzy.rExtLikeController = geozzy.rExtLikeController || {
     this.setStatus( resource, newStatus );
   },
   setStatusClient: function setStatusClient( resource, status ) {
-    status = ( status === 1 || status === '1' || status === true ) ? 1 : 0;
+    console.log( 'setStatusClient: ' + typeof status.value );
+
+    var statusValue = null;
+
+    if( 'object' === typeof status ) {
+      statusValue = ( status.value === 1 || status.value === '1' || status.value === true ) ? 1 : 0;
+    }
+    else {
+      statusValue = ( status === 1 || status === '1' || status === true ) ? 1 : 0;
+    }
+
 
     $likeField = $('.rExtLike[data-like-resource="'+resource+'"]');
-    if( status === 1 ) {
+    if( statusValue === 1 ) {
       $likeField.addClass( 'selected' ).attr( 'data-like-status', 1 );
     }
     else {

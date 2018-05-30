@@ -19,12 +19,11 @@
   {assign var="likeStatus" value=0}
 {/if}
 
-<div class="rExtLike{if $likeStatus==1} selected{/if}" data-like-resource="{$resId}" data-like-status="{$likeStatus}">
-  <span class="fa fa-heart-o like-off"></span>
-  <span class="fa fa-heart like-on"></span>
-  <!--
-  {* var_dump($rExt.data) *}
-  -->
+<div class="rExtLike{if $rExt.data.value==1} selected{/if}" data-like-resource="{$resId}" data-like-status="{$likeStatus}">
+  <span class="likeCount">{$rExt.data.count}</span>
+  <span class="fa fa-thumbs-o-up like-off"></span>
+  <span class="fa fa-thumbs-up like-on"></span>
+  <!-- {* var_dump($rExt.data) *} -->
 </div>
 
 <!-- /rExtViewBlock.tpl en rExtLike module -->
