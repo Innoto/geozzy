@@ -13,13 +13,13 @@
 .rExtLike:hover .like-on { color: #0000cc; }
 </style>
 
-{if isset($rExt.data) && $rExt.data!==false}
+{if isset($rExt.data) && $rExt.data.value===1}
   {assign var="likeStatus" value=1}
 {else}
   {assign var="likeStatus" value=0}
 {/if}
 
-<div class="rExtLike{if $rExt.data.value==1} selected{/if}" data-like-resource="{$resId}" data-like-status="{$likeStatus}">
+<div class="rExtLike{if $likeStatus===1} selected{/if}" data-like-resource="{$resId}" data-like-status="{$likeStatus}">
   <span class="likeCount">{$rExt.data.count}</span>
   <span class="fa fa-thumbs-o-up like-off"></span>
   <span class="fa fa-thumbs-up like-on"></span>

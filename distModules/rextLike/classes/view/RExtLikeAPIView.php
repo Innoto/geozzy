@@ -23,9 +23,10 @@ class RExtLikeAPIView extends View {
       $this->extendAPIAccess = true;
     }
 
-    $this->apiParams = array( 'cmd', 'status' );
-    $this->apiCommands = array( 'setStatus', 'getStatus', 'getLikeUrl', 'listLikes', 'listResources', 'listUsers' );
-    $this->apiFilters = array( 'likeId', 'resourceId', 'userId' );
+    $this->apiParams = [ 'cmd', 'status' ];
+    $this->apiCommands = ['setStatus'];
+    // 'getStatus', 'getLikeUrl', 'listLikes', 'listResources', 'listUsers'
+    $this->apiFilters = [ 'likeId', 'resourceId', 'userId' ];
 
     parent::__construct(); // Esto lanza el accessCheck
   }
@@ -61,21 +62,21 @@ class RExtLikeAPIView extends View {
       case 'setStatus':
         $result = $this->apiSetStatus( $status, $filters['resourceId'], $filters['userId'] );
         break;
-      case 'getStatus':
-        $result = $this->apiGetStatus( $filters['resourceId'], $filters['userId'] );
-        break;
-      case 'listLikes':
-        $result = $this->apiListLikes( $filters );
-        break;
-      case 'listResources':
-        $result = $this->apiListResources( $filters );
-        break;
-      case 'listUsers':
-        $result = $this->apiListUsers( $filters );
-        break;
-      case 'getLikeUrl':
-        $result = $this->getLikeUrl();
-        break;
+      // case 'getStatus':
+      //   $result = $this->apiGetStatus( $filters['resourceId'], $filters['userId'] );
+      //   break;
+      // case 'listLikes':
+      //   $result = $this->apiListLikes( $filters );
+      //   break;
+      // case 'listResources':
+      //   $result = $this->apiListResources( $filters );
+      //   break;
+      // case 'listUsers':
+      //   $result = $this->apiListUsers( $filters );
+      //   break;
+      // case 'getLikeUrl':
+      //   $result = $this->getLikeUrl();
+      //   break;
     }
 
     header('Content-Type: application/json; charset=utf-8');
@@ -398,20 +399,6 @@ class RExtLikeAPIView extends View {
               "type": "integer",
               "paramType": "form",
               "required": false
-            },
-            {
-              "name": "likeId",
-              "description": "Filter by Like Id or array",
-              "type": "integer",
-              "paramType": "form",
-              "required": false
-            },
-            {
-              "name": "userId",
-              "description": "Filter by User Id or array",
-              "type": "integer",
-              "paramType": "form",
-              "required": false
             }
           ],
           "summary": "Fetches like data"
@@ -423,6 +410,22 @@ class RExtLikeAPIView extends View {
   ]
 }
 <?php
+/*
+  {
+    "name": "likeId",
+    "description": "Filter by Like Id or array",
+    "type": "integer",
+    "paramType": "form",
+    "required": false
+  },
+  {
+    "name": "userId",
+    "description": "Filter by User Id or array",
+    "type": "integer",
+    "paramType": "form",
+    "required": false
+  }
+*/
   } // function apiInfoJson()
 
 }
