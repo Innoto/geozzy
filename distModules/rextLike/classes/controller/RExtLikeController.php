@@ -345,9 +345,8 @@ class RExtLikeController extends RExtController implements RExtInterface {
     $resCtrl = new ResourceController();
     $allLang = Cogumelo::getSetupValue( 'lang:available' );
     foreach( $allLang as $langKey => $langInfo ) {
-      // $likesUrl = $resCtrl->getUrlByPattern( $resMainId, $langKey, $resMainId );
-      $likesUrl = '/INTERNO_Likes/'.$resMainId;
-
+      $likesUrl = $resCtrl->getUrlByPattern( $resMainId, $langKey, $resMainId );
+      # $likesUrl = '/INTERNO_Likes/'.$resMainId;
       $resCtrl->setUrl( $resMainId, $langKey, $likesUrl );
     }
 
