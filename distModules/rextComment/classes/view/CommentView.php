@@ -202,7 +202,7 @@ class CommentView extends View {
 
   public function commentOk( $form ) {
     $comment = false;
-
+    $notificarComentario = false;
     //Si tod0 esta OK!
     if( !$form->existErrors() ){
       $valuesArray = $form->getValuesArray();
@@ -227,7 +227,20 @@ class CommentView extends View {
       $userCommentObj = is_object( $userCommentList ) ? $userCommentList->fetch() : false;
       $userComment = is_object( $userCommentObj ) ? $userCommentObj->getAllData( 'onlydata' ) : false;
 
-      if( !empty($userComment['notify']) || !empty(Cogumelo::getSetupValue('mod:geozzy:resource:commentRules:default:notify')) ){
+
+      $confNotify = Cogumelo::getSetupValue('mod:geozzy:resource:commentRules:default:notify');
+      if( $userComment === false ){
+        if(!empty($confNotify)){
+          $notificarComentario = true;
+        }
+      }
+      else{
+        if( !empty($userComment['notify']) ){
+          $notificarComentario = true;
+        }
+      }
+
+      if($notificarComentario){
         Cogumelo::load( 'coreController/MailController.php' );
         $mailCtrl = new MailController();
         $bodyPlain = new Template();
@@ -248,9 +261,7 @@ class CommentView extends View {
 
         $mailCtrl->setBody( $bodyPlain, $bodyHtml, $vars );
         $mailCtrl->send( $adresses, __('You have received a comment') );
-
       }
-
 
       // Consultamos el valor de valoracion media y lo guardamos en el recurso
       // $averageVotesModel = new AverageVotesViewModel();
