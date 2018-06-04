@@ -133,7 +133,7 @@
         </div>
         <div class="showMap"><i class="fa fa-map-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
         <div class="optimizeDay"><i class="fa fa-magic " aria-hidden="true"></i>&nbsp;<span>{t}Optimize day{/t}</span></div>
-        <!-- <div class="printDay hidden-xs hidden-sm"><i class="fa fa-print " aria-hidden="true"></i>&nbsp;<span>{t}Print day{/t}</span></div> -->
+        <div class="printDay hidden-xs hidden-sm"><i class="fa fa-print " aria-hidden="true"></i></div>
       </div>
     </div>
     <div class="plannerDayPlanner gzznestable dd">
