@@ -75,22 +75,24 @@ class ResourceView extends View {
 
     $formBlockInfo = $this->defResCtrl->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
 
-    $resArray = $formBlockInfo['template']['adminFull']->getTemplateVars( 'res' );
+    if( !empty($formBlockInfo['template']['adminFull']) ) {
+      $resArray = $formBlockInfo['template']['adminFull']->getTemplateVars( 'res' );
 
-    if( empty( $resArray['data'] ) ) {
-      $resArray = [
-        'data' => !empty( $formBlockInfo['data'] ) ? $formBlockInfo['data'] : false
-      ];
-    }
+      if( empty( $resArray['data'] ) ) {
+        $resArray = [
+          'data' => !empty( $formBlockInfo['data'] ) ? $formBlockInfo['data'] : false
+        ];
+      }
 
-    $formBlockInfo['labels'] = $this->defResCtrl->getLabelsData( $resArray['data'] );
+      $formBlockInfo['labels'] = $this->defResCtrl->getLabelsData( $resArray['data'] );
 
-    if( count( $formBlockInfo['labels'] ) ) {
-      $resDataArray = [
-        'data' => $resArray['data'],
-        'labels' => $formBlockInfo['labels']
-      ];
-      $formBlockInfo['template']['adminFull']->assign( 'res', $resDataArray );
+      if( count( $formBlockInfo['labels'] ) ) {
+        $resDataArray = [
+          'data' => $resArray['data'],
+          'labels' => $formBlockInfo['labels']
+        ];
+        $formBlockInfo['template']['adminFull']->assign( 'res', $resDataArray );
+      }
     }
 
     return $formBlockInfo;
