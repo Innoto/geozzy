@@ -14,20 +14,20 @@ class RTypeLikesController extends RTypeController implements RTypeInterface {
    *
    * @return array $rTypeFieldNames
    */
-  public function manipulateForm( FormController $form ) {
+  // public function manipulateForm( FormController $form ) {
 
-    // Lanzamos los manipulateForm de las extensiones
-    parent::manipulateForm( $form );
+  //   // Lanzamos los manipulateForm de las extensiones
+  //   parent::manipulateForm( $form );
 
 
-    // Cambiamos el tipo de topics y starred para que no se muestren
-    $form->setFieldParam( 'topics', 'type', 'reserved' );
-    $form->setFieldParam( 'starred', 'type', 'reserved' );
-    $form->removeValidationRules('topics');
-    $form->removeValidationRules('starred');
-    $form->removeField( 'externalUrl' );
-    $form->removeField( $form->multilangFieldNames( 'urlAlias' ) );
-  } // function manipulateForm()
+  //   // Cambiamos el tipo de topics y starred para que no se muestren
+  //   $form->setFieldParam( 'topics', 'type', 'reserved' );
+  //   $form->setFieldParam( 'starred', 'type', 'reserved' );
+  //   $form->removeValidationRules('topics');
+  //   $form->removeValidationRules('starred');
+  //   $form->removeField( 'externalUrl' );
+  //   $form->removeField( $form->multilangFieldNames( 'urlAlias' ) );
+  // } // function manipulateForm()
 
 
   /**
@@ -37,67 +37,67 @@ class RTypeLikesController extends RTypeController implements RTypeInterface {
    *
    * @return Array $formBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array, 'ext' => array }
    */
-  public function getFormBlockInfo( FormController $form ) {
+  // public function getFormBlockInfo( FormController $form ) {
 
-    // Cargamos la informacion del form, los datos y lanzamos los getFormBlockInfo de las extensiones
-    $formBlockInfo = parent::getFormBlockInfo( $form );
+  //   // Cargamos la informacion del form, los datos y lanzamos los getFormBlockInfo de las extensiones
+  //   $formBlockInfo = parent::getFormBlockInfo( $form );
 
-    $templates = $formBlockInfo['template'];
+  //   $templates = $formBlockInfo['template'];
 
-    // TEMPLATE panel principa del form. Contiene los elementos globales del form.
-    $templates['formBase'] = new Template();
-    $templates['formBase']->setTpl( 'rTypeFormBase.tpl', 'geozzy' );
-    $templates['formBase']->assign( 'title', __('Main Resource information') );
-    $templates['formBase']->assign( 'res', $formBlockInfo );
+  //   // TEMPLATE panel principa del form. Contiene los elementos globales del form.
+  //   $templates['formBase'] = new Template();
+  //   $templates['formBase']->setTpl( 'rTypeFormBase.tpl', 'geozzy' );
+  //   $templates['formBase']->assign( 'title', __('Main Resource information') );
+  //   $templates['formBase']->assign( 'res', $formBlockInfo );
 
-    $formFieldsNames = array_merge(
-      $form->multilangFieldNames( 'title' ),
-      $form->multilangFieldNames( 'shortDescription' ),
-      $form->multilangFieldNames( 'content' )
-    );
-    $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
-
-
-    $likesTemplate = false;
-    if( $formBlockInfo['data']['id'] ) {
-      $likesData = $this->getLikesData( $formBlockInfo['data']['id'] );
-
-      if( $likesData ) {
-        // TEMPLATE panel estado de publicacion
-        $likesTemplate = new Template();
-        $likesTemplate->setTpl( 'likeAdminFormPanel.tpl', 'rtypeLikes' );
-        $likesTemplate->assign( 'title', __( 'Likes' ) );
-        $likesTemplate->assign( 'res', $formBlockInfo );
-        $likesTemplate->assign( 'likesData', $likesData );
-      }
-    }
+  //   $formFieldsNames = array_merge(
+  //     $form->multilangFieldNames( 'title' ),
+  //     $form->multilangFieldNames( 'shortDescription' ),
+  //     $form->multilangFieldNames( 'content' )
+  //   );
+  //   $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
 
-    // TEMPLATE con todos los paneles
-    $templates['adminFull'] = new Template();
-    $templates['adminFull']->setTpl( 'adminContent-8-4.tpl', 'admin' );
-    $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
+  //   $likesTemplate = false;
+  //   if( $formBlockInfo['data']['id'] ) {
+  //     $likesData = $this->getLikesData( $formBlockInfo['data']['id'] );
 
-    // COL8
-    $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
-    if( $likesTemplate ) {
-      $templates['adminFull']->addToFragment( 'col8', $likesTemplate );
-    }
-    // $templates['adminFull']->addToFragment( 'col8', $templates['likeResources'] );
-    // COL4
-    $templates['adminFull']->addToFragment( 'col4', $templates['publication'] );
-    $templates['adminFull']->addToFragment( 'col4', $templates['info'] );
+  //     if( $likesData ) {
+  //       // TEMPLATE panel estado de publicacion
+  //       $likesTemplate = new Template();
+  //       $likesTemplate->setTpl( 'likeAdminFormPanel.tpl', 'rtypeLikes' );
+  //       $likesTemplate->assign( 'title', __( 'Likes' ) );
+  //       $likesTemplate->assign( 'res', $formBlockInfo );
+  //       $likesTemplate->assign( 'likesData', $likesData );
+  //     }
+  //   }
 
 
-    // TEMPLATE en bruto con todos los elementos del form
-    $templates['full'] = new Template();
-    $templates['full']->setTpl( 'rTypeFormBlock.tpl', 'geozzy' );
-    $templates['full']->assign( 'res', $formBlockInfo );
+  //   // TEMPLATE con todos los paneles
+  //   $templates['adminFull'] = new Template();
+  //   $templates['adminFull']->setTpl( 'adminContent-8-4.tpl', 'admin' );
+  //   $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
 
-    $formBlockInfo['template'] = $templates;
+  //   // COL8
+  //   $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
+  //   if( $likesTemplate ) {
+  //     $templates['adminFull']->addToFragment( 'col8', $likesTemplate );
+  //   }
+  //   // $templates['adminFull']->addToFragment( 'col8', $templates['likeResources'] );
+  //   // COL4
+  //   $templates['adminFull']->addToFragment( 'col4', $templates['publication'] );
+  //   $templates['adminFull']->addToFragment( 'col4', $templates['info'] );
 
-    return $formBlockInfo;
-  }
+
+  //   // TEMPLATE en bruto con todos los elementos del form
+  //   $templates['full'] = new Template();
+  //   $templates['full']->setTpl( 'rTypeFormBlock.tpl', 'geozzy' );
+  //   $templates['full']->assign( 'res', $formBlockInfo );
+
+  //   $formBlockInfo['template'] = $templates;
+
+  //   return $formBlockInfo;
+  // }
 
 
   /**
