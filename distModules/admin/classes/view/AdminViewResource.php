@@ -286,11 +286,16 @@ class AdminViewResource extends AdminViewMaster {
     $formBlockInfo = $resView->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
     // $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
 
-    $resTplVar = $formBlockInfo['template']['adminFull']->getTemplateVars('res');
-    if( !$resTplVar ) {
-      $formBlockInfo['template']['adminFull']->assign( 'res', array( 'data' => $formBlockInfo['data'] ) );
+    if( !empty($formBlockInfo['template']['adminFull']) ) {
+      $resTplVar = $formBlockInfo['template']['adminFull']->getTemplateVars('res');
+      if( !$resTplVar ) {
+        $formBlockInfo['template']['adminFull']->assign( 'res', array( 'data' => $formBlockInfo['data'] ) );
+      }
+      $formBlockInfo['template']['adminFull']->exec();
     }
-    $formBlockInfo['template']['adminFull']->exec();
+    else {
+      echo 'Without administration form';
+    }
   }
 
   /**
