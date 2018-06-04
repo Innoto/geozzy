@@ -11,17 +11,20 @@ class LikeUsersListViewModel extends Model {
    * Listado de recursos likes con su coleccion 'like' y recurso RTypeLike
    * Se incluyen recursos RTypeLike con colecciones 'like' sin contenido
    */
-  static $cols = array(
-    'id' => array(
+  static $cols = [
+    'id' => [
       'type' => 'FOREIGN',
       'vo' => 'ResourceModel',
       'key' => 'id',
       'primarykey' => true
-    ),
-    'userList' => array(
+    ],
+    'likesCount' => [
+      'type' => 'INT'
+    ],
+    'userList' => [
       'type' => 'VARCHAR',
-    ),
-  );
+    ],
+  ];
 
   static $extraFilters = array(
     'idIn' => ' geozzy_like_users_list_view.id IN (?) ',
@@ -42,6 +45,7 @@ class LikeUsersListViewModel extends Model {
         CREATE VIEW geozzy_like_users_list_view AS
 
           SELECT CR.resource as id,
+            COUNT( RES.user ) as likesCount,
             GROUP_CONCAT( RES.user ) as userList
 
           FROM geozzy_resource as RES, geozzy_resourcetype as RT, geozzy_resource_collections as RC,
