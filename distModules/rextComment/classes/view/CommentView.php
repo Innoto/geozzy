@@ -256,7 +256,9 @@ class CommentView extends View {
           'userName' => $user['data']['name'],
           'userSurname' => $user['data']['surname'],
           'userLogin' => $user['data']['login'],
-          'res_title' => $res->getter('title')
+          'res_title' => $res->getter('title'),
+          'res_userName' => $res->getter('userName'),
+          'res_userSurname' => $res->getter('userSurname')
         );
 
         $mailCtrl->setBody( $bodyPlain, $bodyHtml, $vars );

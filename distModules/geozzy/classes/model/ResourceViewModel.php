@@ -31,6 +31,14 @@ class ResourceViewModel extends Model {
       'vo' => 'UserModel',
       'key'=> 'id'
     ),
+    'userName' => array(
+      'type' => 'VARCHAR',
+      'size' => 255
+    ),
+    'userSurname' => array(
+      'type' => 'VARCHAR',
+      'size' => 255
+    ),
     'userEmail' => array(
       'type' => 'VARCHAR',
       'size' => 255,
@@ -175,13 +183,13 @@ class ResourceViewModel extends Model {
 
   var $deploySQL = array(
     array(
-      'version' => 'geozzy#7',
+      'version' => 'geozzy#8',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_view;
         CREATE VIEW geozzy_resource_view AS
           SELECT
-            r.id, r.idName, r.rTypeId, rt.idName AS rTypeIdName, r.user, u.email AS userEmail, r.userUpdate, r.published,
+            r.id, r.idName, r.rTypeId, rt.idName AS rTypeIdName, r.user, u.email AS userEmail, u.name AS userName, u.surname AS userSurname, r.userUpdate, r.published,
             {multilang:r.title_$lang,}
             {multilang:r.shortDescription_$lang,}
             {multilang:r.mediumDescription_$lang,}
