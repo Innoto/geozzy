@@ -9,14 +9,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
-msgid "Select Dates"
-msgstr "Selecciona las fechas"
-
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerPrintDayView.js:26
 msgid "Print Day"
 msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:184
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:182
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:180
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:168
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:55
+msgid "Day"
+msgstr "Día"
 
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:44
 msgid "Add to Plan"
@@ -32,13 +35,10 @@ msgstr ""
 msgid "Introduce entre 0 y 59 minutos"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:184
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:182
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:180
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:168
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:55
-msgid "Day"
-msgstr "Día"
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
+msgid "Select Dates"
+msgstr "Selecciona las fechas"
 
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13

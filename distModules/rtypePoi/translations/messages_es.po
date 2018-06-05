@@ -9,8 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/becarios/app/tmp/tpl/rTypePoiFormModalBlock.tpl:24
 #: /home/proxectos/becarios/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
+#: /home/proxectos/becarios/app/tmp/tpl/rTypePoiFormModalBlock.tpl:24
 #: /home/proxectos/canlers/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
 #: /home/proxectos/canlers/app/tmp/tpl/rTypePoiFormModalBlock.tpl:24
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24

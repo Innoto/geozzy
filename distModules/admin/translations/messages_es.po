@@ -312,6 +312,7 @@ msgid "Title"
 msgstr "Título"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:314
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:319
 msgid "Thumbnail image (Optional)"
 msgstr "Miniatura (opcional)"
 
