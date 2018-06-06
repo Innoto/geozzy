@@ -221,22 +221,23 @@ class CommentView extends View {
       $res = $resControl->listItems( ['filters' => [ 'id' => $valuesArray['resource'] ]] )->fetch();
       $resData = $res->getAllData('onlydata');
 
-      $userCommentControl = new UserCommentModel();
-      $userCommentList = $userCommentControl->listItems(['filters' => ['user' => $resData['user']  ]]);
+      if(!empty($resData['user'])){
+        $userCommentControl = new UserCommentModel();
+        $userCommentList = $userCommentControl->listItems(['filters' => ['user' => $resData['user']  ]]);
 
-      $userCommentObj = is_object( $userCommentList ) ? $userCommentList->fetch() : false;
-      $userComment = is_object( $userCommentObj ) ? $userCommentObj->getAllData( 'onlydata' ) : false;
+        $userCommentObj = is_object( $userCommentList ) ? $userCommentList->fetch() : false;
+        $userComment = is_object( $userCommentObj ) ? $userCommentObj->getAllData( 'onlydata' ) : false;
 
-
-      $confNotify = Cogumelo::getSetupValue('mod:geozzy:resource:commentRules:default:notify');
-      if( $userComment === false ){
-        if(!empty($confNotify)){
-          $notificarComentario = true;
+        $confNotify = Cogumelo::getSetupValue('mod:geozzy:resource:commentRules:default:notify');
+        if( $userComment === false ){
+          if(!empty($confNotify)){
+            $notificarComentario = true;
+          }
         }
-      }
-      else{
-        if( !empty($userComment['notify']) ){
-          $notificarComentario = true;
+        else{
+          if( !empty($userComment['notify']) ){
+            $notificarComentario = true;
+          }
         }
       }
 
