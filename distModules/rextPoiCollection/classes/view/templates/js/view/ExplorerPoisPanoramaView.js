@@ -55,9 +55,6 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
 
       var hotSpots = [];
 
-      that.parentExplorer.partial
-
-
       that.parentExplorer.resourceMinimalList.each(function(e,i){
 
         if( e.get('panoramaPitch') &&  e.get('panoramaYaw') ) {

@@ -13,9 +13,9 @@ class PoisExplorerController extends ExplorerController {
       $filters['resourceMain'] = (int) $_POST['resourceID'];
     }
 
-    global $C_LANG;
+    $lang_default = Cogumelo::getSetupValue( 'lang:default' );
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id','rType','content_'.$C_LANG,'loc','isNormalResource','terms'), 'filters'=> $filters, 'cache' => $this->cacheQuery ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id','rType','content_'.$lang_default,'loc','isNormalResource','terms'), 'filters'=> $filters, 'cache' => $this->cacheQuery ) );
 
     $coma = '';
 
@@ -45,8 +45,8 @@ class PoisExplorerController extends ExplorerController {
           }
           unset($resourceDataArray['loc']);
 
-          if( empty($resourceDataArray['isNormalResource']) && !empty($resourceDataArray['content_'.$C_LANG]) ){
-            $pitchYaw = explode( "/", $resourceDataArray['content_'.$C_LANG]);
+          if( empty($resourceDataArray['isNormalResource']) && !empty($resourceDataArray['content_'.$lang_default  ]) ){
+            $pitchYaw = explode( "/", $resourceDataArray['content_'.$lang_default ]);
             $row['panoramaYaw'] = $pitchYaw[1];
             $row['panoramaPitch'] = $pitchYaw[0];
           }

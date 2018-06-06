@@ -144,7 +144,52 @@ geozzy.explorer = function( opts ) {
           }
           that.applyFilters();
           //that.options.minimalLoadSuccess();
-          that.triggerEvent('minimalLoadSuccess',{})
+          that.triggerEvent('minimalLoadSuccess',{});
+
+          var resourcesToLoad = [];
+
+          if(that.displays.activeList) {
+            that.displays.activeList.currentPage = 0;
+            resourcesToLoad = $.merge( that.displays.activeList.getVisibleResourceIds() , resourcesToLoad);
+          }
+
+          if(that.displays.pasiveList) {
+            that.displays.pasiveList.currentPage = 0;
+            resourcesToLoad = $.merge( that.displays.pasiveList.getVisibleResourceIds() , resourcesToLoad);
+          }
+
+
+          resourcesToLoad = that.displays.map.getVisibleResourceIds();
+          that.fetchPartialList(
+            resourcesToLoad,
+            function() {
+              if( that.options.debug ) {
+                that.timeDebugerExtended.log( '&nbsp;- Fetch partial resource data' );
+              }
+
+              if(that.displays.activeList) {
+                that.displays.activeList.render();
+              }
+
+              if(that.displays.reccomendList) {
+                that.displays.reccomendList.render();
+              }
+
+              if( that.displays.plugins.length > 0 ) {
+                $.each( that.displays.plugins, function(pluginIndex, plugin) {
+                  plugin.render();
+                });
+              }
+              if( that.options.debug ) {
+                that.timeDebugerExtended.log( '&nbsp;- Render lists' );
+              }
+
+
+              that.triggerEvent('partialLoadSuccess', {});
+            }
+
+          );
+
         }
       }
 
@@ -262,7 +307,7 @@ geozzy.explorer = function( opts ) {
 
   that.render = function( dontRenderMap ) {
 
-    var resourcesToLoad = [];
+
     var metricData = {bounds:[], zoom: false,  filters:[0], explorerId: that.options.explorerId };
 
 
@@ -275,7 +320,7 @@ geozzy.explorer = function( opts ) {
 
         metricData.bounds = [ [mapbounds[0].lat(), mapbounds[0].lng()], [mapbounds[1].lat(), mapbounds[1].lng()] ];
 
-        resourcesToLoad = that.displays.map.getVisibleResourceIds();
+
         //resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
 
         $.each(that.filters, function(i,e) {
@@ -292,15 +337,7 @@ geozzy.explorer = function( opts ) {
       }
     }
 
-    if(that.displays.activeList) {
-      that.displays.activeList.currentPage = 0;
-      resourcesToLoad = $.merge( that.displays.activeList.getVisibleResourceIds() , resourcesToLoad);
-    }
 
-    if(that.displays.pasiveList) {
-      that.displays.pasiveList.currentPage = 0;
-      resourcesToLoad = $.merge( that.displays.pasiveList.getVisibleResourceIds() , resourcesToLoad);
-    }
 
 
 
@@ -315,47 +352,6 @@ geozzy.explorer = function( opts ) {
     else {
       var isFirstTime = false;
     }
-
-    that.fetchPartialList(
-      resourcesToLoad,
-      function() {
-        if( that.options.debug ) {
-          that.timeDebugerExtended.log( '&nbsp;- Fetch partial resource data' );
-        }
-
-        if(that.displays.activeList) {
-          that.displays.activeList.render();
-        }
-
-        if(that.displays.reccomendList) {
-          that.displays.reccomendList.render();
-        }
-
-        if( that.displays.plugins.length > 0 ) {
-          $.each( that.displays.plugins, function(pluginIndex, plugin) {
-            plugin.render();
-          });
-        }
-        if( that.options.debug ) {
-          that.timeDebugerExtended.log( '&nbsp;- Render lists' );
-        }
-
-        if( that.options.useUrlRouter &&  isFirstTime ){
-
-          /*
-          if( !Backbone.History.started ){
-            Backbone.history.start({ pushState: true });
-          }
-          else {
-            Backbone.history.stop();
-            Backbone.history.start({ pushState: true });
-          }*/
-        }
-
-        that.triggerEvent('partialLoadSuccess', {});
-      }
-
-    );
 
   },
 
