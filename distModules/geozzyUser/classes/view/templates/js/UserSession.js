@@ -21,8 +21,8 @@ geozzy.userSession = function() {
       that.abortCallback = abortCallback;
     }
     that.getUserSession(
-      function(){
-        if( that.user.get('id') === false ){
+      function(user){
+        if( user.get('id') === false ){
           if( mode  && mode === 'register') {
             that.initRegisterBox();
           }else{
@@ -38,9 +38,9 @@ geozzy.userSession = function() {
   that.getUserSession = function(success){
     that.user = new geozzy.userSessionComponents.UserSessionModel();
     that.user.fetch({
-      success: function(){
+      success: function(data){
         if(typeof(success) === 'function'){
-          success();
+          success(data);
         }
       }
     });
