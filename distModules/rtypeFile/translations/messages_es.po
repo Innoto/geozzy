@@ -9,6 +9,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/becarios/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
+#: /home/proxectos/becarios/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/becarios/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
+#: /home/proxectos/becarios/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
+msgid "Files up to 8MB can be upload in JPG and PNG format"
+msgstr "Puedes subir ficheros de hasta 8MB con formato JPG y PNG"
+
+#: /home/proxectos/becarios/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/becarios/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/canlers/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/profesores/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
+msgid "If not uploaded, an automatic thumbnail will be created"
+msgstr ""
+
+#: /home/proxectos/becarios/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
+#: /home/proxectos/becarios/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
+#: /home/proxectos/canlers/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
+#: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
+#: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
+#: /home/proxectos/canlers/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/canlers/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
+#: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/profesores/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/profesores/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
+#: /home/proxectos/profesores/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
+#: /home/proxectos/becarios/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/becarios/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
+msgid "Files up to 5MB can be upload in JPG and PNG format"
+msgstr ""
+
 #: /home/proxectos/becarios/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:13
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:13
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:13
@@ -75,61 +130,6 @@ msgstr ""
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:26
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeViewBlock.tpl:26
 msgid "None"
-msgstr ""
-
-#: /home/proxectos/becarios/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
-#: /home/proxectos/becarios/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
-#: /home/proxectos/becarios/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
-#: /home/proxectos/becarios/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
-msgid "Files up to 8MB can be upload in JPG and PNG format"
-msgstr "Puedes subir ficheros de hasta 8MB con formato JPG y PNG"
-
-#: /home/proxectos/becarios/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
-#: /home/proxectos/becarios/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
-#: /home/proxectos/canlers/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
-#: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
-#: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
-#: /home/proxectos/canlers/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
-#: /home/proxectos/canlers/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
-#: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
-#: /home/proxectos/profesores/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
-#: /home/proxectos/profesores/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
-#: /home/proxectos/profesores/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
-#: /home/proxectos/becarios/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
-#: /home/proxectos/becarios/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
-msgid "Files up to 5MB can be upload in JPG and PNG format"
-msgstr ""
-
-#: /home/proxectos/becarios/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/becarios/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/canlers/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/profesores/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
-msgid "If not uploaded, an automatic thumbnail will be created"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:39

@@ -1,0 +1,24 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: /home/proxectos/geozzy/distModules/rtypeLikes/classes/view/templates/js/likesView.js:16
+msgid "Remove from likes"
+msgstr ""
+
+#: /home/proxectos/becarios/app/tmp/tpl/rtypeLikes_classes_view_templates_rTypeViewBlock.tpl:31
+#: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:31
+msgid "Likes page"
+msgstr ""
+
+#: /home/proxectos/becarios/app/tmp/tpl/rtypeLikes_classes_view_templates_rTypeViewBlock.tpl:74
+#: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:74
+msgid "It seems you haven't added any items to your likes list yet..."
+msgstr ""

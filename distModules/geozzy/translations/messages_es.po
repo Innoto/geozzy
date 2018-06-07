@@ -355,6 +355,9 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1058
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1663
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1759
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1059
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1664
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1760
 msgid "Error setting values"
 msgstr "Error estableciendo valores"
 
@@ -367,6 +370,7 @@ msgstr "Error estableciendo valores"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1837
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1870
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1877
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1878
 msgid "Error setting collection values"
 msgstr "Error estableciendo los valores de la colección"
 
@@ -379,6 +383,7 @@ msgstr "Error estableciendo los valores de la colección"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1936
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1969
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1976
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1977
 msgid "Error setting URL alias"
 msgstr "Error estableciendo alias de URL"
 
@@ -391,6 +396,7 @@ msgstr "Error estableciendo alias de URL"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1950
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1983
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1990
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1991
 msgid "Error setting URL alias 2"
 msgstr "Error estableciendo alias 2 de URL"
 
