@@ -2014,6 +2014,7 @@ class geozzyAPIView extends View {
     $status = false;
 
     if( isset( $_POST['user'] ) ) {
+
       geozzyUser::load( 'view/GeozzyUserView.php' );
       $userView = new GeozzyUserView();
       $userVO = $userView->getUserVO( false, $_POST['user'] );
