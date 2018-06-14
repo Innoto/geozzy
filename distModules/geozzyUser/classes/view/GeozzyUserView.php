@@ -360,12 +360,12 @@ class GeozzyUserView extends View {
     }
 
     if($validate){
-
       if($userData){
         Cogumelo::load( 'coreController/MailController.php' );
         $mailCtrl = new MailController();
 
         $adresses = $userData['email'];
+
         $name = $userData['name'].' '.$userData['surname'];
 
         // ^geozzyuser/verify/([0-9a-f]+)$
@@ -470,7 +470,7 @@ class GeozzyUserView extends View {
     return $hash;
   }
 
-  public function getUserVO( $id, $login = false ) {
+  public function getUserVO( $id, $email = false ) {
     $userVO = false;
 
     $user = new UserModel();
@@ -479,8 +479,8 @@ class GeozzyUserView extends View {
     if( $id ) {
       $filter = array( 'id' => $id );
     }
-    if( $login ) {
-      $filter = array( 'login' => $login );
+    if( $email ) {
+      $filter = array( 'email' => $email );
     }
     if( $filter ) {
       $userList = $user->listItems( array( 'filters' => $filter, 'affectsDependences' => array( 'FiledataModel' ) ) );
