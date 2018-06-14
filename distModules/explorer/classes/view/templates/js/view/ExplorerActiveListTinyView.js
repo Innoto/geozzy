@@ -107,7 +107,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
       that.parentExplorer.resourceIndex.removePagination();
 
       var visibleResources = that.parentExplorer.resourceIndex.setSort('mapVisible', 'desc');
-      that.visibleResources = visibleResources.pluck( 'id' );
+
       ret = visibleResources.pluck( 'id' );
     }
 
@@ -126,6 +126,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
     var contentHtml = '';
     if( this.visibleResources) {
+
       $.each(  this.visibleResources, function(i,e){
 
 
@@ -185,7 +186,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
   renderPager: function renderPager() {
     var that = this;
 
-    that.getVisibleResourceIds().length
+    this.visibleResources.length
 
     var pages = Math.ceil(that.getMapVisibleResourceIds().length/that.options.itemsEachPage );
 

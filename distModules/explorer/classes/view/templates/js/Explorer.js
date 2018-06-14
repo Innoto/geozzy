@@ -201,6 +201,9 @@ geozzy.explorer = function( opts ) {
 
   }
 
+
+
+
   //
   // Display methods
   //
@@ -306,7 +309,7 @@ geozzy.explorer = function( opts ) {
         }
       );
     }
-    
+
   },
 
 
