@@ -138,21 +138,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
     });
 
 
-/*
 
-    $( that.options.mainContainerClass + ' ' + containerClassDots + ' select').bind('change', function(el) {
-      var val = $(el.target).val();
-      if( val == '*' ) {
-        that.selectedTerms = false;
-      }
-      else {
-        //that.selectedTerms = false;
-        that.selectedTerms = [ parseInt( $(el.target).val() ) ];
-      }
-
-      that.parentExplorer.applyFilters();
-    });
-*/
 
 
 

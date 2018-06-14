@@ -26,22 +26,12 @@ geozzy.explorer = function( opts ) {
     // cache times (in seconds)
     cacheTimeIndex: 20,
     debug: false,
-    useUrlRouter: false,
+    useUrlRouter: false
 
-    // events
-    //minimalLoadSuccess: function() {},
-    //partialLoadSuccess: function() {},
-    //resourceAccess: function( ){ return false;},
-    //resourceQuit: function() {}
   }
   $.extend(true, that.options, opts);
 
   that.explorerTouchDevice = $('html').hasClass('touch');
-
-  // metrics into explorer core are DEPRECATED
-  //that.metricsExplorerController = geozzy.biMetricsInstances.explorer;
-  //that.metricsResourceController = geozzy.biMetricsInstances.resource;
-
 
   // events
   that.explorerEvents = [];
@@ -73,15 +63,10 @@ geozzy.explorer = function( opts ) {
 
 
   if( that.options.useUrlRouter == true && typeof geozzy.explorerComponents.routerInstance == 'undefined' ) {
-    //'mapas-interactivos': 'main',
-
     geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
-
     geozzy.explorerComponents.routerInstance.parentExplorer = that;
     geozzy.explorerComponents.routerInstance.route( window.location.pathname.substring(1), 'explorerMain' );
   }
-
-
 
 
   //
@@ -107,21 +92,10 @@ geozzy.explorer = function( opts ) {
       }
     });
 
-
-
-    $(document).ready( function(){
-      /*
-      if( !Backbone.History.started ){
-        Backbone.history.start({ pushState: true });
-      }*/
-    });
-
     // render filters
     if( that.filters.length > 0 ) {
-
       $.each( that.filters, function(i,e){
         //console.log('FILTRO',e)
-
         e.render();
       });
     }
@@ -153,8 +127,10 @@ geozzy.explorer = function( opts ) {
   }
 
 
+  //
+  // Navigate url
+  //
   that.navigateUrl = function( rid ) {
-
     if( that.options.useUrlRouter == true ) {
       if( Backbone.History.started ){
         Backbone.history.stop();
@@ -168,15 +144,17 @@ geozzy.explorer = function( opts ) {
 
 
   //
-  // Apply filters
+  // Add filter
   //
-
   that.addFilter = function( filter ) {
     filter.parentExplorer = this;
     that.filters.push( filter );
-
   }
 
+
+  //
+  // Apply filters
+  //
   that.applyFilters = function() {
 
     if( that.options.debug ) {
@@ -188,23 +166,18 @@ geozzy.explorer = function( opts ) {
       that.resourceIndex.removePagination();
     }
 
-
     // Set filters for current index
     if( typeof that.resourceIndex.filterBy != 'undefined') {
       that.resourceIndex.filterBy( function(model) {
-
-
 
         var matches = 0;
         var ret = false;
 
         $.each( that.filters, function(i, filter){
-
           if( filter.filterAction( model ) ) {
             matches++;
             return;
           }
-
         });
 
         if( matches == that.filters.length ) {
@@ -228,10 +201,12 @@ geozzy.explorer = function( opts ) {
 
   }
 
+
+
+
   //
   // Display methods
   //
-
   that.addDisplay = function( displayObj ){
 
     if( displayObj.displayType == 'map' ) {
@@ -310,60 +285,36 @@ geozzy.explorer = function( opts ) {
     }
 
     if( that.resourcePartialList == false ) {
-      var isFirstTime = true
+      var isFirstTime = true;
+
+      that.bindEvent('minimalLoadSuccess', function(){
+        that.fetchPartialList(
+          resourcesToLoad,
+          function() {
+            that.renderPartialList();
+            that.triggerEvent('partialLoadSuccess', {});
+          }
+        );
+      });
+
     }
     else {
       var isFirstTime = false;
+
+      that.fetchPartialList(
+        resourcesToLoad,
+        function() {
+          that.renderPartialList();
+          that.triggerEvent('partialLoadSuccess', {});
+        }
+      );
     }
-
-    that.fetchPartialList(
-      resourcesToLoad,
-      function() {
-        if( that.options.debug ) {
-          that.timeDebugerExtended.log( '&nbsp;- Fetch partial resource data' );
-        }
-
-        if(that.displays.activeList) {
-          that.displays.activeList.render();
-        }
-
-        if(that.displays.reccomendList) {
-          that.displays.reccomendList.render();
-        }
-
-        if( that.displays.plugins.length > 0 ) {
-          $.each( that.displays.plugins, function(pluginIndex, plugin) {
-            plugin.render();
-          });
-        }
-        if( that.options.debug ) {
-          that.timeDebugerExtended.log( '&nbsp;- Render lists' );
-        }
-
-        if( that.options.useUrlRouter &&  isFirstTime ){
-
-          /*
-          if( !Backbone.History.started ){
-            Backbone.history.start({ pushState: true });
-          }
-          else {
-            Backbone.history.stop();
-            Backbone.history.start({ pushState: true });
-          }*/
-        }
-
-        that.triggerEvent('partialLoadSuccess', {});
-      }
-
-    );
 
   },
 
 
   that.fetchPartialList = function( resourcesToLoad, fetchSuccess ) {
-    lang = that.getLang();
-
-
+    var lang = that.getLang();
 
     if( that.resourcePartialList === false ) {
       var partialCollection = geozzy.explorerComponents.resourcePartialCollection.extend(
@@ -379,7 +330,6 @@ geozzy.explorer = function( opts ) {
       }
     }
 
-
     that.resourcePartialList.fetchByIds({
       ids: resourcesToLoad,
       success: function() {
@@ -388,18 +338,33 @@ geozzy.explorer = function( opts ) {
       }
     });
 
-
   }
 
-/*
-  that.setMetricsExplorer = function( obj ) {
-    that.metricsExplorerController = obj;//new geozzy.biMetrics.controller.explorer();
-  }
-*/
-/*  that.setMetricsResource = function( obj) {
 
-    that.metricsResourceController = obj;
-  }*/
+  that.renderPartialList = function(){
+    if( that.options.debug ) {
+      that.timeDebugerExtended.log( '&nbsp;- Fetch partial resource data' );
+    }
+
+    if(that.displays.activeList) {
+      that.displays.activeList.render();
+    }
+
+    if(that.displays.reccomendList) {
+      that.displays.reccomendList.render();
+    }
+
+    if( that.displays.plugins.length > 0 ) {
+      $.each( that.displays.plugins, function(pluginIndex, plugin) {
+        plugin.render();
+      });
+    }
+    if( that.options.debug ) {
+      that.timeDebugerExtended.log( '&nbsp;- Render lists' );
+    }
+
+
+  }
 
 
   that.triggerEvent = function( eventName, parameters) {
