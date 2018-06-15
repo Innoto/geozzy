@@ -135,7 +135,7 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:28
 #: /home/proxectos/canlers/app/tmp/tpl/userProfile.tpl:28
 msgid "Write only if you want to change the password"
-msgstr ""
+msgstr "Escribe só se queres cambiar o contrasinal"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:78
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:77
