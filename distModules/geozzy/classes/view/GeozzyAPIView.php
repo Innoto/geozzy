@@ -2094,7 +2094,7 @@ class geozzyAPIView extends View {
 
     while ($valueobject = $result->fetch() ) {
       $allData = array('id' => $valueobject->getter('id'), 'idName' => $valueobject->getter('idName'),
-        'name' => $valueobject->getter('name'), 'taxgroup' => $valueobject->getter('taxgroup'),
+        'name' => $valueobject->getter('name', false), 'taxgroup' => $valueobject->getter('taxgroup'),
         'icon' => $valueobject->getter('icon'), 'iconAKey' => $valueobject->getter('iconAKey'),
         'weight' => $valueobject->getter('weight'));
       //$allData = $valueobject->getAllData('onlydata');
