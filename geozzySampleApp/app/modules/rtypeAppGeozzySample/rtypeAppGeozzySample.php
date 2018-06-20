@@ -33,6 +33,6 @@ class rtypeAppGeozzySample extends Module {
     geozzy::load('controller/RTUtilsController.php');
 
     $rtUtilsControl = new RTUtilsController(__CLASS__);
-    $rtUtilsControl->rExtModuleDeploy();
+    $rtUtilsControl->rTypeModuleDeploy();
   }
 }
