@@ -149,7 +149,7 @@ geozzy.rExtLikeController = geozzy.rExtLikeController || {
     else {
       $likeField.removeClass( 'selected' ).attr( 'data-like-status', 0 );
     }
-    $likeField.find('.likeCount').text( likeCount );
+    $likeField.find('.likeCount').text( likeCount +' LIKES');
   },
   getStatusClient: function getStatusClient( resource ) {
     $likeField = $('.rExtLike[data-like-resource="'+resource+'"]');
