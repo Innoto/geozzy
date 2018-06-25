@@ -127,7 +127,8 @@ geozzy.rExtLikeController = geozzy.rExtLikeController || {
     this.setStatus( resource, newStatus );
   },
   setStatusClient: function setStatusClient( resource, status ) {
-    console.log( 'setStatusClient: ' + typeof status.value );
+    // console.log( 'setStatusClient: ' + typeof status.value );
+    var that = this;
 
     var likeValue = null;
     var likeCount = 0;
@@ -149,7 +150,14 @@ geozzy.rExtLikeController = geozzy.rExtLikeController || {
     else {
       $likeField.removeClass( 'selected' ).attr( 'data-like-status', 0 );
     }
-    $likeField.find('.likeCount').text( likeCount +' LIKES');
+
+    that.setCounterClient( resource, likeCount );
+  },
+  setCounterClient: function setCounterClient( resource, likeCount ) {
+    $likeCountElem = $('.rExtLike[data-like-resource="'+resource+'"] .likeCount');
+    if( $likeCountElem.length === 1 ) {
+      $likeCountElem.text( likeCount );
+    }
   },
   getStatusClient: function getStatusClient( resource ) {
     $likeField = $('.rExtLike[data-like-resource="'+resource+'"]');
@@ -157,6 +165,15 @@ geozzy.rExtLikeController = geozzy.rExtLikeController || {
     status = ( status === 1 || status === '1' || status === true ) ? 1 : 0;
 
     return( status );
+  },
+  getCounterClient: function getCounterClient( resource ) {
+    var likeCount = 0;
+    $likeCountElem = $('.rExtLike[data-like-resource="'+resource+'"] .likeCount');
+    if( $likeCountElem.length === 1 ) {
+      likeCount = parseInt( $likeCountElem.text() );
+    }
+
+    return( likeCount );
   },
   gotoLikesPage: function gotoLikesPage() {
     var that = this;
