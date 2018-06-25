@@ -7,27 +7,9 @@ class rextLike extends Module {
   public $name = 'rextLike';
   public $version = 2;
 
-
   public $models = ['LikeViewModel'];
-
   public $taxonomies = [];
-
   public $dependences = [];
-  // public $dependences = array(
-  //   array(
-  //    'id' =>'underscore',
-  //    'params' => array('underscore#1.8.3'),
-  //    'installer' => 'bower',
-  //    'includes' => array('underscore-min.js')
-  //   ),
-  //   array(
-  //    'id' =>'backbonejs',
-  //    'params' => array('backbone#1.1.2'),
-  //    'installer' => 'bower',
-  //    'includes' => array('backbone.js')
-  //   )
-  // );
-
 
   public $autoIncludeAlways = true;
   public $includesCommon = [
