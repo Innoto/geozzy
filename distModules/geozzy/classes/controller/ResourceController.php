@@ -11,6 +11,19 @@ cogumelo::load('coreController/Cache.php');
   getResourceData: Controlar ben translate e cargar a maioria dos datos
 **/
 
+/**
+ * Controller de Recursos
+ *
+ * PHPMD: Suppress all warnings from these rules.
+ * @SuppressWarnings(PHPMD.Superglobals)
+ * @SuppressWarnings(PHPMD.ElseExpression)
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ * @SuppressWarnings(PHPMD.CamelCaseVariableName)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+ **/
 class ResourceController {
 
   public $rTypeCtrl = null;
