@@ -438,7 +438,7 @@ class GeozzyUserView extends View {
       }
       else {
         error_log( '(Notice) checkUnknownPass: URL no valida. $urlParams '.print_r( $urlParams, true ) );
-        error_log( '$userData '.print_r( $userData, true ) );
+        //error_log( '$userData '.print_r( $userData, true ) );
       }
 
       $block['template']['full'] = $template;
