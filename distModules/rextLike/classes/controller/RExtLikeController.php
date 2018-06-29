@@ -4,7 +4,7 @@ geozzy::load( 'controller/RExtController.php' );
 class RExtLikeController extends RExtController implements RExtInterface {
 
   public function __construct( $defRTypeCtrl = false ) {
-    error_log(__METHOD__);
+    // error_log(__METHOD__);
 
     // Este RExt funciona tambien como modulo "autonomo"
     if( $defRTypeCtrl !== false ) {
@@ -30,7 +30,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
    * @return array OR false
    */
   public function getRExtData( $resId = false ) {
-    error_log(__METHOD__);
+    // error_log(__METHOD__);
 
     $rExtData = false;
 
@@ -86,7 +86,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
   public function getViewBlockInfo( $resId = false ) {
-    error_log(__METHOD__);
+    // error_log(__METHOD__);
 
     $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
 
@@ -95,7 +95,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
     $rExtViewBlockInfo['template']['full'] = new Template();
     $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
     $rExtViewBlockInfo['template']['full']->assign( 'resId', $resId );
-    $rExtViewBlockInfo['template']['full']->addClientStyles( 'styles/rExtLike.less', 'rextLike' );
+    $rExtViewBlockInfo['template']['full']->addClientStyles( 'styles/masterRExtLike.less', 'rextLike' );
     $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextLike' );
 
     return $rExtViewBlockInfo;
@@ -115,7 +115,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
    * @return array OR false
    */
   public function getAllLike( $likeUser ) {
-    error_log(__METHOD__);
+    // error_log(__METHOD__);
 
     $likeData = false;
 
@@ -140,7 +140,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
    * @return integer
    */
   public function getCollectionId( $likeUser ) {
-    error_log(__METHOD__);
+    // error_log(__METHOD__);
 
     $likeObj = $this->getLikesCollection( $likeUser );
     $colId = is_object( $likeObj ) ? $likeObj->getter( 'colId' ) : false;
@@ -150,7 +150,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
 
 
   public function getLikesCollection( $likeUser ) {
-    error_log(__METHOD__);
+    // error_log(__METHOD__);
 
     $likeObj = false;
 
@@ -174,7 +174,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
    * @return array OR false
    */
   public function getStatusInfo( $resId, $likeUser ) {
-    error_log(__METHOD__);
+    // error_log(__METHOD__);
 
     $likeData = false;
 
@@ -191,7 +191,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
 
 
   public function getLikeUsers( $resId ) {
-    error_log(__METHOD__);
+    // error_log(__METHOD__);
 
     $likeUsers = false;
 
@@ -218,7 +218,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
    * @return integer
    */
   public function getStatus( $resId, $likeUser ) {
-    error_log(__METHOD__);
+    // error_log(__METHOD__);
 
     if( !is_array( $resId ) ) {
       $status = ( $this->getStatusInfo( $resId, $likeUser ) ) ? 1 : 0;
@@ -244,7 +244,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
    * @return bool
    */
   public function setStatus( $resId, $newStatus, $likeUser ) {
-    error_log(__METHOD__);
+    // error_log(__METHOD__);
 
     $result = [ 'count' => 0 ];
     $preStatus = 0;
@@ -287,7 +287,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
           'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) ) );
         $crModel->save();
         // error_log( 'Creando crModel' );
-        
+
         $result['count']++;
       }
     }
@@ -321,13 +321,13 @@ class RExtLikeController extends RExtController implements RExtInterface {
     // $result = ( $newStatus === $this->getStatus( $resId, $likeUser ) );
 
 
-    error_log( json_encode($result) );
+    // error_log( json_encode($result) );
     return $result;
   }
 
 
   public function newLikeStructure( $likeUser ) {
-    error_log(__METHOD__);
+    // error_log(__METHOD__);
 
     // Hai que crear toda la estructura: resource rtypeLike, collection, resource-collection
 
@@ -366,7 +366,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
 
 
   public function getLikeRTypeId() {
-    error_log(__METHOD__);
+    // error_log(__METHOD__);
 
     $rTypeModel = new ResourcetypeModel();
     $rTypeList = $rTypeModel->listItems( [ 'filters' => [ 'idName' => 'rtypeLikes' ], 'cache' => $this->cacheQuery ] );
@@ -378,7 +378,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
 
 
   public function getLikeUrl( $likeUser ) {
-    error_log(__METHOD__);
+    // error_log(__METHOD__);
 
     $likesUrl = false;
 
