@@ -127,7 +127,8 @@ class ResourceModel extends Model {
   );
 
   static $extraFilters = array(
-    'find' => " ( UPPER( geozzy_resource.title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR geozzy_resource.id = ? )",
+    'find{multilang}' => ' ( UPPER( geozzy_resource.title_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR geozzy_resource.id = ? )',
+    //'find' => " ( UPPER( geozzy_resource.title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR geozzy_resource.id = ? )",
     'nottopic' => ' geozzy_resource.id NOT IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
     'intopic' => '  geozzy_resource.id IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
 
