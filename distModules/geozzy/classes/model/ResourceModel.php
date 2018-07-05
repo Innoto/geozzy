@@ -127,6 +127,13 @@ class ResourceModel extends Model {
   );
 
   static $extraFilters = array(
+    'findFull{multilang}' => ' (
+        UPPER( geozzy_resource.title_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR
+        UPPER( geozzy_resource.shortDescription_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR
+        UPPER( geozzy_resource.mediumDescription_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR
+        UPPER( geozzy_resource.content_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR
+    )
+    ',
     'find{multilang}' => ' ( UPPER( geozzy_resource.title_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR geozzy_resource.id = ? )',
     //'find' => " ( UPPER( geozzy_resource.title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR geozzy_resource.id = ? )",
     'nottopic' => ' geozzy_resource.id NOT IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
