@@ -10,10 +10,7 @@ class explorerSearch extends Module {
   );
 
   public $includesCommon = array(
-
-
-    //'js/Explorer.js',
-    //'styles/explorerMapArrows.less'
+    'js/ExplorerFilterSearchView.js'
   );
 
 
