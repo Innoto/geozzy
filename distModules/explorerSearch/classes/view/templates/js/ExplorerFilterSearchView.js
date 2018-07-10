@@ -3,9 +3,8 @@ if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 if(!geozzy.explorerComponents.filters) geozzy.explorerComponents.filters={};
 
 geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
-  selectedTerms: false,
-  categoriaEtiqueta: false,
   searchStr: '',
+  serverResponse: false,
   initialize: function( opts ) {
     var that = this;
     var options = {
@@ -14,59 +13,20 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
     };
     that.options = $.extend(true, {}, options, opts);
 
-    that.categoriaEtiqueta = new geozzy.collection.CategorytermCollection();
-    that.categoriaEtiqueta.setUrlByIdName('appEtiquetas');
-    that.categoriaEtiqueta.fetch();
-
   },
 
   filterAction: function( model ) {
     var that = this;
-    var ret = false;
-/*
-    var strA = '';
-    var strB = '';
+    var ret = true;
 
-    if( that.searchStr != '' ){
-
-      strA = that.searchStr.toUpperCase();
-    }
-
-    if( model.get('title') ) {
-      strB = model.get('title').toUpperCase();
-    }
-
-    if( strB.search( strA ) != -1) {
-      ret = true;
-    }
-
-    if( that.selectedTerms != false ) {
-
-      var terms =  model.get('terms');
-
-      if( typeof terms != "undefined") {
-        var diff = $( terms ).not( that.selectedTerms );
-        ret = (diff.length != terms.length );
+    if( that.searchStr != '' && that.serverResponse.length > 0 ) {
+      console.log(model.get('id'),that.serverResponse)
+      if( $.inArray( model.get('id'), that.serverResponse ) != -1) {
+        ret = true;
       }
-    }
-*/
-
-    if(that.searchStr!='') {
-      $.post(
-        '/api/explorerSearch',
-        {searchString: that.searchStr},
-        function( data ) {
-          console.log('Resultado BUSQUEDA!',resultTerms);
-
-          var terms =  model.get('terms');
-
-          if( typeof terms != "undefined") {
-            var diff = $( terms ).not( that.resultTerms );
-            ret = (diff.length != terms.length );
-          }
-
-        }
-      );
+      else {
+        ret = false;
+      }
     }
 
     return ret;
@@ -76,7 +36,7 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
     var that = this;
 
 
-    $(that.options.mainContainerClass).html('<input type="text" placeholder="Introduce a tua búsqueda"><button class="search"><i class="ti-search"></i></button>');
+    $(that.options.mainContainerClass).html('<input type="text" placeholder="Introduce a tua búsqueda"><button class="search"><i class="fa-search"></i></button>');
 
      $(that.options.mainContainerClass + ' input').on('keyup', function(e){
       if(e.keyCode == 13) {
@@ -95,18 +55,15 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
 
     that.searchStr = $(that.options.mainContainerClass + ' input').val() ;
 
-    that.options.onChange();
-
-    that.selectedTerms = [];
-
-    that.categoriaEtiqueta.each( function(e,i){
-      if( e.get('name').search(that.searchStr) != -1 ) {
-        that.selectedTerms.push( e.get('id') );
+    $.post(
+      '/api/explorerSearch',
+      {searchString: that.searchStr},
+      function( data ) {
+        that.serverResponse = data;
+        that.options.onChange();
+        that.parentExplorer.applyFilters();
       }
-
-    });
-
-    that.parentExplorer.applyFilters();
+    );
   },
 
   reset: function() {
