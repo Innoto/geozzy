@@ -2249,7 +2249,7 @@ class ResourceController {
     }
 
     $tempo2 = microtime(true);
-    Cogumelo::log( 'TEMPO F: '. sprintf( "%.3f", $tempo2-$tempo) .' getViewBlockInfo('.$resId.') - '. $_SERVER["REQUEST_URI"] );
+    // Cogumelo::log( __METHOD__.' TEMPO: '. sprintf( "%.3f", $tempo2-$tempo) .' ('.$resId.') '. $_SERVER["REQUEST_URI"], 'Tempos' );
     return( $viewBlockInfo );
   } // function getViewBlockInfo()
 
