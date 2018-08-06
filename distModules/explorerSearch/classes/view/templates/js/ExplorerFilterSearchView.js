@@ -36,7 +36,7 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
     var that = this;
 
 
-    $(that.options.mainContainerClass).html('<input type="text" placeholder="Introduce a tua búsqueda"><button class="search"><i class="fa-search"></i></button>');
+    $(that.options.mainContainerClass).html('<input type="text" placeholder="'+__('Search by name')+'"><button class="search fa fa-search"></button> <button style="display:none;" class="clear fa fa-times-circle"></button> ');
 
      $(that.options.mainContainerClass + ' input').on('keyup', function(e){
       if(e.keyCode == 13) {
@@ -48,10 +48,16 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
       that.searchFind();
     });
 
+    $(that.options.mainContainerClass).find('.clear').on('click', function() {
+      that.reset();
+    });
   },
 
   searchFind: function() {
     var that = this;
+
+    $(that.options.mainContainerClass).find('button.search').hide();
+    $(that.options.mainContainerClass).find('button.clear').show();
 
     that.searchStr = $(that.options.mainContainerClass + ' input').val() ;
 
@@ -70,6 +76,8 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
     var that = this;
     that.searchStr = '';
     $(that.options.mainContainerClass + ' input').val('');
+    $(that.options.mainContainerClass).find('button.search').show();
+    $(that.options.mainContainerClass).find('button.clear').hide();
   }
 
 });
