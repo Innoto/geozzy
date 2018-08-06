@@ -75,9 +75,12 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
   reset: function() {
     var that = this;
     that.searchStr = '';
+
     $(that.options.mainContainerClass + ' input').val('');
+    that.searchFind();
     $(that.options.mainContainerClass).find('button.search').show();
     $(that.options.mainContainerClass).find('button.clear').hide();
+
   }
 
 });
