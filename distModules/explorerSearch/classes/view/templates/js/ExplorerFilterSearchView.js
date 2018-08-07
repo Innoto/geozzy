@@ -8,6 +8,14 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
   initialize: function( opts ) {
     var that = this;
     var options = {
+      template: ''+
+        '<div class="input-group">'+
+          '<input type="text" placeholder="'+__('Search by name')+'">'+
+          '<span class="btnGroup">'+
+            '<button class="search btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>'+
+            '<button class="clear btn btn-default" style="display:none;"><i class="fa fa-times-circle" aria-hidden="true"></i></button>'+
+          '</span>'+
+        '</div>',
       mainContainerClass: false,
       onChange: function(){}
     };
@@ -36,7 +44,7 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
     var that = this;
 
 
-    $(that.options.mainContainerClass).html('<input type="text" placeholder="Introduce a tua búsqueda"><button class="search"><i class="fa-search"></i></button>');
+    $(that.options.mainContainerClass).html(that.options.template);
 
      $(that.options.mainContainerClass + ' input').on('keyup', function(e){
       if(e.keyCode == 13) {
@@ -48,10 +56,16 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
       that.searchFind();
     });
 
+    $(that.options.mainContainerClass).find('.clear').on('click', function() {
+      that.reset();
+    });
   },
 
   searchFind: function() {
     var that = this;
+
+    $(that.options.mainContainerClass).find('button.search').hide();
+    $(that.options.mainContainerClass).find('button.clear').show();
 
     that.searchStr = $(that.options.mainContainerClass + ' input').val() ;
 
@@ -69,7 +83,12 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
   reset: function() {
     var that = this;
     that.searchStr = '';
+
     $(that.options.mainContainerClass + ' input').val('');
+    that.searchFind();
+    $(that.options.mainContainerClass).find('button.search').show();
+    $(that.options.mainContainerClass).find('button.clear').hide();
+
   }
 
 });

@@ -78,15 +78,19 @@ geozzy.rExtMapController = function( opts ) {
         icono.url = cogumelo.publicConf.rextMapConf.defaultMarker;
       }
 
-      // ten medidas personalizadas
-      if( typeof cogumelo.publicConf.rextMapConf.defaultMarkerDimensions.size != 'undefined' ) {
-        icono.size = new google.maps.Size(cogumelo.publicConf.rextMapConf.defaultMarkerDimensions.size[0],cogumelo.publicConf.rextMapConf.defaultMarkerDimensions.size[1]);
+
+      if( typeof cogumelo.publicConf.rextMapConf.defaultMarkerDimensions != 'undefined' ) {
+        // ten medidas personalizadas
+        if( typeof cogumelo.publicConf.rextMapConf.defaultMarkerDimensions.size != 'undefined' ) {
+          icono.size = new google.maps.Size(cogumelo.publicConf.rextMapConf.defaultMarkerDimensions.size[0],cogumelo.publicConf.rextMapConf.defaultMarkerDimensions.size[1]);
+        }
+
+        // ten anchor personalizado
+        if( typeof cogumelo.publicConf.rextMapConf.defaultMarkerDimensions.anchor != 'undefined' ) {
+          icono.anchor = new google.maps.Point(cogumelo.publicConf.rextMapConf.defaultMarkerDimensions.anchor[0],cogumelo.publicConf.rextMapConf.defaultMarkerDimensions.anchor[1]);
+        }
       }
 
-      // ten anchor personalizado
-      if( typeof cogumelo.publicConf.rextMapConf.defaultMarkerDimensions.anchor != 'undefined' ) {
-        icono.anchor = new google.maps.Point(cogumelo.publicConf.rextMapConf.defaultMarkerDimensions.anchor[0],cogumelo.publicConf.rextMapConf.defaultMarkerDimensions.anchor[1]);
-      }
 
       // add marker
       that.resourceMarker = new google.maps.Marker({
