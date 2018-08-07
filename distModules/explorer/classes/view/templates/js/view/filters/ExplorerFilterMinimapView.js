@@ -9,8 +9,9 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
   currentIdName: false,
 
   events: {
-    'mouseenter' : 'showBoxMinimap',
-    'mouseleave' : 'hideBoxMinimap',
+    'mouseenter' : 'mouseenterShowBoxMinimap',
+    'mouseleave' : 'mouseleaveHideBoxMinimap',
+    'click' : 'showBoxMinimap',
     'click .filterResetMinimap' : 'reset'
   },
 
@@ -25,6 +26,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       resetButtonText: __('All'),
       template: geozzy.explorerComponents.filterMinimapViewTemplate,
       data: false,
+      openWithHover: true,
       styles: {
         width : 336,
         height : 355,
@@ -64,6 +66,21 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     var that = this;
 
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
+
+
+    $(window).on('click', function(ev){
+      if(
+        !(
+          $(ev.target).hasClass(that.options.containerClass ) ||
+          $(ev.target).parent().hasClass(that.options.containerClass ) ||
+          $(ev.target).parent().parent().hasClass(that.options.containerClass ) ||
+          $(ev.target).parent().parent().parent().hasClass(that.options.containerClass )
+        )
+       ){
+        that.hideBoxMinimap();
+      }
+
+    });
 
     var filterHtml = that.template( { iconHtml : that.options.iconHtml, resetButtonText : that.options.resetButtonText } );
 
@@ -169,6 +186,22 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       } );
       return Mapael;
     } ) );
+  },
+
+  mouseenterShowBoxMinimap: function() {
+    var that = this;
+
+    if( that.options.openWithHover == true ) {
+      that.showBoxMinimap();
+    }
+  },
+
+  mouseleaveHideBoxMinimap: function() {
+    var that = this;
+
+    if( that.options.openWithHover == true ) {
+      that.hideBoxMinimap();
+    }
   },
 
   showBoxMinimap: function() {
