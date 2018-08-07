@@ -8,6 +8,7 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
   initialize: function( opts ) {
     var that = this;
     var options = {
+      template: '<input type="text" placeholder="'+__('Search by name')+'"><button class="search fa fa-search"></button> <button style="display:none;" class="clear fa fa-times-circle"></button> ',
       mainContainerClass: false,
       onChange: function(){}
     };
@@ -36,7 +37,7 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
     var that = this;
 
 
-    $(that.options.mainContainerClass).html('<input type="text" placeholder="'+__('Search by name')+'"><button class="search fa fa-search"></button> <button style="display:none;" class="clear fa fa-times-circle"></button> ');
+    $(that.options.mainContainerClass).html(that.options.template);
 
      $(that.options.mainContainerClass + ' input').on('keyup', function(e){
       if(e.keyCode == 13) {
