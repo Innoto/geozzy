@@ -214,10 +214,11 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.boxMinimap' ).removeClass( 'filterMinimapBlock' ).addClass( 'filterMinimapNone' );
   },
 
-  reset: function() {
+  reset: function(ev) {
     var that = this;
 
-    that.hideBoxMinimap();        
+    ev.stopImmediatePropagation();
+
     var newData = { 'areas': {} };
     // Reseteamos la área al color por defecto
 
@@ -233,7 +234,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
 
     that.parentExplorer.applyFilters();
     //  Ocultamos el mapa tras el reset
-
+    that.hideBoxMinimap();
   },
 
 
