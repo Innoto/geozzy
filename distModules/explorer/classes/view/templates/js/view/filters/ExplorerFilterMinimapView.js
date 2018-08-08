@@ -188,7 +188,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     } ) );
   },
 
-  mouseenterShowBoxMinimap: function() {
+  mouseenterShowBoxMinimap: function(ev) {
     var that = this;
 
     if( that.options.openWithHover == true ) {
@@ -217,21 +217,23 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
   reset: function() {
     var that = this;
 
+
     var newData = { 'areas': {} };
     // Reseteamos la área al color por defecto
+    that.hideBoxMinimap();        
     newData.areas[that.currentIdName] = {
       attrs: { fill: that.options.styles.background_fill }
     };
     $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.minimap' ).trigger( 'update', [ { mapOptions: newData } ] );
-    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html('');
 
-    //  Ocultamos el mapa tras el reset
-    that.hideBoxMinimap();
+    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html('');
 
     that.currentIdName = false;
     that.selectedTerms = false;
 
     that.parentExplorer.applyFilters();
+    //  Ocultamos el mapa tras el reset
+
   },
 
 
