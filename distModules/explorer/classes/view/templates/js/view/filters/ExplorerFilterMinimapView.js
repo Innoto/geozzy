@@ -217,10 +217,10 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
   reset: function() {
     var that = this;
 
-
+    that.hideBoxMinimap();        
     var newData = { 'areas': {} };
     // Reseteamos la área al color por defecto
-    that.hideBoxMinimap();        
+
     newData.areas[that.currentIdName] = {
       attrs: { fill: that.options.styles.background_fill }
     };
