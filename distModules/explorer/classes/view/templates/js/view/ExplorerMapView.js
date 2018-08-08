@@ -134,14 +134,18 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   updateMapCenter: function() {
     var that = this;
 
-    var distancia = that.getDistanceFromCenterPixels( that.currentCenterToUse.lat(), that.currentCenterToUse.lng());
+    if( typeof that.currentCenterToUse.lat != 'undefined') {
+      var distancia = that.getDistanceFromCenterPixels( that.currentCenterToUse.lat(), that.currentCenterToUse.lng());
 
-    if( distancia  > 100 ){
-      that.parentExplorer.triggerEvent('mapChanged', {});
-      that.ready = true;
-      that.parentExplorer.render(true);
-      that.currentCenterToUse = that.map.getCenter();
+      if( distancia  > 100 ){
+        that.parentExplorer.triggerEvent('mapChanged', {});
+        that.ready = true;
+        that.parentExplorer.render(true);
+        that.currentCenterToUse = that.map.getCenter();
+      }
     }
+
+
   },
 
 
