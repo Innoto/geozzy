@@ -12,7 +12,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     'mouseenter' : 'mouseenterShowBoxMinimap',
     'mouseleave' : 'mouseleaveHideBoxMinimap',
     'click' : 'showBoxMinimap',
-    'click .filterResetMinimap' : 'reset'
+    'click .filterResetMinimap' : 'evReset'
   },
 
   initialize: function( opts ) {
@@ -214,10 +214,14 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.boxMinimap' ).removeClass( 'filterMinimapBlock' ).addClass( 'filterMinimapNone' );
   },
 
-  reset: function(ev) {
+  evReset: function(ev) {
     var that = this;
-
     ev.stopImmediatePropagation();
+    that.reset();
+  },
+
+  reset: function() {
+    var that = this;
 
     var newData = { 'areas': {} };
     // Reseteamos la área al color por defecto
