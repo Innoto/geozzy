@@ -10,7 +10,7 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
     var options = {
       template: ''+
         '<div class="input-group">'+
-          '<input type="text" placeholder="'+__('Search by name')+'">'+
+          '<input type="text" placeholder="'+__('Search')+'">'+
           '<span class="btnGroup">'+
             '<button class="search btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>'+
             '<button class="clear btn btn-default" style="display:none;"><i class="fa fa-times-circle" aria-hidden="true"></i></button>'+
