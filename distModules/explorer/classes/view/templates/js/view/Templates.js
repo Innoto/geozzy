@@ -28,7 +28,7 @@ geozzy.explorerComponents.mapInfoViewMobileTemplate = ''+
     '</div>'+
     '<div class="gempiInfo">'+
       '<div class="gempiTitle"><%-title%></div>'+
-      '<div class="gempiDescription"><%-shortDescription%></div>'+
+      '<div class="gempiDescription"><%=description%></div>'+
       '<button class="accessButton">ACCEDER</button>'+
     '</div>'+
     '<div class="extraBottomContent"></div>'+
