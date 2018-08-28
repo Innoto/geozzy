@@ -41,7 +41,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
     that.markerClustererHover.css("top", top+'px' );
     that.markerClustererHover.css("left", left+'px' );
-    that.markerClustererHover.css("z-index", 11 );
+    that.markerClustererHover.css("z-index", 201 );
     that.markerClustererHover.show();
 
     that.markerClustererHover.find(".markerClustererHoverCircle").unbind("click");
@@ -170,7 +170,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
   //insideDiv.find("i").hide();
   insideDiv.find("i").css('margin-left', '7px');
   insideDiv.find("i").css('margin-top', '7px');
-  insideDiv.find("i").css('position', 'absolute');  
+  insideDiv.find("i").css('position', 'absolute');
   insideDiv.find("i").css('color', '#fff');
   insideDiv.css( 'cursor', 'pointer' );
 /*  insideDiv.find("i").css('margin', 'auto');
