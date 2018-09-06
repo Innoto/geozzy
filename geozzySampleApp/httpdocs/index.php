@@ -14,7 +14,6 @@ require_once( 'conf/setup.php' );
 
 
 require_once( COGUMELO_LOCATION.'/coreClasses/CogumeloClass.php' );
-// require_once( COGUMELO_LOCATION.'/coreClasses/coreController/DependencesController.php' );
 require_once( APP_BASE_PATH.'/Cogumelo.php' );
 
 // resolving vendor includes
@@ -24,7 +23,7 @@ $dependencesControl->loadCogumeloIncludes();
 // error & warning handlers
 set_error_handler( 'Cogumelo::warningHandler' );
 register_shutdown_function( 'Cogumelo::errorHandler' );
-if( !Cogumelo::getSetupValue( 'logs:error' ) ) { // Metodo de setup porque no se ha cargado Cogumelo aun
+if( !Cogumelo::getSetupValue( 'logs:error' ) ) {
   ini_set( 'display_errors', 0 );
 }
 
