@@ -257,6 +257,7 @@ class GeozzyUserView extends View {
   }
 
   public function sendVerifyEmail( $userData ) {
+    unset($userData['password']);
     error_log( 'sendVerifyEmail: '.json_encode( $userData ) );
 
     Cogumelo::load( 'coreController/MailController.php' );
