@@ -51,20 +51,6 @@
 
 
 //
-// URL alias controller: Fichero que contiene una clase UrlAliasController con un metodo getAlternative
-//
-$conf->createSetupValue( 'urlAliasController:classFile',
-  COGUMELO_DIST_LOCATION.'/distModules/geozzy/classes/controller/UrlAliasController.php' );
-
-
-//
-// Error404 en una URL.
-//   View = View que se muestra como aviso del error
-//
-$conf->setSetupValue( 'urlError403:view', 'PageErrorView::page403' );
-$conf->setSetupValue( 'urlError404:view', 'PageErrorView::page404' );
-
-//
 // No se adminten URLs a ficheros solo con su Id
 //
 $conf->setSetupValue( 'mod:filedata:verifyAKeyUrl', true );
@@ -181,28 +167,6 @@ $conf->setSetupValue( 'mod:geozzy:resource:systemRTypes', [
 // USER PROFILE
 // $conf->setSetupValue( 'mod:geozzyUser:profile', '' );
 // $conf->setSetupValue( 'mod:geozzyUser:recoveryPasswordRedirect', '/asdf' );
-
-
-//
-// Dependences PATH
-//
-$conf->setSetupValue( 'dependences', [
-  'composerPath' => $conf->getSetupValue( 'setup:webBasePath' ).'/vendor/composer',
-  'yarnPath' => $conf->getSetupValue( 'setup:webBasePath' ).'/vendor/yarn',
-  'bowerPath' => $conf->getSetupValue( 'setup:webBasePath' ).'/vendor/bower',
-  'manualPath' => $conf->getSetupValue( 'setup:webBasePath' ).'/vendor/manual',
-  'manualRepositoryPath' => COGUMELO_LOCATION.'/packages/vendorPackages'
-]);
-
-
-//
-//  i18n
-//
-$conf->setSetupValue( 'i18n', [
-  'path' => $conf->getSetupValue( 'setup:appBasePath' ).'/conf/i18n',
-  'localePath' => $conf->getSetupValue( 'setup:appBasePath' ).'/conf/i18n/locale',
-  'gettextUpdate' => true // update gettext files when working in localhost
-]);
 
 
 //
