@@ -1,5 +1,4 @@
 <?php
-
 //
 //  SESSION
 //
@@ -9,8 +8,8 @@
 //
 // Session lifetime (Common)
 //
-$conf->createSetupValue( 'session:lifetime', 60*60 ); // 1h.
-ini_set( 'session.gc_maxlifetime',  $conf->getSetupValue( 'session:lifetime' ) );
+$conf->createSetupValue( 'session:lifetime', 60*60 ); // Segundos
+ini_set( 'session.gc_maxlifetime', $conf->getSetupValue('session:lifetime') );
 ini_set( 'session.cookie_lifetime', 365*24*60*60 ); // 1 year
 ini_set( 'session.gc_probability', 1 ); // A 1% chance of running on each session_start()
 ini_set( 'session.gc_divisor', 100 );
