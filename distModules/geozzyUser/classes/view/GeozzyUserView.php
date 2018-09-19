@@ -342,7 +342,7 @@ class GeozzyUserView extends View {
     }
   }
 
-  public function sendUnknownPassEmail( $userData, $captcha = false) {
+  public function sendUnknownPassEmail( $userData, $captcha = false, $urlPattern= false ) {
     //error_log( 'sendUnknownPassEmail: '.json_encode( $userData ) );
     $status = false;
     $validate = false;
@@ -359,6 +359,9 @@ class GeozzyUserView extends View {
         $validate = ( $response && $response->success ) ? true : false;
       }
     }
+    else{
+      $validate = true;
+    }
 
     if($validate){
       if($userData){
@@ -366,13 +369,17 @@ class GeozzyUserView extends View {
         $mailCtrl = new MailController();
 
         $adresses = $userData['email'];
-
         $name = $userData['name'].' '.$userData['surname'];
 
         // ^geozzyuser/verify/([0-9a-f]+)$
         $userHash = $this->generateHashUser();
-        $url = Cogumelo::getSetupValue( 'setup:webBaseUrl:urlCurrent' ).
+        if(empty($urlPattern)){
+          $url = Cogumelo::getSetupValue( 'setup:webBaseUrl:urlCurrent' ).
           'geozzyuser/unknownpass/'.$userData['id'].'/'.$userHash;
+        }
+        else{
+          $url = $urlPattern.'/'.$userData['id'].'/'.$userHash;
+        }
 
         $userVO = $this->getUserVO( $userData['id'] );
         $userVO->setter( 'hashUnknownPass', $userHash );
@@ -471,17 +478,20 @@ class GeozzyUserView extends View {
     return $hash;
   }
 
-  public function getUserVO( $id, $email = false ) {
+  public function getUserVO( $id, $email = false, $nickname = false ) {
     $userVO = false;
 
     $user = new UserModel();
     $filter = false;
 
-    if( $id ) {
+    if( !empty($id) ) {
       $filter = array( 'id' => $id );
     }
-    if( $email ) {
+    if( !empty($email) ) {
       $filter = array( 'email' => $email );
+    }
+    if( !empty($nickname) ) {
+      $filter = array( 'login' => $nickname );
     }
     if( $filter ) {
       $userList = $user->listItems( array( 'filters' => $filter, 'affectsDependences' => array( 'FiledataModel' ) ) );
