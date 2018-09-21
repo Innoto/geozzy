@@ -86,7 +86,7 @@ class AdminViewUser extends AdminViewMaster
   public function listUsersTable() {
 
     table::autoIncludes();
-    $user =  new UserModel();
+    $user =  new UserViewModel();
 
     $tabla = new TableController( $user );
 
@@ -115,17 +115,19 @@ class AdminViewUser extends AdminViewMaster
     $tabla->setCol('surname', __('Surname'));
     $tabla->setCol('email', __('Email'));
     $tabla->setCol('timeCreateUser', __('Creation date'));
+    $tabla->setCol('role', __('Role'));
     $tabla->setCol('active', __('Active'));
-    //$tabla->setCol('role', 'Role');
 
     $tabla->setColClasses('name', 'hidden-xs');
     $tabla->setColClasses('surname', 'hidden-md hidden-xs ');
     $tabla->setColClasses('email', 'hidden-xs hidden-sm ');
     $tabla->setColClasses('timeCreateUser', 'hidden-md hidden-xs');
+    $tabla->setColClasses('role', 'hidden-xs hidden-sm');
 
     // Contido especial
     $tabla->colRule('active', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
     $tabla->colRule('active', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');
+    $tabla->colRule('role', '#0#', '-');
 
     // imprimimos o JSON da taboa
     $tabla->exec();
