@@ -95,10 +95,25 @@ class AdminViewUser extends AdminViewMaster
     // set id search reference.
     $tabla->setSearchRefId('tableSearch');
 
+    $rolOptions = [];
+    $rolOptions['*'] = __('Todos los roles');
+    $roleControl =  new RoleModel();
+    $rolesList = $roleControl->listItems();
+    if(is_object($rolesList)){
+      while( $roleObj = $rolesList->fetch() ) {
+        $rolOptions[$roleObj->getter('name')] = $roleObj->getter('name');
+      }
+    }
+
+    $tabla->setExtraFilter( 'roleFilter',  'combo', __('Rol de usuario'), $rolOptions, '*' );
+
+
     // set table Actions
-    $tabla->setActionMethod(__('Active'), 'changeStatusActive', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "active", "changeValue"=>1 ))');
-    $tabla->setActionMethod(__('Inactive'), 'changeStatusLock', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "active", "changeValue"=> 0 ))');
-    $tabla->setActionMethod(__('Delete'), 'delete', 'listitems(array("filters" => array("id" => $rowId)))->fetch()->delete()');
+    $tabla->setActionMethod(__('Active'), 'changeStatusActive', 'userUpdateActive( array( "userId" => $rowId, "value"=>1 ))');
+    $tabla->setActionMethod(__('Inactive'), 'changeStatusLock', 'userUpdateActive( array( "userId" => $rowId, "value"=> 0 ))');
+    //$tabla->setActionMethod(__('Delete'), 'delete', 'listitems(array("filters" => array("id" => $rowId)))->fetch()->delete()');
+    $tabla->setActionMethod(__('Delete'), 'delete', 'deleteUser($rowId)');
+
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
