@@ -22,19 +22,25 @@ class rextTravelPlanner extends Module {
     array(
      'id' =>'moment',
      'params' => array( 'moment' ),
-     'installer' => 'bower',
+     'installer' => 'yarn',
      'includes' => array( 'min/moment-with-locales.min.js' )
     ),
     array(
-     'id' =>'moment-timezone',
-     'params' => array( 'moment-timezone' ),
-     'installer' => 'bower',
-     'includes' => array( 'builds/moment-timezone-with-data.min.js' )
+     "id" =>"moment-timezone",
+     "params" => array("moment-timezone"),
+     "installer" => "yarn",
+     "includes" => array("builds/moment-timezone-with-data.min.js")
+    ),
+    array(
+     'id' =>'bootstrap-daterangepicker',
+     'params' => array( 'bootstrap-daterangepicker' ),
+     'installer' => 'yarn',
+     'includes' => array( 'daterangepicker.js', 'daterangepicker.css' )
     ),
     array(
       "id" =>"nestable2",
       "params" => array("nestable2-old"),
-      "installer" => "bower",
+      "installer" => "yarn",
       "includes" => array("jquery.nestable.js")
     ),
     array(
@@ -42,12 +48,6 @@ class rextTravelPlanner extends Module {
       "params" => array("jQuery.print"),
       "installer" => "bower",
       "includes" => array("jQuery.print.js")
-    ),
-    array(
-     'id' =>'bootstrap-daterangepicker',
-     'params' => array( 'bootstrap-daterangepicker' ),
-     'installer' => 'bower',
-     'includes' => array( 'daterangepicker.js', 'daterangepicker.css' )
     )
   );
   public $taxonomies = array();

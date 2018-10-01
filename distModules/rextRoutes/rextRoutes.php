@@ -48,15 +48,15 @@ class rextRoutes extends Module {
 
     array(
       "id" => "dygraphs",
-      "params" => array("dygraphs#v1.1.0"),
-      "installer" => "bower",
+      "params" => array("dygraphs@1.1.0"),
+      "installer" => "yarn",
       "includes" => array("dygraph-combined.js","extras/shapes.js")
     ),
 
     array(
       "id" =>"switchery",
       "params" => array("switchery"),
-      "installer" => "bower",
+      "installer" => "yarn",
       "includes" => array("dist/switchery.min.js", "dist/switchery.min.css")
     )
   );

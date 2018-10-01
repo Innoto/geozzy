@@ -10,38 +10,38 @@ class adminBI extends Module {
   public $dependences = array(
     array(
       "id" =>"requirejs",
-      "params" => array("requirejs#^2.1.15"),
-      "installer" => "bower",
+      "params" => array("requirejs@2.1.15"),
+      "installer" => "yarn",
       "includes" => array()
     ),
     array(
       "id" =>"requirejs-text",
-      "params" => array("requirejs-text#^2.0.12"),
+      "params" => array("requirejs-text@2.0.12"),
       "installer" => "bower",
       "includes" => array()
     ),
     array(
       "id" =>"underscore",
-      "params" => array("underscore#1.8.3"),
-      "installer" => "bower",
-      "includes" => array()
+      "params" => array("underscore@1.8.3"),
+      "installer" => "yarn",
+      "includes" => array("underscore-min.js")
     ),
     array(
       "id" =>"backbonejs",
-      "params" => array("backbone#1.1.2"),
-      "installer" => "bower",
-      "includes" => array()
+      "params" => array("backbone@1.1.2"),
+      "installer" => "yarn",
+      "includes" => ['backbone.js']
     ),
     array(
       "id" =>"mustache",
       "params" => array("mustache"),
-      "installer" => "bower",
+      "installer" => "yarn",
       "includes" => array()
     ),
     array(
       "id" =>"highstock",
-      "params" => array("highstock-release#~2.1.9"),
-      "installer" => "bower",
+      "params" => array("highstock-release@2.1.9"),
+      "installer" => "yarn",
       "includes" => array()
     ),
     array(
@@ -52,8 +52,8 @@ class adminBI extends Module {
     ),
     array(
       "id" =>"leaflet",
-      "params" => array("leaflet#1.0.1"),
-      "installer" => "bower",
+      "params" => array("leaflet@1.0.1"),
+      "installer" => "yarn",
       "includes" => array('dist/leaflet.js','dist/leaflet.css')
     ),
     array(
@@ -67,38 +67,38 @@ class adminBI extends Module {
     ),
     array(
       "id" =>"leaflet-areaselect",
-      "params" => array("leaflet-areaselect"),
-      "installer" => "bower",
+      "params" => array("leaflet-area-select"),
+      "installer" => "yarn",
       "includes" => array("src/leaflet-areaselect.css","src/leaflet-areaselect.js")
     ),
     array(
       "id" =>"leaflet.heat",
-      "params" => array("Leaflet.heat#*"),
-      "installer" => "bower",
+      "params" => array("leaflet.heat"),
+      "installer" => "yarn",
       "includes" => array("dist/leaflet-heat.js")
     ),
     array(
-      "id" =>"moment",
-      "params" => array("moment"),
-      "installer" => "bower",
-      "includes" => array('min/moment-with-locales.min.js')
+      'id' =>'moment',
+      'params' => array( 'moment' ),
+      'installer' => 'yarn',
+      'includes' => array( 'min/moment-with-locales.min.js' )
     ),
     array(
       "id" =>"eonasdan-bootstrap-datetimepicker",
-      "params" => array("eonasdan-bootstrap-datetimepicker"),
-      "installer" => "bower",
+      "params" => array("eonasdan-bootstrap-datetimepicker@4.17.44"),
+      "installer" => "yarn",
       "includes" => array("build/css/bootstrap-datetimepicker.min.css", "build/js/bootstrap-datetimepicker.min.js")
     ),
     array(
       "id" =>"q",
-      "params" => array("q#1.0.1"),
-      "installer" => "bower",
+      "params" => array("q@1.0.1"),
+      "installer" => "yarn",
       "includes" => array()
     ),
     array(
       "id" =>"seiyria-bootstrap-slider",
-      "params" => array("seiyria-bootstrap-slider"),
-      "installer" => "bower",
+      "params" => array("bootstrap-slider-basic"),
+      "installer" => "yarn",
       "includes" => array("dist/css/bootstrap-slider.css", "dist/bootstrap-slider.min.js")
     )
   );

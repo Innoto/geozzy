@@ -17,15 +17,15 @@ class rextAudioguide extends Module {
   public $dependences = array(
     array(
      "id" =>"ionrangeslider",
-     "params" => array("ionrangeslider#2"),
-     "installer" => "bower",
+     "params" => array("ion-rangeslider@2"),
+     "installer" => "yarn",
      "includes" => array("js/ion.rangeSlider.min.js", "css/ion.rangeSlider.css")
    ),
     array(//widget audio
-     "id" =>"mediaelement",
-     "params" => array("mediaelement#4.2.6"),
-     "installer" => "bower",
-     "includes" => array("build/mediaelement-and-player.min.js", "build/mediaelementplayer.min.css")
+      "id" =>"mediaelement",
+      "params" => array("mediaelement@4.2.6"),
+      "installer" => "yarn",
+      "includes" => array("build/mediaelement-and-player.min.js", "build/mediaelementplayer.min.css")
    )
   );
 

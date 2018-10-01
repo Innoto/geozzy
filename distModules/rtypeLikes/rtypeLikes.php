@@ -10,26 +10,7 @@ class rtypeLikes extends Module {
 
 
   public $dependences = [];
-  // public $dependences = array(
-  //   array(
-  //     'id' =>'underscore',
-  //     'params' => array('underscore#1.8.3'),
-  //     'installer' => 'bower',
-  //     'includes' => array('underscore-min.js')
-  //   ),
-  //   array(
-  //     'id' =>'backbonejs',
-  //     'params' => array('backbone#1.1.2'),
-  //     'installer' => 'bower',
-  //     'includes' => array('backbone.js')
-  //   ),
-  //   array(
-  //     'id' =>'select2',
-  //     'params' => array('select2#4'),
-  //     'installer' => 'bower',
-  //     'includes' => array('dist/js/select2.full.min.js', 'dist/css/select2.min.css')
-  //   )
-  // );
+
 
 
   public $includesCommon = [
@@ -60,5 +41,5 @@ class rtypeLikes extends Module {
     $rtUtilsControl = new RTUtilsController(__CLASS__);
     $rtUtilsControl->rTypeModuleDeploy();
   }
-  
+
 }

@@ -11,110 +11,110 @@ class admin extends Module {
   public $dependences = array(
     array(
      "id" =>"underscore",
-     "params" => array("underscore#1.8.3"),
-     "installer" => "bower",
+     "params" => array("underscore@1.8.3"),
+     "installer" => "yarn",
      "includes" => array("underscore-min.js")
     ),
     array(
      "id" =>"backbonejs",
-     "params" => array("backbone#1.1.2"),
-     "installer" => "bower",
+     "params" => array("backbone@1.1.2"),
+     "installer" => "yarn",
      "includes" => ['backbone.js']
     ),
-    /*array(
-     "id" => "bootstrap",
-     "params" => array("bootstrap#v3.3"),
-     "installer" => "bower",
-     "includes" => array("dist/js/bootstrap.min.js")
-   ),*/
     array(
      "id" => "font-awesome",
-     "params" => array("Font-Awesome#v4.7.0"),
-     "installer" => "bower",
+     "params" => array("font-awesome"),
+     "installer" => "yarn",
      "includes" => array("css/font-awesome.min.css")
     ),
     array(
      "id" =>"html5shiv",
      "params" => array("html5shiv"),
-     "installer" => "bower",
-     "includes" => ['dist/html5shiv.min.js']
+     "installer" => "yarn",
+     "includes" => array("dist/html5shiv.js")
     ),
     array(
      "id" =>"respond",
-     "params" => array("respond"),
-     "installer" => "bower",
+     "params" => array("respond.js"),
+     "installer" => "yarn",
      "includes" => array("src/respond.js")
     ),
     array(
      "id" =>"metismenu",
-     "params" => array("metisMenu"),
-     "installer" => "bower",
+     "params" => array("metismenu"),
+     "installer" => "yarn",
      "includes" => array("dist/metisMenu.min.css", "dist/metisMenu.min.js")
     ),
     array(
      "id" =>"raphael",
      "params" => array("raphael"),
-     "installer" => "bower",
+     "installer" => "yarn",
      "includes" => array("raphael.min.js")
     ),
     array(
-     "id" =>"select2",
-     "params" => array("select2#4"),
-     "installer" => "bower",
-     "includes" => [ 'dist/js/select2.full.min.js', 'dist/css/select2.min.css' ]
+      "id" =>"select2",
+      "params" => array("select2@4"),
+      "installer" => "yarn",
+      "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
     ),
     array(
-     "id" =>"placeholders",
-     "params" => array("placeholders"),
-     "installer" => "bower",
-     "includes" => array("dist/placeholders.jquery.min.js")
+      "id" =>"placeholders",
+      "params" => array("jquery-placeholder"),
+      "installer" => "yarn",
+      "includes" => array("dist/placeholders.jquery.min.js")
     ),
     array(
       "id" =>"nestable2",
       "params" => array("nestable2-old"),
-      "installer" => "bower",
+      "installer" => "yarn",
       "includes" => array("jquery.nestable.js")
     ),
     array(
       "id" =>"multiList",
-      "params" => array("multiList"),
-      "installer" => "bower",
+      "params" => array("multilist-innoto"),
+      "installer" => "yarn",
       "includes" => [ 'multiList.min.js', 'multiList.css' ]
     ),
     array(
       "id" =>"switchery",
       "params" => array("switchery"),
-      "installer" => "bower",
+      "installer" => "yarn",
       "includes" => array("dist/switchery.min.js", "dist/switchery.min.css")
     ),
-    array(
+    /*array(
       "id" =>"raleway",
       "params" => array("raleway"),
       "installer" => "bower",
       "includes" => array("raleway.css")
+    ),*/
+    array(
+      "id" =>"raleway",
+      "params" => array("raleway-webfont"),
+      "installer" => "yarn",
+      "includes" => array("raleway.css")
     ),
     array(
-     "id" =>"moment",
-     "params" => array("moment"),
-     "installer" => "bower",
-     "includes" => array('min/moment-with-locales.min.js')
+     'id' =>'moment',
+     'params' => array( 'moment' ),
+     'installer' => 'yarn',
+     'includes' => array( 'min/moment-with-locales.min.js' )
     ),
     array(
      "id" =>"eonasdan-bootstrap-datetimepicker",
-     "params" => array("eonasdan-bootstrap-datetimepicker"),
-     "installer" => "bower",
+     "params" => array("eonasdan-bootstrap-datetimepicker@4.17.44"),
+     "installer" => "yarn",
      "includes" => array("build/css/bootstrap-datetimepicker.min.css", "build/js/bootstrap-datetimepicker.min.js")
     ),
     array(
      "id" =>"moment-timezone",
      "params" => array("moment-timezone"),
-     "installer" => "bower",
+     "installer" => "yarn",
      "includes" => array("builds/moment-timezone-with-data.min.js")
     ),
     array( // required by elFinder
       "id" =>"jquery-ui",
-      "params" => array("jquery-ui#1.12.1"),
-      "installer" => "bower",
+      "params" => array("jquery-ui@1.12.1"),
+      "installer" => "yarn",
       "includes" => [ 'jquery-ui.min.js', '/themes/smoothness/jquery-ui.min.css' ]
     ),
     array(

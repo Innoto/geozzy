@@ -14,21 +14,20 @@ class biMetrics extends Module
   public $dependences = array(
     array(
      "id" =>"underscore",
-     "params" => array("underscore#1.8.3"),
-     "installer" => "bower",
+     "params" => array("underscore@1.8.3"),
+     "installer" => "yarn",
      "includes" => array("underscore-min.js")
     ),
     array(
      "id" =>"backbonejs",
-     "params" => array("backbone#1.1.2"),
-     "installer" => "bower",
-     "includes" => array("backbone.js")
+     "params" => array("backbone@1.1.2"),
+     "installer" => "yarn",
+     "includes" => ['backbone.js']
     ),
-
     array(
     "id" =>"js-cookie",
     "params" => array("js-cookie"),
-    "installer" => "bower",
+    "installer" => "yarn",
     "includes" => array("src/js.cookie.js")
     ),
   );

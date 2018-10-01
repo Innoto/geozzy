@@ -9,8 +9,8 @@ class story extends Module {
   public $dependences = array(
     array(
       "id" =>"mathjs",
-      "params" => array("mathjs#4.0.1"),
-      "installer" => "bower",
+      "params" => array("mathjs"),
+      "installer" => "yarn",
       "includes" => array('dist/math.min.js')
     ),
     array(
@@ -19,10 +19,16 @@ class story extends Module {
       'installer' => 'manual',
       'includes' => array('src/CanvasLayer.js',)
     ),
-    array(
+    /*array(
       'id' =>'chap-links-library',
       'params' => array('chap-links-library'),
       'installer' => 'bower',
+      'includes' => array( 'js/src/timeline/timeline-locales.js', 'js/src/timeline/timeline-min.js', 'js/src/timeline/timeline.css' )
+    )*/
+    array(
+      'id' =>'chap-links-library',
+      'params' => array('@d3banking/chap-links-library'),
+      'installer' => 'yarn',
       'includes' => array( 'js/src/timeline/timeline-locales.js', 'js/src/timeline/timeline-min.js', 'js/src/timeline/timeline.css' )
     )
   );

@@ -11,62 +11,62 @@ class explorer extends Module {
     array(
       "id" =>"google-maps-utility-library-v3-markerwithlabel",
       "params" => array("google-maps-utility-library-v3-markerwithlabel"),
-      "installer" => "bower",
+      "installer" => "yarn",
       "includes" => array("dist/markerwithlabel.min.js")
     ),
     array(
      "id" =>"underscore",
-     "params" => array("underscore#1.8.3"),
-     "installer" => "bower",
+     "params" => array("underscore@1.8.3"),
+     "installer" => "yarn",
      "includes" => array("underscore-min.js")
     ),
     array(
      "id" =>"backbonejs",
-     "params" => array("backbone#1.1.2"),
-     "installer" => "bower",
-     "includes" => array("backbone.js")
+     "params" => array("backbone@1.1.2"),
+     "installer" => "yarn",
+     "includes" => ['backbone.js']
     ),
     array(
      "id" =>"backbone-fetch-cache.innoto",
-     "params" => array("backbone-fetch-cache.innoto"),
-     "installer" => "bower",
+     "params" => array("innoto-backbone-fetch-cache"),
+     "installer" => "yarn",
      "includes" => array("backbone.fetch-cache.min.js")
     ),
     array(
       "id" =>"backbone.obscura",
-      "params" => array("backbone.obscura#1.0.1"),
-      "installer" => "bower",
+      "params" => array("backbone.obscura@1.0.1"),
+      "installer" => "yarn",
       "includes" => array("backbone.obscura.js")
     ),
     array(
      "id" =>"marker-clusterer-v3-innoto",
      "params" => array("marker-clusterer-v3-innoto"),
-     "installer" => "bower",
+     "installer" => "yarn",
      "includes" => array("src/markerclusterer.js")
     ),
     array(
       "id" =>"switchery",
       "params" => array("switchery"),
-      "installer" => "bower",
+      "installer" => "yarn",
       "includes" => array("dist/switchery.min.js", "dist/switchery.min.css")
     ),
     array(
      "id" =>"ionrangeslider",
-     "params" => array("ionrangeslider#2"),
-     "installer" => "bower",
+     "params" => array("ion-rangeslider@2"),
+     "installer" => "yarn",
      "includes" => array("js/ion.rangeSlider.min.js", "css/ion.rangeSlider.css")
     ),
     array(
      "id" =>"tiny_map_utilities",
      "params" => array("tiny_map_utilities"),
-     "installer" => "bower",
+     "installer" => "yarn",
      "includes" => array("smart_infowindow/smart_infowindow.js", "smart_infowindow/vendor/jQueryRotate.js")
     ),
     array(
-      "id" =>"raphael",
-      "params" => array("raphael"),
-      "installer" => "bower",
-      "includes" => array("raphael.min.js")
+     "id" =>"raphael",
+     "params" => array("raphael"),
+     "installer" => "yarn",
+     "includes" => array("raphael.min.js")
     ),
     array(
       'id' =>'jquery-mapael-2.1.0',

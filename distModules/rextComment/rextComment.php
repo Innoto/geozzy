@@ -11,39 +11,39 @@ class rextComment extends Module {
   public $dependences = array(
     array(
       "id" =>"underscore",
-      "params" => array("underscore#1.8.3"),
-      "installer" => "bower",
+      "params" => array("underscore@1.8.3"),
+      "installer" => "yarn",
       "includes" => array("underscore-min.js")
     ),
     array(
       "id" =>"backbonejs",
-      "params" => array("backbone#1.1.2"),
-      "installer" => "bower",
-      "includes" => array("backbone.js")
+      "params" => array("backbone@1.1.2"),
+      "installer" => "yarn",
+      "includes" => ['backbone.js']
     ),
     array(
       "id" => "font-awesome",
-      "params" => array("Font-Awesome#v4.7.0"),
-      "installer" => "bower",
+      "params" => array("font-awesome"),
+      "installer" => "yarn",
       "includes" => array("css/font-awesome.min.css")
     ),
     array(
       "id" =>"bootstrap-star-rating",
       "params" => array("bootstrap-star-rating"),
-      "installer" => "bower",
+      "installer" => "yarn",
       "includes" => array("js/star-rating.min.js", 'css/star-rating.min.css')
     ),
     array(
       'id' =>'moment',
       'params' => array( 'moment' ),
-      'installer' => 'bower',
+      'installer' => 'yarn',
       'includes' => array( 'min/moment-with-locales.min.js' )
     ),
     array(
-      'id' =>'moment-timezone',
-      'params' => array( 'moment-timezone' ),
-      'installer' => 'bower',
-      'includes' => array( 'builds/moment-timezone-with-data.min.js' )
+      "id" =>"moment-timezone",
+      "params" => array("moment-timezone"),
+      "installer" => "yarn",
+      "includes" => array("builds/moment-timezone-with-data.min.js")
     )
   );
   public $autoIncludeAlways = true;
