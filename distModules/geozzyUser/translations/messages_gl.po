@@ -140,32 +140,32 @@ msgstr "Escribe só se queres cambiar o contrasinal"
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:78
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:77
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:81
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:80
 msgid "Surname"
-msgstr ""
+msgstr "Apelidos"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:84
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:83
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:88
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:87
 msgid "Repeat email"
-msgstr ""
+msgstr "Repetir email"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:92
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:91
 msgid "Password"
-msgstr ""
+msgstr "Contrasinal"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:95
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:94
 msgid "Repeat password"
-msgstr ""
+msgstr "Repetir contrasinal"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:112
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:111
@@ -203,7 +203,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:413
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:414
 msgid "Recovery Password"
-msgstr ""
+msgstr "Recuperar contrasinal"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:123
 msgid "Nickname"
