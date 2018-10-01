@@ -48,7 +48,7 @@ class explorer extends Module {
       "id" =>"switchery",
       "params" => array("switchery"),
       "installer" => "yarn",
-      "includes" => array("dist/switchery.min.js", "dist/switchery.min.css")
+      "includes" => array("switchery.js", "switchery.css")
     ),
     array(
      "id" =>"ionrangeslider",

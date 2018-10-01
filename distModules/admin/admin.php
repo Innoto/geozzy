@@ -79,7 +79,7 @@ class admin extends Module {
       "id" =>"switchery",
       "params" => array("switchery"),
       "installer" => "yarn",
-      "includes" => array("dist/switchery.min.js", "dist/switchery.min.css")
+      "includes" => array("switchery.js", "switchery.css")
     ),
     /*array(
       "id" =>"raleway",
@@ -87,12 +87,12 @@ class admin extends Module {
       "installer" => "bower",
       "includes" => array("raleway.css")
     ),*/
-    array(
+    /*array(
       "id" =>"raleway",
       "params" => array("raleway-webfont"),
       "installer" => "yarn",
       "includes" => array("raleway.css")
-    ),
+    ),*/
     array(
      'id' =>'moment',
      'params' => array( 'moment' ),

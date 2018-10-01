@@ -12,7 +12,7 @@ class geozzyAPI extends Module {
   public $dependences = array(
     array(
      "id" =>"swagger-ui",
-     "params" => array("swagger-ui@2.0.24"),
+     "params" => array("swagger-ui@3"),
      "installer" => "yarn",
      "includes" => array("")
     )

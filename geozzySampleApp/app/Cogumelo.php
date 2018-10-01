@@ -9,44 +9,65 @@ class Cogumelo extends CogumeloClass {
     array(
       "id" =>"featurejs",
       "params" => array("feature.js"),
-      "installer" => "bower",
+      "installer" => "yarn",
       "includes" => array('feature.min.js')
     ),
     array(
      "id" => "bootstrap",
-     "params" => array("bootstrap#v3.3"),
-     "installer" => "bower"
+     "params" => array("bootstrap@3.3"),
+     "installer" => "yarn"
     ),
     array(
      "id" => "font-awesome",
-     "params" => array("Font-Awesome#v4.7.0"),
-     "installer" => "bower",
+     "params" => array("font-awesome"),
+     "installer" => "yarn",
      "includes" => array("css/font-awesome.min.css")
     ),
     array(
      "id" =>"html5shiv",
      "params" => array("html5shiv"),
-     "installer" => "bower",
-     "includes" => array("dist/html5shiv.min.js")
+     "installer" => "yarn",
+     "includes" => array("dist/html5shiv.js")
     ),
     array(
       "id" =>"placeholders",
-      "params" => array("placeholders"),
-      "installer" => "bower",
-      "includes" => array("dist/placeholders.jquery.min.js")
+      "params" => array("jquery-placeholder"),
+      "installer" => "yarn",
+      "includes" => array("jquery.placeholder.js")
     ),
     array(
       "id" =>"jquery-easing",
-      "params" => array("jquery-easing-original"),
-      "installer" => "bower",
+      "params" => array("jquery.easing"),
+      "installer" => "yarn",
       "includes" => array("jquery.easing.min.js")
+    ),
+    array(
+      "id" =>"parallax.js",
+      "params" => array("jquery-parallax.js"),
+      "installer" => "yarn",
+      "includes" => array("parallax.js")
     ),
     array(
       "id" =>"owlcarousel",
       "params" => array("owl.carousel"),
-      "installer" => "bower",
-      "includes" => array("dist/owl.carousel.min.js", "dist/assets/owl.carousel.min.css")
+      "installer" => "yarn",
+      "includes" => array("dist/owl.carousel.js", "dist/assets/owl.carousel.css")
     ),
+    array(
+      'id' => 'masonry',
+      'params' => array( 'masonry-layout' ),
+      'installer' => 'yarn',
+      'includes' => array( 'dist/masonry.pkgd.min.js' )
+    ),
+    array(
+      'id' => 'imagesloaded',
+      'params' => array( 'imagesloaded' ),
+      'installer' => 'yarn',
+      'includes' => array( 'imagesloaded.pkgd.min.js' )
+    )
+
+
+
     // array(
     //   "id" =>"parallax.js",
     //   "params" => array("parallax.js"),
@@ -89,6 +110,7 @@ class Cogumelo extends CogumeloClass {
     //   "installer" => "bower",
     //   "includes" => array("dist/js/jquery.bootstrap-responsive-tabs.min.js", "dist/css/bootstrap-responsive-tabs.css")
     // ),
+
   );
 
   public $includesCommon = array();
