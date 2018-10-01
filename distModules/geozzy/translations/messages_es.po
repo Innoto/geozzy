@@ -20,6 +20,7 @@ msgstr "Aceptar"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:344
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:385
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:10
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:374
 msgid "Title"
 msgstr "Título"
 
@@ -28,6 +29,7 @@ msgstr "Título"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:349
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:390
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:14
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:379
 msgid "Short description"
 msgstr "Descripción corta"
 
@@ -37,6 +39,7 @@ msgstr "Descripción corta"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:354
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:395
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:51
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:384
 msgid "Medium description"
 msgstr "Descripción media"
 
@@ -44,6 +47,7 @@ msgstr "Descripción media"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:359
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:400
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:56
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:389
 msgid "Content"
 msgstr "Contenido"
 
@@ -51,6 +55,7 @@ msgstr "Contenido"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:367
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:408
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:61
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:397
 msgid "Image"
 msgstr "Imagen"
 
@@ -66,6 +71,7 @@ msgstr "Url externa"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:413
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:454
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:80
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:443
 msgid "Collections"
 msgstr "Colecciones"
 
@@ -148,18 +154,21 @@ msgstr "Guardar"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:357
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:340
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:381
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:370
 msgid "Time creation"
 msgstr "Fecha de creación"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:380
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:363
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:404
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:393
 msgid "External URL"
 msgstr "URL externa"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:390
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:373
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:414
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:403
 msgid "SEO: URL"
 msgstr ""
 
@@ -172,120 +181,140 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:399
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:382
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:423
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:412
 msgid "Priority"
 msgstr "Prioridad"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:400
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:383
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:424
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:413
 msgid "Normal"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:400
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:383
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:424
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:413
 msgid "High"
 msgstr "Alta"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:400
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:383
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:424
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:413
 msgid "Low"
 msgstr "Baja"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:404
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:387
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:428
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:417
 msgid "SEO: Head Keywords"
 msgstr "SEO: Palabras clave cabecera"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:409
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:392
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:433
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:422
 msgid "SEO: Head Description"
 msgstr "SEO: Descripción cabecera"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:414
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:397
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:438
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:427
 msgid "SEO: Head Title"
 msgstr "SEO: Título cabecera"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:419
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:402
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:443
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:432
 msgid "Extra information 1"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:424
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:407
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:448
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:437
 msgid "Extra information 2"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:440
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:423
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:464
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:453
 msgid "Create Collection"
 msgstr "Crear colección"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:441
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:424
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:465
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:454
 msgid "Add Collection"
 msgstr "Añadir colección"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:447
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:430
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:471
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:460
 msgid "Galleries"
 msgstr "Galerías"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:457
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:440
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:481
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:470
 msgid "Create Multimedia Gallery"
 msgstr "Crear galería multimedia"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:458
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:441
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:482
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:471
 msgid "Add Multimedia Gallery"
 msgstr "Añadir galería multimedia"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:462
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:445
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:486
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:475
 msgid "Publicado"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:465
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:448
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:489
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:478
 msgid "Topics"
 msgstr "Temáticas"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:468
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:451
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:492
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:481
 msgid "Starred"
 msgstr "Destacados"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:471
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:454
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:495
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:484
 msgid "Latitude"
 msgstr "Latitud"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:475
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:458
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:499
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:488
 msgid "Longitude"
 msgstr "Longitud"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:479
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:462
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:503
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:492
 msgid "Zoom"
 msgstr ""
 
@@ -294,6 +323,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:535
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:521
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:536
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:549
 msgid "Send"
 msgstr "Enviar"
 
@@ -302,6 +332,7 @@ msgstr "Enviar"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:537
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:523
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:538
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:551
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -310,6 +341,7 @@ msgstr "Cancelar"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:603
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:593
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:608
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:621
 msgid "El servidor no considera válidos los datos recibidos."
 msgstr ""
 
@@ -318,6 +350,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:608
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:598
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:613
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:626
 msgid ""
 "Ha sucedido un problema con los ficheros adjuntos. Puede que sea necesario "
 "subirlos otra vez."
@@ -328,6 +361,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:634
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:624
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:639
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:652
 msgid "La fecha de creación no es válida"
 msgstr ""
 
@@ -358,6 +392,9 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1059
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1664
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1760
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1072
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1677
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1773
 msgid "Error setting values"
 msgstr "Error estableciendo valores"
 
@@ -371,6 +408,7 @@ msgstr "Error estableciendo valores"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1870
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1877
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1878
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1891
 msgid "Error setting collection values"
 msgstr "Error estableciendo los valores de la colección"
 
@@ -384,6 +422,7 @@ msgstr "Error estableciendo los valores de la colección"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1969
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1976
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1977
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1990
 msgid "Error setting URL alias"
 msgstr "Error estableciendo alias de URL"
 
@@ -397,6 +436,7 @@ msgstr "Error estableciendo alias de URL"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1983
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1990
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1991
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:2004
 msgid "Error setting URL alias 2"
 msgstr "Error estableciendo alias 2 de URL"
 
@@ -477,6 +517,7 @@ msgid "Search an address"
 msgstr "Buscar unha dirección"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:395
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:408
 msgid "SEO: URL Secundaria (Alias)"
 msgstr ""
 

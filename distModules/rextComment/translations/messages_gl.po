@@ -133,3 +133,7 @@ msgstr "Produciuse un erro"
 #: /home/proxectos/geozzy/distModules/rextComment/classes/controller/RExtCommentController.php:62
 msgid "Active comment"
 msgstr "Comentario Activo"
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentView.php:266
+msgid "You have received a comment"
+msgstr "Recibiu un novo comentario"

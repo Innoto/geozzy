@@ -9,14 +9,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/becarios/app/tmp/tpl/rExtFormBasic.tpl:10
-#: /home/proxectos/becarios/app/tmp/tpl/rExtFormBasic.tpl:21
-#: /home/proxectos/becarios/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:10
-#: /home/proxectos/becarios/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:21
 #: /home/proxectos/canlers/app/tmp/tpl/rExtFormBasic.tpl:10
 #: /home/proxectos/canlers/app/tmp/tpl/rExtFormBasic.tpl:21
 #: /home/proxectos/canlers/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:10
 #: /home/proxectos/canlers/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:21
+#: /home/proxectos/becarios/app/tmp/tpl/rExtFormBasic.tpl:10
+#: /home/proxectos/becarios/app/tmp/tpl/rExtFormBasic.tpl:21
+#: /home/proxectos/becarios/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:10
+#: /home/proxectos/becarios/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:21
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBasic.tpl:10
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBasic.tpl:21
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:10
@@ -36,14 +36,14 @@ msgid ""
 "recuadro."
 msgstr ""
 
-#: /home/proxectos/becarios/app/tmp/tpl/rExtFormBasic.tpl:11
-#: /home/proxectos/becarios/app/tmp/tpl/rExtFormBasic.tpl:22
-#: /home/proxectos/becarios/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:11
-#: /home/proxectos/becarios/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:22
 #: /home/proxectos/canlers/app/tmp/tpl/rExtFormBasic.tpl:11
 #: /home/proxectos/canlers/app/tmp/tpl/rExtFormBasic.tpl:22
 #: /home/proxectos/canlers/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:11
 #: /home/proxectos/canlers/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:22
+#: /home/proxectos/becarios/app/tmp/tpl/rExtFormBasic.tpl:11
+#: /home/proxectos/becarios/app/tmp/tpl/rExtFormBasic.tpl:22
+#: /home/proxectos/becarios/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:11
+#: /home/proxectos/becarios/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:22
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBasic.tpl:11
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBasic.tpl:22
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:11
@@ -63,10 +63,10 @@ msgid ""
 "url de la página se debe poner #URL#:"
 msgstr ""
 
-#: /home/proxectos/becarios/app/tmp/tpl/rExtFormBasic.tpl:28
-#: /home/proxectos/becarios/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:28
 #: /home/proxectos/canlers/app/tmp/tpl/rExtFormBasic.tpl:28
 #: /home/proxectos/canlers/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:28
+#: /home/proxectos/becarios/app/tmp/tpl/rExtFormBasic.tpl:28
+#: /home/proxectos/becarios/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:28
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBasic.tpl:28
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:28
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtFormBasic.tpl:28

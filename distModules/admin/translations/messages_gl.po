@@ -262,6 +262,7 @@ msgstr "Despublicar"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:51
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:126
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:101
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:115
 msgid "Delete"
 msgstr "Borrar"
 
@@ -284,6 +285,7 @@ msgid "Title"
 msgstr "Título"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:314
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:319
 msgid "Thumbnail image (Optional)"
 msgstr "Miniatura da imaxe (opcional)"
 
@@ -421,50 +423,63 @@ msgstr "Engadir usuario"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:99
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:118
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:112
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:134
 msgid "Active"
 msgstr "Activo"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:100
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:113
 msgid "Inactive"
 msgstr "Inactivo"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:112
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:127
 msgid "Id"
 msgstr "ID"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:113
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:128
 msgid "Login"
 msgstr "Acceder"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:114
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:129
 msgid "Name"
 msgstr "Nome"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:115
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:130
 msgid "Surname"
 msgstr "Apelidos"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:116
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:131
 msgid "Email"
 msgstr "Correo-e"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:117
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:132
 msgid "Creation date"
 msgstr "Data de creación"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:158
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:175
 msgid "Create user"
 msgstr "Creación de usuario"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:202
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:219
 msgid "Change Password"
 msgstr "Cambiar contrasinal"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:211
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:228
 msgid "Edit Roles"
 msgstr "Editar roles"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:214
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:231
 msgid "Edit user"
 msgstr "Editar usuario"
 
@@ -613,5 +628,18 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:51
 #: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:51
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:51
-msgid "Se ha enviado un correo electrónico para recuperar tu cuenta de usuario."
+msgid ""
+"Se ha enviado un correo electrónico para recuperar tu cuenta de usuario."
 msgstr "Enviouse un correo electrónico para recuperar a túa conta de usuario."
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:99
+msgid "Todos los roles"
+msgstr "Todos os roles"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:108
+msgid "Rol de usuario"
+msgstr "Rol de usuario"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:133
+msgid "Role"
+msgstr "Rol"

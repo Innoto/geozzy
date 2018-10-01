@@ -9,9 +9,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:62
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:68
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
 msgid "Select options"
@@ -290,6 +290,7 @@ msgstr "Despublicar"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:51
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:126
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:101
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:115
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -450,50 +451,63 @@ msgstr "añadir usuario"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:99
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:118
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:112
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:134
 msgid "Active"
 msgstr "Activo"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:100
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:113
 msgid "Inactive"
 msgstr "Inactivo"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:112
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:127
 msgid "Id"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:113
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:128
 msgid "Login"
 msgstr "Acceder"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:114
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:129
 msgid "Name"
 msgstr "Nombre"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:115
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:130
 msgid "Surname"
 msgstr "Apellidos"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:116
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:131
 msgid "Email"
 msgstr "Correo-e"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:117
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:132
 msgid "Creation date"
 msgstr "Fecha de creación"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:158
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:175
 msgid "Create user"
 msgstr "Crear usuario"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:202
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:219
 msgid "Change Password"
 msgstr "Cambiar contraseña"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:211
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:228
 msgid "Edit Roles"
 msgstr "Editar roles"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:214
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:231
 msgid "Edit user"
 msgstr "Editar usuario"
 
@@ -661,3 +675,15 @@ msgstr ""
 msgid ""
 "Se ha enviado un correo electrónico para recuperar tu cuenta de usuario."
 msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:99
+msgid "Todos los roles"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:108
+msgid "Rol de usuario"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:133
+msgid "Role"
+msgstr "Rol"
