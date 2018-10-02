@@ -61,7 +61,7 @@ class admin extends Module {
       "id" =>"placeholders",
       "params" => array("jquery-placeholder"),
       "installer" => "yarn",
-      "includes" => array("dist/placeholders.jquery.min.js")
+      "includes" => array("jquery.placeholder.js")
     ),
     array(
       "id" =>"nestable2",
@@ -75,12 +75,7 @@ class admin extends Module {
       "installer" => "yarn",
       "includes" => [ 'multiList.min.js', 'multiList.css' ]
     ),
-    array(
-      "id" =>"switchery",
-      "params" => array("switchery"),
-      "installer" => "yarn",
-      "includes" => array("switchery.js", "switchery.css")
-    ),
+
     /*array(
       "id" =>"raleway",
       "params" => array("raleway"),
@@ -112,16 +107,22 @@ class admin extends Module {
      "includes" => array("builds/moment-timezone-with-data.min.js")
     ),
     array( // required by elFinder
-      "id" =>"jquery-ui",
-      "params" => array("jquery-ui@1.12.1"),
+      "id" =>"jquery-ui-dist",
+      "params" => array("jquery-ui-dist@1.12.1"),
       "installer" => "yarn",
-      "includes" => [ 'jquery-ui.min.js', '/themes/smoothness/jquery-ui.min.css' ]
+      "includes" => [ 'jquery-ui.min.js', 'jquery-ui.theme.css' ]
     ),
     array(
      'id' => 'elfinder',
      'params' => array('studio-42/elfinder', '2.1.17'),
      'installer' => 'composer',
      'includes' => array('php/autoload.php', 'js/elfinder.min.js', 'css/elfinder.min.css', 'css/theme.css' )
+    ),
+    array(
+      "id" =>"innoto-switchery",
+      "params" => array("innoto-switchery"),
+      "installer" => "yarn",
+      "includes" => array("dist/switchery.min.js", "dist/switchery.min.css")
     )
   );
 

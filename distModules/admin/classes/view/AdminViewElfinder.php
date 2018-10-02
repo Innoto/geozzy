@@ -15,7 +15,7 @@ class AdminViewElfinder extends AdminViewMaster {
       @mkdir( $filePathPublic, 0770 );
     }
 
-    
+
 
     // Documentation for connector options:
     // https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options
@@ -64,13 +64,13 @@ class AdminViewElfinder extends AdminViewMaster {
 
         <!-- Section CSS -->
         <!-- jQuery UI (REQUIRED) -->
-        <link rel="stylesheet" type="text/css" href="/vendor/bower/jquery-ui/themes/smoothness/jquery-ui.min.css">
+        <link rel="stylesheet" type="text/css" href="/vendor/yarn/jquery-ui-dist/jquery-ui.theme.css">
 
         <!-- elFinder CSS (REQUIRED) -->
         <link rel="stylesheet" type="text/css" href="/vendor/composer/studio-42/elfinder/css/elfinder.min.css">
         <link rel="stylesheet" type="text/css" href="/vendor/composer/studio-42/elfinder/css/theme.css">
-        <script src="/vendor/bower/jquery/dist/jquery.min.js"></script>
-        <script src="/vendor/bower/jquery-ui/jquery-ui.min.js"></script>
+        <script src="/vendor/yarn/jquery/dist/jquery.min.js"></script>
+        <script src="/vendor/yarn/jquery-ui-dist/jquery-ui.min.js"></script>
 
         <!-- elFinder JS (REQUIRED) -->
         <script src="/vendor/composer/studio-42/elfinder/js/elfinder.min.js"></script>
