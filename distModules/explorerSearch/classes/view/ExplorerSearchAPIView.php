@@ -38,16 +38,7 @@ class ExplorerSearchAPIView extends View
               ],
               "httpMethod": "POST",
               "nickname": "explorerSearch",
-              "parameters": [
-                {
-                  "name": "searchString",
-                  "description": "Search string ",
-                  "dataType": "string",
-                  "paramType": "path",
-                  "defaultValue": "",
-                  "required": true
-                }
-              ],
+
               "summary": "Fetches public search data"
             }
           ],
