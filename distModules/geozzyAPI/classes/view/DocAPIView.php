@@ -22,7 +22,7 @@ class DocAPIView extends View
 
   function main(){
     $this->template->setTpl('doc.tpl', 'geozzyAPI');
-    $this->template->assign('swaggerLocation', '/vendor/bower/swagger-ui/');
+    $this->template->assign('swaggerLocation', '/vendor/yarn/swagger-ui/');
     $this->template->exec();
   }
 

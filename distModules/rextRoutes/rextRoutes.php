@@ -54,10 +54,10 @@ class rextRoutes extends Module {
     ),
 
     array(
-      "id" =>"switchery",
-      "params" => array("switchery"),
+      "id" =>"innoto-switchery",
+      "params" => array("innoto-switchery"),
       "installer" => "yarn",
-      "includes" => array("switchery.js", "switchery.css")
+      "includes" => array("dist/switchery.min.js", "dist/switchery.min.css")
     )
   );
 
