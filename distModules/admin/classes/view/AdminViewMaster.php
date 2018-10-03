@@ -30,10 +30,6 @@ class AdminViewMaster extends View {
     if( is_array( $langsConf ) ) {
       $this->langAvailable = array_keys( $langsConf );
     }
-
-    if( class_exists( 'adminBI' ) ) {
-      adminBI::autoIncludes();
-    }
   }
 
   /**
@@ -118,9 +114,7 @@ class AdminViewMaster extends View {
     $settingPermission = $useraccesscontrol->checkPermissions('setting:list', 'admin:full');
     $this->template->assign( 'settingPermission' , $settingPermission);
 
-    if( class_exists( 'adminBI' ) ) {
-      $this->template->assign( 'biInclude' , true);
-    }
+
     if( class_exists( 'rextComment' ) ) {
       $this->template->assign( 'rextCommentInclude' , true);
     }

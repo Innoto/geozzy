@@ -29,10 +29,6 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     that.resource = resource;
     that.status = status;
 
-    // BI register
-    if( typeof(geozzy.biMetricsInstances) !== 'undefined' && status === 1 ) {
-      geozzy.biMetricsInstances.resource.eventFavourited( resource, 'favourites' );
-    }
 
     geozzy.userSessionInstance.userControlAccess( function() {
       geozzy.rExtFavouriteController.sendSetStatus( that.resource, that.status );

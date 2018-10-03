@@ -92,7 +92,6 @@ class explorer extends Module {
     'js/view/filters/ExplorerFilterSliderView.js',
     'js/view/filters/ExplorerFilterSwitchView.js',
     'js/view/filters/ExplorerFilterResetView.js',
-    'js/view/ExplorerBIView.js',
     'js/view/ExplorerActiveListView.js',
     'js/view/ExplorerActiveListMobileView.js',
     'js/view/ExplorerActiveListTinyView.js',
