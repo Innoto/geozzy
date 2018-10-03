@@ -29,11 +29,6 @@ geozzy.rExtLikeController = geozzy.rExtLikeController || {
     that.resource = resource;
     that.status = status;
 
-    // BI register
-    if( typeof(geozzy.biMetricsInstances) !== 'undefined' && status === 1 ) {
-      geozzy.biMetricsInstances.resource.eventLiked( resource, 'likes' );
-    }
-
     geozzy.userSessionInstance.userControlAccess( function() {
       geozzy.rExtLikeController.sendSetStatus( that.resource, that.status );
     });

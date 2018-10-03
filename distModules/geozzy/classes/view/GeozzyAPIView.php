@@ -28,54 +28,6 @@ class geozzyAPIView extends View {
     return true;
   }
 
-
-  public function biJson() {
-    header('Content-Type: application/json; charset=utf-8');
-    ?>
-    {
-      "resourcePath": "/bi.json",
-      "basePath": "/api",
-      "apis": [
-        {
-          "operations": [
-            {
-              "errorResponses": [
-                {
-                  "reason": "Utils  for BI dashboard",
-                  "code": 200
-                }
-              ],
-              "httpMethod": "GET",
-              "nickname": "resource",
-              "parameters": [
-                {
-                  "name": "users",
-                  "description": "Users list",
-                  "dataType": "boolean",
-                  "paramType": "path",
-                  "defaultValue": "false",
-                  "required": false
-                },
-                {
-                  "name": "virtualBags",
-                  "description": "Virtual bags list",
-                  "dataType": "boolean",
-                  "paramType": "path",
-                  "defaultValue": "false",
-                  "required": false
-                }
-              ],
-              "summary": ""
-            }
-          ],
-          "path": "/core/bi/users/{users}/virtualBags/{virtualBags}",
-          "description": ""
-        }
-      ]
-    }
-    <?php
-  }
-
   public function resourcesJson() {
     header('Content-Type: application/json; charset=utf-8');
     ?>
@@ -765,74 +717,6 @@ class geozzyAPIView extends View {
       <?php
     }
   */
-
-
-  // BI data
-  public function bi( $urlParams ) {
-    require_once APP_BASE_PATH."/conf/inc/geozzyBI.php";
-    header('Content-Type: application/json; charset=utf-8');
-    global $BI_SITE_SECTIONS, $BI_DEVICES, $BI_METRICS_EXPLORER, $BI_METRICS_RESOURCE, $BI_GEOZZY_UI_EVENTS, $BI_RECOMMENDS;
-
-    $langs = array(
-      'default'=> Cogumelo::getSetupValue( 'lang:default' ),
-      'available'=> Cogumelo::getSetupValue( 'lang:available' )
-    );
-
-    $biData = array(
-      'languages' => $langs,
-      'devices' => $BI_DEVICES,
-      'sections' => $BI_SITE_SECTIONS,
-      'ui_events' => $BI_GEOZZY_UI_EVENTS,
-      'metrics' => array(
-        'explorer' => $BI_METRICS_EXPLORER,
-        'resource' => $BI_METRICS_RESOURCE
-      ),
-      'recommends' => $BI_RECOMMENDS
-    );
-
-    // /users/{users}/virtualBags/{virtualBags}
-    $validation = array(
-      'users' => '#^(true|false)$#',
-      'virtualBags'=> '#^(true|false)$#'
-    );
-    $extraParams = RequestController::processUrlParams( $urlParams, $validation );
-    // error_log( 'urlParams: '. print_r( $urlParams, true ) );
-    // error_log( 'extraParams: '. print_r( $extraParams, true ) );
-
-    if( isset( $extraParams['users'] ) && $extraParams['users'] === 'true' ) {
-      $userMod =  new UserModel();
-      $userList = $userMod->listItems([ 'filters' => [ 'active' => 1 ], 'cache' => $this->cacheQuery ]);
-      $biData['users'] = [];
-      if( $userList ) {
-        while( $userVo = $userList->fetch() ) {
-          $biData['users'][] = array(
-            'id' => $userVo->getter('id'),
-            'login' => $userVo->getter('login')
-          );
-        }
-      }
-    }
-
-    if( isset( $extraParams['virtualBags'] ) && $extraParams['virtualBags'] === 'true' && class_exists( 'FavouritesViewModel' ) ) {
-
-      $favModel = new FavouritesListViewModel();
-      $favList = $favModel->listItems( [ 'filters' => [ 'resourceListNotNull' => true ], 'cache' => $this->cacheQuery ] );
-      if( $favList ) {
-        $biData['virtualBags'] = [];
-        while( $favObj = $favList->fetch() ) {
-          $favData = $favObj->getAllData( 'onlydata' );
-          $biData['virtualBags'][] = array(
-            'userId' => $favData['user'],
-            'virtualBags' => ( isset( $favData['resourceList'] ) ) ? explode( ',', $favData['resourceList'] ) : []
-          );
-        }
-      }
-    }
-
-    echo json_encode( $biData );
-  }
-
-
 
 
 

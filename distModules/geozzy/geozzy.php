@@ -50,7 +50,6 @@ class geozzy extends Module {
     // $this->addUrlPatterns( '#^api/core/uieventlist$#', 'view:GeozzyAPIView::uiEventList' );
 
     // geozzy core api doc
-    $this->addUrlPatterns( '#^api/doc/bi.json$#', 'view:GeozzyAPIView::biJson' );
     $this->addUrlPatterns( '#^api/doc/resources.json$#', 'view:GeozzyAPIView::resourcesJson' );
     $this->addUrlPatterns( '#^api/doc/resourceTypes.json$#', 'view:GeozzyAPIView::resourceTypesJson' );
     $this->addUrlPatterns( '#^api/doc/resourceIndex.json$#', 'view:GeozzyAPIView::resourceIndexJson' );
@@ -102,10 +101,6 @@ class geozzy extends Module {
   public function getGeozzyDocAPI() {
 
     $docApi = array(
-      array(
-        'path' => '/doc/bi.json',
-        'description' => 'BI dashboard utils'
-      ),
       array(
         'path' => '/doc/resourceTypes.json',
         'description' => 'resourceTypes'
