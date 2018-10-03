@@ -2401,12 +2401,12 @@ class ResourceController {
         if( $oldResources === false || !isset( $oldResources[ $resource ] ) ) {
           $collection->setterDependence( 'id',
             new CollectionResourcesModel( array( 'weight' => $weight,
-              'collection' => $colId, 'resource' => $resource)) );
+              'collection' => $colId, 'resource' => $resource, 'timeLastUpdate' => null )) );
         }
         else {
           $collection->setterDependence( 'id',
             new CollectionResourcesModel( array( 'id' => $oldResources[ $resource ],
-              'weight' => $weight, 'collection' => $colId, 'resource' => $resource))
+              'weight' => $weight, 'collection' => $colId, 'resource' => $resource, 'timeLastUpdate' => null ))
           );
         }
       }
