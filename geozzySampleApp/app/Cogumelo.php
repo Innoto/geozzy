@@ -13,8 +13,13 @@ class Cogumelo extends CogumeloClass {
       "includes" => array('feature.min.js')
     ),
     array(
+     "id" => "popper.js",
+     "params" => array("popper.js@^1.14.3"),
+     "installer" => "yarn"
+    ),
+    array(
      "id" => "bootstrap",
-     "params" => array("bootstrap@3.3"),
+     "params" => array("bootstrap@4"),
      "installer" => "yarn"
     ),
     array(
