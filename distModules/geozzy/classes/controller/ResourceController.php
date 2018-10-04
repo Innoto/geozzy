@@ -1690,12 +1690,12 @@ class ResourceController {
 
 
 
-  public function setTaxTerms( $taxGroup, $taxTermIds, $resource ) {
+  public function setTaxTerms( $taxGroup, $taxTermIds, $resource, $forceCache = null ) {
     // error_log(__METHOD__);
     $result = true;
-
-
     $relPrevInfo = false;
+
+    $sqlCache = ( $forceCache === null ) ? $this->cacheQuery : $forceCache;
 
     $baseResId = is_numeric( $resource ) ? $resource : $resource->getter( 'id' );
 
@@ -1717,7 +1717,7 @@ class ResourceController {
 
       $relModel = new ResourceTaxonomyAllModel();
       $relPrevList = $relModel->listItems([
-        'filters' => $relFilter, 'cache' => $this->cacheQuery
+        'filters' => $relFilter, 'cache' => $sqlCache
       ]);
       if( is_object( $relPrevList ) ) {
         // estaban asignados antes
@@ -1729,7 +1729,7 @@ class ResourceController {
             // buscamos el término descartado y lo borramos
             $resTerm = $resTermModel->listItems([
               'filters' => [ 'resource' => $baseResId, 'taxonomyterm' =>$relPrev->getter( 'id' ) ],
-              'cache' => $this->cacheQuery
+              'cache' => $sqlCache
             ])->fetch();
             $resTerm->delete();
           }
@@ -2401,12 +2401,12 @@ class ResourceController {
         if( $oldResources === false || !isset( $oldResources[ $resource ] ) ) {
           $collection->setterDependence( 'id',
             new CollectionResourcesModel( array( 'weight' => $weight,
-              'collection' => $colId, 'resource' => $resource, 'timeLastUpdate' => null )) );
+              'collection' => $colId, 'resource' => $resource)) );
         }
         else {
           $collection->setterDependence( 'id',
             new CollectionResourcesModel( array( 'id' => $oldResources[ $resource ],
-              'weight' => $weight, 'collection' => $colId, 'resource' => $resource, 'timeLastUpdate' => null ))
+              'weight' => $weight, 'collection' => $colId, 'resource' => $resource))
           );
         }
       }
