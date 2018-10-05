@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-  background-color: @gzzColor-bck-3;
+  background-color: $gzzColor-bck-3;
   position:relative;
 }
 
@@ -42,7 +42,7 @@ ul{ padding-left: 0; }
   }
 }
 #menu-wrapper {
-  background-color: @gzzColor-bck-8;
+  background-color: $gzzColor-bck-8;
   height: 100%;
   width: 240px;
   position:fixed;
@@ -96,7 +96,7 @@ ul{ padding-left: 0; }
   .headSection {
     padding: 40px 30px 15px 30px ;
     padding-left: 270px;
-    background-color: @gzzColor-bck-8;
+    background-color: $gzzColor-bck-8;
     height: 90px;
     width: 100%;
     position:fixed;
@@ -105,7 +105,7 @@ ul{ padding-left: 0; }
 
     h3 {
       margin: 0;
-      color: @gzzColor-text-light;
+      color: $gzzColor-text-light;
       text-transform: uppercase;
       font-size: 22px;
       overflow: hidden;
@@ -116,7 +116,7 @@ ul{ padding-left: 0; }
       line-height: 45px;
     }
     .navbar-toggle {
-      background-color: @gzzColor-positive;
+      background-color: $gzzColor-positive;
       color: #fff;
       margin: 0px;
       padding: 0px 10px;
@@ -124,7 +124,7 @@ ul{ padding-left: 0; }
       height: 30px;
 
       &:hover{
-        background-color: @gzzColor-positive-hover;
+        background-color: $gzzColor-positive-hover;
       }
     }
   }
@@ -172,7 +172,7 @@ ul{ padding-left: 0; }
       text-overflow: ellipsis;
       white-space: nowrap;
       &:hover{
-        color: @gzzColor-positive;
+        color: $gzzColor-positive;
       }
     }
     .userAvatar{
@@ -183,13 +183,13 @@ ul{ padding-left: 0; }
     }
     .dropdown-menu{
       margin:0;
-      background-color: @gzzColor-bck-3;
+      background-color: $gzzColor-bck-3;
       width:100%;
       a{
-        color: @gzzColor-positive;
+        color: $gzzColor-positive;
         &:hover{
-          color: @gzzColor-text-light;
-          background-color: @gzzColor-positive;
+          color: $gzzColor-text-light;
+          background-color: $gzzColor-positive;
 
         }
       }
@@ -200,7 +200,7 @@ ul{ padding-left: 0; }
       padding-left: 0;
       padding-right: 0;
       .menuLogo{
-        background: @gzzColor-bck-1;
+        background: $gzzColor-bck-1;
         height: 90px;
         padding: 5px;
         img{
@@ -213,14 +213,14 @@ ul{ padding-left: 0; }
     ul li {
       a {
         background:transparent;
-        color: @gzzColor-text-light;
+        color: $gzzColor-text-light;
         &.active {
-          background-color: @gzzColor-rest;
-          color: @gzzColor-text-light;
+          background-color: $gzzColor-rest;
+          color: $gzzColor-text-light;
         }
         &:hover{
-          background-color: @gzzColor-rest-hover;
-          color: @gzzColor-text-light;
+          background-color: $gzzColor-rest-hover;
+          color: $gzzColor-text-light;
         }
       }
     }
@@ -327,7 +327,7 @@ input[type="password"]{
   width: 100%;
   border: 1px solid #cccccc;
   &:focus{
-    border: 1px solid @gzzColor-geozzy;
+    border: 1px solid $gzzColor-geozzy;
     .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(140,215,247,.06)");
     outline: 0 none;
   }
@@ -340,7 +340,7 @@ textarea{
   border: 1px solid #cccccc;
 
   &:focus{
-    border: 1px solid @gzzColor-geozzy;
+    border: 1px solid $gzzColor-geozzy;
     .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(140,215,247,.06)");
     outline: 0 none;
   }
@@ -362,44 +362,44 @@ input[type="checkbox"]{
 
 
 .btn{
-  .btn-gzz(30);
+  @include btn-gzz(30);
   text-transform: uppercase;
   /*letter-spacing: 1px;*/
 }
 
-.btn-gzz(@h){
-  padding: @h/6px @h/2px;
+@mixin btn-gzz($h){
+  padding: $h/6px $h/2px;
   margin-bottom: 5px;
 }
 
 
 .btn-default, .btn-info {
   &:hover {
-    background-color: @gzzColor-rest-hover;
+    background-color: $gzzColor-rest-hover;
   }
   &.btn-outline{
-    color: @gzzColor-rest;
-    border: 2px solid @gzzColor-rest;
+    color: $gzzColor-rest;
+    border: 2px solid $gzzColor-rest;
   }
 }
 
 .btn-primary, .btn-success {
   &:hover {
-    background-color: @gzzColor-positive-hover;
+    background-color: $gzzColor-positive-hover;
   }
   &.btn-outline{
-    color: @gzzColor-positive;
-    border: 2px solid @gzzColor-positive;
+    color: $gzzColor-positive;
+    border: 2px solid $gzzColor-positive;
   }
 }
 
 .btn-danger, .btn-warning {
   &:hover {
-    background-color: @gzzColor-negative-hover;
+    background-color: $gzzColor-negative-hover;
   }
   &.btn-outline{
-    color: @gzzColor-negative;
-    border: 2px solid @gzzColor-negative;
+    color: $gzzColor-negative;
+    border: 2px solid $gzzColor-negative;
   }
 }
 
@@ -413,28 +413,28 @@ input[type="checkbox"]{
 
   &.btn-danger,
   &.btn-warning{
-    color: @gzzColor-negative;
+    color: $gzzColor-negative;
 
     &:hover{
-      color: @gzzColor-text-light;
+      color: $gzzColor-text-light;
     }
   }
 
   &.btn-default,
   &.btn-info{
-    color: @gzzColor-rest;
+    color: $gzzColor-rest;
 
     &:hover{
-      color: @gzzColor-text-light;
+      color: $gzzColor-text-light;
     }
   }
 
   &.btn-primary,
   &.btn-success{
-    color: @gzzColor-positive;
+    color: $gzzColor-positive;
 
     &:hover{
-      color: @gzzColor-text-light;
+      color: $gzzColor-text-light;
     }
   }
 }
@@ -448,7 +448,7 @@ input[type="checkbox"]{
 
   .panel-heading{
     border:0px;
-    background-color: @gzzColor-bck-2;
+    background-color: $gzzColor-bck-2;
     font-size: 18px;
   }
 }
@@ -456,22 +456,22 @@ input[type="checkbox"]{
 /*MODAL BASE*/
 .modal{
   .modal-header{
-    background: @gzzColor-bck-8;
-    color: @gzzColor-text-light;
+    background: $gzzColor-bck-8;
+    color: $gzzColor-text-light;
     text-transform: uppercase;
     h3 {
       margin: 0;
       font-size: 22px;
     }
     .close{
-      color: @gzzColor-text-light;
+      color: $gzzColor-text-light;
       &:hover{
-        color: @gzzColor-bck-3;
+        color: $gzzColor-bck-3;
       }
     }
   }
-  .modal-body{ background: @gzzColor-bck-3 }
-  .modal-footer{ background: @gzzColor-bck-8 }
+  .modal-body{ background: $gzzColor-bck-3 }
+  .modal-footer{ background: $gzzColor-bck-8 }
 
 }
 
@@ -510,12 +510,12 @@ input[type="checkbox"]{
       padding: 1px 0.5em;
       cursor: pointer;
       font-weight: bold;
-      color: @gzzColor-text-light2;
-      background: @gzzColor-bck-3;
+      color: $gzzColor-text-light2;
+      background: $gzzColor-bck-3;
       line-height: 18px;
       text-transform: uppercase;
       &:hover{
-        color: @gzzColor-text-dark;
+        color: $gzzColor-text-dark;
       }
     }
     &:hover li{
@@ -525,11 +525,11 @@ input[type="checkbox"]{
       cursor: no-drop;
       display:inline;
       background: transparent;
-      color: @gzzColor-text-dest;
+      color: $gzzColor-text-dest;
     }
   }
 }
-.langSwitchIcon { margin-top:-4px; font-size: 20px; color: @gzzColor-text-dark; float: right;}
+.langSwitchIcon { margin-top:-4px; font-size: 20px; color: $gzzColor-text-dark; float: right;}
 
 .select2-container,
 select.cgmMForm-field{ width: 100% !important; }
@@ -548,13 +548,13 @@ select.cgmMForm-field{ width: 100% !important; }
   background-color: #fff;
 }
 /*.select2-selection.select2-selection--multiple{
-  background-color: @gzzColor-bck-2;
+  background-color: $gzzColor-bck-2;
 }*/
 
-@media @mqGTDesktopLarge{
+@media $mqGTDesktopLarge{
 
 } /*1200px*/
-@media @mqLTDesktop{
+@media $mqLTDesktop{
   #page-wrapper {
     .headSection {
       padding-top: 5px;
@@ -571,7 +571,7 @@ select.cgmMForm-field{ width: 100% !important; }
     }
   }
 }/*1199px*/
-@media @mqLTTablet{
+@media $mqLTTablet{
 
   // Wrappers
   #wrapper {
@@ -614,9 +614,9 @@ select.cgmMForm-field{ width: 100% !important; }
   .navbar-collapse.collapse.in { display: block !important; }
   .collapsing { overflow: hidden !important; }
 }/*991px*/
-@media @mqLTPhoneLandscape{
+@media $mqLTPhoneLandscape{
 
 } /*767px*/
-@media @mqLTPhonePortrait{
+@media $mqLTPhonePortrait{
 
 } /*575px*/

@@ -1,6 +1,6 @@
 //mixin with all css that depends on your style explorer
 /*******************************************************************************************/
-.mixinDevel(){
+@mixin mixinDevel(){
   .explorerContainer{
     &.explorer-container-du{ background-color: rgba( 225, 71, 71, .7 ); }
     &.explorer-container-map{ background-color: rgba( 71, 225, 118, .7 ); }
@@ -10,8 +10,8 @@
 }
 /*******************************************************************************************/
 /*Ejecutar dentro de .explorerLayout*/
-.explorerBase( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 100%, @explMap-h: 55%, @explFilter-w: 100%,
-   @explFilter-h: 10%, @explGallery-w: 100%, @explGallery-h: 35% ) {
+@mixin explorerBase( $explDu-w: 100%, $explDu-h: 100%, $explMap-w: 100%, $explMap-h: 55%, $explFilter-w: 100%,
+   $explFilter-h: 10%, $explGallery-w: 100%, $explGallery-h: 35% ) {
 
    position: relative;
    height: 100vh;
@@ -24,8 +24,8 @@
     &.explorer-container-du{
       position: absolute;
       z-index: 103;
-      width: @explDu-w;
-      height: @explDu-h;
+      width: $explDu-w;
+      height: $explDu-h;
       display:none;
       overflow: auto;
     }
@@ -40,17 +40,17 @@
       display:none;
     }
     &.explorer-container-map{
-      width: @explMap-w;
-      height: @explMap-h;
+      width: $explMap-w;
+      height: $explMap-h;
     }
     &.explorer-container-filter{
-      width: @explFilter-w;
-      height: @explFilter-h;
+      width: $explFilter-w;
+      height: $explFilter-h;
       overflow: auto;
     }
     &.explorer-container-gallery{
-      width: @explGallery-w;
-      height: @explGallery-h;
+      width: $explGallery-w;
+      height: $explGallery-h;
       overflow: auto;
     }
   }
@@ -66,46 +66,42 @@
   }
 }
 /*Ejecutar dentro de .explorerLayout*/
-.explorerBaseInLanding( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 100%, @explMap-h: 55%, @explFilter-w: 100%,
-   @explFilter-h: 10%, @explGallery-w: 100%, @explGallery-h: 35%, @hheight: @headerHeight ){
-
-  .explorerBase( @explDu-w, @explDu-h, @explMap-w, @explMap-h, @explFilter-w, @explFilter-h, @explGallery-w, @explGallery-h );
-
+@mixin explorerBaseInLanding( $explDu-w: 100%, $explDu-h: 100%, $explMap-w: 100%, $explMap-h: 55%, $explFilter-w: 100%,
+   $explFilter-h: 10%, $explGallery-w: 100%, $explGallery-h: 35%, $hheight: $headerHeight ){
+  @include explorerBase( $explDu-w, $explDu-h, $explMap-w, $explMap-h, $explFilter-w, $explFilter-h, $explGallery-w, $explGallery-h );
   .explorerContainer{
     &.explorer-container-gallery{
-      min-height: @explGallery-h;
+      min-height: $explGallery-h;
       height: auto;
     }
     &.stick{
       &.explorer-container-map{
         position: fixed;
-        top: @hheight + @explFilter-h;
+        top: $hheight + $explFilter-h;
         z-index: 100;
       }
       &.explorer-container-filter{
         position: fixed !important;
-        top: @hheight;
+        top: $hheight;
         z-index: 101;
       }
       &.explorer-container-gallery{
-        margin-top: @explFilter-h;
-        padding-top: @explMap-h;
+        margin-top: $explFilter-h;
+        padding-top: $explMap-h;
       }
 
       &.explorer-loading-flash,
       &.explorer-loading{
         position: fixed;
-        top: @hheight;
+        top: $hheight;
       }
     }
   }
-
-
 }
 /*******************************************************************************************/
 /*Ejecutar dentro de .explorerLayout*/
-.explorerLayoutSagan( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 70%, @explMap-h: 100%, @explFilter-w: 400px,
-   @explFilter-h: 150px, @explGallery-w: 30%, @explGallery-h: 100%, @explGallery-minh: @explGallery-h, @hheight: @headerHeight) {
+@mixin explorerLayoutSagan( $explDu-w: 100%, $explDu-h: 100%, $explMap-w: 70%, $explMap-h: 100%, $explFilter-w: 400px,
+   $explFilter-h: 150px, $explGallery-w: 30%, $explGallery-h: 100%, $explGallery-minh: $explGallery-h, $hheight: $headerHeight) {
    position: relative;
    height: 100vh;
   .explorerContainer{
@@ -115,8 +111,8 @@
     &.explorer-container-du{
       position: absolute;
       z-index: 103;
-      width: @explDu-w;
-      height: @explDu-h;
+      width: $explDu-w;
+      height: $explDu-h;
       display:none;
       overflow: auto;
     }
@@ -131,40 +127,40 @@
       display:none;
     }
     &.explorer-container-map{
-      width: @explMap-w;
-      height: @explMap-h;
+      width: $explMap-w;
+      height: $explMap-h;
       float: left;
     }
     &.explorer-container-filter{
       width: 100%;
-      max-width: @explFilter-w;
-      height: @explFilter-h;
+      max-width: $explFilter-w;
+      height: $explFilter-h;
       position: absolute;
       z-index: 100;
       top: 30px;
       left: 30px;
     }
     &.explorer-container-gallery{
-      width: @explGallery-w;
-      height: @explGallery-h;
-      min-height: @explGallery-minh;
+      width: $explGallery-w;
+      height: $explGallery-h;
+      min-height: $explGallery-minh;
       float: right;
       overflow: auto;
     }
     &.stick{
       &.explorer-container-map{
         position: fixed;
-        top: @hheight;
+        top: $hheight;
       }
       &.explorer-container-filter{
         position: fixed !important;
-        top: @hheight + 30px !important;
+        top: $hheight + 30px !important;
       }
 
       &.explorer-loading-flash,
       &.explorer-loading{
         position: fixed;
-        top: @hheight;
+        top: $hheight;
       }
     }
   }
@@ -189,8 +185,8 @@
 }
 /*******************************************************************************************/
 /*Ejecutar dentro de .explorerLayout*/
-.explorerLayoutList( @explDu-w: 100%, @explDu-h: 100%, @explFilter-w: 400px,
-   @explFilter-h: 150px, @explGallery-w: 80%, @explGallery-h: 100%, @hheight: @headerHeight ) {
+@mixin explorerLayoutList( $explDu-w: 100%, $explDu-h: 100%, $explFilter-w: 400px,
+   $explFilter-h: 150px, $explGallery-w: 80%, $explGallery-h: 100%, $hheight: $headerHeight ) {
    position: relative;
    min-height: 100vh;
   .explorerContainer{
@@ -200,8 +196,8 @@
     &.explorer-container-du{
       position: absolute;
       z-index: 103;
-      width: @explDu-w;
-      height: @explDu-h;
+      width: $explDu-w;
+      height: $explDu-h;
       display:none;
       overflow: auto;
     }
@@ -217,23 +213,23 @@
     }
     &.explorer-container-filter{
       width: 100%;
-      max-width: @explFilter-w;
-      height: @explFilter-h;
+      max-width: $explFilter-w;
+      height: $explFilter-h;
       position: absolute;
       z-index: 100;
       top: 0px;
       left: 0px;
     }
     &.explorer-container-gallery{
-      width: @explGallery-w;
-      height: @explGallery-h;
+      width: $explGallery-w;
+      height: $explGallery-h;
       float: right;
       overflow: auto;
     }
     &.stick{
       &.explorer-container-filter{
         position: fixed !important;
-        top: @hheight + 0px !important;
+        top: $hheight + 0px !important;
       }
     }
   }
@@ -260,38 +256,38 @@
 /*******************************************************************************************/
 
 /*Ejecutar fuera de .explorerLayout*/
-.explorerMobile( @expl-w: 100%, @expl-h: 100%, @buttonColor:#000, @buttonColorText:#fff, @buttonColorSelected:#000, @hheight: 0px ) {
+@mixin explorerMobile( $expl-w: 100%, $expl-h: 100%, $buttonColor:#000, $buttonColorText:#fff, $buttonColorSelected:#000, $hheight: 0px ) {
   position: inherit;
   top: 0;
   .explorerLayout{
-    min-height: calc(~"101vh - "@hheight );
+    min-height: calc(~"101vh - "$hheight );
     position: relative;
   }
   .explorerContainer{
     &.explorer-container-du{
-      width: @expl-w;
-      height: @expl-h;
+      width: $expl-w;
+      height: $expl-h;
       position: fixed;
-      top: @hheight !important;
+      top: $hheight !important;
       padding-top: 0 !important;
       z-index: 203;
       overflow: auto;
       display:none;
     }
     &.explorer-container-map{
-      width: @expl-w;
-      height: calc(~"100vh - "@hheight );
+      width: $expl-w;
+      height: calc(~"100vh - "$hheight );
       position: fixed;
-      top: @hheight;
+      top: $hheight;
       z-index: 201;
     }
     &.explorer-container-filter{
-      width: @expl-w;
-      height: calc(~"100vh - "@hheight );
+      width: $expl-w;
+      height: calc(~"100vh - "$hheight );
       overflow: auto;
       position: fixed !important;
       background-color: #fff;
-      top: @hheight;
+      top: $hheight;
       z-index: 202;
       .filtersContainer{
         padding-bottom: 60px;
@@ -299,17 +295,17 @@
     }
     &.explorer-container-gallery{
       border: 0;
-      width: @expl-w;
+      width: $expl-w;
       padding-bottom: 50px;
       position: relative;
       .explorerActiveListContent {
         .activeListReset {
           position: fixed;
-          top: @hheight;
+          top: $hheight;
           left: 0;
           z-index:2;
           width:100%;
-          background-color:@buttonColor;
+          background-color:$buttonColor;
           color:white;
           padding:4px;
           font-weight: bold;
@@ -350,13 +346,13 @@
       }
     }
     .explorerButton{
-      background-color:@buttonColor;
-      color: @buttonColorText;
+      background-color:$buttonColor;
+      color: $buttonColorText;
       padding: 7px 10px;
       cursor:pointer;
       &.explorer-mobile-control-bmap,
       &.explorer-mobile-control-blist {
-        border-right: 1px solid @buttonColorText;
+        border-right: 1px solid $buttonColorText;
         position:fixed;
         bottom: 15px;
         right: 50%;
@@ -387,7 +383,7 @@
         border-bottom-right-radius: 10px;
 
         &.selected{
-          background-color: @buttonColorSelected;
+          background-color: $buttonColorSelected;
         }
       }
     }
@@ -402,7 +398,7 @@
 }
 
 /*Ejecutar dentro de .explorerLayout*/
-.explorerMobileMapInfo( @buttonColor: #000 ){
+@mixin explorerMobileMapInfo( $buttonColor: #000 ){
   background-color: #fff;
   position:fixed;
   bottom:0;
@@ -442,7 +438,7 @@
         left:10px;
       }
       button.accessButton {
-        background-color:  @buttonColor;
+        background-color:  $buttonColor;
         color:#fff;
         margin-top:5px;
         font-weight: bold;

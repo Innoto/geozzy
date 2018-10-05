@@ -1,0 +1,111 @@
+
+/* **** GEOZZY ADMIN VARS  **** */
+/*Mediasqueries*/
+$mqDesktopLarge: ~"only screen and (min-width: 1200px)";
+$mqDesktop: ~"only screen and (min-width: 992px) and (max-width: 1199px)";
+$mqTablet: ~"only screen and (min-width: 768px) and (max-width: 991px)";
+$mqPhoneLandscape: ~"only screen and (min-width: 576px) and (max-width: 767px)";
+$mqPhonePortrait: ~"only screen and (max-width: 575px)";
+
+$mqGTDesktopLarge: $mqDesktopLarge;
+$mqLTDesktop: ~"only screen and (max-width: 1199px)";
+$mqLTTablet: ~"only screen and (max-width: 991px)";
+$mqLTPhoneLandscape: ~"only screen and (max-width: 767px)";
+$mqLTPhonePortrait: ~"only screen and (max-width: 575px)";
+
+/*Typography*/
+$font-family-sans-serif: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-base: $font-family-sans-serif;
+$font-size-base: 14px;
+
+/*Color Text*/
+
+$gzzColor-text-light: #ffffff;
+$gzzColor-text-light2: #d3d3d3;
+$gzzColor-text-dark: #333333;
+$gzzColor-text-dest: $gzzColor-positive;
+$text-color: $gzzColor-text-dark;
+$link-color: $gzzColor-positive;
+$link-hover-color: $gzzColor-positive-hover;
+
+
+/*Color Background*/
+
+$gzzColor-bck-8: #333333;
+$gzzColor-bck-7: #777777;
+$gzzColor-bck-6: #999999;
+$gzzColor-bck-5: #BABABA;
+$gzzColor-bck-4: #d3d3d3;
+$gzzColor-bck-3: #e5e5e5;
+$gzzColor-bck-2: #f1f1f1;
+$gzzColor-bck-1: #ffffff;
+
+
+/*Color Buttons*/
+
+$gzzColor-positive: #5AB780;
+$gzzColor-positive-hover: #3F9864;
+$gzzColor-positive-alt: #84D4A4;
+
+$gzzColor-negative: #E16A4E;
+$gzzColor-negative-hover: #C44527;
+$gzzColor-negative-alt: #ff9279;
+
+$gzzColor-rest: #7fb1c7;
+$gzzColor-rest-hover: #528Ba4;
+$gzzColor-rest-alt: #b5d6e4;
+
+$gzzColor-geozzy : $gzzColor-positive;
+
+$btn-default-color: $gzzColor-rest;
+
+$btn-default-color: $gzzColor-text-light;
+$btn-default-bg: $gzzColor-rest;
+$btn-default-border: $gzzColor-rest;
+
+$btn-primary-color: $gzzColor-text-light;
+$btn-primary-bg: $gzzColor-positive;
+$btn-primary-border :$gzzColor-positive;
+
+$btn-success-color: $gzzColor-text-light;
+$btn-success-bg: $gzzColor-positive;
+$btn-success-border: $gzzColor-positive;
+
+$btn-info-color: $gzzColor-text-light;
+$btn-info-bg: $gzzColor-rest;
+$btn-info-border: $gzzColor-rest;
+
+$btn-warning-color: $gzzColor-text-light;
+$btn-warning-bg: $gzzColor-negative;
+$btn-warning-border: $gzzColor-negative;
+
+$btn-danger-color: $gzzColor-text-light;
+$btn-danger-bg: $gzzColor-negative;
+$btn-danger-border: $gzzColor-negative;
+
+$btn-border-radius-base: 2px;
+$btn-border-radius-large: 2px;
+$btn-border-radius-small: 2px;
+
+/*Form*/
+
+$input-color: $gzzColor-text-dark;
+$input-border-radius: 0px;
+$form-group-margin-bottom: 25px;
+$label-default-bg: $gzzColor-text-dark;
+
+/*Panel*/
+$panel-heading-padding: 15px 25px;
+$panel-body-padding: 25px;
+
+/*Modal*/
+$modal-backdrop-opacity: .7;
+
+/*Other*/
+$border-radius-base: 2px;
+
+$brand-primary: $gzzColor-positive;
+$brand-success: $gzzColor-positive;
+$brand-warning: $gzzColor-negative;
+$brand-danger: $gzzColor-negative;
+$brand-info: $gzzColor-rest;

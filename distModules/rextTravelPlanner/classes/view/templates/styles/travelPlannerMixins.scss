@@ -1,38 +1,38 @@
 //mixin with all css that depends on your style
 /*******************************************************************************************/
-.initTravelPlanner( @tp-h: 100vh, @tpList-w: 320px, @tpPlan-w: 45%, @tpBar-h: 90px, @colorDaysActive:#333, @colorDaysInPlan:#ccc, @nestableTPItem-h: 50px, @header-h: 0px, @miniheader-h: 0px  ){
-  .travelPlanner(  @tp-h,  @tpList-w, @tpPlan-w, @tpBar-h, @colorDaysActive, @colorDaysInPlan, @header-h, (@header-h + @tpBar-h), @miniheader-h );
-  .nestableTravelPlannerTheme( @nestableTPItem-h );
+@mixin initTravelPlanner( $tp-h: 100vh, $tpList-w: 320px, $tpPlan-w: 45%, $tpBar-h: 90px, $colorDaysActive:#333, $colorDaysInPlan:#ccc, $nestableTPItem-h: 50px, $header-h: 0px, $miniheader-h: 0px  ){
+  @include travelPlanner(  $tp-h,  $tpList-w, $tpPlan-w, $tpBar-h, $colorDaysActive, $colorDaysInPlan, $header-h, ($header-h + $tpBar-h), $miniheader-h );
+  @include nestableTravelPlannerTheme( $nestableTPItem-h );
 }
 /*******************************************************************************************/
-.travelPlanner(
+@mixin travelPlanner(
   //TP-OPTIONS
-  @tp-h,
+  $tp-h,
   //TPLIST-OPTIONS
-  @tpList-w,
+  $tpList-w,
   //TPPLAN-OPTIONS
-  @tpPlan-w,
+  $tpPlan-w,
   //TPBAR-OPTIONS
-  @tpBar-h,
+  $tpBar-h,
   //COLORS
-  @colorDaysActive,
-  @colorDaysInPlan,
+  $colorDaysActive,
+  $colorDaysInPlan,
   //HEADER
-  @header-h,
-  @headerBar-h,
-  @miniheader-h
+  $header-h,
+  $headerBar-h,
+  $miniheader-h
   ){
   #travelPlannerSec{
     padding: 0;
     margin: 0;
     .travelPlanner{
       position: relative;
-      min-height: calc(~"100vh - "@headerBar-h )  ;
+      min-height: calc(~"100vh - "$headerBar-h )  ;
       .travelPlannerBar{
         width: 100%;
-        height: @tpBar-h;
+        height: $tpBar-h;
         position: fixed;
-        top: @header-h;
+        top: $header-h;
         z-index: 3;
         .travelPlannerDateButtons{
           .travelPlannerDateBar{
@@ -53,37 +53,37 @@
         }
       }
       .travelPlannerList{
-        width: @tpList-w;
-        height: calc(~"100vh - "@header-h);
+        width: $tpList-w;
+        height: calc(~"100vh - "$header-h);
         position: fixed;
-        top: (@tpBar-h + @header-h);
+        top: ($tpBar-h + $header-h);
         padding: 20px;
         .travelPlannerResources{
           overflow: auto;
-          height: calc(~'100% -' @tpBar-h);
+          height: calc(~'100% -' $tpBar-h);
         }
       }//travelPlannerList
 
       .travelPlannerPlan{
-        width: @tpPlan-w;
+        width: $tpPlan-w;
         min-height: 500px;
         padding: 20px;
-        padding-top:(@tpBar-h);
+        padding-top:($tpBar-h);
       }//travelPlannerPlan
       .travelPlannerMap{
         display:block;
-        width: calc(~"100% - "@tpList-w );
-        height: calc(~"100vh - "@headerBar-h);
+        width: calc(~"100% - "$tpList-w );
+        height: calc(~"100vh - "$headerBar-h);
         position: fixed;
-        top:(@header-h + @tpBar-h);
+        top:($header-h + $tpBar-h);
         right: 0;
       }//travelPlannerMap
       .travelPlannerMapPlan{
         display:block;
-        width: calc(~"100% - "@tpPlan-w );
-        height: calc(~"100vh - "@headerBar-h);
+        width: calc(~"100% - "$tpPlan-w );
+        height: calc(~"100vh - "$headerBar-h);
         position: fixed;
-        top:(@header-h + @tpBar-h);
+        top:($header-h + $tpBar-h);
         right: 0;
         .mapFilterDay{
           position: absolute;
@@ -102,12 +102,12 @@
     }
     .travelPlannerMobile{
       position: relative;
-      min-height: calc(~"100vh - "@miniheader-h );
+      min-height: calc(~"100vh - "$miniheader-h );
       .travelPlannerBar{
         width: 100%;
-        max-height: @tpBar-h;
+        max-height: $tpBar-h;
         position: fixed;
-        top: @miniheader-h;
+        top: $miniheader-h;
         overflow: hidden;
         z-index: 3;
 
@@ -123,7 +123,7 @@
       }
       .travelPlannerList{
         width: 100%;
-        /*height: calc(~"100vh - "@miniheader-h);*/
+        /*height: calc(~"100vh - "$miniheader-h);*/
         padding: 10px;
         .travelPlannerResources{
           padding-bottom: 20px;
@@ -137,7 +137,7 @@
       .travelPlannerMapPlan{
         display:block;
         width: 100%;
-        height: calc(~"100vh - "@miniheader-h );
+        height: calc(~"100vh - "$miniheader-h );
 
         .mapFilterDay{
           position: absolute;
@@ -160,7 +160,7 @@
       .tp-gotoMobileMap{
         position: fixed;
         bottom: 10px;
-        background: @colorDaysActive;
+        background: $colorDaysActive;
         padding: 7px 15px;
         color: #fff;
         font-weight: bold;
@@ -178,17 +178,17 @@
         list-style-type: none;
         li{
           cursor: pointer;
-          border: 1px solid @colorDaysActive;
+          border: 1px solid $colorDaysActive;
           float: left;
           width: calc(~'25% - 4px' );
           padding: 10px;
           margin: 2px;
           &.inPlan{
-            background: @colorDaysInPlan;
+            background: $colorDaysInPlan;
           }
           &.active{
             color: white;
-            background: @colorDaysActive;
+            background: $colorDaysActive;
           }
         }
       }
@@ -196,7 +196,7 @@
   }
 } //.travelPlanner()
 
-.nestableTravelPlannerTheme( @nestableTPItem-h ){
+@mixin nestableTravelPlannerTheme( $nestableTPItem-h ){
   .gzznestable {
     position: relative;
     display: block;
@@ -267,7 +267,7 @@
 
       .dd-handle {
         display: block;
-        height: @nestableTPItem-h + 10px;      
+        height: $nestableTPItem-h + 10px;
         float: left;
         margin: 2px;
         padding: 5px 0;
@@ -365,7 +365,7 @@
   .gzznestable .dd-placeholder {
     margin: 5px 0;
     padding: 0;
-    min-height: @nestableTPItem-h;
+    min-height: $nestableTPItem-h;
     background: #CCCCCC;
     border: 2px dashed #b6bcbf;
     box-sizing: border-box;
@@ -373,7 +373,7 @@
   }
   .gzznestable .dd-empty {
     border: 1px dashed #b6bcbf;
-    min-height: @nestableTPItem-h + 10px;
+    min-height: $nestableTPItem-h + 10px;
     background-color: #CCCCCC;
     background-size: 60px 60px;
     background-position: 0 0, 30px 30px;

@@ -1,8 +1,8 @@
 
 .nav li.topics{
-  background: @gzzColor-positive;
-  a{ color: @gzzColor-text-light; }
-  &:hover a{ color: @gzzColor-positive; }
+  background: $gzzColor-positive;
+  a{ color: $gzzColor-text-light; }
+  &:hover a{ color: $gzzColor-positive; }
 }
 
 
@@ -15,8 +15,8 @@
 	margin-left:25px;
 }
 
-.rowNo { color: @gzzColor-negative; }
-.rowOk { color: @gzzColor-positive; }
+.rowNo { color: $gzzColor-negative; }
+.rowOk { color: $gzzColor-positive; }
 
 label.resImageMoreInfo{ margin-bottom: 30px;}
 
@@ -74,28 +74,28 @@ label.resImageMoreInfo{ margin-bottom: 30px;}
 /* FORM RESOURCE*/
 ul.panelIdTags{
   position: fixed;
-  background-color:@gzzColor-rest;
+  background-color:$gzzColor-rest;
   z-index:10;
   width:100%;
   top:90px;
   left:0px;
   padding-left:240px;
-  @media @mqLTTablet{
+  @media $mqLTTablet{
     padding-left:20px;
     top:80px;
   }
   box-shadow: 1px 1px 4px rgba(0, 0, 0, .5);
 
   li.tagBlock{
-    font-size:@font-size-small;
+    font-size:$font-size-small;
     cursor:pointer;
     display: inline-block;
     list-style-type: none;
     float:left;
     margin:2px 9px;
-    color: @gzzColor-text-light;
+    color: $gzzColor-text-light;
     &:hover{
-      color:@text-color;
+      color:$text-color;
     }
   }
 }
@@ -103,20 +103,20 @@ ul.panelIdTags{
 .infoBasic{
   width:100%;
   background: white;
-  font-family:@font-family-sans-serif;
+  font-family:$font-family-sans-serif;
 
   .row{
     padding:10px 0px;
-    border:1px solid @gzzColor-bck-5;
+    border:1px solid $gzzColor-bck-5;
     margin-top:2px;
     margin-left:0px;
     margin-right:0px;
 
     &.rowWhite{
-      background-color: @gzzColor-bck-1 !important;
+      background-color: $gzzColor-bck-1 !important;
     }
     &:nth-child(2n+1){
-      background-color: @gzzColor-bck-3;
+      background-color: $gzzColor-bck-3;
     }
     .infoCol{
       text-overflow:ellipsis;
@@ -124,10 +124,10 @@ ul.panelIdTags{
 
       text-transform: uppercase;
       font-weight:bold;
-      color:@gzzColor-bck-8;
+      color:$gzzColor-bck-8;
     }
     .infoColData{
-      border-left: 1px solid @gzzColor-bck-5;
+      border-left: 1px solid $gzzColor-bck-5;
       text-overflow: ellipsis;
       overflow: hidden;
     }
@@ -227,7 +227,7 @@ ul.panelIdTags{
       .commentItem{
         padding: 10px;
         margin: 10px 0;
-        background: @gzzColor-bck-2;
+        background: $gzzColor-bck-2;
 
         .commentTimeCreation{ font-size: 13px; }
         .commentUserInfo{
@@ -236,7 +236,7 @@ ul.panelIdTags{
           .userVerified{ margin-left: 5px; }
         }
         .commentTypeLabel{ font-weight: 600; text-transform: uppercase; margin: 15px 10px 0 0; }
-        .commentStars{ color: @gzzColor-positive; }
+        .commentStars{ color: $gzzColor-positive; }
         .commentContent{ margin-top: 10px; }
 
         ul{
@@ -256,7 +256,7 @@ ul.panelIdTags{
             i{ font-size: 16px; }
           }
           &.suggestOptions{
-            button.btn.selected{ color: @gzzColor-text-dark; }
+            button.btn.selected{ color: $gzzColor-text-dark; }
           }
         }
       }// .commentItem
@@ -280,7 +280,7 @@ ul.panelIdTags{
 
 
 .rExtAudioguide{
-  .ionSliderAdminTheme(@gzzColor-positive);
+  .ionSliderAdminTheme($gzzColor-positive);
   .irs-min, .irs-max{
     display: none;
   }

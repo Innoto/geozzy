@@ -1,18 +1,18 @@
-@import "appVars.less";
-@import "primaryMixins.less";
-@import "appMixins.less";
+@import "appVars.scss";
+@import "primaryMixins.scss";
+@import "appMixins.scss";
 
-@import "themeLibs/owlGalleryGATheme.less";
-@import "common/fichaCommon.less";
+@import "themeLibs/owlGalleryGATheme.scss";
+@import "common/fichaCommon.scss";
 
-@import "/rextTravelPlanner/classes/view/templates/styles/travelPlannerMixins.less";
-@import "themeLibs/nestableTheme.less";
-@import "themeLibs/dateRangePickerTheme.less";
+@import "/rextTravelPlanner/classes/view/templates/styles/travelPlannerMixins.scss";
+@import "themeLibs/nestableTheme.scss";
+@import "themeLibs/dateRangePickerTheme.scss";
 
-.initTravelPlanner( @tpList-w: 320px, @header-h: @headerHeight, @miniheader-h: @miniHeaderHeight );
+@include initTravelPlanner( $tpList-w: 320px, $header-h: $headerHeight, $miniheader-h: $miniHeaderHeight );
 
 body{
-  .dateRangePickerTheme(@gzzColor-RS);
+  @include dateRangePickerTheme($gzzColor-RS);
 }
 
 .bodyContent{
@@ -31,12 +31,12 @@ body{
     margin: 0;
     .travelPlanner{
       .travelPlannerBar{
-        background: @gzzColor-bck-1;
+        background: $gzzColor-bck-1;
         -webkit-box-shadow: 2px 0px 3px rgba(0,0,0,.3);
         -moz-box-shadow: 2px 0px 3px rgba(0,0,0,.3);
         box-shadow: 2px 0px 3px rgba(0,0,0,.3);
         .travelPlannerDateButtons{
-          background: @gzzColor-bck-3;
+          background: $gzzColor-bck-3;
           .travelPlannerDateBar{
             padding: 10px 20px;
             .datesTpContainer{
@@ -46,14 +46,14 @@ body{
                 width: auto;
               }
               .icon{
-                background: @gzzColor-RS;
-                color: @gzzColor-text-light;
+                background: $gzzColor-RS;
+                color: $gzzColor-text-light;
                 padding: 2px 10px;
                 height: 36px;
-                .font-size-bigger();
+                @include font-size-bigger();
               }
               input{
-                border: 1px solid @gzzColor-RS;
+                border: 1px solid $gzzColor-RS;
                 cursor: pointer;
               }
             }
@@ -62,8 +62,8 @@ body{
             .tp-goAddtoPlan,
             .tp-gotoPlan{
               .font-size-big();
-              background: @gzzColor-RS;
-              color: @gzzColor-text-light;
+              background: $gzzColor-RS;
+              color: $gzzColor-text-light;
               height: 58px;
               line-height: 60px;
               vertical-align: middle;
@@ -95,15 +95,15 @@ body{
           }
         }
         .travelPlannerFilterBar{
-          background: @gzzColor-bck-1;
+          background: $gzzColor-bck-1;
           padding: 5px 20px;
           select{
             font-size: 14px;
-            background: @gzzColor-bck-5 url('@{cogumelo_publicConf_media}/img/select_arrow-small.png') 93% 8px no-repeat;
-            border: 1px solid @gzzColor-bck-1;
+            background: $gzzColor-bck-5 url('${cogumelo_publicConf_media}/img/select_arrow-small.png') 93% 8px no-repeat;
+            border: 1px solid $gzzColor-bck-1;
             padding: 2px 5px;
             padding-right: 30px;
-            color: @gzzColor-text-dark;
+            color: $gzzColor-text-dark;
             -webkit-border-radius: 2px;
             -moz-border-radius: 2px;
             border-radius: 2px;
@@ -114,9 +114,9 @@ body{
           }
           button.filterByFavourites{
             font-size: 14px;
-            background: @gzzColor-bck-5;
-            color: @gzzColor-text-dark;
-            border: 1px solid @gzzColor-bck-1;
+            background: $gzzColor-bck-5;
+            color: $gzzColor-text-dark;
+            border: 1px solid $gzzColor-bck-1;
             padding: 2px 5px;
 
             -webkit-border-radius: 2px;
@@ -127,8 +127,8 @@ body{
             appearance: none;
             cursor: pointer;
             &.active{
-              background: @gzzColor-RS;
-              color: @gzzColor-text-light;
+              background: $gzzColor-RS;
+              color: $gzzColor-text-light;
             }
           }
           .mode2{
@@ -138,10 +138,10 @@ body{
               list-style: none;
               .filterDay{
                 float:left;
-                background-color: @gzzColor-bck-5;
+                background-color: $gzzColor-bck-5;
                 padding: 2px 5px;
                 margin-right: 10px;
-                color: @gzzColor-RS;
+                color: $gzzColor-RS;
                 text-transform: uppercase;
                 font-size: 10px;
                 -webkit-border-radius: 2px;
@@ -161,7 +161,7 @@ body{
       .travelPlannerList{
         padding: 0;
         .travelPlannerResources{
-          background: @gzzColor-bck-5;
+          background: $gzzColor-bck-5;
           padding: 0px 20px;
           .tpResourceItem{
             margin-bottom: 20px;
@@ -213,10 +213,10 @@ body{
                 bottom: 5px;
                 right: 5px;
                 padding: 2px 5px;
-                font-size: @font-size-small;
+                font-size: $font-size-small;
                 font-weight: 600;
-                color: @gzzColor-text-light;
-                background: @gzzColor-RS;
+                color: $gzzColor-text-light;
+                background: $gzzColor-RS;
                 -webkit-border-radius: 2px;
                 -moz-border-radius: 2px;
                 border-radius: 2px;
@@ -251,11 +251,11 @@ body{
         }//travelPlannerResources
       }//travelPlannerList
       .travelPlannerPlan{
-        background-color: @gzzColor-bck-2;
+        background-color: $gzzColor-bck-2;
         .travelPlannerPlanDaysContainer{
           .anchor{
-            height: @headerHeight + 90px;
-            margin-top: -(@headerHeight + 90px);
+            height: $headerHeight + 90px;
+            margin-top: -($headerHeight + 90px);
           }
           .plannerDay{
             margin-bottom: 20px;
@@ -263,13 +263,13 @@ body{
               position: relative;
               padding: 10px;
               padding-right: 90px;
-              background-color: @gzzColor-bck-3;
+              background-color: $gzzColor-bck-3;
               .dayTitle{
                 float:left;
-                background-color: @gzzColor-bck-5;
+                background-color: $gzzColor-bck-5;
                 padding: 5px 10px;
                 margin-right: 20px;
-                color: @gzzColor-RS;
+                color: $gzzColor-RS;
                 text-transform: uppercase;
                 font-size: 18px;
                 -webkit-border-radius: 5px;
@@ -292,7 +292,7 @@ body{
                 .infoTime{
                   float: left;
                   text-align: right;
-                  .font-size-small();
+                  @include font-size-small();
                   font-weight: 600;
                   vertical-align: bottom;
                 }
@@ -300,29 +300,29 @@ body{
                   margin-left: 10px;
                   float: left;
                   text-align: right;
-                  .font-size-small();
+                  @include font-size-small();
                   font-weight: 600;
                   vertical-align: bottom;
                 }
                 .showMap{
-                  background: @gzzColor-RS;
+                  background: $gzzColor-RS;
                   padding: 20px 15px;
                   height: 100%;
-                  border-left: 2px solid @gzzColor-RS;
+                  border-left: 2px solid $gzzColor-RS;
                   position: absolute;
                   top: 50%;
                   right: 0;
                   transform: translateY(-50%);
                   font-weight: 600;
                   cursor: pointer;
-                  color: @gzzColor-text-light;
-                  .font-size-bigger();
+                  color: $gzzColor-text-light;
+                  @include font-size-bigger();
                 }
                 .optimizeDay{
                   text-align: right;
-                  .font-size-small();
+                  @include font-size-small();
                   font-weight: 600;
-                  color: @gzzColor-RS;
+                  color: $gzzColor-RS;
                   &:hover{
                     text-decoration: underline;
                     cursor: pointer;
@@ -332,7 +332,7 @@ body{
 
             }
             .plannerDayPlanner{
-              background-color: @gzzColor-bck-2;
+              background-color: $gzzColor-bck-2;
               -webkit-border-radius: 2px;
               -moz-border-radius: 2px;
               border-radius: 2px;
@@ -357,11 +357,11 @@ body{
           }
           .filterDay-current{
 
-            background-color: @gzzColor-bck-5;
+            background-color: $gzzColor-bck-5;
             padding: 5px 10px;
-            color: @gzzColor-RS;
+            color: $gzzColor-RS;
             text-transform: uppercase;
-            font-size: @font-size-big;
+            font-size: $font-size-big;
             -webkit-border-radius: 5px;
             -moz-border-radius: 5px;
             border-radius: 5px;
@@ -393,22 +393,22 @@ body{
 
     .travelPlannerMobile{
       .travelPlannerBar{
-        background: @gzzColor-bck-1;
+        background: $gzzColor-bck-1;
         -webkit-box-shadow: 2px 0px 3px rgba(0,0,0,.3);
         -moz-box-shadow: 2px 0px 3px rgba(0,0,0,.3);
         box-shadow: 2px 0px 3px rgba(0,0,0,.3);
         max-height: 60px;
 
         .travelPlannerFilterBar{
-          background: @gzzColor-bck-1;
+          background: $gzzColor-bck-1;
           padding: 5px 10px;
           select{
             font-size: 14px;
-            background: @gzzColor-bck-5 url('@{cogumelo_publicConf_media}/img/select_arrow-small.png') 93% 8px no-repeat;
-            border: 1px solid @gzzColor-bck-1;
+            background: $gzzColor-bck-5 url('${cogumelo_publicConf_media}/img/select_arrow-small.png') 93% 8px no-repeat;
+            border: 1px solid $gzzColor-bck-1;
             padding: 2px 5px;
             padding-right: 30px;
-            color: @gzzColor-text-dark;
+            color: $gzzColor-text-dark;
             -webkit-border-radius: 2px;
             -moz-border-radius: 2px;
             border-radius: 2px;
@@ -424,11 +424,11 @@ body{
               list-style: none;
               .filterDay{
                 float:left;
-                background-color: @gzzColor-bck-5;
+                background-color: $gzzColor-bck-5;
                 padding: 2px 5px;
                 margin-right: 5px;
                 margin-bottom: 3px;
-                color: @gzzColor-RS;
+                color: $gzzColor-RS;
                 text-transform: uppercase;
                 font-size: 10px;
                 -webkit-border-radius: 2px;
@@ -448,7 +448,7 @@ body{
       .travelPlannerList{
         padding: 0;
         .travelPlannerResources{
-          background: @gzzColor-bck-5;
+          background: $gzzColor-bck-5;
           padding: 20px;
           padding-bottom: 40px;
           .tpResourceItem{
@@ -503,10 +503,10 @@ body{
                 bottom: 5px;
                 right: 5px;
                 padding: 2px 5px;
-                font-size: @font-size-small;
+                font-size: $font-size-small;
                 font-weight: 600;
-                color: @gzzColor-text-light;
-                background: @gzzColor-RS;
+                color: $gzzColor-text-light;
+                background: $gzzColor-RS;
                 -webkit-border-radius: 2px;
                 -moz-border-radius: 2px;
                 border-radius: 2px;
@@ -528,11 +528,11 @@ body{
       .travelPlannerPlan{
         padding-top: 60px;
         padding-bottom: 40px;
-        background-color: @gzzColor-bck-2;
+        background-color: $gzzColor-bck-2;
         .travelPlannerPlanDaysContainer{
           .anchor{
-            height: @headerHeight + 90px;
-            margin-top: -(@headerHeight + 90px);
+            height: $headerHeight + 90px;
+            margin-top: -($headerHeight + 90px);
           }
           .plannerDay{
             margin-bottom: 20px;
@@ -540,13 +540,13 @@ body{
               position: relative;
               padding: 10px;
               padding-right: 90px;
-              background-color: @gzzColor-bck-3;
+              background-color: $gzzColor-bck-3;
               .dayTitle{
                 float:left;
-                background-color: @gzzColor-bck-5;
+                background-color: $gzzColor-bck-5;
                 padding: 2px 5px;
                 margin-right: 20px;
-                color: @gzzColor-RS;
+                color: $gzzColor-RS;
                 text-transform: uppercase;
                 font-size: 14px;
                 -webkit-border-radius: 5px;
@@ -560,7 +560,7 @@ body{
               }
               .infoDay{
                 float:left;
-                .font-size-small();
+                @include font-size-small();
                 .day{ display:none; text-transform: capitalize; }
                 .date{ font-weight: 600; }
               }
@@ -569,7 +569,7 @@ body{
                 .infoTime{
                   float: none;
                   text-align: right;
-                  .font-size-small();
+                  @include font-size-small();
                   font-weight: 600;
                   vertical-align: bottom;
                 }
@@ -577,28 +577,28 @@ body{
                   margin-left: 10px;
                   float: none;
                   text-align: right;
-                  .font-size-small();
+                  @include font-size-small();
                   font-weight: 600;
                   vertical-align: bottom;
                 }
                 .showMap{
-                  background: @gzzColor-RS;
+                  background: $gzzColor-RS;
                   padding: 10px;
                   /*height: 100%;*/
-                  border-left: 2px solid @gzzColor-RS;
+                  border-left: 2px solid $gzzColor-RS;
                   position: absolute;
                   top: 0;
                   right: 0;
                   font-weight: 600;
                   cursor: pointer;
-                  color: @gzzColor-text-light;
-                  .font-size-big();
+                  color: $gzzColor-text-light;
+                  @include font-size-big();
                 }
                 .optimizeDay{
                   text-align: right;
-                  .font-size-small();
+                  @include font-size-small();
                   font-weight: 600;
-                  color: @gzzColor-RS;
+                  color: $gzzColor-RS;
                   &:hover{
                     text-decoration: underline;
                     cursor: pointer;
@@ -608,7 +608,7 @@ body{
 
             }
             .plannerDayPlanner{
-              background-color: @gzzColor-bck-2;
+              background-color: $gzzColor-bck-2;
               -webkit-border-radius: 2px;
               -moz-border-radius: 2px;
               border-radius: 2px;
@@ -631,11 +631,11 @@ body{
           }
           .filterDay-current{
 
-            background-color: @gzzColor-bck-5;
+            background-color: $gzzColor-bck-5;
             padding: 5px 10px;
-            color: @gzzColor-RS;
+            color: $gzzColor-RS;
             text-transform: uppercase;
-            font-size: @font-size-big;
+            font-size: $font-size-big;
             -webkit-border-radius: 5px;
             -moz-border-radius: 5px;
             border-radius: 5px;
@@ -667,7 +667,7 @@ body{
       .tp-gotoMobileChangeDates,
       .tp-gotoMobileList,
       .tp-gotoMobileMap{
-        background: @gzzColor-RS;
+        background: $gzzColor-RS;
         -webkit-box-shadow: -2px 0px 3px rgba(0,0,0,.3);
         -moz-box-shadow: -2px 0px 3px rgba(0,0,0,.3);
         box-shadow: -2px 0px 3px rgba(0,0,0,.3);
@@ -693,34 +693,34 @@ body{
     .labelText{
       font-weight: normal;
       font-size:18px;
-      color: @gzzColor-text-dark;
+      color: $gzzColor-text-dark;
     }
     .selectorDays{
       padding: 0;
       li{
         cursor: pointer;
-        border: 2px solid @gzzColor-RS;
+        border: 2px solid $gzzColor-RS;
         -webkit-border-radius: 4px;
         -moz-border-radius: 4px;
         border-radius: 4px;
-        background:  @gzzColor-bck-5;
+        background:  $gzzColor-bck-5;
         float: left;
         width: calc(~'25% - 20px' );
         padding: 10px;
         margin: 10px;
-        color: @gzzColor-RS;
+        color: $gzzColor-RS;
         font-weight: 500;
         text-align: center;
 
         &.inPlan{
-          color: @gzzColor-text-light;
-          border-color: @gzzColor-RS;
-          background: @gzzColor-bck-1;
+          color: $gzzColor-text-light;
+          border-color: $gzzColor-RS;
+          background: $gzzColor-bck-1;
         }
         &.active{
-          color: @gzzColor-text-light;
-          border-color: @gzzColor-RS;
-          background: @gzzColor-RS;
+          color: $gzzColor-text-light;
+          border-color: $gzzColor-RS;
+          background: $gzzColor-RS;
         }
 
         .dayName{
@@ -765,14 +765,14 @@ body{
     padding: 40px;
     text-align: center;
     .title{
-      .font-size-bigger();
+      @include font-size-bigger();
       padding-top:10px;
       padding-bottom: 10px;
     }
     .dates{
-      border-bottom: 2px solid @gzzColor-RS;
+      border-bottom: 2px solid $gzzColor-RS;
       padding-bottom:40px;
-      background: @gzzColor-bck-4;
+      background: $gzzColor-bck-4;
       .getdatesTpContainer{
         width: 100%;
         max-width: 280px;
@@ -785,14 +785,14 @@ body{
           text-align: center;
         }
         .icon{
-          background: @gzzColor-RS;
-          color: @gzzColor-text-light;
+          background: $gzzColor-RS;
+          color: $gzzColor-text-light;
           padding: 2px 10px;
           height: 36px;
-          .font-size-bigger();
+          @include font-size-bigger();
         }
         input{
-          border: 1px solid @gzzColor-RS;
+          border: 1px solid $gzzColor-RS;
           cursor: pointer;
         }
       }
@@ -805,7 +805,7 @@ body{
     padding: 40px;
     text-align: center;
     .title{
-      .font-size-bigger();
+      @include font-size-bigger();
       padding-top:10px;
       padding-bottom: 10px;
     }
@@ -818,7 +818,7 @@ body{
       .steps{
         padding-top:40px;
         padding-bottom:40px;
-        border-top: 2px solid @gzzColor-RS;
+        border-top: 2px solid $gzzColor-RS;
         p{
           font-weight: bold;
           padding-bottom:5px;
@@ -839,7 +839,7 @@ body{
       }
       .moreInfo{
         //padding-bottom:30px;
-        font-size:@font-size-big;
+        font-size:$font-size-big;
 
         .title{
           font-weight: bold;
@@ -855,18 +855,18 @@ body{
     padding: 40px;
     text-align: center;
     .title{
-      .font-size-bigger();
+      @include font-size-bigger();
       padding-bottom: 10px;
     }
     .routeInit,
     .routeEnd{
       .title{
-        .font-size-big();
+        @include font-size-big();
       }
     }
     .icons{
-      .font-size-bigger();
-      color: @gzzColor-RS;
+      @include font-size-bigger();
+      color: $gzzColor-RS;
       white-space: nowrap;
       overflow: hidden;
       margin-top: 30px;
@@ -890,7 +890,7 @@ body{
   }
   .iWindow{
     //height: 113px;
-    background-color: @gzzColor-bck-5;
+    background-color: $gzzColor-bck-5;
     .image {
       position: relative;
       height: 150px;
@@ -922,7 +922,7 @@ body{
     }//.poiImg
     .info{
       padding: 10px;
-      .font-size-base();
+      @include font-size-base();
       .title{
         font-weight: bold;
         width: 100%;
@@ -931,7 +931,7 @@ body{
         text-overflow: ellipsis;
       }//.title
       .description{
-        .font-size-small();
+        @include font-size-small();
       }
     }//.info
   }//.iWindow
@@ -943,7 +943,7 @@ body{
   bottom: 0;
   z-index: 102;
   width: 100%;
-  background-color: @gzzColor-bck-5;
+  background-color: $gzzColor-bck-5;
   .image {
     position: relative;
     float: left;
@@ -957,7 +957,7 @@ body{
     float: left;
     width: 66%;
     padding: 10px 20px 10px 0px;
-    .font-size-base();
+    @include font-size-base();
     .title{
       font-weight: bold;
       width: 100%;
@@ -966,7 +966,7 @@ body{
       text-overflow: ellipsis;
     }//.title
     .description{
-      .font-size-small();
+      @include font-size-small();
     }
 
   }//.info
@@ -988,9 +988,9 @@ body{
           margin: 10px 5px;
           font-size: 30px;
           .icon-handle{
-            color: @gzzColor-bck-3;
+            color: $gzzColor-bck-3;
             &:hover{
-              color: @gzzColor-text-dark;
+              color: $gzzColor-text-dark;
             }
           }
         }
@@ -1032,8 +1032,8 @@ body{
   }//.dd-item
   .dd-empty,
   .dd-placeholder{
-    background: @gzzColor-bck-4;
-    border-color: @gzzColor-bck-4;
+    background: $gzzColor-bck-4;
+    border-color: $gzzColor-bck-4;
   }
 }
 
@@ -1125,18 +1125,18 @@ body{
 /**********************  RESPONSIVE MEDIA QUERIES  ************************************/
 /**************************************************************************************/
 /**************************************************************************************/
-@media @mqGTDesktopLarge{
+@media $mqGTDesktopLarge{
 
 } /*1200px*/
-@media @mqLTDesktop{
+@media $mqLTDesktop{
 
 }/*1199px*/
-@media @mqLTTablet{
+@media $mqLTTablet{
 
 }/*991px*/
-@media @mqLTPhoneLandscape{
+@media $mqLTPhoneLandscape{
 
 } /*767px*/
-@media @mqLTPhonePortrait{
+@media $mqLTPhonePortrait{
 
 } /*575px*/
