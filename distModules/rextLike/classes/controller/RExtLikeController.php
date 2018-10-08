@@ -95,7 +95,7 @@ class RExtLikeController extends RExtController implements RExtInterface {
     $rExtViewBlockInfo['template']['full'] = new Template();
     $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
     $rExtViewBlockInfo['template']['full']->assign( 'resId', $resId );
-    $rExtViewBlockInfo['template']['full']->addClientStyles( 'styles/masterRExtLike.less', 'rextLike' );
+    $rExtViewBlockInfo['template']['full']->addClientStyles( 'styles/masterRExtLike.scss', 'rextLike' );
     $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextLike' );
 
     return $rExtViewBlockInfo;

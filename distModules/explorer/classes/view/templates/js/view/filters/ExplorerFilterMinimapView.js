@@ -30,9 +30,9 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       styles: {
         width : 336,
         height : 355,
-        stroke: '#bac0af', // appVars.less -> @gzzColor-bck-1
-        background_fill: '#eaede4', // appVars.less -> @gzzColor-bck-3
-        selected_fill: '#63944e' // appVars.less -> @gzzColor-green
+        stroke: '#bac0af', // appVars.scss -> @gzzColor-bck-1
+        background_fill: '#eaede4', // appVars.scss -> @gzzColor-bck-3
+        selected_fill: '#63944e' // appVars.scss -> @gzzColor-green
       }
     };
 

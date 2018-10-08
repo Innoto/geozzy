@@ -220,7 +220,7 @@ class GeozzyUserView extends View {
     $bridgeCtrl = new AppResourceBridgeView();
     $pageTemplate = $bridgeCtrl->getResourcePageTemplate( $formBlockInfo );
     if( $pageTemplate ) {
-      $pageTemplate->addClientStyles( 'styles/masterWV.less' );
+      $pageTemplate->addClientStyles( 'styles/masterWV.scss' );
       $pageTemplate->exec();
     }
   }
@@ -455,7 +455,7 @@ class GeozzyUserView extends View {
       $pageTemplate = $appResBridge->getResourcePageTemplate( $block );
 
       if( $pageTemplate ) {
-        $pageTemplate->addClientStyles( 'styles/master.less' );
+        $pageTemplate->addClientStyles( 'styles/master.scss' );
         $pageTemplate->exec();
       }
     }
@@ -606,7 +606,7 @@ class GeozzyUserView extends View {
       $template->setFragment( "profileBlock", $profileBlock );
     }
     $template->addClientScript('js/userProfile.js', 'geozzyUser');
-    $template->addClientStyles('styles/masterGeozzyUser.less');
+    $template->addClientStyles('styles/masterGeozzyUser.scss');
     $template->assign("userBaseFormOpen", $form->getHtmpOpen());
     $template->assign("userBaseFormFields", $form->getHtmlFieldsArray());
     $template->assign("userBaseFormClose", $form->getHtmlClose());

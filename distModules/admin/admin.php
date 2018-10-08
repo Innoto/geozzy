@@ -129,7 +129,7 @@ class admin extends Module {
 
 
   public $includesCommon = array(
-    'styles/masterAdmin.less',
+    'styles/masterAdmin.scss',
     'js/router/AdminRouter.js',
     'js/model/TaxonomygroupModel.js',
     'js/model/TaxonomytermModel.js',

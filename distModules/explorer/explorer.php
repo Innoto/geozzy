@@ -104,7 +104,7 @@ class explorer extends Module {
     'js/view/ExplorerMapInfoView.js',
     'js/view/ExplorerMapInfoMobileView.js',
     'js/Explorer.js',
-    //'styles/explorerMapArrows.less'
+    //'styles/explorerMapArrows.scss'
   );
 
 
