@@ -1,4 +1,4 @@
-
+.iextend !optional
 .nav li.topics{
   background: $gzzColor-positive;
   a{ color: $gzzColor-text-light; }
@@ -49,8 +49,8 @@ label.resImageMoreInfo{ margin-bottom: 30px;}
     text-align: center;
     .cgmMForm-titleFileField_avatar{ display: none !important; }
     img{
-      .img-responsive;
-      .img-thumbnail;
+      @extend .img-responsive !optional;
+      @extend .img-thumbnail !optional;
       width: 80%;
     }
   }
@@ -80,7 +80,7 @@ ul.panelIdTags{
   top:90px;
   left:0px;
   padding-left:240px;
-  @media $mqLTTablet{
+  @media #{$mqLTTablet}{
     padding-left:20px;
     top:80px;
   }

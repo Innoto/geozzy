@@ -1,4 +1,4 @@
-.ionSliderAdminTheme( @gzzColor-ion-hover : #000 ){
+@mixin ionSliderAdminTheme( $gzzColor-ion-hover : #000 ){
   .irs {
       height: 55px;
   }
@@ -7,7 +7,7 @@
   }
   .irs-line {
       height: 1px; top: 33px;
-      background: @gzzColor-bck-8;
+      background: $gzzColor-bck-8;
       //border: 1px solid #CCC;
       border-radius: 16px;
       -moz-border-radius: 16px;
@@ -49,23 +49,23 @@
   .irs-slider {
       top: 25px;
       width: 16px; height: 16px;
-      background: @gzzColor-bck-8;
+      background: $gzzColor-bck-8;
       border-radius: 16px;
       -moz-border-radius: 16px;
       cursor: pointer;
   }
 
   .irs-slider.state_hover, .irs-slider:hover {
-      background: @gzzColor-ion-hover;
+      background: $gzzColor-ion-hover;
   }
 
   .irs-min, .irs-max {
-      color: @gzzColor-text-dark;
+      color: $gzzColor-text-dark;
       font-size: 12px; line-height: 1.333;
       text-shadow: none;
       top: 0;
       padding: 1px 5px;
-      background: @gzzColor-bck-3;
+      background: $gzzColor-bck-3;
       border-radius: 3px;
       -moz-border-radius: 3px;
   }
@@ -75,7 +75,7 @@
   }
 
   .irs-from, .irs-to, .irs-single {
-      color: @gzzColor-text-dark;
+      color: $gzzColor-text-dark;
       font-size: 16px; line-height: 1.333;
       text-shadow: none;
       padding: 1px 5px;

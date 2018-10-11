@@ -1,17 +1,17 @@
 
 /* **** GEOZZY ADMIN VARS  **** */
 /*Mediasqueries*/
-$mqDesktopLarge: ~"only screen and (min-width: 1200px)";
-$mqDesktop: ~"only screen and (min-width: 992px) and (max-width: 1199px)";
-$mqTablet: ~"only screen and (min-width: 768px) and (max-width: 991px)";
-$mqPhoneLandscape: ~"only screen and (min-width: 576px) and (max-width: 767px)";
-$mqPhonePortrait: ~"only screen and (max-width: 575px)";
+$mqDesktopLarge: "only screen and (min-width: 1200px)";
+$mqDesktop: "only screen and (min-width: 992px) and (max-width: 1199px)";
+$mqTablet: "only screen and (min-width: 768px) and (max-width: 991px)";
+$mqPhoneLandscape: "only screen and (min-width: 576px) and (max-width: 767px)";
+$mqPhonePortrait: "only screen and (max-width: 575px)";
 
 $mqGTDesktopLarge: $mqDesktopLarge;
-$mqLTDesktop: ~"only screen and (max-width: 1199px)";
-$mqLTTablet: ~"only screen and (max-width: 991px)";
-$mqLTPhoneLandscape: ~"only screen and (max-width: 767px)";
-$mqLTPhonePortrait: ~"only screen and (max-width: 575px)";
+$mqLTDesktop: "only screen and (max-width: 1199px)";
+$mqLTTablet: "only screen and (max-width: 991px)";
+$mqLTPhoneLandscape: "only screen and (max-width: 767px)";
+$mqLTPhonePortrait: "only screen and (max-width: 575px)";
 
 /*Typography*/
 $font-family-sans-serif: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
