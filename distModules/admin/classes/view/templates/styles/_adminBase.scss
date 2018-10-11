@@ -177,7 +177,7 @@ ul{ padding-left: 0; }
     }
     .userAvatar{
       max-height: 40px;
-      .img-rounded;
+      @extend .img-rounded !optional;
       float:left;
       margin-right: 10px;
     }
@@ -267,9 +267,9 @@ label { display: block;
 
 .contentSection{
   input[type="button"]{
-    .btn;
-    .btn-info;
-    .btn-outline;
+    @extend .btn;
+    @extend .btn-info;
+    @extend .btn-outline;
     background-color: transparent;
   }
 }
@@ -350,8 +350,8 @@ textarea{
 
 input[type="submit"],
 button[type="submit"]{
-  .btn;
-  .btn-primary;
+  @extend .btn;
+  @extend .btn-primary;
 }
 //CHECKBOX
 input[type="checkbox"]{
@@ -360,18 +360,16 @@ input[type="checkbox"]{
   vertical-align: middle;
 }
 
+@mixin btn-gzz($h){
+  padding: #{$h}/6px #{$h}/2px;
+  margin-bottom: 5px;
+}
 
 .btn{
   @include btn-gzz(30);
   text-transform: uppercase;
   /*letter-spacing: 1px;*/
 }
-
-@mixin btn-gzz($h){
-  padding: $h/6px $h/2px;
-  margin-bottom: 5px;
-}
-
 
 .btn-default, .btn-info {
   &:hover {

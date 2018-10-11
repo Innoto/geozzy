@@ -18,6 +18,20 @@ $font-family-sans-serif: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-ser
 $font-family-base: $font-family-sans-serif;
 $font-size-base: 14px;
 
+/*Admin Colors*/
+$gzzColor-positive: #5AB780;
+$gzzColor-positive-hover: #3F9864;
+$gzzColor-positive-alt: #84D4A4;
+
+$gzzColor-negative: #E16A4E;
+$gzzColor-negative-hover: #C44527;
+$gzzColor-negative-alt: #ff9279;
+
+$gzzColor-rest: #7fb1c7;
+$gzzColor-rest-hover: #528Ba4;
+$gzzColor-rest-alt: #b5d6e4;
+
+
 /*Color Text*/
 
 $gzzColor-text-light: #ffffff;
@@ -39,21 +53,6 @@ $gzzColor-bck-4: #d3d3d3;
 $gzzColor-bck-3: #e5e5e5;
 $gzzColor-bck-2: #f1f1f1;
 $gzzColor-bck-1: #ffffff;
-
-
-/*Color Buttons*/
-
-$gzzColor-positive: #5AB780;
-$gzzColor-positive-hover: #3F9864;
-$gzzColor-positive-alt: #84D4A4;
-
-$gzzColor-negative: #E16A4E;
-$gzzColor-negative-hover: #C44527;
-$gzzColor-negative-alt: #ff9279;
-
-$gzzColor-rest: #7fb1c7;
-$gzzColor-rest-hover: #528Ba4;
-$gzzColor-rest-alt: #b5d6e4;
 
 $gzzColor-geozzy : $gzzColor-positive;
 

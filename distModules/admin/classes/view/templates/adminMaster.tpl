@@ -26,9 +26,9 @@
   {$main_client_includes}
   {$client_includes}
 
-<!--
-{$cogumelo|var_dump}
--->
+
+{*$cogumelo|var_dump*}
+
 
 
 </head>

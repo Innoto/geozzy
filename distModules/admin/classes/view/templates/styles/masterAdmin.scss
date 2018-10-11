@@ -1,7 +1,9 @@
-@import "/vendor/yarn/bootstrap/scss/bootstrap.scss";
-//$icon-font-path: "/vendor/yarn/bootstrap/fonts/";
-@import "/admin/classes/view/templates/styles/themeLibs/_ionSliderAdminTheme.scss";
 @import "/admin/classes/view/templates/styles/_adminVars.scss";
+
+@import "vendor/yarn/bootstrap/scss/bootstrap.scss";
+
+@import "/admin/classes/view/templates/styles/themeLibs/_ionSliderAdminTheme.scss";
+
 @import "/admin/classes/view/templates/styles/_adminBase.scss";
 @import "/admin/classes/view/templates/styles/_adminNestable.scss";
 @import "/admin/classes/view/templates/styles/_adminContents.scss";
