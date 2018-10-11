@@ -13,22 +13,22 @@
 
 {block name="content"}
 {if $translateType === 'export'}
-  <div class="row">
-    <form class="filterTranslates" action="/admin/translates/export/{if $exportType==='resource'}resourcesexport{else}collectionsexport{/if}" method="get">
-      <div class="col-xs-12 col-sm-6 col-md-6">
+  <form class="filterTranslates" action="/admin/translates/export/{if $exportType==='resource'}resourcesexport{else}collectionsexport{/if}" method="get">
+    <div class="row">
+      <div class="col-12 col-sm-6">
         <div class="cgmMForm-wrap">
           <label class="cgmMForm">Seleccionar data de creación</label>
           <input type="date" class="cgmMForm-field" name="creationDate" aria-required="true">
         </div>
       </div>
-      <div class="col-xs-12 col-sm-6 col-md-6">
+      <div class="col-12 col-sm-6">
         <div class="cgmMForm-wrap">
           <label class="cgmMForm">Seleccionar data de actualización</label>
           <input type="date" class="cgmMForm-field" name="updateDate" aria-required="true">
         </div>
       </div>
       {if $exportType === 'resource'}
-        <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="col-12 col-sm-6">
           <div class="cgmMForm-wrap">
             <label class="cgmMForm">Seleccionar tipo de recurso</label>
             <select class="gzzSelect2" name="rtype">
@@ -39,7 +39,7 @@
           </div>
         </div>
       {/if}
-      <div class="col-xs-12 col-sm-6 col-sm-6">
+      <div class="col-12 col-sm-6">
         <div class="cgmMForm-wrap">
           <label class="cgmMForm">Seleccionar idioma desde o cal exportar</label>
           <select class="gzzSelect2" name="lang">
@@ -49,14 +49,14 @@
           </select>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="col-12">
         <input type="submit" value="{t}Send{/t}">
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
 {elseif $translateType === 'import'}
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="col-12">
       <h2>Instruccións para importar</h2>
       <div class="rules">
         <ol>
@@ -76,7 +76,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="col-12 col-sm-6">
       <div class="cgmMForm-wrap">
         <label class="cgmMForm">Seleccionar idioma para importar</label>
         <select class="gzzSelect2 langToImport" name="lang">

@@ -32,19 +32,19 @@
     <div class="admin-cols-8-4">
       <div class="row">
         <div class="col-lg-8">
-          <div class="panel panel-default">
-            <div class="panel-heading">
+          <div class="card">
+            <div class="card-header">
 
                 {t}List of resources for{/t} ( <%- name_{$cogumelo.publicConf.langDefault} %> )
 
             </div>
-            <div class="panel-body">
+            <div class="card-body">
               <div id="resourcesStarredListContainer" class="gzznestable dd">
                 <ol class="listResources dd-list">
                 </ol>
               </div>
-            </div> <!-- end panel-body -->
-          </div> <!-- end panel -->
+            </div> <!-- end card-body -->
+          </div> <!-- end card -->
         </div> <!-- end col -->
       </div> <!-- end row -->
     </div>

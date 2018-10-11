@@ -25,13 +25,13 @@
 <body class="adminLogin">
 
   <div class="container">
-    <div class="row">
-      <div class="col-md-4 col-md-offset-4">
-        <div class="login-panel panel panel-default">
-          <div class="panel-heading">
-              <h2 class="panel-title">Log In</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-auto col-lg-4">
+        <div class="login-panel card">
+          <div class="card-header">
+              Log In
           </div>
-          <div class="panel-body">
+          <div class="card-body">
             {$loginHtml}
 
             <a class="initRecoveryPass">{t}He olvidado mi contraseña{/t}</a>
