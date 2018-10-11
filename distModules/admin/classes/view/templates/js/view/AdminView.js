@@ -86,11 +86,11 @@ var AdminView = Backbone.View.extend({
   },
 
   loadAjaxContentModal: function( modalUrl, modalId, modalData, size ) {
-
+    var modalTemplate = '';
     if( size && size === "md" ){
-      var modalTemplate = _.template( $('#modalMdTemplate').html() );
+      modalTemplate = _.template( $('#modalMdTemplate').html() );
     }else{
-      var modalTemplate = _.template( $('#modalLgTemplate').html() );
+      modalTemplate = _.template( $('#modalLgTemplate').html() );
     }
 
 
@@ -105,7 +105,9 @@ var AdminView = Backbone.View.extend({
       e.target.remove();
     });
     $(document).on('hidden.bs.modal', '.modal', function () {
-      $('.modal:visible').length && $(document.body).addClass('modal-open');
+      if($('.modal:visible').length){
+        $(document.body).addClass('modal-open');
+      }
     });
 
   },
@@ -122,7 +124,7 @@ var AdminView = Backbone.View.extend({
 
     /* Busca los botones de los formularios externos por la class "gzzAdminToMove" los clona en el interface de admin.*/
     var buttonsToMove = $('.gzzAdminToMove');
-    if( buttonsToMove.size() > 0 ){
+    if( buttonsToMove.length > 0 ){
       buttonsToMove.each( function() {
         var that = this;
         var cloneButtonTop = $(this).clone(true, true);
