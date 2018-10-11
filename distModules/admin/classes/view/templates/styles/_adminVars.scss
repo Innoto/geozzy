@@ -93,18 +93,20 @@ $input-border-radius: 0px;
 $form-group-margin-bottom: 25px;
 $label-default-bg: $gzzColor-text-dark;
 
-/*Panel*/
-$panel-heading-padding: 15px 25px;
-$panel-body-padding: 25px;
-
 /*Modal*/
 $modal-backdrop-opacity: .7;
 
-/*Other*/
-$border-radius-base: 2px;
+$primary:       $gzzColor-positive !default;
+$secondary:     $gzzColor-positive !default;
+$success:       $gzzColor-positive !default;
+$info:          $gzzColor-rest !default;
+$warning:       $gzzColor-negative !default;
+$danger:        $gzzColor-negative !default;
 
+/*
 $brand-primary: $gzzColor-positive;
 $brand-success: $gzzColor-positive;
 $brand-warning: $gzzColor-negative;
 $brand-danger: $gzzColor-negative;
 $brand-info: $gzzColor-rest;
+*/
