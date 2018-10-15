@@ -390,7 +390,7 @@ class ResourceController {
         'rules' => array( 'maxlength' => '32000' )
       ),
       'externalUrl' => array(
-        'params' => array( 'label' => __( 'External URL' ) ),
+        'params' => array( 'label' => __( 'External URL' ), 'placeholder' => __('http://ejemplo.com/ejemplo') ),
         'rules' => array( 'maxlength' => '2000', 'url' => true )
       ),
       'image' => array(
