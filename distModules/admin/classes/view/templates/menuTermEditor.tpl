@@ -2,7 +2,7 @@
 
   <div class="headSection clearfix">
     <div class="row">
-      <div class="col-lg-6 col-md-12">
+      <div class="col-12 col-xl-6">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <i class="fa fa-bars"></i>
@@ -11,7 +11,7 @@
           <h3>{t}Menu management{/t}</h3>
         </div>
       </div>
-      <div class="col-lg-6 col-md-12 clearfix">
+      <div class="col-12 col-xl-6 clearfix">
         <div class="headerActionsContainer">
           <button type="button" class="newTaxTerm btn btn-default"> {t}Add menu term{/t}</button>
           <span class="saveChanges">
@@ -28,18 +28,18 @@
   <div class="contentSection clearfix">
     <div class="admin-cols-8-4">
       <div class="row">
-        <div class="col-lg-8">
-          <div class="panel panel-default">
-            <div class="panel-heading">
+        <div class="col-12 col-xl-8">
+          <div class="card">
+            <div class="card-header">
                 {t}List of menu terms{/t}
             </div>
-            <div class="panel-body">
+            <div class="card-body">
               <div id="taxTermListContainer" class="gzznestable dd">
                 <ol class="listTerms dd-list">
                 </ol>
               </div>
-            </div> <!-- end panel-body -->
-          </div> <!-- end panel -->
+            </div> <!-- end card-body -->
+          </div> <!-- end card -->
         </div> <!-- end col -->
       </div> <!-- end row -->
     </div>
