@@ -138,9 +138,11 @@ class AdminViewTaxonomy extends AdminViewMaster {
       'cache' => true
     ]);
     $optionsResMenu[""] = __('None');
-    while( $res = $rsMenuObj->fetch() ){
-      if( $res ){
-        $optionsResMenu[ $res->getter('id') ] = $res->getter( 'title', Cogumelo::getSetupValue( 'lang:default' ));
+    if( is_object( $rsMenuObj ) ) {
+      while( $res = $rsMenuObj->fetch() ){
+        if( $res ){
+          $optionsResMenu[ $res->getter('id') ] = $res->getter( 'title', Cogumelo::getSetupValue( 'lang:default' ));
+        }
       }
     }
 

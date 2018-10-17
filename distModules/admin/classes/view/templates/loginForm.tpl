@@ -28,9 +28,7 @@
     <div class="row justify-content-center">
       <div class="col-md-auto col-lg-4">
         <div class="login-panel card">
-          <div class="card-header">
-              Log In
-          </div>
+          <div class="card-header">Log In</div>
           <div class="card-body">
             {$loginHtml}
 

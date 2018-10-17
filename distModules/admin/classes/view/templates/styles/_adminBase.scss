@@ -439,12 +439,12 @@ input[type="checkbox"]{
 
 
 
-/*PANEL BASE*/
-.panel{
+/*CARDS BASE*/
+.card{
   border:0px;
   margin-bottom: 30px;
 
-  .panel-heading{
+  .card-header{
     border:0px;
     background-color: $gzzColor-bck-2;
     font-size: 18px;

@@ -15,20 +15,20 @@
 {if $translateType === 'export'}
   <form class="filterTranslates" action="/admin/translates/export/{if $exportType==='resource'}resourcesexport{else}collectionsexport{/if}" method="get">
     <div class="row">
-      <div class="col-12 col-sm-6">
+      <div class="col-12 col-lg-6">
         <div class="cgmMForm-wrap">
           <label class="cgmMForm">Seleccionar data de creación</label>
           <input type="date" class="cgmMForm-field" name="creationDate" aria-required="true">
         </div>
       </div>
-      <div class="col-12 col-sm-6">
+      <div class="col-12 col-lg-6">
         <div class="cgmMForm-wrap">
           <label class="cgmMForm">Seleccionar data de actualización</label>
           <input type="date" class="cgmMForm-field" name="updateDate" aria-required="true">
         </div>
       </div>
       {if $exportType === 'resource'}
-        <div class="col-12 col-sm-6">
+        <div class="col-12 col-lg-6">
           <div class="cgmMForm-wrap">
             <label class="cgmMForm">Seleccionar tipo de recurso</label>
             <select class="gzzSelect2" name="rtype">
@@ -39,7 +39,7 @@
           </div>
         </div>
       {/if}
-      <div class="col-12 col-sm-6">
+      <div class="col-12 col-lg-6">
         <div class="cgmMForm-wrap">
           <label class="cgmMForm">Seleccionar idioma desde o cal exportar</label>
           <select class="gzzSelect2" name="lang">
@@ -87,12 +87,12 @@
         </select>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="col-12">
       <button type="button" class="btn btn-primary btnImport">{t}Send{/t}</button>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-10">
+    <div class="col-12 col-lg-10">
       <h2>Resposta da solicitude</h2>
       <div class="requestResponse"></div>
     </div>
