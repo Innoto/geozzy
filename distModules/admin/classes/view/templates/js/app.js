@@ -70,7 +70,26 @@ function operatingHeader(){
     e.preventDefault();
     $("#wrapper").toggleClass("closed");
   });
-  $('#side-menu').metisMenu();
+
+  //$('#side-menu').metisMenu();
+
+  $('#side-menu').metisMenu({
+    // enabled/disable the auto collapse.
+    toggle: true,
+    // prevent default event
+    preventDefault: true,
+    // default classes
+    activeClass: 'active',
+    collapseClass: 'collapse',
+    collapseInClass: 'in',
+    collapsingClass: 'collapsing',
+    // .nav-link for Bootstrap 4
+    triggerElement: 'a',
+    // .nav-item for Bootstrap 4
+    parentTrigger: 'li',
+    // .nav.flex-column for Bootstrap 4
+    subMenu: 'ul'
+  });
 }
 function calculateHeightMenu(){
   if($(window).width() > 991){
