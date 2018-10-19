@@ -102,6 +102,11 @@ $success:       $gzzColor-positive !default;
 $info:          $gzzColor-rest !default;
 $warning:       $gzzColor-negative !default;
 $danger:        $gzzColor-negative !default;
+$default:       $gzzColor-rest !default;
+
+$theme-colors: (
+  "default":    $default
+);
 
 /*
 $brand-primary: $gzzColor-positive;

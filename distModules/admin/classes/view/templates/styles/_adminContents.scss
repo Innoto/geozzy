@@ -183,6 +183,7 @@ ul.panelIdTags{
 .cgmMForm-field-addMultimediaGalleries,
 .cgmMForm-field-rExtEventCollection_addEvents{
   float: right;
+  input[type="button"]{ color: $gzzColor-rest; }
 }
 
 .cgmMForm-field-multimediaGalleries .multiListSelect2,
@@ -195,7 +196,12 @@ ul.panelIdTags{
 
 #collectionCreate,
 #collectionEdit{
-  .widgetCollectionBtn{ float: left; margin: 0 10px 60px 0; }
+  .widgetCollectionBtn{
+    float: left;
+    margin: 0 10px 60px 0;
+    color: $gzzColor-rest;
+    &:hover{ color: $gzzColor-text-light; }
+  }
   div.cgmMForm-field-image{
     clear:both;
   }
@@ -207,6 +213,7 @@ ul.panelIdTags{
   @extend .btn;
   @extend .btn-primary;
   @extend .btn-outline;
+  color: $gzzColor-positive;
   background-color: transparent;
 }
 
