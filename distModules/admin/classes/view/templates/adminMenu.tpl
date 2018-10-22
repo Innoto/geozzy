@@ -34,7 +34,7 @@
           </ul>
         </div>
         <!-- Navigation -->
-        <ul class="nav flex-column navbar-nav clearfix" id="side-menu">
+        <ul class="navbar-nav clearfix" id="side-menu">
           <!-- TOPIC -->
           <script type="text/template" id="menuTopics">
           {if $topicPermission}
@@ -66,7 +66,7 @@
 
           <li class="starred">
             <a href="/admin#starred"><i class="fa fa-star fa-fw"></i> {t}Starred{/t} <span class="fa arrow"></span></a>
-            <ul class="nav flex-column nav-second-level starredList">
+            <ul class="nav-second-level starredList">
                <!-- TOPIC -->
               <script type="text/template" id="menuStarred">
               <% _.each(starred, function(star) { %>
@@ -86,7 +86,7 @@
           <!-- Categories -->
           <li class="categories">
             <a href="#"><i class="fa fa-tags fa-fw"></i> {t}Categories{/t} <span class="fa arrow"></span></a>
-              <ul class="nav flex-column nav-second-level categoriesList">
+              <ul class="nav-second-level categoriesList">
                 <script type="text/template" id="menuCategoryElement">
                   <% for(var categoryK in categories) { %>
                     <li class="  category_<%- categories[categoryK].id %>">
@@ -101,17 +101,17 @@
           {if $superAdminPermission}
             <li class="translates">
               <a href="#"><i class="fa fa-exchange fa-fw"></i> {t}Translates{/t} <span class="fa arrow"></span></a>
-              <ul class="nav flex-column nav-second-level">
+              <ul class="nav-second-level">
                 <li class="transExport">
                   <a href="#"><i class="fa fa-long-arrow-left fa-fw"></i> {t}Export{/t} <span class="fa arrow"></span></a>
-                  <ul class="nav flex-column nav-third-level">
+                  <ul class="nav-third-level">
                     <li class="transExpRes"><a href="/admin#translates/export/resources"> {t}Resources{/t}</a></li>
                     <li class="transExpColl"><a href="/admin#translates/export/collections"> {t}Collections{/t}</a></li>
                   </ul>
                 </li>
                 <li class="transImport">
                   <a href="#"><i class="fa fa-long-arrow-right fa-fw"></i> {t}Import{/t} <span class="fa arrow"></span></a>
-                  <ul class="nav flex-column nav-third-level">
+                  <ul class="  nav-third-level">
                     <li class="transImpFiles"><a href="/admin#translates/import/files"> {t}Files{/t}</a></li>
                   </ul>
                 </li>
@@ -134,7 +134,7 @@
           {if $userPermission}
           <li>
             <a href="#"><i class="fa fa-users fa-fw"></i> {t}Users{/t} <span class="fa arrow"></span></a>
-              <ul class="nav flex-column nav-second-level">
+              <ul class="  nav-second-level">
                 <li class="user">
                   <a href="/admin#user/list"><i class="fa fa-user fa-fw"></i> {t}User{/t} </a>
                 </li>
