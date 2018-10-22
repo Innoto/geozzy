@@ -1,11 +1,9 @@
-.iextend !optional
-.nav li.topics{
+//.iextend !optional
+
+#menu-wrapper .sidebar li.topics{
   background: $gzzColor-positive;
   a{ color: $gzzColor-text-light; }
-  &:hover a{ color: $gzzColor-positive; }
 }
-
-
 
 /*****************/
 /*     tabla     */
