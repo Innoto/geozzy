@@ -12,26 +12,25 @@
               {/if}
             </a>
           </div>
-          <ul class="userInfo">
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  {if array_key_exists('avatar', $user['data'])}
-                    <img class="userAvatar img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$user['data']['avatar']}-a{$user['data']['avatarAKey']}/fast_cut/{$user['data']['avatarName']}">
-                  {/if}
-                  {$user['data']['login']}
-                  <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                  {if $userPermission}
-                    <li><a href="/admin#user/show"><i class="fa fa-user fa-fw"></i> {t}User Profile{/t}</a></li>
-                    <li><a href="/admin#user/edit/id/{$user['data']['id']}"><i class="fa fa-edit fa-fw"></i>{t}Edit Profile{/t}</a></li>
-                  {/if}
-                    <li class="divider"></li>
-                    <li><a href="/admin/logout"><i class="fa fa-sign-out fa-fw"></i>{t}Logout{/t}</a></li>
-                </ul>
-                <!-- /.dropdown-user -->
-            </li>
-          </ul>
+          <div class="userInfo">
+            <div class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                {if array_key_exists('avatar', $user['data'])}
+                  <img class="userAvatar" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$user['data']['avatar']}-a{$user['data']['avatarAKey']}/fast_cut/{$user['data']['avatarName']}">
+                {/if}
+                {$user['data']['login']}
+              </a>
+              <div class="dropdown-menu dropdown-user">
+                {if $userPermission}
+                  <a class="dropdown-item" href="/admin#user/show"><i class="fa fa-user fa-fw"></i> {t}User Profile{/t}</a></li>
+                  <a class="dropdown-item" href="/admin#user/edit/id/{$user['data']['id']}"><i class="fa fa-edit fa-fw"></i>{t}Edit Profile{/t}</a></li>
+                {/if}
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/admin/logout"><i class="fa fa-sign-out fa-fw"></i>{t}Logout{/t}</a>
+              </div>
+              <!-- /.dropdown-user -->
+            </div>
+          </div>
         </div>
         <!-- Navigation -->
         <ul class="navbar-nav clearfix" id="side-menu">
@@ -111,7 +110,7 @@
                 </li>
                 <li class="transImport">
                   <a href="#"><i class="fa fa-long-arrow-right fa-fw"></i> {t}Import{/t} <span class="fa arrow"></span></a>
-                  <ul class="  nav-third-level">
+                  <ul class="nav-third-level">
                     <li class="transImpFiles"><a href="/admin#translates/import/files"> {t}Files{/t}</a></li>
                   </ul>
                 </li>

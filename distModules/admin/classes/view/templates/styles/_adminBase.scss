@@ -182,13 +182,19 @@ ul{ padding-left: 0; }
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      padding: 10px 15px;
+      display: block;
+      cursor: pointer;
+      color: $gzzColor-text-light;
+      text-decoration: none;
       &:hover{
         color: $gzzColor-positive;
+        background-color: $gzzColor-rest-hover;
       }
     }
     .userAvatar{
       max-height: 40px;
-      @extend .img-rounded !optional;
+      @extend .rounded !optional;
       float:left;
       margin-right: 10px;
     }
@@ -221,16 +227,15 @@ ul{ padding-left: 0; }
           margin: 0 auto;
         }
       }
-
     }
     ul li {
-
       a {
         padding: 10px 15px;
         width: 100%;
         display: block;
         background:transparent;
         color: $gzzColor-text-light;
+        text-decoration: none;
         &.active {
           background-color: $gzzColor-rest;
           color: $gzzColor-text-light;
