@@ -33,18 +33,18 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
     $resourcetype =  new ResourcetypeModel();
     $resourcetypelist = $resourcetype->listItems( array( 'filters' => array( 'intopic' => $topicId ) ) )->fetchAll();
 
-    $resCreateByType = '<ul class="dropdown-menu dropdown-menu-right" role="menu">';
+    $resCreateByType = '<div class="dropdown-menu dropdown-menu-right">';
     foreach( $resourcetypelist as $i => $rType ) {
       //$typeList[ $i ] = $rType->getter('name');
-      $resCreateByType .= '<li><a class="create-'.$rType->getter('idName').'" href="/admin#resource/create/topic/'.$topicId.'/resourcetype/'.$rType->getter('id').'">'.$rType->getter('name').'</a></li>';
+      $resCreateByType .= '<a class="dropdown-item create-'.$rType->getter('idName').'" href="/admin#resource/create/topic/'.$topicId.'/resourcetype/'.$rType->getter('id').'">'.$rType->getter('name').'</a>';
     }
-    $resCreateByType .= '</ul>';
+    $resCreateByType .= '</div>';
 
 
     $this->template->assign( 'headTitle', __('Create and add resources') );
     $this->template->assign( 'headActions', '<a href="/admin#topic/'.$topicId.'" class="btn btn-default"> '.__('Return').'</a>
       <div class="btn-group assignResource AdminViewResourceOutTopic">
-        <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           '.__('Crear').' <span class="caret"></span>
         </button>
         '.$resCreateByType.'
@@ -54,7 +54,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
 
     $this->template->assign( 'footerActions', '<a href="/admin#topic/'.$topicId.'" class="btn btn-default"> '.__('Return').'</a>
       <div class="btn-group assignResource">
-        <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           '.__('Crear').' <span class="caret"></span>
         </button>
         '.$resCreateByType.'

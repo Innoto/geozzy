@@ -92,6 +92,13 @@ ul{ padding-left: 0; }
     & > *{
       margin-left: 10px;
     }
+
+    .dropdown-menu > .dropdown-item{
+      &:active{
+        color: inherit;
+        background-color: initial;
+      }
+    }
   }
   .headSection {
     padding: 40px 30px 15px 30px ;

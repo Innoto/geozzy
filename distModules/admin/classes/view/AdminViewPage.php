@@ -30,20 +30,20 @@ class AdminViewPage extends AdminViewMaster {
     $resourcetype =  new ResourcetypeModel();
     $resourcetype = $resourcetype->listItems(array( 'filters' => array( 'idName' => 'rtypePage' ) ))->fetch();
 
-    $resCreateByType = '<ul class="dropdown-menu dropdown-menu-right" role="menu">';
-      $resCreateByType .= '<li><a class="create-'.$resourcetype->getter('idName').'" href="/admin#resource/create/resourcetype/'.$resourcetype->getter('id').'">'.$resourcetype->getter('name').'</a></li>';
-    $resCreateByType .= '</ul>';
+    $resCreateByType = '<div class="dropdown-menu dropdown-menu-right">';
+      $resCreateByType .= '<a class="dropdown-item create-'.$resourcetype->getter('idName').'" href="/admin#resource/create/resourcetype/'.$resourcetype->getter('id').'">'.$resourcetype->getter('name').'</a>';
+    $resCreateByType .= '</div>';
 
     $this->template->assign( 'headTitle', __('Resource Management') );
     $this->template->assign( 'headActions', '<div class="btn-group assignResource AdminViewResource">
-        <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           '.__('Crear').' <span class="caret"></span>
         </button>
         '.$resCreateByType.'
       </div>'
     );
     $this->template->assign( 'footerActions', '<div class="btn-group assignResource AdminViewResource">
-        <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           '.__('Crear').' <span class="caret"></span>
         </button>
         '.$resCreateByType.'

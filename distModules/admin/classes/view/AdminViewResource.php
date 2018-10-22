@@ -30,24 +30,24 @@ class AdminViewResource extends AdminViewMaster {
     $resourcetype =  new ResourcetypeModel();
     $resourcetypelist = $resourcetype->listItems()->fetchAll();
 
-    $resCreateByType = '<ul class="dropdown-menu dropdown-menu-right" role="menu">';
+    $resCreateByType = '<div class="dropdown-menu dropdown-menu-right">';
     foreach( $resourcetypelist as $i => $res ) {
       $typeList[ $i ] = $res->getter('name');
-      $resCreateByType .= '<li><a class="create-'.$res->getter('idName').'" href="/admin#resource/create/resourcetype/'.$res->getter('id').'">'.$res->getter('name').'</a></li>';
+      $resCreateByType .= '<a class="dropdown-item create-'.$res->getter('idName').'" href="/admin#resource/create/resourcetype/'.$res->getter('id').'">'.$res->getter('name').'</a>';
     }
-    $resCreateByType .= '</ul>';
+    $resCreateByType .= '</div>';
 
     $this->template->addToFragment( 'col12', $template );
     $this->template->assign( 'headTitle', __('Resource Management') );
     $this->template->assign( 'headActions', '<div class="btn-group assignResource AdminViewResource">
-        <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           '.__('Crear').' <span class="caret"></span>
         </button>
         '.$resCreateByType.'
       </div>'
     );
     $this->template->assign( 'footerActions', '<div class="btn-group assignResource AdminViewResource">
-        <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           '.__('Crear').' <span class="caret"></span>
         </button>
         '.$resCreateByType.'
