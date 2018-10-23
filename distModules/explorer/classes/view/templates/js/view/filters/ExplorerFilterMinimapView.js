@@ -22,7 +22,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       title: false,
       mainContainerClass: false,
       containerClass: false,
-      iconHtml: '<i class="fa fa-2x fa-globe" aria-hidden="true"></i>',
+      iconHtml: '<i class="fas fa-2x fa-globe-americas" aria-hidden="true"></i>',
       resetButtonText: __('All'),
       template: geozzy.explorerComponents.filterMinimapViewTemplate,
       data: false,

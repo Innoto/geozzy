@@ -4,13 +4,13 @@
   {assign var="starFullAverageVotes" value=$starAverageVotes|string_format:"%d"}
   <div class="star">
     {for $foo=1 to $starFullAverageVotes}
-      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fas fa-star" aria-hidden="true"></i>
     {/for}
     {if $starAverageVotes > $starFullAverageVotes}
-      <i class="fa fa-star-half-o" aria-hidden="true"></i>
+      <i class="fas fa-star-half-alt" aria-hidden="true"></i>
     {/if}
     {for $foo=($starAverageVotes|round:0)+1 to 5}
-      <i class="fa fa-star-o" aria-hidden="true"></i>
+      <i class="far fa-star" aria-hidden="true"></i>
     {/for}
   </div>
   {/if}

@@ -93,14 +93,14 @@
 {/capture}
 
 {capture rExtMapDirections assign="jsMapDirectionsShow"}
-<div class="rExtMapDirections tabList jsMapDirectionsShow">{t}Show route description{/t} <i class="fa fa-sort-down"></i><i class="fa fa-sort-up" style="display:none;"></i></div>
+<div class="rExtMapDirections tabList jsMapDirectionsShow">{t}Show route description{/t} <i class="fas fa-sort-down"></i><i class="fas fa-sort-up" style="display:none;"></i></div>
 {/capture}
 
 {capture rExtMapDirections assign="jsMapDirectionsMode"}
 <div class="rExtMapDirections routeMode jsMapDirectionsMode">
-  <div data-route-mode="0" class="routeModeButton active" data-toggle="tooltip" data-placement="top" title="{t}Route by car{/t}"><i data-route-mode="0" class="fa fa-car fa-fw"></i></div>
-  <div data-route-mode="1" class="routeModeButton" data-toggle="tooltip" data-placement="top" title="{t}Walking route{/t}"><i data-route-mode="1" class="fa fa-male fa-fw"></i></div>
-  <div data-route-mode="2" class="routeModeButton" data-toggle="tooltip" data-placement="top" title="{t}Route by public transport{/t}"><i data-route-mode="2" class="fa fa-bus fa-fw"></i></div>
+  <div data-route-mode="0" class="routeModeButton active" data-toggle="tooltip" data-placement="top" title="{t}Route by car{/t}"><i data-route-mode="0" class="fas fa-car fa-fw"></i></div>
+  <div data-route-mode="1" class="routeModeButton" data-toggle="tooltip" data-placement="top" title="{t}Walking route{/t}"><i data-route-mode="1" class="fas fa-male fa-fw"></i></div>
+  <div data-route-mode="2" class="routeModeButton" data-toggle="tooltip" data-placement="top" title="{t}Route by public transport{/t}"><i data-route-mode="2" class="fas fa-bus fa-fw"></i></div>
   <span class="routeInfo jsMapDirectionsInfo">{t}Route information{/t}</span>
 </div>
 {/capture}
@@ -112,14 +112,14 @@
 {capture rExtMapDirections assign="jsMapDirectionsInMap"}
 <div class="rExtMapDirections wrapperInMap jsMapDirectionsInMap">
   <div class="prevBar barInMap jsMapDirInMapBar">
-    <div class="mapDirInMapClose jsMapDirInMapClose"><span class="button fa fa-window-close" aria-hidden="true"></span></div>
+    <div class="mapDirInMapClose jsMapDirInMapClose"><span class="button fas fa-window-close" aria-hidden="true"></span></div>
     {$jsMapDirectionsMode}
   </div>
   {$jsMapDirectionsList}
   <div class="postBar barInMap jsMapDirInMapBar">
     <div class="mapDirInMapPrint jsMapDirInMapPrint">
       <a href="#" title="{t}Print directions{/t}" target="_blank" rel="noopener noreferrer">
-        <span class="button fa fa-print" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="{t}Print directions{/t}"></span>
+        <span class="button fas fa-print" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="{t}Print directions{/t}"></span>
       </a>
     </div>
   </div>

@@ -97,8 +97,8 @@ class AdminViewPage extends AdminViewMaster {
 
 
     // Contido especial
-    $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
-    $tabla->colRule('published', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');
+    $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fas fa-circle\"></i></span>');
+    $tabla->colRule('published', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fas fa-circle\"></i></span>');
 
     $typeModel =  new ResourcetypeModel();
     $typeList = $typeModel->listItems()->fetchAll();

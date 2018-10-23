@@ -8,7 +8,7 @@ $(document).ready(function(){
 
   $('select.gzzMultiList').multiMultiList({
     orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>',
+    icon: '<i class="fas fa-arrows-alt fa-fw"></i>',
     placeholder: __('Select options')
   });
 

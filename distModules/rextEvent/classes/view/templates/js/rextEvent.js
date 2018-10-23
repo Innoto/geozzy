@@ -76,7 +76,7 @@ function bindEventForm(modal){
   // tuneamos los selectores
   $(modal+'select.cgmMForm-field-rextEvent_rextEventType').multiList({
     orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>'
+    icon: '<i class="fas fa-arrows-alt"></i>'
   });
 
   $(modal+'select.cgmMForm-field-rextEvent_relatedResource').select2();

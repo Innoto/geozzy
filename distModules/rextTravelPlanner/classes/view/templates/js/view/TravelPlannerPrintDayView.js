@@ -98,11 +98,11 @@ geozzy.travelPlannerComponents.TravelPlannerPrintDayView = Backbone.View.extend(
 
     if( leg.duration.value !== ''){
       if(cogumelo.publicConf.geozzyTravelPlanner.routeMode && cogumelo.publicConf.geozzyTravelPlanner.routeMode === 'WALKING'){
-        stringTime = '<i class="fa fa-male"></i> '+leg.duration.text;
-        stringRouteMode = '<i class="fa fa-male"></i>';
+        stringTime = '<i class="fas fa-male"></i> '+leg.duration.text;
+        stringRouteMode = '<i class="fas fa-male"></i>';
       }else{
-        stringTime = '<i class="fa fa-car"></i> '+leg.duration.text;
-        stringRouteMode = '<i class="fa fa-car"></i>';
+        stringTime = '<i class="fas fa-car"></i> '+leg.duration.text;
+        stringRouteMode = '<i class="fas fa-car"></i>';
       }
     }
 

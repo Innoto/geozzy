@@ -5,7 +5,7 @@
       <div class="col-12 col-lg-6">
         <button type="button" class="navbar-gzz-toggle" >
             <span class="sr-only">Toggle navigation</span>
-            <i class="fa fa-bars"></i>
+            <i class="fas fa-bars"></i>
         </button>
         <div class="headerTitleContainer">
           <h3>{t}Menu management{/t}</h3>
@@ -66,15 +66,15 @@
       <div class="dd-item-container clearfix">
         <div class="dd-content">
           <div class="nestableActions">
-  	        <button class="btnEditTerm btn-icon btn-info" data-id="<%- term.id %>" ><i class="fa fa-pencil"></i></button>
-  	        <button class="btnDeleteTerm btn-icon btn-danger" data-id="<%- term.id %>" ><i class="fa fa-trash"></i></button>
+  	        <button class="btnEditTerm btn-icon btn-info" data-id="<%- term.id %>" ><i class="fas fa-pencil-alt fa-sm fa-fw"></i></button>
+  	        <button class="btnDeleteTerm btn-icon btn-danger" data-id="<%- term.id %>" ><i class="fas fa-trash-alt fa-sm fa-fw"></i></button>
   	      </div>
     	  </div>
         <div class="dd-handle">
-          <i class="fa fa-arrows icon-handle"></i>
+          <i class="fas fa-arrows-alt fa-fw icon-handle"></i>
           <%- term.name_{$cogumelo.publicConf.langDefault} %>
           <% if (term.resourceRelated){  %>
-          <i class="fa fa-link" aria-hidden="true"></i>
+          <i class="fas fa-link fa-fw" aria-hidden="true"></i>
           <% } %>
           <% if (term.icon){  %>
             <img class="term-icon img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/<%- term.icon %>-a<%- term.iconAKey %>/fast/">

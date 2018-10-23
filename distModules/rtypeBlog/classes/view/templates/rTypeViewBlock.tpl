@@ -38,7 +38,7 @@
         </div>
         {if isset($stars)}
         <div class="stars hidden-xs col-sm-3 col-md-2">
-          <i class="fa fa-star-o"></i>
+          <i class="far fa-star"></i>
           <i class="fa selected fa-star-o"></i>
           <i class="fa selected fa-star-o"></i>
           <i class="fa selected fa-star-o"></i>
@@ -60,19 +60,19 @@
       <ul class="social col-xs-12 col-sm-12 col-md-12 clearfix">
         <li class="elementShare">
           {if isset($res.ext.rextSocialNetwork) && (isset($res.ext.rextSocialNetwork.data.activeFb) || isset($res.ext.rextSocialNetwork.data.activeTwitter))}
-            <div class="share"><i class="fa fa-share-alt"></i></div>
+            <div class="share"><i class="fas fa-share-alt"></i></div>
             <div class="share-open" style="display:none;">
               {if isset($res.ext.rextSocialNetwork.data.activeFb) && $res.ext.rextSocialNetwork.data.activeFb}
                 <div class="share-net fb">
                   <a class="icon-share facebook" target="_blank" rel="nofollow" href="http://www.facebook.com/sharer.php?u={$cogumelo.publicConf.site_host}{$res.data["urlAlias"]}&t={$res.ext.rextSocialNetwork.data["textFb"]}">
-                      <i class="fa fa-facebook-square"></i>
+                      <i class="fab fa-facebook-square"></i>
                   </a>
                 </div>
               {/if}
               {if isset($res.ext.rextSocialNetwork.data.activeTwitter) && $res.ext.rextSocialNetwork.data.activeTwitter}
                 <div class="share-net twitter">
                   <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$res.data["urlAlias"]}&text={$res.ext.rextSocialNetwork.data["textTwitter"]}">
-                    <i class="fa fa-twitter-square"></i>
+                    <i class="fab fa-twitter-square"></i>
                   </a>
                 </div>
               {/if}
@@ -81,8 +81,8 @@
         </li>
         {if isset($fav)}
         <li class="elementFav">
-          <i class="fa fa-heart-o"></i>
-          <i class="fa fa-heart"></i>
+          <i class="far fa-heart"></i>
+          <i class="fas fa-heart"></i>
         </li>
         {/if}
       </ul>
@@ -115,7 +115,7 @@
       <div class="directions">
         <div class="container">
           <div class="title">
-            {t}See indications{/t} <i class="fa fa-sort-desc"></i>
+            {t}See indications{/t} <i class="fas fa-sort-down"></i>
           </div>
           {if isset( $res.data.loc )}
           <div class="indications row" style="display:none;">
@@ -124,7 +124,7 @@
             </div>
             <div class="col-lg-4">
               <div class="search">
-                {t}How to arrive from?{/t} <i class="fa fa-search"></i>
+                {t}How to arrive from?{/t} <i class="fas fa-search"></i>
               </div>
             </div>
           </div>

@@ -19,9 +19,9 @@ geozzy.explorerComponents.mapInfoViewTemplate = ''+
 geozzy.explorerComponents.mapInfoViewMobileTemplate = ''+
 '<div class="gempiContent">'+
   '<div class="gempiItem">'+
-    '<div class="nextButton"><i class="fa fa-chevron-right " aria-hidden="true"></i></div>' +
-    '<div class="previousButton"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>' +
-    '<div class="closeButton"><i class="fa fa-times" aria-hidden="true"></i></div>' +
+    '<div class="nextButton"><i class="fas fa-chevron-right" aria-hidden="true"></i></div>' +
+    '<div class="previousButton"><i class="fas fa-chevron-left" aria-hidden="true"></i></div>' +
+    '<div class="closeButton"><i class="fas fa-times" aria-hidden="true"></i></div>' +
 
     '<div class="gempiImg accessButton">'+
       '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/squareCut/<%-img%>.jpg" />'+
@@ -60,7 +60,7 @@ geozzy.explorerComponents.activeListTinyViewElement = ''+
       '</div>'+
       '<div class="elementFav">'+
         '<div data-favourite-resource="<%- id %>" data-favourite-status="0" class="rExtFavourite rExtFavouriteHidden">'+
-          '<i class="fa fa-heart-o fav-off"></i><i class="fa fa-heart fav-on"></i>'+
+          '<i class="far fa-heart fav-off"></i><i class="fas fa-heart fav-on"></i>'+
         '</div>'+
       '</div>'+
     '</div>'+
@@ -71,21 +71,21 @@ geozzy.explorerComponents.activeListTinyViewElement = ''+
   '</div>';
 
 geozzy.explorerComponents.activeListTinyViewPager = ''+
-  '<div class="previous"><i class="fa fa-sort-asc"></i></div>'+
+  '<div class="previous"><i class="fas fa-sort-up"></i></div>'+
     '<% for( c=0 ; c <= pages ; c++){ %>'+
       '<% if(c==v.currentPage){ %>'+
-        '<div><span class="currentPage"><i class="fa fa-square-o"></i></span></div>'+
+        '<div><span class="currentPage"><i class="far fa-square"></i></span></div>'+
       '<% }else{ %>'+
-        '<div><span><i class="fa fa-square pageNum" data-page-num="<%- c %>"></i></span></div>'+
+        '<div><span><i class="fas fa-square pageNum" data-page-num="<%- c %>"></i></span></div>'+
       '<% } %>'+
     '<% } %>'+
-  '<div class="next"><i class="fa fa-sort-desc"></i></div>';
+  '<div class="next"><i class="fas fa-sort-down"></i></div>';
 
 geozzy.explorerComponents.activeListViewTemplate = ''+
   '<div class="explorerActiveListContent ">'+
       '<% if(typeof activeListReset!="undefined" && activeListReset) { %>'+
         '<div class="activeListReset explorerElSticky">' +
-          '<i class="fa fa-info info" aria-hidden="true"></i> <%- activeListResetText %> <i class="fa fa-times clear" aria-hidden="true"></i>'+
+          '<i class="fas fa-info info" aria-hidden="true"></i> <%- activeListResetText %> <i class="fas fa-times clear" aria-hidden="true"></i>'+
         '</div>'+
       '<%}%>'+
       '<%=content%>'+
@@ -100,7 +100,7 @@ geozzy.explorerComponents.activeListViewElement = '' +
       '</div>'+
       '<div class="elementFav">'+
         '<div style="display:none;" data-favourite-resource="<%- id %>" data-favourite-status="0" class="rExtFavourite rExtFavouriteHidden">'+
-          '<i class="fa fa-heart-o fav-off"></i><i class="fa fa-heart fav-on"></i>'+
+          '<i class="far fa-heart fav-off"></i><i class="fas fa-heart fav-on"></i>'+
         '</div>'+
       '</div>'+
     '</div>'+
@@ -152,7 +152,7 @@ geozzy.explorerComponents.filterComboViewSummaryT = "" +
 geozzy.explorerComponents.filterMinimapViewTemplate = "" +
   "<div class='filtersButton'>"+
     "<div class='filtersButtonContent'><%= iconHtml %></div>"+
-    "<div class='icon'><i class='fa fa-angle-down' aria-hidden='true'></i></div>"+
+    "<div class='icon'><i class='fas fa-angle-down' aria-hidden='true'></i></div>"+
   "</div>"+
   "<div class='boxMinimap'>"+
     "<div class='minimap'>"+

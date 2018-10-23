@@ -75,8 +75,8 @@ class AdminViewComment extends AdminViewMaster {
 
 
     // Contido especial
-    $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
-    $tabla->colRule('published', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');
+    $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fas fa-circle\"></i></span>');
+    $tabla->colRule('published', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fas fa-circle\"></i></span>');
 /*
     $resourceModel =  new ResourceModel();
     $resources = $resourceModel->listItems()->fetchAll();
@@ -147,8 +147,8 @@ class AdminViewComment extends AdminViewMaster {
     $filters =  array('type'=> $typeTerm->getter('id'));
     $tabla->setDefaultFilters($filters);
     // Contido especial
-    $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
-    $tabla->colRule('published', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');
+    $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fas fa-circle\"></i></span>');
+    $tabla->colRule('published', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fas fa-circle\"></i></span>');
 /*
     $resourceModel =  new ResourceModel();
     $resources = $resourceModel->listItems()->fetchAll();

@@ -402,7 +402,7 @@ geozzy.rExtMapDirectionsController = {
 
         var km = Math.round( travelInfo.meters / 100 ) / 10;
         // htmlMsg = __('Distance')+': '+km+' Km '+__('Time')+': '+ timeStr;
-        htmlMsg = '<i class="fa fa-map-marker" aria-hidden="true"></i> '+km+' Km &nbsp; &nbsp; <i class="fa fa-clock-o" aria-hidden="true"></i> '+ timeStr+'h';
+        htmlMsg = '<i class="fas fa-map-marker-alt" aria-hidden="true"></i> '+km+' Km &nbsp; &nbsp; <i class="far fa-clock" aria-hidden="true"></i> '+ timeStr+'h';
       }
     }
 

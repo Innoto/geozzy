@@ -25,7 +25,7 @@ geozzy.commentComponents.commentFormOkTemplate = ''+
 geozzy.commentComponents.listCommentTemplate = ''+
 '<div class="commentListContainer">'+
   '<div class="commentList"><%= comments %></div>'+
-  '<% if(commentsToShow){ %> <div class="commentShowMore">'+__("See all comments")+'<i class="fa fa-caret-down" aria-hidden="true"></i></div> <% } %>'+
+  '<% if(commentsToShow){ %> <div class="commentShowMore">'+__("See all comments")+'<i class="fas fa-caret-down" aria-hidden="true"></i></div> <% } %>'+
 '</div>';
 
 geozzy.commentComponents.listCommentItemTemplate = ''+
@@ -35,9 +35,9 @@ geozzy.commentComponents.listCommentItemTemplate = ''+
   '<div class="commentRate">'+
     '<% for (var i = 0; i < 5; i++) { '+
       'if(commentRate > i){'+
-        '%><i class="fa fa-star" aria-hidden="true"></i><%'+
+        '%><i class="fas fa-star" aria-hidden="true"></i><%'+
       '}else{'+
-        '%><i class="fa fa-star-o" aria-hidden="true"></i><%'+
+        '%><i class="far fa-star" aria-hidden="true"></i><%'+
       '}'+
     '}  %>'+
   '</div>'+
@@ -56,7 +56,7 @@ geozzy.commentComponents.adminListCommentItemTemplate = ''+
       '<div class="commentUserInfo">'+
         '<%- commentUserName %> ( <%- commentUserEmail %> )'+
         '<% if(commentUserVerified  === "1"){'+
-          '%><span class="userVerified"><i class="fa fa-check" aria-hidden="true"></i></span><%'+
+          '%><span class="userVerified"><i class="fas fa-check" aria-hidden="true"></i></span><%'+
         '} %>'+
       '</div>'+
     '</div>'+
@@ -68,7 +68,7 @@ geozzy.commentComponents.adminListCommentItemTemplate = ''+
           '} %>'+
           ' value="1" name="commentPublished"><span class="labelText">'+__("Published")+'</span></label>'+
         '</li>'+
-        '<li><button class="btn btn-default deleteComment"><i class="fa fa-times" aria-hidden="true"></i></button></li>'+
+        '<li><button class="btn btn-default deleteComment"><i class="fas fa-times" aria-hidden="true"></i></button></li>'+
       '</ul>'+
     '</div>'+
     '<div class="col-md-12"><span class="commentTypeLabel">'+__("Comment")+'</span>'+
@@ -76,9 +76,9 @@ geozzy.commentComponents.adminListCommentItemTemplate = ''+
       '<span class="commentStars">'+
       '<% for (var i = 0; i < 5; i++) { '+
         'if(commentRate > i){'+
-          '%><i class="fa fa-star" aria-hidden="true"></i><%'+
+          '%><i class="fas fa-star" aria-hidden="true"></i><%'+
         '}else{'+
-          '%><i class="fa fa-star-o" aria-hidden="true"></i><%'+
+          '%><i class="far fa-star" aria-hidden="true"></i><%'+
         '}'+
       '}  %> </span>'+
       '<% } %>'+
@@ -95,15 +95,15 @@ geozzy.commentComponents.adminListSuggestionItemTemplate = ''+
       '<div class="commentUserInfo">'+
         '<%- commentUserName %> ( <%- commentUserEmail %> )'+
         '<% if(commentUserVerified === "1"){'+
-          '%><span class="userVerified"><i class="fa fa-check" aria-hidden="true"></i></span><%'+
+          '%><span class="userVerified"><i class="fas fa-check" aria-hidden="true"></i></span><%'+
         '} %>'+
       '</div>'+
     '</div>'+
     '<div class="col-md-4">'+
       '<ul class="suggestOptions clearfix pull-right">'+
-        '<li><button class="btn btn-primary greatSuggest <% if(commentStatusIdName == "commentValidated"){ %> selected <% } %>"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button></li>'+
-        '<li><button class="btn btn-danger irrelevantSuggest <% if(commentStatusIdName == "commentDenied"){ %> selected <% } %>"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button></li>'+
-        '<li><button class="btn btn-default deleteComment"><i class="fa fa-times" aria-hidden="true"></i></button></li>'+
+        '<li><button class="btn btn-primary greatSuggest <% if(commentStatusIdName == "commentValidated"){ %> selected <% } %>"><i class="far fa-thumbs-up" aria-hidden="true"></i></button></li>'+
+        '<li><button class="btn btn-danger irrelevantSuggest <% if(commentStatusIdName == "commentDenied"){ %> selected <% } %>"><i class="far fa-thumbs-down" aria-hidden="true"></i></button></li>'+
+        '<li><button class="btn btn-default deleteComment"><i class="fas fa-times" aria-hidden="true"></i></button></li>'+
       '</ul>'+
     '</div>'+
     '<div class="col-md-12"><span class="commentTypeLabel"><%- suggestTypeName %></span></div>'+

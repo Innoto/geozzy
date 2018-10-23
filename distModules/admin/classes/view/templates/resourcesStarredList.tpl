@@ -8,7 +8,7 @@
       <div class="col-12 col-lg-6 clearfix">
         <button type="button" class="navbar-gzz-toggle" >
             <span class="sr-only">Toggle navigation</span>
-            <i class="fa fa-bars"></i>
+            <i class="fas fa-bars"></i>
         </button>
         <div class="headerTitleContainer">
           <h3>{t}Resources Starred in{/t} <%- name_{$cogumelo.publicConf.langDefault} %> </h3>
@@ -72,12 +72,12 @@
 
         <div class="dd-content">
           <div class="nestableActions">
-  	        <button class="btnDelete btn-icon btn-danger" data-id="<%- resource.id %>" ><i class="fa fa-trash"></i></button>
+  	        <button class="btnDelete btn-icon btn-danger" data-id="<%- resource.id %>" ><i class="fas fa-trash-alt fa-sm fa-fw"></i></button>
   	      </div>
     	  </div>
 
         <div class="dd-handle">
-          <i class="fa fa-arrows icon-handle"></i>
+          <i class="fas fa-arrows-alt fa-fw icon-handle"></i>
           <%- resource.title_{$cogumelo.publicConf.langDefault} %>
         </div>
 

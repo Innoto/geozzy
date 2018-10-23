@@ -5,7 +5,7 @@
 
     {if $icon ne '' or $title ne ''}
       <div id="{$title|replace:' ': '_'}" class="card-header panelBlocktoLink">
-        <!--<i class="fa {$icon} fa-fw"></i>-->
+        <!--<i class="fas {$icon} fa-sm fa-fw"></i>-->
         {$title}
       </div>
     {/if}

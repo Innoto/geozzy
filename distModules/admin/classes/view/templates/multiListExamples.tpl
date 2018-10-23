@@ -74,11 +74,11 @@
 $( document ).ready(function() {
 
   $('.asigned_terms2').multiList({
-    icon: '<i class="fa fa-arrows"></i>'
+    icon: '<i class="fas fa-arrows-alt fa-fw"></i>'
   });
   $('.asigned_terms3').multiList({
     orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>'
+    icon: '<i class="fas fa-arrows-alt fa-fw"></i>'
   });
 
   $('#asigned_terms4').multiList({
@@ -87,9 +87,9 @@ $( document ).ready(function() {
   $('#asigned_terms5').multiList({
     orientation: 'horizontal',
     itemActions : [
-      { 'id': 'edit', 'html': '<i class="fa fa-pencil-square-o"></i>', 'action': function(){} }
+      { 'id': 'edit', 'html': '<i class="far fa-edit fa-xs fa-fw"></i>', 'action': function(){} }
     ],
-    icon: '<i class="fa fa-arrows"></i>',
+    icon: '<i class="fas fa-arrows-alt fa-fw"></i>',
     itemImage: true
   });
 

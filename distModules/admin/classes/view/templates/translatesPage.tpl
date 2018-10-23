@@ -100,7 +100,7 @@
 
   <script>
     $( 'button.btnImport' ).on( 'click', function() {
-      $( '.requestResponse' ).html( '<i class="fa fa-refresh fa-spin fa-3x fa-fw" aria-hidden="true"></i><span class="sr-only">Procesando...</span>' );
+      $( '.requestResponse' ).html( '<i class="fas fa-spinner fa-spin fa-3x fa-fw" aria-hidden="true"></i><span class="sr-only">Procesando...</span>' );
       $( '.requestResponse' ).load( '/admin/translates/import/filesimport?lang=' + $( "select.langToImport" ).val() );
     } );
   </script>

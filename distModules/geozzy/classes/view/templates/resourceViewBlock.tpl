@@ -23,19 +23,19 @@
       </div>
       <div class="stars col-lg-2">
         <div class="col-lg-2">
-          <i class="fa fa-star-o"></i>
+          <i class="far fa-star"></i>
         </div>
         <div class="col-lg-2">
-          <i class="fa fa-star-o"></i>
+          <i class="far fa-star"></i>
         </div>
         <div class="col-lg-2">
-          <i class="fa fa-star-o"></i>
+          <i class="far fa-star"></i>
         </div>
         <div class="col-lg-2">
-          <i class="fa fa-star-o"></i>
+          <i class="far fa-star"></i>
         </div>
         <div class="col-lg-2">
-          <i class="fa fa-star-o"></i>
+          <i class="far fa-star"></i>
         </div>
       </div>
     </div>

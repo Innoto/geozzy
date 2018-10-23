@@ -9,7 +9,7 @@ geozzy.favouritesView = geozzy.favouritesView || {
     console.log( 'setRemoveIcon' );
 
     // Element to send delete order
-    $('.favouritesElement .favsImage').append( $( '<i>' ).addClass( 'favsDelete fa fa-trash' )
+    $('.favouritesElement .favsImage').append( $( '<i>' ).addClass( 'favsDelete fas fa-trash-alt' )
       .attr( {
         'data-toggle': 'tooltip',
         'data-placement': 'left',

@@ -153,7 +153,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
   overlay.draw = function() {};
   overlay.setMap(that.options.mapView.map);
 
-  var insideDiv = $("<div class='markerClustererHoverCircle'><i class='fa fa-search'></i></div>");
+  var insideDiv = $("<div class='markerClustererHoverCircle'><i class='fas fa-search'></i></div>");
   that.markerClustererHover = $("<div></div>");
   that.markerClustererHover.css('position', 'absolute');
   //that.markerClustererHover.css('background', 'blue');

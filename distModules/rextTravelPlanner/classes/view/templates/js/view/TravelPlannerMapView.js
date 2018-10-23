@@ -96,7 +96,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
               '<img class="img-responsive" src="/cgmlImg/'+e.get('image')+'/travelPlannerList/'+e.get('image')+'.jpg">'+
               '<button class="addToPlan btn btn-primary"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></button>'+
               '<a href="#resource/'+e.get('id')+'">'+
-                '<button class="openResource btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></i></button>'+
+                '<button class="openResource btn btn-default"><i class="fas fa-search" aria-hidden="true"></i></i></button>'+
               '</a>'+
             '</div>'+
             '<div class="info">'+

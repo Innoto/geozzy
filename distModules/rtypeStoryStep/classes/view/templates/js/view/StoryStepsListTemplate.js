@@ -7,7 +7,7 @@ geozzy.storystepsComponents.StorystepslistTemplate = ''+
     '<div class="col-lg-6 col-md-12 clearfix">'+
       '<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">'+
           '<span class="sr-only">Toggle navigation</span>'+
-          '<i class="fa fa-bars"></i>'+
+          '<i class="fas fa-bars"></i>'+
       '</button>'+
       '<div class="headerTitleContainer">'+
         '<h3>Pasos <%- title_'+cogumelo.publicConf.langDefault+' %> </h3>'+

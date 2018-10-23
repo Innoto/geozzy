@@ -39,7 +39,7 @@ function scroll_to_anchor(anchor_id){
 }
 
 function bindResAdminForm(){
-  
+
 
   $('.resourceAddCollection').on('click', function(){
     var rtypeParent = $('#rTypeIdName').val();
@@ -56,22 +56,22 @@ function bindResAdminForm(){
 
   $('select.resourceCollection').multiMultiList({
     itemActions : [
-      { 'id': 'edit', 'html': '<i class="fa fa-pencil-square-o"></i>', 'action': editCollection }
+      { 'id': 'edit', 'html': '<i class="far fa-edit fa-xs fa-fw"></i>', 'action': editCollection }
     ],
-    icon: '<i class="fa fa-arrows"></i>',
+    icon: '<i class="fas fa-arrows-alt fa-fw"></i>',
     placeholder: __('Select options')
   });
 
   $('select.gzzMultiList').multiMultiList({
     orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>',
+    icon: '<i class="fas fa-arrows-alt fa-fw"></i>',
     placeholder: __('Select options')
   });
 
   $('select.gzzMultiListImg').multiMultiList({
     orientation: 'Horizontal',
     itemImage: true,
-    icon: '<i class="fa fa-arrows"></i>',
+    icon: '<i class="fas fa-arrows-alt fa-fw"></i>',
     placeholder: __('Add existing resources')
   });
 

@@ -19,8 +19,8 @@ $(document).ready(function(){
       4: '',
       5: ''
     },
-    filledStar:'<i class="fa fa-star" aria-hidden="true"></i>',
-    emptyStar:'<i class="fa fa-star-o" aria-hidden="true"></i>'
+    filledStar:'<i class="fas fa-star" aria-hidden="true"></i>',
+    emptyStar:'<i class="far fa-star" aria-hidden="true"></i>'
   });
 
 });

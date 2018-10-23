@@ -122,7 +122,7 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
       width: 358,
       height: 383,
       textReset: that.options.textReset,
-      htmlIconArrow: '<i class="fa fa-caret-down"></i>',
+      htmlIconArrow: '<i class="fas fa-caret-down"></i>',
       imgSrc: cogumelo.publicConf.media+'/module/rextAppZona/img/gal.svg',
       imgTransparent: cogumelo.publicConf.media+'/module/rextAppZona/img/transparent.png'
     });

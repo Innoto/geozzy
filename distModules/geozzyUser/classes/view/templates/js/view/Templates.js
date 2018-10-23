@@ -37,7 +37,7 @@ geozzy.userSessionComponents.userLoginBoxTemplate = ''+
 
 '</div>'+
 '<div class="recoveryPasswordFinalMsg" style="display:none;">'+
-  '<div class="alert alert-success" role="alert"><i class="fa fa-check-circle-o" aria-hidden="true"></i>    '+__("Correo electrónico enviado correctamente")+'</div>'+
+  '<div class="alert alert-success" role="alert"><i class="far fa-check-circle" aria-hidden="true"></i>    '+__("Correo electrónico enviado correctamente")+'</div>'+
 '</div>';
 
 geozzy.userSessionComponents.userRegisterBoxTemplate = ''+

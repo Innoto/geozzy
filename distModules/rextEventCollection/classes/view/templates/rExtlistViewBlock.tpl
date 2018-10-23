@@ -16,11 +16,11 @@
       <div class="accordion-heading">
         <a class="date accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#ele{$eventDate.id}">
             {if $eventDate@first}
-              <i class="arrow arrow-down fa fa-caret-down" aria-hidden="true"></i>
-              <i style="display:none;" class="arrow arrow-right fa fa-caret-right" aria-hidden="true"></i>
+              <i class="arrow arrow-down fas fa-caret-down" aria-hidden="true"></i>
+              <i style="display:none;" class="arrow arrow-right fas fa-caret-right" aria-hidden="true"></i>
             {else}
-              <i style="display:none;" class="arrow arrow-down fa fa-caret-down" aria-hidden="true"></i>
-              <i class="arrow arrow-right fa fa-caret-right" aria-hidden="true"></i>
+              <i style="display:none;" class="arrow arrow-down fas fa-caret-down" aria-hidden="true"></i>
+              <i class="arrow arrow-right fas fa-caret-right" aria-hidden="true"></i>
             {/if}
             {$eventDate.formatedDate.l}, <span class="dateContent">{$eventDate.formatedDate.j} de {$eventDate.formatedDate.F}</span>
         </a>
@@ -43,12 +43,12 @@
               </div>
               {if $eventDate.relatedResource}
               <a href="{$eventDate.relatedResource}" class="btn moreInfo">
-                <i class="fa fa-plus" aria-hidden="true"></i> {t}More information{/t}
+                <i class="fas fa-plus" aria-hidden="true"></i> {t}More information{/t}
               </a>
               {/if}
               {if $elm.resource.urlAlias}
               <a href="{$elm.resource.urlAlias}" class="btn moreInfo">
-                <i class="fa fa-plus" aria-hidden="true"></i> {t}More information{/t}
+                <i class="fas fa-plus" aria-hidden="true"></i> {t}More information{/t}
               </a>
               {/if}
             </div>
