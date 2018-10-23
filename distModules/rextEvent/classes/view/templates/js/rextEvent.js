@@ -4,7 +4,7 @@ $porto = false;
 
 $(document).ready(function(){
 
-  if($('.eventModal').size()>0){
+  if($('.eventModal').length >0){
     bindEventForm('.eventModal ');
   }
   else{
@@ -86,7 +86,7 @@ function bindEventForm(modal){
 function moveSubmitBtn(query){
   var buttonsToMove = $(query).find('.gzzAdminToMove');
 
-  if( buttonsToMove.size() > 0 ){
+  if( buttonsToMove.length > 0 ){
     buttonsToMove.each( function() {
       var that = this;
       var cloneButtonBottom = $(this).clone(true, true);

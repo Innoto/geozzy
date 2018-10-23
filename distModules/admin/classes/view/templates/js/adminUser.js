@@ -11,5 +11,6 @@ $(document).ready(function(){
     icon: '<i class="fa fa-arrows"></i>',
     placeholder: __('Select options')
   });
+
   $('select.gzzSelect2').select2();
 });

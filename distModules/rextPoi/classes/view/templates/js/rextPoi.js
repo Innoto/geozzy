@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  if($('.poiModal').size()>0){
+  if($('.poiModal').length >0){
     //initializeMap(formId);
     bindPoiForm('.poiModal ');
   }
@@ -29,7 +29,7 @@ function moveSubmitBtn(query){
 
   var buttonsToMove = $(query).find('.gzzAdminToMove');
 
-  if( buttonsToMove.size() > 0 ){
+  if( buttonsToMove.length > 0 ){
     buttonsToMove.each( function() {
       var that = this;
       var cloneButtonBottom = $(this).clone(true, true);
