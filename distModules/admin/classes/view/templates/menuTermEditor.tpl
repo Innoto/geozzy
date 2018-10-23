@@ -2,7 +2,7 @@
 
   <div class="headSection clearfix">
     <div class="row">
-      <div class="col-12 col-xl-6">
+      <div class="col-12 col-lg-6">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <i class="fa fa-bars"></i>
@@ -11,7 +11,7 @@
           <h3>{t}Menu management{/t}</h3>
         </div>
       </div>
-      <div class="col-12 col-xl-6 clearfix">
+      <div class="col-12 col-lg-6 clearfix">
         <div class="headerActionsContainer">
           <button type="button" class="newTaxTerm btn btn-default"> {t}Add menu term{/t}</button>
           <span class="saveChanges">
