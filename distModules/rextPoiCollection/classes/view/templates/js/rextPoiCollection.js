@@ -3,6 +3,7 @@ $(document).ready(function(){
 });
 
 function bindResourceForm(){
+  alert('2');
   $('select.cgmMForm-field-rExtPoiCollection_pois').multiList({
     itemActions : [
       { 'id': 'edit', 'html': '<i class="fa fa-pencil-square-o"></i>', 'action': editModalForm }

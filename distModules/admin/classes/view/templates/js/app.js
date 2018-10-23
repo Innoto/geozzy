@@ -10,7 +10,7 @@ function manageAjaxFailures() {
       statusCode: {
         401: function(datos) {
           geozzy.userSessionInstance.getUserSession( function() {
-            console.log(geozzy.userSessionInstance.user.get('id') )
+            console.log(geozzy.userSessionInstance.user.get('id') );
 
             if( geozzy.userSessionInstance.user.get('id') == false ) {
               window.location.replace('/admin/login');
@@ -39,7 +39,7 @@ $( document ).ready(function() {
 
     router: false,
     mainView: false
-  }
+  };
 
 
   // Multiple data fetch
@@ -71,8 +71,8 @@ function operatingHeader(){
     $("#wrapper").toggleClass("closed");
   });
 
+  
   //$('#side-menu').metisMenu();
-
   $('#side-menu').metisMenu({
     // enabled/disable the auto collapse.
     toggle: true,

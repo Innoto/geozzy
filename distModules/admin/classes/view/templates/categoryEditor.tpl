@@ -6,7 +6,7 @@
   <div class="headSection clearfix">
     <div class="row">
       <div class="col-12 col-lg-6">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <button type="button" class="navbar-gzz-toggle">
             <span class="sr-only">Toggle navigation</span>
             <i class="fa fa-bars"></i>
         </button>

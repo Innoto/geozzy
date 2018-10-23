@@ -36,7 +36,7 @@ var AdminView = Backbone.View.extend({
       var menuStarred =  _.template($("#menuStarred").html());
       var menuStarredContainer = $('#wrapper #menu-wrapper .sidebar .starredList');
       var menuStarredData = app.starred.toJSON();
-      if(menuCategoriesData.length === 0){
+      if(menuStarredData.length === 0){
         $('#side-menu .starred').hide();
       }else{
         menuStarredContainer.prepend( menuStarred( { starred:  menuStarredData  } ) );
@@ -171,6 +171,10 @@ var AdminView = Backbone.View.extend({
         });
       }
     }
+
+    $("#page-wrapper .headSection .navbar-gzz-toggle").click(function(e) {
+      $("#menu-wrapper .sidebar-nav").toggleClass("open");
+    });
   },
 
 

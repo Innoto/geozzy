@@ -3,6 +3,7 @@ $(document).ready(function(){
 });
 
 function bindResourceForm(){
+  alert('3');
   $('select.cgmMForm-field-rExtEventCollection_events').multiList({
     itemActions : [
       { 'id': 'edit', 'html': '<i class="fa fa-pencil-square-o"></i>', 'action': editModalForm }

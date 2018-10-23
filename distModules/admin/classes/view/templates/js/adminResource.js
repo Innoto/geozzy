@@ -10,7 +10,6 @@ var resourceMarker = false;
 
 $(document).ready( function() {
   console.log('Inicializamos adminResource.js');
-  bindResourceForm();
 
   var els = $('.switchery');
   els.each(function( index )  {
@@ -30,8 +29,8 @@ $(document).ready( function() {
        });
    });
 
+  bindResAdminForm();
   initializeMaps( );
-
 });
 
 function scroll_to_anchor(anchor_id){
@@ -39,8 +38,9 @@ function scroll_to_anchor(anchor_id){
     $('html,body').animate({scrollTop: tag.offset().top-130},'slow');
 }
 
-function bindResourceForm(){
-alert('fuck');
+function bindResAdminForm(){
+  
+
   $('.resourceAddCollection').on('click', function(){
     var rtypeParent = $('#rTypeIdName').val();
 
@@ -74,7 +74,7 @@ alert('fuck');
     icon: '<i class="fa fa-arrows"></i>',
     placeholder: __('Add existing resources')
   });
-    console.log($('select.gzzSelect2'));
+
   $('select.gzzSelect2').select2();
   $('select.gzzSelect2tags').select2({tags:true});
 }
