@@ -86,10 +86,10 @@
       </div>
     </div>
 
-      <div class="tp-gotoMobilePlan"><i class="fa fa-list" aria-hidden="true"></i> {t}Plan{/t}</div>
+      <div class="tp-gotoMobilePlan"><i class="fas fa-list" aria-hidden="true"></i> {t}Plan{/t}</div>
       <div class="tp-gotoMobileList"><i class="fas fa-plus" aria-hidden="true"></i> {t}Add{/t}</div>
-      <div class="tp-gotoMobileChangeDates"><i class="fa fa-calendar" aria-hidden="true"></i> {t}Dates{/t}</div>
-      <!--<div class="tp-gotoMobileMap"><i class="fa fa-map-o" aria-hidden="true"></i> {t}Map{/t}</div>-->
+      <div class="tp-gotoMobileChangeDates"><i class="far fa-calendar-alt" aria-hidden="true"></i> {t}Dates{/t}</div>
+      <!--<div class="tp-gotoMobileMap"><i class="far fa-map" aria-hidden="true"></i> {t}Map{/t}</div>-->
 
   </div>
 </script>
@@ -98,7 +98,7 @@
   <div class="tpResourceItem" data-resource-id="<%- resource.id %>">
     <div class="image">
       <img class="img-fluid" src="/cgmlImg/<%- resource.image %>/travelPlannerList/<%- resource.image %>.jpg">
-      <button class="addToPlan btn btn-primary"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></button>
+      <button class="addToPlan btn btn-primary"><i class="far fa-calendar-plus" aria-hidden="true"></i></button>
       <a href="#resource/<%- resource.id %>">
         <button class="openResource btn btn-default"><i class="fas fa-search" aria-hidden="true"></i></i></button>
       </a>
@@ -115,7 +115,7 @@
 <script type="text/template" id="datesTPTemplate">
   <div class="datesTpContainer clearfix">
     <!--<div class="title">{t}When do you want to travel? {/t}</div>-->
-    <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+    <div class="icon"><i class="far fa-calendar-alt" aria-hidden="true"></i></div>
     <input type="text" id="checkTpDates" class="form-control" readonly>
   </div>
 </script>
@@ -131,8 +131,8 @@
           <div class="infoTime"><i class="far fa-clock" aria-hidden="true"></i> <span>-h --min</span></div>
           <div class="infoTimeTransport"></div>
         </div>
-        <div class="showMap"><i class="fa fa-map-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
-        <div class="optimizeDay"><i class="fa fa-magic " aria-hidden="true"></i>&nbsp;<span>{t}Optimize day{/t}</span></div>
+        <div class="showMap"><i class="far fa-map" aria-hidden="true"></i>&nbsp;<i class="fas fa-angle-double-right" aria-hidden="true"></i></div>
+        <div class="optimizeDay"><i class="fas fa-magic " aria-hidden="true"></i>&nbsp;<span>{t}Optimize day{/t}</span></div>
         <div class="printDay hidden-xs hidden-sm"><i class="fas fa-print " aria-hidden="true"></i></div>
       </div>
     </div>
@@ -157,7 +157,7 @@
         </div>
         <div class="nestableActions">
           <button class="btnEdit btn-icon btn-primary"><i class="fas fa-pencil-alt" aria-hidden="true"></i></button>
-          <button class="btnDelete btn-icon btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button class="btnDelete btn-icon btn-danger"><i class="fas fa-times" aria-hidden="true"></i></button>
         </div>
       </div>
 
@@ -180,7 +180,7 @@
         </div>
         <div class="nestableActions">
           <button class="btnEdit btn-icon btn-primary"><i class="fas fa-pencil-alt" aria-hidden="true"></i></button>
-          <button class="btnDelete btn-icon btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button class="btnDelete btn-icon btn-danger"><i class="fas fa-times" aria-hidden="true"></i></button>
           <a href="#resource/<%- resource.id %>"><button class="btnAccess btn-icon btn-default"><i class="fas fa-search" aria-hidden="true"></i></button></a>
         </div>
       </div>
@@ -254,7 +254,7 @@
   <div class="dates">
     <div class="title">{t}When do you want to travel? {/t}</div>
     <div class="getdatesTpContainer clearfix">
-      <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+      <div class="icon"><i class="far fa-calendar-alt" aria-hidden="true"></i></div>
       <input type="text" id="getDatesTpInput" class="form-control" readonly>
     </div>
   </div>

@@ -36,15 +36,15 @@
                         <div class="shareComm">
                           <div class="col-xs-12 ">
                             <div class="actions">
-                              <span class="view actionEdit"><i class="fa fa-lg fa-pencil" aria-hidden="true"></i> {t}Editar{/t}</span>
-                              <span class="edit actionSave"><i class="fa fa-lg fa-floppy-o" aria-hidden="true"></i> {t}Guardar{/t}</span>
+                              <span class="view actionEdit"><i class="fas fa-lg fa-pencil-alt" aria-hidden="true"></i> {t}Editar{/t}</span>
+                              <span class="edit actionSave"><i class="far fa-lg fa-save" aria-hidden="true"></i> {t}Guardar{/t}</span>
                             </div>
                           </div>
                           <div class="col-xs-12">
                             <div class="myShare">
                               <span class="view">
-                                <span class="shareOn"><i class="fa fa-lg fa-check" aria-hidden="true"></i></span>
-                                <span class="shareOff"><i class="fa fa-lg fa-times" aria-hidden="true"></i></span>
+                                <span class="shareOn"><i class="fas fa-lg fa-check" aria-hidden="true"></i></span>
+                                <span class="shareOff"><i class="fas fa-lg fa-times" aria-hidden="true"></i></span>
                               </span>
                               <style type="text/css">
                                 {if $myInfo.comm.share && $myInfo.comm.share == 1}
@@ -58,12 +58,12 @@
                                 <label>
                                   <input type="radio" name="shareStatus" class="shareStatusOn"
                                   value="1"{if $myInfo.comm.share && $myInfo.comm.share == 1} checked{/if}>
-                                  <i class="fa fa-lg fa-check" aria-hidden="true"></i>
+                                  <i class="fas fa-lg fa-check" aria-hidden="true"></i>
                                 </label>
                                 <label>
                                   <input type="radio" name="shareStatus" class="shareStatusOff"
                                   value="0"{if !$myInfo.comm.share || $myInfo.comm.share != 1} checked{/if}>
-                                  <i class="fa fa-lg fa-times" aria-hidden="true"></i>
+                                  <i class="fas fa-lg fa-times" aria-hidden="true"></i>
                                 </label>
                               </span>
                             </div>
@@ -76,7 +76,7 @@
                         <div class="rs">
                           <div class="col-xs-12">
                             <div class="myFacebook noShare">
-                              <span class="iconRs rsFacebook"><i class="fa fa-fw fa-3x fa-facebook" aria-hidden="true"></i></span>
+                              <span class="iconRs rsFacebook"><i class="fab fa-fw fa-3x fa-facebook-f" aria-hidden="true"></i></span>
                               <div class="view">
                                 <div class="shareOn">{t}Perfil enlazado con Facebook{/t}</div>
                                 <div class="shareOff">{t}Enlazar mi perfil con Facebook{/t}</div>
@@ -95,7 +95,7 @@
                           </div>
                           <div class="col-xs-12">
                             <div class="myTwitter noShare">
-                              <span class="iconRs rsTwitter"><i class="fa fa-fw fa-3x fa-twitter" aria-hidden="true"></i></span>
+                              <span class="iconRs rsTwitter"><i class="fab fa-fw fa-3x fa-twitter" aria-hidden="true"></i></span>
                               <div class="view">
                                 <span class="shareOn">{t}Perfil enlazado con Twitter{/t}</span>
                                 <span class="shareOff">{t}Enlazar mi perfil con Twitter{/t}</span>
@@ -151,12 +151,12 @@
                               <div class="socialLinks">
                                 {if $userInfo.comm.facebook}
                                   <span class="goToFacebook">
-                                    <a href="https://www.facebook.com/{$userInfo.comm.facebook}" target="_blank"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="https://www.facebook.com/{$userInfo.comm.facebook}" target="_blank"><i class="fab fa-fw fa-facebook-f" aria-hidden="true"></i></a>
                                   </span>
                                 {/if}
                                 {if $userInfo.comm.twitter}
                                   <span class="goToTwitter">
-                                    <a href="https://twitter.com/{$userInfo.comm.twitter}" target="_blank"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i></a>
+                                    <a href="https://twitter.com/{$userInfo.comm.twitter}" target="_blank"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i></a>
                                   </span>
                                 {/if}
                               </div>
@@ -173,8 +173,8 @@
                       <div class="col-sm-9">
                         <div class="infoUser">
                           <div class="actionFollow" data-id="{$userInfo.id}" data-follow="1">
-                            <span class="showStatus off" style="display: none;"><i class="fa fa-user-plus" aria-hidden="true"></i></span>
-                            <span class="showStatus on"><i class="fa fa-user-times" aria-hidden="true"></i></span>
+                            <span class="showStatus off" style="display: none;"><i class="fas fa-user-plus" aria-hidden="true"></i></span>
+                            <span class="showStatus on"><i class="fas fa-user-times" aria-hidden="true"></i></span>
                           </div>
                           <div class="commText">
                             <div class="name">{$userInfo.name} {$userInfo.surname}</div>
@@ -243,12 +243,12 @@
                               <div class="socialLinks">
                                 {if $userInfo.comm.facebook}
                                   <span class="goToFacebook">
-                                    <a href="https://www.facebook.com/{$userInfo.comm.facebook}" target="_blank"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="https://www.facebook.com/{$userInfo.comm.facebook}" target="_blank"><i class="fab fa-fw fa-facebook-f" aria-hidden="true"></i></a>
                                   </span>
                                 {/if}
                                 {if $userInfo.comm.twitter}
                                   <span class="goToTwitter">
-                                    <a href="https://twitter.com/{$userInfo.comm.twitter}" target="_blank"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i></a>
+                                    <a href="https://twitter.com/{$userInfo.comm.twitter}" target="_blank"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i></a>
                                   </span>
                                 {/if}
                               </div>
@@ -265,8 +265,8 @@
                       <div class="col-sm-9">
                         <div class="infoUser">
                           <div class="actionFollow" data-id="{$userInfo.id}" data-follow="0">
-                            <span class="showStatus off"><i class="fa fa-user-plus" aria-hidden="true"></i></span>
-                            <span class="showStatus on" style="display: none;"><i class="fa fa-user-times" aria-hidden="true"></i></span>
+                            <span class="showStatus off"><i class="fas fa-user-plus" aria-hidden="true"></i></span>
+                            <span class="showStatus on" style="display: none;"><i class="fas fa-user-times" aria-hidden="true"></i></span>
                           </div>
                           <div class="commText">
                             <div class="name">{$userInfo.name} {$userInfo.surname}</div>

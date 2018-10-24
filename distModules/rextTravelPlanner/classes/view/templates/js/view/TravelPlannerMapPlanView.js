@@ -239,7 +239,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
             '<div class="title">'+item.title+'</div>'+
             '<div class="description">'+item.shortDescription+'</div>'+
           '</div>'+
-          '<div class="close"><i class="fa fa-times"></i></div>'+
+          '<div class="close"><i class="fas fa-times"></i></div>'+
         '</div>';
         $('body').append(infowindowHtml);
         $('.iWindowMobile .close').on('click', function(e){

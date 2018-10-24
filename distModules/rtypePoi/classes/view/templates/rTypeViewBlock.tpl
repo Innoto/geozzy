@@ -42,10 +42,10 @@
         </div>
         <div class="stars hidden-xs col-sm-3 col-md-2">
           <i class="far fa-star"></i>
-          <i class="fa selected fa-star-o"></i>
-          <i class="fa selected fa-star-o"></i>
-          <i class="fa selected fa-star-o"></i>
-          <i class="fa selected fa-star-o"></i>
+          <i class="far selected fa-star"></i>
+          <i class="far selected fa-star"></i>
+          <i class="far selected fa-star"></i>
+          <i class="far selected fa-star"></i>
         </div>
       </div>
     </div>

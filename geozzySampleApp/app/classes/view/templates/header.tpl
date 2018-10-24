@@ -27,8 +27,8 @@
             <li data-section="faq"><a href="/faq">{t}FAQ{/t}</a></li>
             <!--<li><a href='/blog'>{t}Blog{/t}</a></li>-->
             <li data-section="contact"><a href="/contact">{t}Contact{/t}</a></li>
-            <li class="rs linkedin"><a href="https://www.linkedin.com/company/geozzy"> <i class="fa fa-fx fa-linkedin" aria-hidden="true"></i> </a></li>
-            <li class="rs twitter"><a href="https://twitter.com/geozzylive" target="_blank"> <i class="fa fa-fx fa-twitter" aria-hidden="true"></i> </a></li>
+            <li class="rs linkedin"><a href="https://www.linkedin.com/company/geozzy"> <i class="fab fa-fx fa-linkedin-in" aria-hidden="true"></i> </a></li>
+            <li class="rs twitter"><a href="https://twitter.com/geozzylive" target="_blank"> <i class="fab fa-fx fa-twitter" aria-hidden="true"></i> </a></li>
           </ul>
         </div>
       </div>
