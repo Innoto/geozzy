@@ -16,7 +16,7 @@ geozzy.app.getPrivacidad = function getPrivacidad( privacidadSuccess ){
       var data = {
         resData : $jsonData,
         modal : {
-          title: '<img class="iconModal img-responsive" src="'+cogumelo.publicConf.media+'/img/iconModal.png">',
+          title: '<img class="iconModal img-fluid" src="'+cogumelo.publicConf.media+'/img/iconModal.png">',
           classCss: 'gzzAppPrivacidadModal',
           htmlBody: '<h1>'+$jsonData[0].title+'</h1><div class="content">'+$jsonData[0].content+'</div>',
           size: 'lg',

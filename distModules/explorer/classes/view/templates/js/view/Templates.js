@@ -5,7 +5,7 @@ if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 geozzy.explorerComponents.mapInfoViewTemplate = ''+
   '<div class="gempiContent">'+
     '<div class="gempiImg">'+
-      '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/fast_cut/<%-img%>.jpg" />'+
+      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/fast_cut/<%-img%>.jpg" />'+
     '</div>'+
     '<div class="gempiInfo">'+
       '<div class="gempiTitle"><%-title%></div>'+
@@ -24,7 +24,7 @@ geozzy.explorerComponents.mapInfoViewMobileTemplate = ''+
     '<div class="closeButton"><i class="fa fa-times" aria-hidden="true"></i></div>' +
 
     '<div class="gempiImg accessButton">'+
-      '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/squareCut/<%-img%>.jpg" />'+
+      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/squareCut/<%-img%>.jpg" />'+
     '</div>'+
     '<div class="gempiInfo">'+
       '<div class="gempiTitle"><%-title%></div>'+
@@ -54,7 +54,7 @@ geozzy.explorerComponents.activeListTinyViewTemplate = ''+
 geozzy.explorerComponents.activeListTinyViewElement = ''+
   '<div data-resource-id="<%- id %>" class="col-md-2 col-sm-2 col-xs-4 element element-<%- id %>">'+
     '<div class="elementImg">'+
-      '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/fast_cut/<%- img %>.jpg" />'+
+      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/fast_cut/<%- img %>.jpg" />'+
       '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
         '<ul class="elementOptions container-fluid"></ul>'+
       '</div>'+
@@ -94,7 +94,7 @@ geozzy.explorerComponents.activeListViewTemplate = ''+
 geozzy.explorerComponents.activeListViewElement = '' +
   '<div data-resource-id="<%- id %>" class="col-md-12 element">'+
     '<div class="elementImg">'+
-      '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/explorerXantaresImg/<%- img %>.jpg" />'+
+      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/explorerXantaresImg/<%- img %>.jpg" />'+
       '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
         '<ul class="elementOptions container-fluid"></ul>'+
       '</div>'+

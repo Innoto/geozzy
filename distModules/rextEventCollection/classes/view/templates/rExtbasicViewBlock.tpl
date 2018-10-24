@@ -12,7 +12,7 @@
       {/if}
       <div class="box">
         <div class="eventImg">
-          <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$eventDate.resource.image}/listEvent/{$eventDate.resource.image}.jpg"/>
+          <img class="img-fluid" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$eventDate.resource.image}/listEvent/{$eventDate.resource.image}.jpg"/>
         </div>
         <div class="eventContent">
           <div class="eventDate">

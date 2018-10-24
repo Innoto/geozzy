@@ -31,7 +31,7 @@
           <div class="externalBox col-md-4 col-sm-6 col-xs-12">
             <div class="box">
               <div class="eventImg">
-                <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$elm.resource.image}/calendarEvent/{$elm.resource.image}.jpg"/>
+                <img class="img-fluid" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$elm.resource.image}/calendarEvent/{$elm.resource.image}.jpg"/>
               </div>
               <div class="eventText">
 

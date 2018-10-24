@@ -207,7 +207,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
       gMarker.addListener('mouseover', function() {
         var infowindowHtml = '<div class="iWindow">'+
           '<div class="image">'+
-            '<img class="img-responsive" src="/cgmlImg/'+item.image+'/travelPlannerList/'+item.image+'.jpg">'+
+            '<img class="img-fluid" src="/cgmlImg/'+item.image+'/travelPlannerList/'+item.image+'.jpg">'+
           '</div>'+
           '<div class="info">'+
             '<div class="title">'+item.title+'</div>'+
@@ -233,7 +233,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
         $('.iWindowMobile').remove();
         var infowindowHtml = '<div class="iWindowMobile">'+
           '<div class="image">'+
-            '<img class="img-responsive" src="/cgmlImg/'+item.image+'/travelPlannerList/'+item.image+'.jpg">'+
+            '<img class="img-fluid" src="/cgmlImg/'+item.image+'/travelPlannerList/'+item.image+'.jpg">'+
           '</div>'+
           '<div class="info">'+
             '<div class="title">'+item.title+'</div>'+

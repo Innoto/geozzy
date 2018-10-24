@@ -97,7 +97,7 @@
 <script type="text/template" id="resourceItemTPTemplate">
   <div class="tpResourceItem" data-resource-id="<%- resource.id %>">
     <div class="image">
-      <img class="img-responsive" src="/cgmlImg/<%- resource.image %>/travelPlannerList/<%- resource.image %>.jpg">
+      <img class="img-fluid" src="/cgmlImg/<%- resource.image %>/travelPlannerList/<%- resource.image %>.jpg">
       <button class="addToPlan btn btn-primary"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></button>
       <a href="#resource/<%- resource.id %>">
         <button class="openResource btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></i></button>
@@ -191,7 +191,7 @@
 <!-- *************************** MODAL ITEM ************************************** -->
 <script type="text/template" id="resourceTpModalTemplate">
   <div class="resourceTp" data-resource-id="<%- resource.id %>">
-    <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/travelPlannerListBig/<%- resource.image %>.jpg"></div>
+    <div class="image"><img class="img-fluid" src="/cgmlImg/<%- resource.image %>/travelPlannerListBig/<%- resource.image %>.jpg"></div>
     <div class="title"><%- resource.title %></div>
 
     <form>
@@ -227,7 +227,7 @@
 
 <script type="text/template" id="resourceTpEditModalTemplate">
   <div class="resourceTp" data-resource-id="<%- resource.id %>">
-    <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/travelPlannerListBig/<%- resource.image %>.jpg"></div>
+    <div class="image"><img class="img-fluid" src="/cgmlImg/<%- resource.image %>/travelPlannerListBig/<%- resource.image %>.jpg"></div>
     <div class="title"><%- resource.title %></div>
 
     <form>
@@ -269,27 +269,27 @@
     </div>
     <div class="stepOne steps">
       <p>{t}STEP 1: While exploring the contents of the website,{/t} {t}you can select any content that might interest you and append it to your ‘favourites collection’.{/t} {t}Just click on the star icon.{/t}</p>
-      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step1.png" class="img-responsive center-block" alt="{t}Step 1 - Travel Planner{/t}">
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step1.png" class="img-fluid center-block" alt="{t}Step 1 - Travel Planner{/t}">
     </div>
     <div class="stepTwo steps">
       <p>{t}STEP 2: Access the travel planner, and select your traveling dates{/t}</p>
-      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step2.png" class="img-responsive center-block" alt="{t}Step 2 - Travel Planner{/t}">
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step2.png" class="img-fluid center-block" alt="{t}Step 2 - Travel Planner{/t}">
     </div>
     <div class="stepThree steps">
       <p>{t}STEP 3: From your favorite collection, select those places that you would like to add to your journey plan.{/t} {t}You can specify the day that most interests you to visit it and / or the time you want to spend there{/t}</p>
-      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step3.png" class="img-responsive center-block" alt="{t}Step 3 - Travel Planner{/t}">
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step3.png" class="img-fluid center-block" alt="{t}Step 3 - Travel Planner{/t}">
     </div>
     <div class="stepFour steps">
       <p>{t}STEP 4: Press ‘Go to my plan’.{/t} {t}You can schedule visits as you wish by dragging and dropping the items. {/t}</p>
-      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step4.png" class="img-responsive center-block" alt="{t}Step 4 - Travel Planner{/t}">
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step4.png" class="img-fluid center-block" alt="{t}Step 4 - Travel Planner{/t}">
     </div>
     <div class="stepFive steps">
       <p>{t}STEP 5: You can also optimize your day of visits. Simply click on 'Optimize day'{/t}</p>
-      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step5.png" class="img-responsive center-block" alt="{t}Step 5 - Travel Planner{/t}">
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step5.png" class="img-fluid center-block" alt="{t}Step 5 - Travel Planner{/t}">
     </div>
     <div class="stepSix steps">
       <p>{t}STEP 6: Follow your travel plan on your smartphone{/t}</p>
-      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step6.png" class="img-responsive center-block" alt="{t}Step 6 - Travel Planner{/t}">
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step6.png" class="img-fluid center-block" alt="{t}Step 6 - Travel Planner{/t}">
     </div>
     <div class="end steps">
       <p>{t}Shall we begin?{/t}</p>
@@ -306,7 +306,7 @@
     <div class="row">
       <div class="col-xs-5">
         <div class="routeInit">
-          <div class="image"><img class="img-responsive" src="/cgmlImg/<%- data.init.image %>/travelPlannerListBig/<%- data.init.image %>.jpg"></div>
+          <div class="image"><img class="img-fluid" src="/cgmlImg/<%- data.init.image %>/travelPlannerListBig/<%- data.init.image %>.jpg"></div>
           <div class="title"><%- data.init.title %></div>
         </div>
       </div>
@@ -317,7 +317,7 @@
       </div>
       <div class="col-xs-5">
         <div class="routeEnd">
-          <div class="image"><img class="img-responsive" src="/cgmlImg/<%- data.end.image %>/travelPlannerListBig/<%- data.end.image %>.jpg"></div>
+          <div class="image"><img class="img-fluid" src="/cgmlImg/<%- data.end.image %>/travelPlannerListBig/<%- data.end.image %>.jpg"></div>
           <div class="title"><%- data.end.title %></div>
         </div>
       </div>
@@ -361,7 +361,7 @@
           <div class="resourceData clearfix">
             <div class="infoLeft">
               <div class="imgResource">
-                <img class="img-responsive center-block" src="/cgmlImg/<%- elem.image %>/travelPlannerList/<%- elem.image %>.jpg">
+                <img class="img-fluid center-block" src="/cgmlImg/<%- elem.image %>/travelPlannerList/<%- elem.image %>.jpg">
               </div>
               <div class="times clearfix">
                 <% minutes = i.time % 60 %>

@@ -13,7 +13,7 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
 
     var options = new Object({
       container: false,
-      //tplElement: '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-id%>/storyLegend/<%-id%>.png" />'
+      //tplElement: '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-id%>/storyLegend/<%-id%>.png" />'
       //tplElement: '<div class==> LOL </div>'
     });
     that.options = $.extend(true, {}, options, opts);

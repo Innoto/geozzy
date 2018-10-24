@@ -81,7 +81,7 @@
           <i class="fa fa-arrows icon-handle"></i>
           <%- term.name_{$cogumelo.publicConf.langDefault} %>
           <% if (term.icon){  %>
-            <img class="term-icon img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/<%- term.icon %>-a<%- term.iconAKey %>/fast/">
+            <img class="term-icon img-fluid" src="{$cogumelo.publicConf.mediaHost}cgmlImg/<%- term.icon %>-a<%- term.iconAKey %>/fast/">
           <% } %>
         </div>
 

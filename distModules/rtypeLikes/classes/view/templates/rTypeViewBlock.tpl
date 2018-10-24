@@ -27,7 +27,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-9 col-md-10">
-          {*<img class="iconTitleBar img-responsive" alt="Páxina xeral" src="{$cogumelo.publicConf.media}/img/paxinaIcon.png"></img>*}
+          {*<img class="iconTitleBar img-fluid" alt="Páxina xeral" src="{$cogumelo.publicConf.media}/img/paxinaIcon.png"></img>*}
           <h1>{t}Likes page{/t}</h1>
         </div>
       </div>

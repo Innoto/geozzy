@@ -7,7 +7,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-9 col-md-10">
-          <img class="iconTitleBar img-responsive" alt="Tu Comunidad" src="{$cogumelo.publicConf.media}/img/paxinaIcon.png">
+          <img class="iconTitleBar img-fluid" alt="Tu Comunidad" src="{$cogumelo.publicConf.media}/img/paxinaIcon.png">
           <h1>{t}Tu Comunidad{/t}</h1>
         </div>
       </div>
@@ -23,7 +23,7 @@
             <div class="col-sm-5 col-md-4">
               <div class="infoPersonal">
                 <div class="commImage">
-                  <img class="img-responsive" src="{if $myInfo.avatarFileId}/cgmlImg/{$myInfo.avatarFileId}/userPhotoCommunity/{$myInfo.avatarFileId}.jpg{else}/mediaCache/module/rextCommunity/img/user.png{/if}">
+                  <img class="img-fluid" src="{if $myInfo.avatarFileId}/cgmlImg/{$myInfo.avatarFileId}/userPhotoCommunity/{$myInfo.avatarFileId}.jpg{else}/mediaCache/module/rextCommunity/img/user.png{/if}">
                 </div>
               </div>
             </div>
@@ -145,7 +145,7 @@
                         <div class="text-center">
                           <div class="socialUser">
                             <div class="commImageUser">
-                              <img class="img-responsive" src="{if $userInfo.avatarFileId}/cgmlImg/{$userInfo.avatarFileId}/userPhotoCommunity/{$userInfo.avatarFileId}.jpg{else}/mediaCache/module/rextCommunity/img/user.png{/if}">
+                              <img class="img-fluid" src="{if $userInfo.avatarFileId}/cgmlImg/{$userInfo.avatarFileId}/userPhotoCommunity/{$userInfo.avatarFileId}.jpg{else}/mediaCache/module/rextCommunity/img/user.png{/if}">
                             </div>
                             {if $userInfo.comm}
                               <div class="socialLinks">
@@ -190,7 +190,7 @@
                                   <div class="col-xs-3">
                                     <div class="commImage">
                                       <a href="{$fav.url}" title="{$fav.title}">
-                                        <img class="img-responsive" src="/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg" alt="{$fav.title}">
+                                        <img class="img-fluid" src="/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg" alt="{$fav.title}">
                                       </a>
                                     </div>
                                   </div>
@@ -237,7 +237,7 @@
                         <div class="text-center">
                           <div class="socialUser">
                             <div class="commImageUser">
-                              <img class="img-responsive" src="{if $userInfo.avatarFileId}/cgmlImg/{$userInfo.avatarFileId}/userPhotoCommunity/{$userInfo.avatarFileId}.jpg{else}/mediaCache/module/rextCommunity/img/user.png{/if}">
+                              <img class="img-fluid" src="{if $userInfo.avatarFileId}/cgmlImg/{$userInfo.avatarFileId}/userPhotoCommunity/{$userInfo.avatarFileId}.jpg{else}/mediaCache/module/rextCommunity/img/user.png{/if}">
                             </div>
                             {if $userInfo.comm}
                               <div class="socialLinks">
@@ -282,7 +282,7 @@
                                   <div class="col-xs-3">
                                     <div class="commImage">
                                       <a href="{$fav.url}" title="{$fav.title}">
-                                        <img class="img-responsive" src="/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg" alt="{$fav.title}">
+                                        <img class="img-fluid" src="/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg" alt="{$fav.title}">
                                       </a>
                                     </div>
                                   </div>
@@ -313,7 +313,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <img class="iconModal img-responsive" src="{$cogumelo.publicConf.media}/img/iconModal.png">
+            <img class="iconModal img-fluid" src="{$cogumelo.publicConf.media}/img/iconModal.png">
           </div>
           <div class="modal-body">
             <!-- Contenido de favoritos de cada usuario -->

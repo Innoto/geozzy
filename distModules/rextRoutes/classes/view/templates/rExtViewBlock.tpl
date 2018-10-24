@@ -48,7 +48,7 @@
               </div>
               <div class="col-md-6 col-sm-6 col-xs-6">
                 <div class="icon">
-                  <img class="img-responsive" alt="{t}circular{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/circular.png"></img>
+                  <img class="img-fluid" alt="{t}circular{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/circular.png"></img>
                 </div>
               </div>
               {else}
@@ -59,7 +59,7 @@
               </div>
               <div class="col-md-6 col-sm-6 col-xs-6">
                 <div class="icon">
-                  <img class="img-responsive" alt="{t}lineal{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/lineal.png"></img>
+                  <img class="img-fluid" alt="{t}lineal{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/lineal.png"></img>
                 </div>
               </div>
               {/if}
@@ -76,14 +76,14 @@
 
               <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="slope-up icon">
-                  <img class="img-responsive" alt="{t}slope up{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/ascendente.png"></img>
+                  <img class="img-fluid" alt="{t}slope up{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/ascendente.png"></img>
                   <div class="text">{$rExt.data.slopeUp} m.</div>
                 </div>
               </div>
 
               <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="slope-down icon">
-                  <img class="img-responsive" alt="{t}slope down{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/descendente.png"></img>
+                  <img class="img-fluid" alt="{t}slope down{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/descendente.png"></img>
                   <div class="text">{$rExt.data.slopeDown} m.</div>
                 </div>
               </div>

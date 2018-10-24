@@ -77,7 +77,7 @@
           <i class="fa fa-link" aria-hidden="true"></i>
           <% } %>
           <% if (term.icon){  %>
-            <img class="term-icon img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/<%- term.icon %>-a<%- term.iconAKey %>/fast/">
+            <img class="term-icon img-fluid" src="{$cogumelo.publicConf.mediaHost}cgmlImg/<%- term.icon %>-a<%- term.iconAKey %>/fast/">
           <% } %>
         </div>
       </div>

@@ -12,7 +12,7 @@
           </button>
           <!-- LOGO in brand section -->
             <a href="/{$cogumelo.publicConf.C_LANG}/#inicio" class="navbar-brand page-scroll">
-              <img alt="logo" class="logo img-responsive" src="{$cogumelo.publicConf.media}/img/logo.png"/>
+              <img alt="logo" class="logo img-fluid" src="{$cogumelo.publicConf.media}/img/logo.png"/>
             </a>
         </div>
       </div>

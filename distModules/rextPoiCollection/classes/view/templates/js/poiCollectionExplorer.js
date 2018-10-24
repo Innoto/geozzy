@@ -116,7 +116,7 @@
 
     var miniInfoWindow ='<div class="poiInfoWindow" <% if( isNormalResource == 1 ) { %> onclick="window.open(\'/'+ cogumelo.publicConf.C_LANG +'/resource/<%- id %>\')"<%}%> >'+
                           '<div class="poiImg">'+
-                            '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-image%>/squareCut/<%-image%>.jpg" />'+
+                            '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-image%>/squareCut/<%-image%>.jpg" />'+
                           '</div>'+
                           '<div class="poiInfo">'+
                             '<div class="poiTitle"><p><%-title%></p></div>'+

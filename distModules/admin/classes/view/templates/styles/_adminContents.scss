@@ -47,7 +47,7 @@ label.resImageMoreInfo{ margin-bottom: 30px;}
     text-align: center;
     .cgmMForm-titleFileField_avatar{ display: none !important; }
     img{
-      @extend .img-responsive !optional;
+      @extend .img-fluid !optional;
       @extend .img-thumbnail !optional;
       width: 80%;
     }

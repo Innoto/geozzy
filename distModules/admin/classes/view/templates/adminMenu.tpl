@@ -6,9 +6,9 @@
           <div class="menuLogo">
             <a href="/">
               {if !isset($logoCustom)}
-                <img src="{$cogumelo.publicConf.media}/module/geozzy/img/logo.png" class="img-responsive">
+                <img src="{$cogumelo.publicConf.media}/module/geozzy/img/logo.png" class="img-fluid">
               {else}
-                <img src="{$cogumelo.publicConf.media}{$logoCustom}" class="img-responsive">
+                <img src="{$cogumelo.publicConf.media}{$logoCustom}" class="img-fluid">
               {/if}
             </a>
           </div>

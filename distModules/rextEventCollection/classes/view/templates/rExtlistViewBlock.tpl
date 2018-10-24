@@ -53,7 +53,7 @@
               {/if}
             </div>
             <div class="eventImg col-md-5">
-              <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$elm.resource.image}/basicEvent/{$elm.resource.image}.jpg"/>
+              <img class="img-fluid" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$elm.resource.image}/basicEvent/{$elm.resource.image}.jpg"/>
             </div>
           </div>
         </div>

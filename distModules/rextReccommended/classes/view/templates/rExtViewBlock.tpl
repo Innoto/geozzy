@@ -10,7 +10,7 @@
     <div class="item isResource" data-related-resource-id="{$rExt.data.id}">
       <div class="itemImage">
 
-          <img class="img-responsive" alt="<%- title %>" src="/cgmlImg/<%- image %>/fast_cut/<%- image %>.jpg" data-description="<%- title %>">
+          <img class="img-fluid" alt="<%- title %>" src="/cgmlImg/<%- image %>/fast_cut/<%- image %>.jpg" data-description="<%- title %>">
           <div class="trama">
               <div class="destResourceMoreInfo">
                 <p><%- shortDescription %></p>

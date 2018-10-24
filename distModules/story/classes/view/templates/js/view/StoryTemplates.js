@@ -8,9 +8,9 @@ geozzy.storyComponents.listElementTemplate = ''+
       '<%}else{%>'+
         '<%if( img ){%>'+
           '<%if( dialogPosition == 0 ){%>'+
-            '<div><img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/storyCentered/<%-img%>.jpg" /></div>' +
+            '<div><img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/storyCentered/<%-img%>.jpg" /></div>' +
           '<%}else {%>'+
-            '<div><img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/elementExplorerImg/<%-img%>.jpg" /></div>' +
+            '<div><img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/elementExplorerImg/<%-img%>.jpg" /></div>' +
           '<%}%>'+
         '<%}%>'+
       '<%}%>'+
@@ -26,7 +26,7 @@ geozzy.storyComponents.listElementTemplate = ''+
 geozzy.storyComponents.InfowindowPOI = ''+
     '<div class="poiInfoWindow">'+
       '<div class="poiImg">'+
-        '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-image%>/squareCut/<%-image%>.jpg" />'+
+        '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-image%>/squareCut/<%-image%>.jpg" />'+
         '<% if( isNormalResource == 1 ) { %> <a target="_blank" href="/resource/<%-id%>" ><button class="btn btn-primary accessButton">' + __('Discover') + '</button> </a><% }%>'+
       '</div>'+
       '<div class="poiInfo">'+

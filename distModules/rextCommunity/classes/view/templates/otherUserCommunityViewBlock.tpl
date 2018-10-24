@@ -5,7 +5,7 @@
     <div class="col-sm-12">
       <div class="user text-center">
         <div class="commImage">
-          <img class="img-responsive" src="/cgmlImg/{$otherUserInfo.avatarFileId}/userPhotoCommunity/{$otherUserInfo.avatarFileId}.jpg">
+          <img class="img-fluid" src="/cgmlImg/{$otherUserInfo.avatarFileId}/userPhotoCommunity/{$otherUserInfo.avatarFileId}.jpg">
         </div>
         <div class="commText">
           <div class="name">{$otherUserInfo.name} {$otherUserInfo.surname}</div>
@@ -33,7 +33,7 @@
               <div class="col-sm-2">
                 <div class="commImage">
                   <a href="{$fav.url}" title="{$fav.title}">
-                    <img class="img-responsive" src="{if $fav.image}/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg{else}/mediaCache/module/rextCommunity/img/user.png{/if}" alt="{$fav.title}">
+                    <img class="img-fluid" src="{if $fav.image}/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg{else}/mediaCache/module/rextCommunity/img/user.png{/if}" alt="{$fav.title}">
                   </a>
                 </div>
               </div>

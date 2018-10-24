@@ -5,7 +5,7 @@
       <div class="item isResource" data-related-resource-id="{$res.id}">
         <div class="itemImage">
 
-            <img class="img-responsive" alt="{$res.title}" src="{$res.image}" data-image="{$res.imagebig|default:''}" data-description="{$res.title}">
+            <img class="img-fluid" alt="{$res.title}" src="{$res.image}" data-image="{$res.imagebig|default:''}" data-description="{$res.title}">
             <div class="trama">
                 <div class="destResourceMoreInfo">
                   <p>{$res.shortDescription}</p>
