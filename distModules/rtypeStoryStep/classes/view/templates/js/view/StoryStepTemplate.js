@@ -6,12 +6,12 @@ geozzy.storystepsComponents.StorystepTemplate = ''+
       '<div class="dd-item-container clearfix">'+
         '<div class="dd-content">'+
           '<div class="nestableActions">'+
-            '<button class="btnEditStoryStep btn-icon btn-info" data-id="<%- id %>" ><i class="fa fa-pencil"></i></button>'+
-            '<button class="btnDelete btn-icon btn-danger" data-id="<%- id %>" ><i class="fa fa-trash"></i></button>'+
+            '<button class="btnEditStoryStep btn-icon btn-info" data-id="<%- id %>" ><i class="fas fa-pencil-alt"></i></button>'+
+            '<button class="btnDelete btn-icon btn-danger" data-id="<%- id %>" ><i class="fas fa-trash-alt"></i></button>'+
           '</div>'+
         '</div>'+
         '<div class="dd-handle">'+
-          '<i class="fa fa-arrows icon-handle"></i>'+
+          '<i class="fas fa-arrows-alt icon-handle"></i>'+
           '<%- title %>'+
         '</div>'+
       '</div>'+

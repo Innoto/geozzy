@@ -46,12 +46,12 @@
         </div>
       </form>
       <div class="routeMode jsMapDirectionsMode">
-        <div data-route-mode="0" class="routeModeButton active"><i data-route-mode="0" class="fa fa-car fa-fw"></i></div>
-        <div data-route-mode="1" class="routeModeButton"><i data-route-mode="1" class="fa fa-male fa-fw"></i></div>
-        <div data-route-mode="2" class="routeModeButton"><i data-route-mode="2" class="fa fa-bus fa-fw"></i></div>
+        <div data-route-mode="0" class="routeModeButton active"><i data-route-mode="0" class="fas fa-car fa-fw"></i></div>
+        <div data-route-mode="1" class="routeModeButton"><i data-route-mode="1" class="fas fa-male fa-fw"></i></div>
+        <div data-route-mode="2" class="routeModeButton"><i data-route-mode="2" class="fas fa-bus fa-fw"></i></div>
         <span class="routeInfo jsMapDirectionsInfo">{t}Route information{/t}</span>
       </div>
-      <div class="tabList jsMapDirectionsShow">{t}Show route description{/t} <i class="fa fa-sort-down"></i><i class="fa fa-sort-up" style="display:none;"></i></div>
+      <div class="tabList jsMapDirectionsShow">{t}Show route description{/t} <i class="fas fa-sort-down"></i><i class="fas fa-sort-up" style="display:none;"></i></div>
       <div id="comollegarListado" class="jsMapDirectionsList"></div>
     </div>
   </div>

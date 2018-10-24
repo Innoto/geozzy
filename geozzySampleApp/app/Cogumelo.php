@@ -24,9 +24,9 @@ class Cogumelo extends CogumeloClass {
     ),
     array(
      "id" => "font-awesome",
-     "params" => array("font-awesome"),
+     "params" => array("@fortawesome/fontawesome-free@5.4.1"),
      "installer" => "yarn",
-     "includes" => array("css/font-awesome.min.css")
+     "includes" => array("@fortawesome/fontawesome-free/css/all.min.css")
     ),
     array(
      "id" =>"html5shiv",

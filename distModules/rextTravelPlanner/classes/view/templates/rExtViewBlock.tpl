@@ -4,14 +4,14 @@
       <div class="travelPlannerDateButtons clearfix">
         <div class="travelPlannerDateBar"></div>
         <div class="travelPlannerButtonsBar clearfix">
-          <div class="tp-gotoPlan">{t}Go to my plan{/t} <i class="fa fa-angle-right" aria-hidden="true"></i></div>
-          <div class="tp-goAddtoPlan"><i class="fa fa-angle-left" aria-hidden="true"></i> {t}Add Places{/t}</div>
+          <div class="tp-gotoPlan">{t}Go to my plan{/t} <i class="fas fa-angle-right" aria-hidden="true"></i></div>
+          <div class="tp-goAddtoPlan"><i class="fas fa-angle-left" aria-hidden="true"></i> {t}Add Places{/t}</div>
         </div>
       </div>
       <div class="travelPlannerFilterBar clearfix">
         <div class="mode mode1">
           <span>{t}Filtros :{/t}</span>
-          <button class="filterByFavourites active"><i class="fa fa-star"></i>&nbsp;{t}Sólo favoritos{/t}</button>
+          <button class="filterByFavourites active"><i class="fas fa-star"></i>&nbsp;{t}Sólo favoritos{/t}</button>
           <!--<select class="filterByFavourites">
             <option value="*">{t}All{/t}</option>
             <option selected="selected" value="fav">{t}Favourites{/t}</option>
@@ -41,9 +41,9 @@
     <div class="travelPlannerMapPlan">
       <div class="map" style="width:100%; height:100%;"></div>
       <div class="mapFilterDay clearfix">
-        <div class="filterDay-previous"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+        <div class="filterDay-previous"><i class="fas fa-angle-left" aria-hidden="true"></i></div>
         <div class="filterDay-current">{t}Day{/t}&nbsp;<span class="number">1</span></div>
-        <div class="filterDay-next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+        <div class="filterDay-next"><i class="fas fa-angle-right" aria-hidden="true"></i></div>
       </div>
     </div>
   </div>
@@ -80,14 +80,14 @@
     <div class="travelPlannerMapPlan fixVhChromeMobile">
       <div class="map" style="width:100%; height:100%;"></div>
       <div class="mapFilterDay clearfix">
-        <div class="filterDay-previous"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+        <div class="filterDay-previous"><i class="fas fa-angle-left" aria-hidden="true"></i></div>
         <div class="filterDay-current">{t}Day{/t}&nbsp;<span class="number">1</span></div>
-        <div class="filterDay-next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+        <div class="filterDay-next"><i class="fas fa-angle-right" aria-hidden="true"></i></div>
       </div>
     </div>
 
       <div class="tp-gotoMobilePlan"><i class="fa fa-list" aria-hidden="true"></i> {t}Plan{/t}</div>
-      <div class="tp-gotoMobileList"><i class="fa fa-plus" aria-hidden="true"></i> {t}Add{/t}</div>
+      <div class="tp-gotoMobileList"><i class="fas fa-plus" aria-hidden="true"></i> {t}Add{/t}</div>
       <div class="tp-gotoMobileChangeDates"><i class="fa fa-calendar" aria-hidden="true"></i> {t}Dates{/t}</div>
       <!--<div class="tp-gotoMobileMap"><i class="fa fa-map-o" aria-hidden="true"></i> {t}Map{/t}</div>-->
 
@@ -100,7 +100,7 @@
       <img class="img-fluid" src="/cgmlImg/<%- resource.image %>/travelPlannerList/<%- resource.image %>.jpg">
       <button class="addToPlan btn btn-primary"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></button>
       <a href="#resource/<%- resource.id %>">
-        <button class="openResource btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></i></button>
+        <button class="openResource btn btn-default"><i class="fas fa-search" aria-hidden="true"></i></i></button>
       </a>
       <% if (typeof(resource.defaultDuration) != "undefined") { %>
         <div class="duration"><%= resource.defaultDuration %></div>
@@ -128,12 +128,12 @@
       <div class="infoDay"><div class="day"><%- day.dayName %></div><div class="date"><%- day.date %></div></div>
       <div class="infoRight clearfix">
         <div class="clearfix">
-          <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <span>-h --min</span></div>
+          <div class="infoTime"><i class="far fa-clock" aria-hidden="true"></i> <span>-h --min</span></div>
           <div class="infoTimeTransport"></div>
         </div>
         <div class="showMap"><i class="fa fa-map-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
         <div class="optimizeDay"><i class="fa fa-magic " aria-hidden="true"></i>&nbsp;<span>{t}Optimize day{/t}</span></div>
-        <div class="printDay hidden-xs hidden-sm"><i class="fa fa-print " aria-hidden="true"></i></div>
+        <div class="printDay hidden-xs hidden-sm"><i class="fas fa-print " aria-hidden="true"></i></div>
       </div>
     </div>
     <div class="plannerDayPlanner gzznestable dd">
@@ -146,17 +146,17 @@
   <li class="dd-item" data-id="<%- resource.serializedData %>">
     <div class="dd-item-container clearfix">
       <div class="dd-handle">
-        <div class="iconHandle"><i class="fa fa-bars icon-handle"></i></div>
+        <div class="iconHandle"><i class="fas fa-bars icon-handle"></i></div>
         <div class="image"><img class="resImageIcon" src="/cgmlImg/<%- resource.image %>/travelPlannerListIcon/<%- resource.image %>.jpg"></div>
       </div>
       <div class="dd-content">
         <div class="info clearfix">
           <div class="title"><%- resource.title %></div>
-          <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> <%- resource.timeFormated %></div>
+          <div class="time"><i class="far fa-clock" aria-hidden="true"></i> <%- resource.timeFormated %></div>
           <div class="infoTimeRoute"></div>
         </div>
         <div class="nestableActions">
-          <button class="btnEdit btn-icon btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+          <button class="btnEdit btn-icon btn-primary"><i class="fas fa-pencil-alt" aria-hidden="true"></i></button>
           <button class="btnDelete btn-icon btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
         </div>
       </div>
@@ -169,19 +169,19 @@
   <li class="dd-item" data-id="<%- resource.serializedData %>">
     <div class="dd-item-container clearfix">
       <div class="dd-handle">
-        <div class="iconHandle"><i class="fa fa-bars icon-handle"></i></div>
+        <div class="iconHandle"><i class="fas fa-bars icon-handle"></i></div>
         <div class="image"><img class="resImageIcon" src="/cgmlImg/<%- resource.image %>/travelPlannerListIconMobile/<%- resource.image %>.jpg"></div>
       </div>
       <div class="dd-content">
         <div class="info clearfix">
           <div class="title"><%- resource.title %></div>
-          <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> <%- resource.timeFormated %></div>
+          <div class="time"><i class="far fa-clock" aria-hidden="true"></i> <%- resource.timeFormated %></div>
           <div class="infoTimeRoute"></div>
         </div>
         <div class="nestableActions">
-          <button class="btnEdit btn-icon btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+          <button class="btnEdit btn-icon btn-primary"><i class="fas fa-pencil-alt" aria-hidden="true"></i></button>
           <button class="btnDelete btn-icon btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
-          <a href="#resource/<%- resource.id %>"><button class="btnAccess btn-icon btn-default"><i class="fa fa-search" aria-hidden="true"></i></button></a>
+          <a href="#resource/<%- resource.id %>"><button class="btnAccess btn-icon btn-default"><i class="fas fa-search" aria-hidden="true"></i></button></a>
         </div>
       </div>
 
@@ -312,7 +312,7 @@
       </div>
       <div class="col-xs-2">
         <div class="icons">
-          <i class="fa fa-caret-right"></i>&nbsp;<i class="fa fa-caret-right"></i>&nbsp;<i class="fa fa-caret-right"></i>&nbsp;<i class="fa fa-caret-right"></i>&nbsp;<i class="fa fa-caret-right"></i>
+          <i class="fas fa-caret-right"></i>&nbsp;<i class="fas fa-caret-right"></i>&nbsp;<i class="fas fa-caret-right"></i>&nbsp;<i class="fas fa-caret-right"></i>&nbsp;<i class="fas fa-caret-right"></i>
         </div>
       </div>
       <div class="col-xs-5">
@@ -335,7 +335,7 @@
     <div class="infoTotalTimeTransport">
       <%= data.stringRouteMode %> <%= data.stringTotalTimeTransport %>
     </div>
-    <div class="time infoTotalTime"><i class="fa fa-clock-o" aria-hidden="true"></i>
+    <div class="time infoTotalTime"><i class="far fa-clock" aria-hidden="true"></i>
       <%= data.stringTotalResourceTimes %>
     </div>
   </div>
@@ -368,7 +368,7 @@
                 <% hours = (i.time - minutes) / 60 %>
                 <div class="infoTimeTransport"><%= data.routeTimes[e].stringTime %></div>
                 <div class="time infoTime">
-                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  <i class="far fa-clock" aria-hidden="true"></i>
                     <%= hours %> h <%= minutes %> min
                 </div>
               </div>

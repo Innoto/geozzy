@@ -235,10 +235,10 @@ ul{ padding-left: 0; }
     .arrow {
       float: right;
     }
-    .fa.arrow:before {
+    .fas.arrow:before {
       content: "\f104";
     }
-    .mm-active > a > .fa.arrow:before {
+    .mm-active > a > .fas.arrow:before {
       content: "\f107" !important;
     }
     .nav-second-level li,

@@ -7,7 +7,7 @@
       (isset($rExt.data.province)&& $rExt.data.province!='')}
       <div class="col-lg-6">
         <div class="address">
-          <i class="fa fa-map-marker icon"></i>
+          <i class="fas fa-map-marker-alt icon"></i>
           <div class="data">
             {if $rExt.data.address!==''}
               <p>{$rExt.data.address|escape:'htmlall'}</p>
@@ -27,7 +27,7 @@
   <div class="col-lg-6">
 
     <div class="phone">
-      <i class="fa fa-phone"></i>
+      <i class="fas fa-phone"></i>
       {$rExt.data.phone|escape:'htmlall'}
     </div>
   </div>
@@ -36,7 +36,7 @@
   {if (isset($rExt.data.url) && $rExt.data.url!="")}
   <div class="col-lg-6">
     <div class="web">
-      <i class="fa fa-globe"></i>
+      <i class="fas fa-globe-americas"></i>
       <a href="{$rExt.data.url|escape:'htmlall'}" target="blank">{$rExt.data.url|escape:'htmlall'}</a>
     </div>
   </div>
@@ -45,7 +45,7 @@
   {if (isset($rExt.data.email) && $rExt.data.email!="")}
   <div class="col-lg-6">
     <div class="email">
-      <i class="fa fa-envelope"></i>
+      <i class="fas fa-envelope"></i>
       {$rExt.data.email|escape:'htmlall'}
     </div>
   </div>
@@ -54,7 +54,7 @@
   {if (isset($rExt.data.timetable) && $rExt.data.timetable!="")}
   <div class="col-lg-6">
     <div class="timetable">
-      <i class="fa fa-clock-o icon"></i>
+      <i class="far fa-clock icon"></i>
       <div class="data">
         {$rExt.data.timetable|nl2br}
       </div>

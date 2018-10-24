@@ -8,7 +8,7 @@ function colBinds(){
   $('#collResources').multiList({
     orientation: 'Horizontal',
     itemImage: true,
-    icon: '<i class="fa fa-arrows"></i>',
+    icon: '<i class="fas fa-arrows-alt fa-fw"></i>',
     placeholder: __('Add existing resources')
   });
 

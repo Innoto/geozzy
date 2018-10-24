@@ -20,8 +20,8 @@
 {/if}
 
 <div class="rExtCommunity{if $commStatus==1} selected{/if}" data-community-resource="{$resId}" data-community-status="{$commStatus}">
-  <i class="fa fa-heart-o comm-off"></i>
-  <i class="fa fa-heart comm-on"></i>
+  <i class="far fa-heart comm-off"></i>
+  <i class="fas fa-heart comm-on"></i>
   <!--
   {var_dump($rExt.data)}
   -->

@@ -21,8 +21,8 @@
 
 <div class="rExtLike{if $likeStatus===1} selected{/if}" data-like-resource="{$resId}" data-like-status="{$likeStatus}">
   <span class="likeCount">{$rExt.data.count}</span>
-  <span class="fa fa-thumbs-o-up like-off"></span>
-  <span class="fa fa-thumbs-up like-on"></span>
+  <span class="far fa-thumbs-up like-off"></span>
+  <span class="fas fa-thumbs-up like-on"></span>
   <!-- {* var_dump($rExt.data) *} -->
 </div>
 

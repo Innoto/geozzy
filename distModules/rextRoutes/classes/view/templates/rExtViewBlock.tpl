@@ -17,7 +17,7 @@
           </div>
           <div class="routeFile">
             <a class="btn" href="{$cogumelo.publicConf.mediaHost}cgmlformfilewd/{$rExt.data.routeFile.id}/{$rExt.data.routeFile.originalName}">
-              {t}Download route{/t} <i class="fa fa-download" aria-hidden="true"></i>
+              {t}Download route{/t} <i class="fas fa-download" aria-hidden="true"></i>
             </a>
           </div>
         </div>
@@ -28,12 +28,12 @@
           <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-6">
               <div class="travelDistance duration">
-                <i class="fa fa-map-signs" aria-hidden="true"></i> {$rExt.data.travelDistance/1000} Km
+                <i class="fas fa-map-signs" aria-hidden="true"></i> {$rExt.data.travelDistance/1000} Km
               </div>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-6">
               <div class="travelTime duration">
-                <i class="fa fa-clock-o" aria-hidden="true"></i> {$rExt.data.durationHours}h {$rExt.data.durationMinutes}min
+                <i class="far fa-clock" aria-hidden="true"></i> {$rExt.data.durationHours}h {$rExt.data.durationMinutes}min
               </div>
             </div>
           </div>

@@ -22,7 +22,7 @@
             {$eventDate.resource.title}
           </div>
           <div class="eventTime">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>{$eventDate.event.formatedDate.time} h.
+            <i class="far fa-clock" aria-hidden="true"></i>{$eventDate.event.formatedDate.time} h.
           </div>
         </div>
       </div>

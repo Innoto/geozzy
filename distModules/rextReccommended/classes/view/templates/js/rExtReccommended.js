@@ -28,8 +28,8 @@ function initMyOwl(){
   });
 
 
-  $('.rExtReccommendedList .owl-nav .owl-prev').html('<i class="fa fa-angle-left"></i>');
-  $('.rExtReccommendedList .owl-nav .owl-next').html('<i class="fa fa-angle-right"></i>');
+  $('.rExtReccommendedList .owl-nav .owl-prev').html('<i class="fas fa-angle-left"></i>');
+  $('.rExtReccommendedList .owl-nav .owl-next').html('<i class="fas fa-angle-right"></i>');
 
   initMyOwlNavs();
 }

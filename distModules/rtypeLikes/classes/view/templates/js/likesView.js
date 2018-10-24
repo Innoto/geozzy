@@ -9,7 +9,7 @@ geozzy.likesView = geozzy.likesView || {
     console.log( 'setRemoveIcon' );
 
     // Element to send delete order
-    $('.likesElement .likesImage').append( $( '<i>' ).addClass( 'likesDelete fa fa-trash' )
+    $('.likesElement .likesImage').append( $( '<i>' ).addClass( 'likesDelete fas fa-trash-alt' )
       .attr( {
         'data-toggle': 'tooltip',
         'data-placement': 'left',

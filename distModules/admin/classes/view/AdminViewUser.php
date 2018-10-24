@@ -140,8 +140,8 @@ class AdminViewUser extends AdminViewMaster
     $tabla->setColClasses('role', 'hidden-xs hidden-sm');
 
     // Contido especial
-    $tabla->colRule('active', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
-    $tabla->colRule('active', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');
+    $tabla->colRule('active', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fas fa-circle\"></i></span>');
+    $tabla->colRule('active', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fas fa-circle\"></i></span>');
     $tabla->colRule('role', '#0#', '-');
 
     // imprimimos o JSON da taboa
