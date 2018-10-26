@@ -8,7 +8,7 @@ class rextMatterport extends Module {
   public $version = 1.0;
 
 
-  public $models = array();
+  public $models = array( 'RExtMatterportModel' );
 
   public $taxonomies = array();
 

@@ -126,7 +126,17 @@ class RExtMatterportController extends RExtController implements RExtInterface {
    *
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
    */
-  // parent::getFormBlockInfo( $form );
+   public function getFormBlockInfo( FormController $form ) {
+     $formBlockInfo = parent::getFormBlockInfo( $form );
+
+     $formBlockInfo['template']['admin'] = new Template();
+     $formBlockInfo['template']['admin']->assign( 'rExtName', $this->rExtName );
+     $formBlockInfo['template']['admin']->assign( 'rExt', $formBlockInfo );
+
+     $formBlockInfo['template']['admin']->setTpl( 'rExtFormBlock.tpl', 'rextMatterport' );
+
+     return $formBlockInfo;
+   }
 
 
   /**
