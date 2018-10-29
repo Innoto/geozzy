@@ -248,6 +248,7 @@ class GeozzyCollectionView extends View
           // error_log( 'To Model - newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
           if( $newFiledataObj ) {
             $collection->setter( 'image', $newFiledataObj->getter( 'id' ) );
+            $collection->save();
           }
           break;
         case 'REPLACE':
@@ -258,6 +259,7 @@ class GeozzyCollectionView extends View
           // error_log( 'To Model - newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
           if( $newFiledataObj ) {
             $collection->setter( 'image', $newFiledataObj->getter( 'id' ) );
+            $collection->save();
             // error_log( 'To Model - deleteFile ID: '.$prevFiledataId );
             $filedataCtrl->deleteFile( $prevFiledataId );
           }
@@ -267,6 +269,7 @@ class GeozzyCollectionView extends View
             // error_log( 'To Model - prevFiledataId: '.$prevFiledataId );
             $filedataCtrl->deleteFile( $prevFiledataId );
             $collection->setter( 'image', null );
+            $collection->save();
           }
           break;
         case 'EXIST':

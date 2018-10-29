@@ -390,7 +390,7 @@ class ResourceController {
         'rules' => array( 'maxlength' => '32000' )
       ),
       'externalUrl' => array(
-        'params' => array( 'label' => __( 'External URL' ) ),
+        'params' => array( 'label' => __( 'External URL' ), 'placeholder' => __('http://ejemplo.com/ejemplo') ),
         'rules' => array( 'maxlength' => '2000', 'url' => true )
       ),
       'image' => array(
@@ -1690,12 +1690,12 @@ class ResourceController {
 
 
 
-  public function setTaxTerms( $taxGroup, $taxTermIds, $resource ) {
+  public function setTaxTerms( $taxGroup, $taxTermIds, $resource, $forceCache = null ) {
     // error_log(__METHOD__);
     $result = true;
-
-
     $relPrevInfo = false;
+
+    $sqlCache = ( $forceCache === null ) ? $this->cacheQuery : $forceCache;
 
     $baseResId = is_numeric( $resource ) ? $resource : $resource->getter( 'id' );
 
@@ -1717,7 +1717,7 @@ class ResourceController {
 
       $relModel = new ResourceTaxonomyAllModel();
       $relPrevList = $relModel->listItems([
-        'filters' => $relFilter, 'cache' => $this->cacheQuery
+        'filters' => $relFilter, 'cache' => $sqlCache
       ]);
       if( is_object( $relPrevList ) ) {
         // estaban asignados antes
@@ -1729,7 +1729,7 @@ class ResourceController {
             // buscamos el término descartado y lo borramos
             $resTerm = $resTermModel->listItems([
               'filters' => [ 'resource' => $baseResId, 'taxonomyterm' =>$relPrev->getter( 'id' ) ],
-              'cache' => $this->cacheQuery
+              'cache' => $sqlCache
             ])->fetch();
             $resTerm->delete();
           }

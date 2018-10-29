@@ -39,7 +39,7 @@ msgstr "Aplicar"
 
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_explorer_classes_view_templates_explorer.tpl:21
 msgid "Clear filters"
-msgstr "Limpiar los filtros"
+msgstr "Limpiar filtros"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:23
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:23
