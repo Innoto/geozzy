@@ -44,36 +44,36 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
   render: function() {
     var that = this;
 
-    var containerClassDots = '';
+    that.containerClassDots = '';
 
     if( that.options.containerClass ) {
-      containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
+      that.containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
     }
     else {
-      containerClassDots = '';
+      that.containerClassDots = '';
     }
 
 
-    if( !$(  that.options.mainContainerClass + ' ' +containerClassDots ).length ) {
+    if( !$(  that.options.mainContainerClass + ' ' +that.containerClassDots ).length ) {
       $( that.options.mainContainerClass).append( '<div class="explorerFilterElement '+ that.options.containerClass +'">' + that.options.template + '</div>' );
     }
     else {
-      $(that.options.mainContainerClass + ' ' + containerClassDots).html(that.options.template);
+      $(that.options.mainContainerClass + ' ' + that.containerClassDots).html(that.options.template);
     }
 
 
 
-     $(that.options.mainContainerClass + ' ' + containerClassDots + ' input').on('keyup', function(e){
+     $(that.options.mainContainerClass + ' ' + that.containerClassDots + ' input').on('keyup', function(e){
       if(e.keyCode == 13) {
         that.searchFind();
       }
     });
 
-    $(that.options.mainContainerClass + ' ' + containerClassDots).find('.search').on('click', function() {
+    $(that.options.mainContainerClass + ' ' + that.containerClassDots).find('.search').on('click', function() {
       that.searchFind();
     });
 
-    $(that.options.mainContainerClass + ' ' + containerClassDots).find('.clear').on('click', function() {
+    $(that.options.mainContainerClass + ' ' + that.containerClassDots).find('.clear').on('click', function() {
       that.reset();
     });
   },
@@ -81,10 +81,10 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
   searchFind: function() {
     var that = this;
 
-    $(that.options.mainContainerClass + ' ' + containerClassDots).find('button.search').hide();
-    $(that.options.mainContainerClass + ' ' + containerClassDots).find('button.clear').show();
+    $(that.options.mainContainerClass + ' ' + that.containerClassDots).find('button.search').hide();
+    $(that.options.mainContainerClass + ' ' + that.containerClassDots).find('button.clear').show();
 
-    that.searchStr = $(that.options.mainContainerClass + ' ' + containerClassDots + ' input').val() ;
+    that.searchStr = $(that.options.mainContainerClass + ' ' + that.containerClassDots + ' input').val() ;
 
     $.post(
       '/api/explorerSearch',
@@ -101,10 +101,10 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
     var that = this;
     that.searchStr = '';
 
-    $(that.options.mainContainerClass + ' ' + containerClassDots + ' input').val('');
+    $(that.options.mainContainerClass + ' ' + that.containerClassDots + ' input').val('');
     that.searchFind();
-    $(that.options.mainContainerClass + ' ' + containerClassDots).find('button.search').show();
-    $(that.options.mainContainerClass + ' ' + containerClassDots).find('button.clear').hide();
+    $(that.options.mainContainerClass + ' ' + that.containerClassDots).find('button.search').show();
+    $(that.options.mainContainerClass + ' ' + that.containerClassDots).find('button.clear').hide();
 
   }
 
