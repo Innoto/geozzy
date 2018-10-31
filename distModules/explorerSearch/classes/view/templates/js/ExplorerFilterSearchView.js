@@ -13,9 +13,10 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
           '<input type="text" placeholder="'+__('Search')+'">'+
           '<span class="btnGroup">'+
             '<button class="search btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>'+
-            '<button class="clear btn btn-default" style="display:none;"><i class="fa fa-times-circle" aria-hidden="true"></i></button>'+
+            '<button class="clear btn btn-default submitBtn" style="display:none;"><i class="fa fa-times-circle" aria-hidden="true"></i></button>'+
           '</span>'+
         '</div>',
+      keypressSearch: false,
       mainContainerClass: false,
       containerClass: false,
       onChange: function(){}
@@ -61,9 +62,15 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
       $(that.options.mainContainerClass + ' ' + that.containerClassDots).html(that.options.template);
     }
 
+    if( that.options.keypressSearch  ) {
+       $(that.options.mainContainerClass + ' ' +that.containerClassDots +' '+ '.btnGroup').hide();
+    }
 
+    $(that.options.mainContainerClass + ' ' + that.containerClassDots + ' input').on('keyup', function(e){
+      if( that.options.keypressSearch ) {
+        that.searchFind();
+      }
 
-     $(that.options.mainContainerClass + ' ' + that.containerClassDots + ' input').on('keyup', function(e){
       if(e.keyCode == 13) {
         that.searchFind();
       }
