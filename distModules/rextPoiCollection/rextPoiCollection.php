@@ -22,7 +22,7 @@ class rextPoiCollection extends Module {
       "id" => "pannellum",
       "params" => array("pannellum"),
       "installer" => "yarn",
-      "includes" => array("js/libpannellum.js","/js/pannellum.js","css/pannellum.css")
+      "includes" => array("src/js/libpannellum.js","src/js/pannellum.js","src/css/pannellum.css")
     )
   );
 
