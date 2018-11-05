@@ -22,8 +22,8 @@
               </a>
               <div class="dropdown-menu dropdown-user">
                 {if $userPermission}
-                  <a class="dropdown-item" href="/admin#user/show"><i class="fas fa-user fa-fw"></i> {t}User Profile{/t}</a></li>
-                  <a class="dropdown-item" href="/admin#user/edit/id/{$user['data']['id']}"><i class="fas fa-edit fa-sm fa-fw"></i>{t}Edit Profile{/t}</a></li>
+                  <a class="dropdown-item" href="/admin#user/show"><i class="fas fa-user fa-sm fa-fw"></i> {t}User Profile{/t}</a></li>
+                  <a class="dropdown-item" href="/admin#user/edit/id/{$user['data']['id']}"><i class="fas fa-edit fa-sm fa-fw"></i> {t}Edit Profile{/t}</a></li>
                 {/if}
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="/admin/logout"><i class="fas fa-sign-out-alt fa-sm fa-fw"></i>{t}Logout{/t}</a>
