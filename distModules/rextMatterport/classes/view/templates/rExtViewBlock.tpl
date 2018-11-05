@@ -21,7 +21,7 @@
   <div class="matterport-showcase">
     <iframe width="853" height="480"
       src="https://my.matterport.com/show/?m={$rExt.data.idModel}&lp={$rExt.data.looped}{if $rExt.data.autostart !== 0}&ts={$rExt.data.autostart}{/if}&play={$rExt.data.autoload}&wh={$rExt.data.enableScrollWheel}"
-      frameborder="0" allowfullscreen></iframe>
+      frameborder="0" allowfullscreen allowvr></iframe>
   </div>
 </div>
 <!-- /rExtViewBlock.tpl en rExtMatterport module -->
