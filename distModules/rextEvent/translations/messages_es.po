@@ -19,10 +19,16 @@ msgstr "Data de fin del evento"
 
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:93
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:91
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:98
 msgid "Event type"
 msgstr "Tipo de evento"
 
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:98
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:96
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:103
 msgid "Related resource"
 msgstr "Recurso relacionado"
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:86
+msgid "Literal Date"
+msgstr "Fecha Literal"
