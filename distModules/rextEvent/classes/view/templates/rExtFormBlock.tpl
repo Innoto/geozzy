@@ -1,6 +1,10 @@
 <div class="eventBlock">
   {$client_includes}
 
+  {foreach from=$cogumelo.publicConf.langAvailableIds item=lang}
+    {$rExt.dataForm.formFieldsArray['rextEvent_eventTitle_'|cat:$lang]}
+  {/foreach}
+
   <div class="row">
     <div class="col-md-6">
       <label class="cgmMForm">{t}Event init date{/t}</label>

@@ -28,6 +28,20 @@ class EventModel extends Model
     ),
     'endDate' => array(
       'type' => 'DATETIME'
+    ),
+    'eventTitle' => array(
+      'multilang' => true,
+      'type' => 'VARCHAR',
+      'size' => 100
+    )
+  );
+
+  var $deploySQL = array(
+    array(
+      'version' => 'rextEvent#2',
+      'sql' => '
+        {multilang:ALTER TABLE geozzy_resource_rext_event ADD COLUMN eventTitle_$lang VARCHAR(100) NULL;}
+      '
     )
   );
 
