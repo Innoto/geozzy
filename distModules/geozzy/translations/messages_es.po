@@ -470,7 +470,7 @@ msgstr "Contacto"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:357
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:374
 msgid "Event"
-msgstr "evento"
+msgstr "Evento"
 
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:12
 msgid "Search an address"
