@@ -50,9 +50,9 @@ class geozzy extends Module {
     // $this->addUrlPatterns( '#^api/core/uieventlist$#', 'view:GeozzyAPIView::uiEventList' );
 
     // geozzy core api doc
-    $this->addUrlPatterns( '#^api/doc/resources.json$#', 'view:GeozzyAPIView::resourcesJson' );
+    //$this->addUrlPatterns( '#^api/doc/resources.json$#', 'view:GeozzyAPIView::resourcesJson' );
     $this->addUrlPatterns( '#^api/doc/resourceTypes.json$#', 'view:GeozzyAPIView::resourceTypesJson' );
-    $this->addUrlPatterns( '#^api/doc/resourceIndex.json$#', 'view:GeozzyAPIView::resourceIndexJson' );
+    //$this->addUrlPatterns( '#^api/doc/resourceIndex.json$#', 'view:GeozzyAPIView::resourceIndexJson' );
     $this->addUrlPatterns( '#^api/doc/collections.json$#', 'view:GeozzyAPIView::collectionsJson' );
     $this->addUrlPatterns( '#^api/doc/starred.json$#', 'view:GeozzyAPIView::starredJson' );
     $this->addUrlPatterns( '#^api/doc/categoryList.json$#', 'view:GeozzyAPIView::categoryListJson' );
@@ -70,8 +70,8 @@ class geozzy extends Module {
 
     // geozzy api resources
     $this->addUrlPatterns( '#^api/core/starred$#', 'view:GeozzyAPIView::starred' );
-    $this->addUrlPatterns( '#^api/core/resourcelist(.*)$#', 'view:GeozzyAPIView::resourceList' );
-    $this->addUrlPatterns( '#^api/core/resourceIndex(.*)#', 'view:GeozzyAPIView::resourceIndex' );
+    //$this->addUrlPatterns( '#^api/core/resourcelist(.*)$#', 'view:GeozzyAPIView::resourceList' );
+    //$this->addUrlPatterns( '#^api/core/resourceIndex(.*)#', 'view:GeozzyAPIView::resourceIndex' );
     $this->addUrlPatterns( '#^api/core/resourcetypes$#', 'view:GeozzyAPIView::resourceTypes' );
 
     // geozzy api collections
@@ -105,14 +105,14 @@ class geozzy extends Module {
         'path' => '/doc/resourceTypes.json',
         'description' => 'resourceTypes'
       ),
-      array(
+      /*array(
         'path' => '/doc/resources.json',
         'description' => 'Core Resource'
       ),
       array(
         'path' => '/doc/resourceIndex.json',
         'description' => 'Resource index'
-      ),
+      ),*/
       array(
         'path' => '/doc/collections.json',
         'description' => 'Get collections'

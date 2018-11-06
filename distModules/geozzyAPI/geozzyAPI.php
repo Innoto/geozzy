@@ -22,8 +22,11 @@ class geozzyAPI extends Module {
 
   function __construct() {
     // API DOC GENERATOR
-    $this->addUrlPatterns( '#^api/?$#', 'view:DocAPIView::main' );
-    $this->addUrlPatterns( '#^api/doc/index.json$#', 'view:DocAPIView::apidocJson' ); // Main swagger JSON
+    if( Cogumelo::getSetupValue( 'apiDocActive' ) == true) {
+      $this->addUrlPatterns( '#^api/?$#', 'view:DocAPIView::main' );
+      $this->addUrlPatterns( '#^api/doc/index.json$#', 'view:DocAPIView::apidocJson' ); // Main swagger JSON
+    }
+
 
     global $COGUMELO_IS_EXECUTING_FROM_SCRIPT;
 
