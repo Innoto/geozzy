@@ -95,16 +95,22 @@ class admin extends Module {
      'includes' => array( 'min/moment-with-locales.min.js' )
     ),
     array(
-     "id" =>"eonasdan-bootstrap-datetimepicker",
-     "params" => array("eonasdan-bootstrap-datetimepicker@4.17.44"),
-     "installer" => "yarn",
-     "includes" => array("build/css/bootstrap-datetimepicker.min.css", "build/js/bootstrap-datetimepicker.min.js")
+      "id" => "tempusdominus-core",
+      "params" => array("tempusdominus-core"),
+      "installer" => "yarn",
+      "includes" => array("build/js/tempusdominus-core.js")
     ),
     array(
-     "id" =>"moment-timezone",
-     "params" => array("moment-timezone"),
-     "installer" => "yarn",
-     "includes" => array("builds/moment-timezone-with-data.min.js")
+      "id" =>"moment-timezone",
+      "params" => array("moment-timezone"),
+      "installer" => "yarn",
+      "includes" => array("builds/moment-timezone-with-data.min.js")
+    ),
+    array(
+      "id" => "tempusdominus-bootstrap-4",
+      "params" => array("tempusdominus-bootstrap-4"),
+      "installer" => "yarn",
+      "includes" => array("build/css/tempusdominus-bootstrap-4.min.css", "build/js/tempusdominus-bootstrap-4.min.js")
     ),
     array( // required by elFinder
       "id" =>"jquery-ui-dist",
