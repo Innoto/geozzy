@@ -1,8 +1,19 @@
-$porto = false;
-
-
 
 $(document).ready(function(){
+
+  $.fn.datetimepicker.Constructor.Default = $.extend( {}, $.fn.datetimepicker.Constructor.Default, {
+    icons: {
+        time: 'far fa-clock',
+        date: 'fas fa-calendar',
+        up: 'fas fa-arrow-up',
+        down: 'fas fa-arrow-down',
+        previous: 'fas fa-chevron-left',
+        next: 'fas fa-chevron-right',
+        today: 'far fa-calendar-check',
+        clear: 'fas fa-trash-alt',
+        close: 'fas fa-times'
+    }
+  } );
 
   if($('.eventModal').length >0){
     bindEventForm('.eventModal ');
@@ -51,8 +62,11 @@ function bindEventForm(modal){
   }
 
 
+
+
+
   // recogemos los valores, los ponemos en UTC y los pasamos a timestamp antes de pasarlos al servidor
-  $(modal+'.initDate').on('dp.change', function(e){
+  $(modal+'.initDate').on('change.datetimepicker', function(e){
     if( e.date){
       e.date.tz(cogumelo.publicConf.date_timezone.project);
       initDateTs = e.date.unix();
@@ -62,7 +76,7 @@ function bindEventForm(modal){
     }
     $(modal+'input.cgmMForm-field-rextEvent_initDate').val(initDateTs);
   });
-  $(modal+'.endDate').on('dp.change', function(e){
+  $(modal+'.endDate').on('change.datetimepicker', function(e){
     if( e.date){
       e.date.tz(cogumelo.publicConf.date_timezone.project);
       endDateTs = e.date.unix();
