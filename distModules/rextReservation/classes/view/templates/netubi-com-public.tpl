@@ -8,11 +8,15 @@
       <div class="col-md-6 col-lg-4">
         <div class="form-group has-feedback">
           <label for="reserve_cal_{$rExt.data.idRelate}">{t}Check in date - Check out date{/t}</label>
-          <input type="text" id="reserve_cal_{$rExt.data.idRelate}" class="form-control" readonly>
-          <span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
+          <div class="input-group">
+            <input type="text" id="reserve_cal_{$rExt.data.idRelate}" class="form-control" readonly>
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-calendar-alt form-control-feedback"></i></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-8">
+      <div class="col-md-6 col-lg-8 align-self-end">
         <a id="reserve_link_{$rExt.data.idRelate}" href="" class="btn btn-lg" type="button" target="_blank">{t}Reserve{/t}</a>
       </div>
     </div>
