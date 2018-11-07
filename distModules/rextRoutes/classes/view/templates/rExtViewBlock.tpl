@@ -38,9 +38,8 @@
             </div>
           </div>
 
-          <div class="row">
-            <div class="circular">
-              {if $rExt.data.circular}
+          <div class="row circular">
+            {if $rExt.data.circular}
               <div class="col">
                 <div class="title">
                   <div class="text">{t}Circular route{/t}</div>
@@ -51,7 +50,7 @@
                   <img class="img-fluid" alt="{t}circular{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/circular.png"></img>
                 </div>
               </div>
-              {else}
+            {else}
               <div class="col">
                 <div class="title">
                   <div class="text">{t}Lineal route{/t}</div>
@@ -62,88 +61,77 @@
                   <img class="img-fluid" alt="{t}lineal{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/lineal.png"></img>
                 </div>
               </div>
-              {/if}
-            </div><!--circular-->
+            {/if}
           </div>
 
-          <div class="row">
-            <div class="slope">
-              <div class="col-12 col-md-4 col-lg-4">
-                <div class="title">
-                  <div class="text">{t}Slopes{/t}</div>
-                </div>
+          <div class="row slope">
+            <div class="col-12 col-md-4 col-lg-4">
+              <div class="title">
+                <div class="text">{t}Slopes{/t}</div>
               </div>
+            </div>
 
-              <div class="col-6 col-md-4 col-lg-4">
-                <div class="slope-up icon">
-                  <img class="img-fluid" alt="{t}slope up{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/ascendente.png"></img>
-                  <div class="text">{$rExt.data.slopeUp} m.</div>
-                </div>
+            <div class="col-6 col-md-4 col-lg-4">
+              <div class="slope-up icon">
+                <img class="img-fluid" alt="{t}slope up{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/ascendente.png"></img>
+                <div class="text">{$rExt.data.slopeUp} m.</div>
               </div>
+            </div>
 
-              <div class="col-6 col-md-4 col-lg-4">
-                <div class="slope-down icon">
-                  <img class="img-fluid" alt="{t}slope down{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/descendente.png"></img>
-                  <div class="text">{$rExt.data.slopeDown} m.</div>
-                </div>
+            <div class="col-6 col-md-4 col-lg-4">
+              <div class="slope-down icon">
+                <img class="img-fluid" alt="{t}slope down{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/descendente.png"></img>
+                <div class="text">{$rExt.data.slopeDown} m.</div>
               </div>
-            </div><!--slope-->
+            </div>
           </div>
         </div><!--middle-column-->
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
         <div class="right-column">
-          <div class="row">
-            <div class="bar environment">
-              <div class="col-4 col-md-6 col-lg-6">
-                <div class="title">{t}Environment{/t}</div>
+          <div class="row bar environment">
+            <div class="col-4 col-md-6 col-lg-6">
+              <div class="title">{t}Environment{/t}</div>
+            </div>
+            <div class="col-8 col-md-6 col-lg-6">
+              <div class="squares">
+                <div class="barraEsfuerzo ruta_{$rExt.data.difficultyEnvironment}"></div>
               </div>
-              <div class="col-8 col-md-6 col-lg-6">
-                <div class="squares">
-                  <div class="barraEsfuerzo ruta_{$rExt.data.difficultyEnvironment}"></div>
-                </div>
-              </div>
-            </div><!-- environment-->
+            </div>
           </div>
 
-          <div class="row">
-            <div class="bar itinerary">
-              <div class="col-4 col-md-6 col-lg-6">
-                <div class="title">{t}Itinerary{/t}</div>
+          <div class="row bar itinerary">
+            <div class="col-4 col-md-6 col-lg-6">
+              <div class="title">{t}Itinerary{/t}</div>
+            </div>
+            <div class="col-8 col-md-6 col-lg-6">
+              <div class="squares">
+                <div class="barraEsfuerzo ruta_{$rExt.data.difficultyItinerary}"></div>
               </div>
-              <div class="col-8 col-md-6 col-lg-6">
-                <div class="squares">
-                  <div class="barraEsfuerzo ruta_{$rExt.data.difficultyItinerary}"></div>
-                </div>
-              </div>
-            </div><!-- itinerary-->
+            </div>
           </div>
 
-          <div class="row">
-            <div class="bar displacement">
-              <div class="col-4 col-md-6 col-lg-6">
-                <div class="title">{t}Displacement{/t}</div>
+          <div class="row bar displacement">
+            <div class="col-4 col-md-6 col-lg-6">
+              <div class="title">{t}Displacement{/t}</div>
+            </div>
+            <div class="col-8 col-md-6 col-lg-6">
+              <div class="squares">
+                <div class="barraEsfuerzo ruta_{$rExt.data.difficultyDisplacement}"></div>
               </div>
-              <div class="col-8 col-md-6 col-lg-6">
-                <div class="squares">
-                  <div class="barraEsfuerzo ruta_{$rExt.data.difficultyDisplacement}"></div>
-                </div>
-              </div>
-            </div><!-- displacement-->
+            </div>
           </div>
 
-          <div class="row">
-            <div class="bar effort">
-              <div class="col-4 col-md-6 col-lg-6">
-                <div class="title">{t}Effort{/t}</div>
+          <div class="row bar effort">
+            <div class="col-4 col-md-6 col-lg-6">
+              <div class="title">{t}Effort{/t}</div>
+            </div>
+            <div class="col-8 col-md-6 col-lg-6">
+              <div class="squares">
+                <div class="barraEsfuerzo ruta_{$rExt.data.difficultyEffort}"></div>
               </div>
-              <div class="col-8 col-md-6 col-lg-6">
-                <div class="squares">
-                  <div class="barraEsfuerzo ruta_{$rExt.data.difficultyEffort}"></div>
-                </div>
-              </div>
-            </div><!-- effort-->
+            </div>
           </div>
 
         </div><!-- right-column-->
