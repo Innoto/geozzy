@@ -13,9 +13,7 @@
         </div>
       </div>
       <div class="col-md-6 col-lg-8">
-        <div class="form-group">
-          <a id="reserve_link_{$rExt.data.idRelate}" href="" class="btn btn-lg" type="button" target="_blank">{t}Reserve{/t}</a>
-        </div>
+        <a id="reserve_link_{$rExt.data.idRelate}" href="" class="btn btn-lg" type="button" target="_blank">{t}Reserve{/t}</a>
       </div>
     </div>
   </form>
