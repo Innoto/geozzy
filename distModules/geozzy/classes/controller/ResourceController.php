@@ -1575,19 +1575,35 @@ class ResourceController {
     return $collectionsByType;
   }
 
-  // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
-  public function goOverCollections( array $collections, $collectionType = false ) {
-    $collectionBlock = array();
+  // Itera sobre el array de colecciones y devuelve los datos de cada una, dependiendo de si son o no multimedia
+  public function goOverCollectionsData( array $collections, $collectionType = false ) {
+    $collectionArray = array();
 
     foreach( $collections as $idCollection => $collection ) {
       if( $collectionType && $collectionType !== $collection['col']['collectionType'] ) {
         continue;
       }
-      $collectionBlock[ $idCollection ] = $this->getCollectionBlock( $collection );
+      $collectionArray[ $idCollection ] =  $collection ;
+    }
+
+    return $collectionArray;
+  }
+  // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
+  public function goOverCollections( array $collections, $collectionType = false ) {
+
+    $collectionBlock = [];
+    $collectionArray = [];
+    $collectionArray = $this->goOverCollectionsData($collections, $collectionType);
+
+    if( !empty($collectionArray) ){
+      foreach( $collectionArray as $idCollection => $collection ) {
+        $collectionBlock[ $idCollection ] = $this->getCollectionBlock( $collection );
+      }
     }
 
     return $collectionBlock;
   }
+
 
   // Obtiene un bloque de una colección no multimedia dada
   public function getCollectionBlock( $collection ) {
