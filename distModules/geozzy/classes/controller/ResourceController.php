@@ -541,6 +541,7 @@ class ResourceController {
           $valuesArray[ $taxFieldName ] = $taxFieldValues;
         }
       }
+      $form->setFieldParam( 'starred', 'type', 'reserved' );
 
       $form->loadArrayValues( $valuesArray );
       // error_log( __METHOD__.': ' . print_r( $valuesArray, true ) );
@@ -739,9 +740,9 @@ class ResourceController {
       $this->setFormCollection( $form, $this->resObj );
     }
 
-    /*if( !$form->existErrors() && $form->isFieldDefined( 'starred' ) ) {
+    if( !$form->existErrors() && $form->isFieldDefined( 'starred' ) && $form->getFieldType( 'starred' ) !== 'reserved' ) {
       $this->setFormTax( $form, 'starred', 'starred', $form->getFieldValue( 'starred' ), $this->resObj );
-    }*/
+    }
 
     if( !$form->existErrors() ) {
       $this->setFormUrlAlias( $form, 'urlAlias', $this->resObj );
