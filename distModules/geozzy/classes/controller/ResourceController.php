@@ -739,9 +739,9 @@ class ResourceController {
       $this->setFormCollection( $form, $this->resObj );
     }
 
-    if( !$form->existErrors() && $form->isFieldDefined( 'starred' ) ) {
+    /*if( !$form->existErrors() && $form->isFieldDefined( 'starred' ) ) {
       $this->setFormTax( $form, 'starred', 'starred', $form->getFieldValue( 'starred' ), $this->resObj );
-    }
+    }*/
 
     if( !$form->existErrors() ) {
       $this->setFormUrlAlias( $form, 'urlAlias', $this->resObj );
