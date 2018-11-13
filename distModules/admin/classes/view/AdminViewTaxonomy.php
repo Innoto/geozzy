@@ -146,13 +146,16 @@ class AdminViewTaxonomy extends AdminViewMaster {
       }
     }
 
-    $resTaxTermModel = new ResourceTaxonomytermModel();
-    $resTaxTermObj = $resTaxTermModel->listItems( ['filters' => [ 'taxonomyterm' => $request[2] ] ]);
     $valueResMenu = false;
-    if(is_object($resTaxTermObj)){
-      $resTermItem = $resTaxTermObj->fetch();
-      if( $resTermItem ) {
-        $valueResMenu = $resTermItem->getter('resource');
+
+    if(!empty($request[2])){
+      $resTaxTermModel = new ResourceTaxonomytermModel();
+      $resTaxTermObj = $resTaxTermModel->listItems( ['filters' => [ 'taxonomyterm' => $request[2] ] ]);
+      if(is_object($resTaxTermObj)){
+        $resTermItem = $resTaxTermObj->fetch();
+        if( $resTermItem ) {
+          $valueResMenu = $resTermItem->getter('resource');
+        }
       }
     }
 
