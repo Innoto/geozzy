@@ -12,13 +12,14 @@ geozzy.explorerComponents.filters.filterResetView = geozzy.filterView.extend({
 
       var options = {
         title: 'Reset filters',
+        elSummaryContainer:false,
         template:  geozzy.explorerComponents.filterResetTemplate,
         onChange: function(){}
       };
 
       that.options = $.extend(true, {}, options, opts);
-
       that.template = _.template( that.options.template );
+      that.$elSummaryContainer = $(that.options.elSummaryContainer);      
     },
 
     filterAction: function( model ) {
@@ -28,21 +29,11 @@ geozzy.explorerComponents.filters.filterResetView = geozzy.filterView.extend({
     render: function() {
       var that = this;
 
-      var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
-      var filterHtml = that.template( { filterClass: that.options.containerClass, title: that.options.title } );
-
-      // Print filter html into div
-      if( !$(  that.options.mainContainerClass+' .' +that.options.containerClass ).length ) {
-        $( that.options.mainContainerClass).append( '<div class="explorerFilterElement '+ that.options.containerClass +'">' + filterHtml + '</div>' );
-      }
-      else {
-        $( that.options.mainContainerClass+' ' + containerClassDots ).html( filterHtml );
-      }
-
-      $( that.options.mainContainerClass + ' ' + containerClassDots + ' button').bind('click', function(el) {
+      var filterHtml = that.template( { title: that.options.title } );
+      $( that.options.containerClass ).html( filterHtml );
+      $( that.options.containerClass + ' button').bind('click', function(el) {
         that.actionResetAllFilters();
       });
-
 
     },
 

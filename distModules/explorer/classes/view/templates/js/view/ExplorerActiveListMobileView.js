@@ -72,7 +72,7 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
 
     that.listOrderAccordingIds = true;
     //that.$el.find('.activeListReset').hide();ç
-    that.setPage(0)
+    that.setPage(0);
     that.render();
 
   },
@@ -135,7 +135,7 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
 
             elementCategory = e2;
             if(e2) {
-              elementCategory = e2.toJSON()
+              elementCategory = e2.toJSON();
             }
             return false;
             /*
@@ -169,12 +169,13 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
       contador++;
     });
 
+    var showActiveListReset;
 
     if(that.listOrderAccordingIds) {
-      var showActiveListReset = false;
+      showActiveListReset = false;
     }
     else {
-      var showActiveListReset = true;
+      showActiveListReset = true;
     }
 
     that.$el.html( that.tpl({
@@ -218,7 +219,7 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
     }
     else
     if( that.options.endPage == false &&  pageNum > that.options.totalPages  ){
-      pageNum = that.options.endPage
+      pageNum = that.options.endPage;
     }
 
     that.currentPage = pageNum;
@@ -276,8 +277,7 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
             id: $(element.currentTarget).attr('data-resource-id'),
             section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
           });
-
-      break;
+          break;
       case 'mobileTouch':
         if( that.parentExplorer.displays.map ) {
           that.parentExplorer.displays.map.panTo( $(element.currentTarget).attr('data-resource-id') );
@@ -291,13 +291,10 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
           id: $(element.currentTarget).attr('data-resource-id'),
           section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
         });
-      break;
+        break;
       case 'mouseleave':
-
-
         that.parentExplorer.triggerEvent('resourceMouseOut', {id:$(element.currentTarget).attr('data-resource-id')});
-
-      break;
+        break;
     }
   }
 });

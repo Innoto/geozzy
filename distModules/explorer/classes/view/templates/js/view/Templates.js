@@ -137,7 +137,7 @@ geozzy.explorerComponents.filterButtonsViewOption = "" +
 
 geozzy.explorerComponents.filterComboViewTemplate = "" +
   " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-  "<select class='<%= filterClass %>'>"+
+  "<select>"+
     "<% if(defaultOption){ %> <option value='<%- defaultOption.value %>' icon='<%- defaultOption.icon %>'><%- defaultOption.title %></option> <%}%>"+
     "<%= options %>"+
   "</select>";
@@ -147,7 +147,7 @@ geozzy.explorerComponents.filterComboViewOptionT =  "<option value='<%- id %>' i
 
 geozzy.explorerComponents.filterComboViewSummaryT = "" +
   " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-  "<span class='<%= filterClass %>-Summary'><img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- option.icon %>/typeIcon/icon.png'> <%- option.name %> </span>";
+  "<span><img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- option.icon %>/typeIcon/icon.png'> <%- option.name %> </span>";
 
 geozzy.explorerComponents.filterMinimapViewTemplate = "" +
   "<div class='filtersButton'>"+
@@ -163,6 +163,6 @@ geozzy.explorerComponents.filterMinimapViewTemplate = "" +
   "</div>";
 
 geozzy.explorerComponents.filterResetTemplate = ""+
-    "<div class='<%= filterClass %>'>"+
+    "<div>"+
       "<button><%= title %></button> "+
-    "</div>"
+    "</div>";

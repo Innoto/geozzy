@@ -24,19 +24,17 @@ geozzy.explorerComponents.filters.filterSwitchView = geozzy.filterView.extend({
     var that = this;
     var options = {
       title: false,
-      mainContainerClass: false,
-      containerClass: false,
+      elSummaryContainer:false,
       titleSummary: false,
-      summaryContainerClass: false,
+
       defaultValue: null,
       keyToFilter: false,
       onChange: function() {}
-    }
-
-
+    };
 
     that.options = $.extend(true, {}, options, opts);
     that.filterValue = that.options.defaultValue;
+    that.$elSummaryContainer = $(that.options.elSummaryContainer);
   },
 
   filterAction: function( model ) {
@@ -71,29 +69,17 @@ geozzy.explorerComponents.filters.filterSwitchView = geozzy.filterView.extend({
       ret = true;
     }
 
-
     return ret;
   },
 
   render: function() {
     var that = this;
 
-    var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
-    var filterHtml = that.template( { filterClass: that.options.containerClass, title: that.options.title, checked: that.filterValue } );
-
-    // Print filter html into div
-    if( !$(  that.options.mainContainerClass+' .' +that.options.containerClass ).length ) {
-      $( that.options.mainContainerClass).append( '<div class="explorerFilterElement '+ that.options.containerClass +'">' + filterHtml + '</div>' );
-    }
-    else {
-      $( that.options.mainContainerClass+' ' + containerClassDots ).html( filterHtml );
-    }
-
-
-    var init = new Switchery( $( that.options.mainContainerClass+' ' + containerClassDots + ' input' )[0] );
-
-    $( $( that.options.mainContainerClass+' ' + containerClassDots + ' input' )[0]).change( function( ev ) {
-      that.filterValue = $( $( that.options.mainContainerClass+' ' + containerClassDots + ' input' )[0]).is(":checked");
+    var filterHtml = that.template( { title: that.options.title, checked: that.filterValue } );
+    $( that.options.containerClass ).html( filterHtml );
+    var init = new Switchery( $( that.options.containerClass + ' input' )[0] );
+    $( $( that.options.containerClass + ' input' )[0]).change( function( ev ) {
+      that.filterValue = $( $( that.options.containerClass + ' input' )[0]).is(":checked");
       that.parentExplorer.applyFilters();
       that.options.onChange();
     });
@@ -103,14 +89,10 @@ geozzy.explorerComponents.filters.filterSwitchView = geozzy.filterView.extend({
 
   renderSummary: function(  ) {
     var that = this;
-
   },
 
 
-
-
   reset: function() {
-
     var that = this;
 
     that.filterValue = that.options.defaultValue;

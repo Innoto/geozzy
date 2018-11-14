@@ -1,8 +1,5 @@
 var geozzy = geozzy || {};
 
-
-
-
 geozzy.rExtMapController = function( opts ) {
 
 
@@ -27,7 +24,7 @@ geozzy.rExtMapController = function( opts ) {
   that.initialize = function() {
 
     if( typeof cogumelo.publicConf.rextMapConf == 'undefined') {
-      cogumelo.publicConf.rextMapConf = {}
+      cogumelo.publicConf.rextMapConf = {};
     }
 
     var $mapContainer = $( that.options.wrapper );
@@ -58,7 +55,9 @@ geozzy.rExtMapController = function( opts ) {
         that.resourceMapOptions.styles = false;
       }
       else {
+        /* jshint ignore:start */
         eval("that.resourceMapOptions.styles = " + cogumelo.publicConf.rextMapConf.styles +";");
+        /* jshint ignore:end */
       }
 
 
@@ -71,7 +70,7 @@ geozzy.rExtMapController = function( opts ) {
         size: new google.maps.Size(30, 36), // The origin for that image is (0, 0).
         origin: new google.maps.Point(0, 0), // The anchor for that image is the base of the flagpole at (0, 36).
         anchor: new google.maps.Point(13, 36)
-      }
+      };
 
       // ten icono personalizado
       if( typeof cogumelo.publicConf.rextMapConf.defaultMarker != 'undefined') {

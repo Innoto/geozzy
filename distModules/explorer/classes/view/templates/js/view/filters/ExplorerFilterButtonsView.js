@@ -6,10 +6,6 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
 
 
   attributes: {},
-  initialize: function(options){
-    this.attributes = {};
-  },
-
   isTaxonomyFilter: true,
   template: false,
   templateOption: false,
@@ -21,6 +17,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
       template: geozzy.explorerComponents.filterButtonsViewTemplate,
       templateOption: geozzy.explorerComponents.filterButtonsViewOption,
       multiple:false,
+      elSummaryContainer:false,
       onChange: function(){}
     };
 
@@ -28,6 +25,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
 
     that.template = _.template( that.options.template );
     that.templateOption = _.template( that.options.templateOption  );
+    that.$elSummaryContainer = $(that.options.elSummaryContainer);
   },
 
   filterAction: function( model ) {
@@ -40,7 +38,6 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
 
       if( typeof terms != "undefined") {
         var diff = $( terms ).not( that.selectedTerms );
-
         //console.log(diff.length, terms.length)
         ret = (diff.length != terms.length );
       }
@@ -58,37 +55,22 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
 
     var filterOptions = '';
 
-    var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
-
-
-
 
     $.each(that.options.data.toJSON(), function(i,e){
       filterOptions += that.templateOption(e);
     });
 
+    var filterHtml = that.template( { title: that.options.title, defaultOption: that.options.defaultOption, options: filterOptions } );
+
+    that.$el.html( filterHtml );
 
 
-
-    var filterHtml = that.template( { filterClass: that.options.containerClass, title: that.options.title, defaultOption: that.options.defaultOption, options: filterOptions } );
-
-    // Print filter html into div
-    if( !$(  that.options.mainContainerClass+' .' +that.options.containerClass ).length ) {
-      $( that.options.mainContainerClass).append( '<div class="explorerFilterElement '+ that.options.containerClass +'">' + filterHtml + '</div>' );
-    }
-    else {
-
-      $( that.options.mainContainerClass+' ' + containerClassDots ).html( filterHtml );
-    }
-
-
-
-    $( that.options.mainContainerClass + ' ' + containerClassDots + ' ul li').bind('click', function(el) {
+    that.$el.search(' ul li').bind('click', function(el) {
       var termid = false;
       var termLi = false;
 
       if( typeof $(el.target).attr('data-term-id') !== "undefined"){
-        termLi = $(el.target)
+        termLi = $(el.target);
         termid = termLi.attr('data-term-id');
 
       }
@@ -147,8 +129,8 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
   reset: function() {
 
     var that = this;
-    var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
-    $( that.options.mainContainerClass + ' ' + containerClassDots + ' ul li').removeClass('selected');
+
+    that.$el.search('ul li').removeClass('selected');
     that.selectedTerms = false;
   }
 

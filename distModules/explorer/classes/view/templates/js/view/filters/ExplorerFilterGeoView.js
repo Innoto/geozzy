@@ -33,10 +33,8 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
 
     var options = {
       title: false,
-      mainContainerClass: false,
-      containerClass: false,
+      elSummaryContainer:false,
       titleSummary: false,
-      summaryContainerClass: false,
       defaultOption: false,
       data: false,
       textReset: 'All',
@@ -44,6 +42,7 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
     };
 
     that.options = $.extend(true, {}, options, opts);
+    that.$elSummaryContainer = $(that.options.elSummaryContainer);
   },
 
   filterAction: function( model ) {
@@ -70,26 +69,14 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
 
     var filterOptions = '';
 
-    var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
-
-
     $.each(that.options.data.toJSON(), function(i,e){
       filterOptions += that.templateOption(e);
     });
 
-    var filterHtml = that.template( { filterClass: that.options.containerClass, title: that.options.title, defaultOption: that.options.defaultOption, options: filterOptions } );
+    var filterHtml = that.template( { title: that.options.title, defaultOption: that.options.defaultOption, options: filterOptions } );
 
-    // Print filter html into div
-    if( !$(  that.options.mainContainerClass+' .' +that.options.containerClass ).length ) {
-      $( that.options.mainContainerClass).append( '<div class="explorerFilterElement '+ that.options.containerClass +'">' + filterHtml + '</div>' );
-    }
-    else {
-
-      $( that.options.mainContainerClass+' ' + containerClassDots ).html( filterHtml );
-    }
-
-
-    $( that.options.mainContainerClass + ' ' + containerClassDots + ' select').bind('change', function(el) {
+    that.$el.html( filterHtml );
+    $that.$el.find('select').bind('change', function(el) {
 
       var val = $(el.target).val();
       if( val == '*' ) {
@@ -103,13 +90,12 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
       that.parentExplorer.applyFilters();
 
       // Filter summaries
-      if(that.options.summaryContainerClass) {
+      if( that.options.elSummaryContainer ) {
         var selectedOption =  false;
 
         if(typeof that.selectedTerms[0] != 'undefined') {
           selectedOption = that.options.data.get( that.selectedTerms[0] ).toJSON();
         }
-
         that.renderSummary( selectedOption );
       }
 
@@ -117,8 +103,7 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
     });
 
 
-
-    $( that.options.mainContainerClass + ' ' + containerClassDots + ' select').zonaMap({
+    $( that.options.containerClass + ' select').zonaMap({
       width: 358,
       height: 383,
       textReset: that.options.textReset,
@@ -126,26 +111,17 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
       imgSrc: cogumelo.publicConf.media+'/module/rextAppZona/img/gal.svg',
       imgTransparent: cogumelo.publicConf.media+'/module/rextAppZona/img/transparent.png'
     });
-
-
-
-
-
-
   },
 
   renderSummary: function( selectedOption ) {
     var that = this;
-    var containerClassDots = '.'+that.options.summaryContainerClass.split(' ').join('.');
-
 
     if( selectedOption ) {
-
-      var summaryHtml = that.templateSummary( { filterClass: that.options.containerClass, title: that.options.titleSummary, option: selectedOption  } );
-      $( containerClassDots ).html( summaryHtml );
+      var summaryHtml = that.templateSummary( { title: that.options.titleSummary, option: selectedOption  } );
+      $( that.options.summaryContainerClass ).html( summaryHtml );
     }
     else {
-      $( containerClassDots ).html( "" );
+      $( that.options.summaryContainerClass ).html( "" );
     }
 
 
@@ -155,8 +131,7 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
     //console.log('gEO')
     /*
     var that = this;
-    var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
-    $select = $( that.options.mainContainerClass + ' ' + containerClassDots + ' select' );
+    $select = $( that.options.containerClass + ' select' );
 
     $select.val( "*" );
 

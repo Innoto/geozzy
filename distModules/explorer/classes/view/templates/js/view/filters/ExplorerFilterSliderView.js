@@ -25,10 +25,10 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       var that = this;
       var options = {
         title: false,
-        mainContainerClass: false,
-        containerClass: false,
+
+        elSummaryContainer:false,
         titleSummary: false,
-        summaryContainerClass: false,
+
         postfix: '€',
         keyToFilter: 'averagePrice',
 
@@ -37,11 +37,10 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         valueMax: 100,
         type: 'single',  // (single|double)
         prettify: function(num) {return num;}
-      }
-
-
+      };
 
       that.options = $.extend(true, {}, options, opts);
+      that.$elSummaryContainer = $(that.options.elSummaryContainer);
     },
 
     filterAction: function( model ) {
@@ -87,26 +86,16 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     render: function() {
       var that = this;
+      var filterHtml = that.template( { title: that.options.title } );
 
-      var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
-      var filterHtml = that.template( { filterClass: that.options.containerClass, title: that.options.title } );
-
-      // Print filter html into div
-      if( !$(  that.options.mainContainerClass+' .' +that.options.containerClass ).length ) {
-        $( that.options.mainContainerClass).append( '<div class="explorerFilterElement '+ that.options.containerClass +'">' + filterHtml + '</div>' );
-      }
-      else {
-
-        $( that.options.mainContainerClass+' ' + containerClassDots ).html( filterHtml );
-      }
+      $( that.options.containerClass ).html( filterHtml );
       that.instanceSlider();
-
     },
 
 
     instanceSlider: function() {
       var that = this;
-      $( ".explorerFilterElement ."+that.options.containerClass+" input" ).ionRangeSlider({
+      $( that.options.containerClass+" input" ).ionRangeSlider({
           type: that.options.type,
           min: that.options.valueMin,
           max: that.options.valueMax,
@@ -146,7 +135,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
               //console.log("onUpdate");
           }
       });
-      that.slider = $( ".explorerFilterElement ."+that.options.containerClass+" input" ).data("ionRangeSlider");
+      that.slider = $( that.options.containerClass+" input" ).data("ionRangeSlider");
 
     },
 
@@ -154,17 +143,17 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       var that = this;
 
       if(that.options.summaryContainerClass) {
-        var containerClassDots = '.'+that.options.summaryContainerClass.split(' ').join('.');
+
 
 
         if(  that.options.filteredValue  ) {
 
-          var summaryHtml = that.templateSummary( { filterClass: that.options.containerClass, title: that.options.titleSummary, value:  that.options.filteredValue   } );
-          $( containerClassDots ).html( summaryHtml );
+          var summaryHtml = that.templateSummary( { title: that.options.titleSummary, value:  that.options.filteredValue   } );
+          $( summaryContainerClass ).html( summaryHtml );
 
         }
         else {
-          $( containerClassDots ).html( "" );
+          $( summaryContainerClass ).html( "" );
         }
       }
 

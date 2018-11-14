@@ -20,8 +20,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
 
     var options = {
       title: false,
-      mainContainerClass: false,
-      containerClass: false,
+      elSummaryContainer:false,
       iconHtml: '<i class="fas fa-2x fa-globe-americas" aria-hidden="true"></i>',
       resetButtonText: __('All'),
       template: geozzy.explorerComponents.filterMinimapViewTemplate,
@@ -37,9 +36,8 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     };
 
     that.options = $.extend(true, {}, options, opts);
-
-
     that.template = _.template( that.options.template );
+    that.$elSummaryContainer = $(that.options.elSummaryContainer);    
 
   },
 
@@ -65,8 +63,6 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
   render: function() {
     var that = this;
 
-    var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
-
 
     $(window).on('click', function(ev){
       if(
@@ -83,15 +79,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     });
 
     var filterHtml = that.template( { iconHtml : that.options.iconHtml, resetButtonText : that.options.resetButtonText } );
-
-    // Print filter html into div
-    if( !$(  that.options.mainContainerClass+' .' +that.options.containerClass ).length ) {
-      $( that.options.mainContainerClass).append( '<div class="explorerFilterElement '+ that.options.containerClass +'">' + filterHtml + '</div>' );
-    }
-    else {
-      $( that.options.mainContainerClass+' ' + containerClassDots ).html( filterHtml );
-    }
-
+    $( that.options.containerClass ).html( filterHtml );
 
     if( that.minimapExist == false ) {
       that.miniMapCreate();
@@ -99,7 +87,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     }
 
 
-    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.minimap' ).mapael( {
+    $( that.options.containerClass ).find( '.minimap' ).mapael( {
       map: {
         name: 'miniMapPaths',
         zoom: {
@@ -131,8 +119,8 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
 
               that.selectedTerms = [ that.getIdByIdName(idName) ];
 
-              $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.minimap' ).trigger( 'update', [ { mapOptions: newData } ] );
-              $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html( that.getNameByIdName( idName ));
+              $( that.options.containerClass ).find( '.minimap' ).trigger( 'update', [ { mapOptions: newData } ] );
+              $( that.options.containerClass ).find( '.selectedText' ).html( that.getNameByIdName( idName ));
 
               that.parentExplorer.applyFilters();
 
@@ -140,14 +128,14 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
               that.hideBoxMinimap();
             },
             mouseover: function( e, idName, mapElem, textElem, elemOptions ) {
-              $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html( that.getNameByIdName( idName ) );
+              $( that.options.containerClass ).find( '.selectedText' ).html( that.getNameByIdName( idName ) );
             },
             mouseout: function( e, idName, mapElem, textElem, elemOptions ) {
               if( that.currentIdName !== false ) {
-                $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html( that.getNameByIdName( that.currentIdName ) );
+                $( that.options.containerClass ).find( '.selectedText' ).html( that.getNameByIdName( that.currentIdName ) );
               }
               else {
-                $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html('');
+                $( that.options.containerClass ).find( '.selectedText' ).html('');
               }
             }
           }
@@ -158,7 +146,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     //  Ocultamos el mapa tras el render
     that.hideBoxMinimap();
 
-    that.$el = $( that.options.mainContainerClass+' .' +that.options.containerClass );
+    that.$el = $( that.options.containerClass );
     that.delegateEvents();
 
     // TRIGER CAMBIO DE ESTADO
@@ -206,12 +194,12 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
 
   showBoxMinimap: function() {
     var that = this;
-    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.boxMinimap' ).removeClass( 'filterMinimapNone' ).addClass( 'filterMinimapBlock' );
+    $( that.options.containerClass ).find( '.boxMinimap' ).removeClass( 'filterMinimapNone' ).addClass( 'filterMinimapBlock' );
   },
 
   hideBoxMinimap: function() {
     var that = this;
-    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.boxMinimap' ).removeClass( 'filterMinimapBlock' ).addClass( 'filterMinimapNone' );
+    $( that.options.containerClass ).find( '.boxMinimap' ).removeClass( 'filterMinimapBlock' ).addClass( 'filterMinimapNone' );
   },
 
   evReset: function(ev) {
@@ -229,9 +217,9 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     newData.areas[that.currentIdName] = {
       attrs: { fill: that.options.styles.background_fill }
     };
-    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.minimap' ).trigger( 'update', [ { mapOptions: newData } ] );
+    $( that.options.containerClass ).find( '.minimap' ).trigger( 'update', [ { mapOptions: newData } ] );
 
-    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html('');
+    $( that.options.containerClass ).find( '.selectedText' ).html('');
 
     that.currentIdName = false;
     that.selectedTerms = false;
