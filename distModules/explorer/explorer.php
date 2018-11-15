@@ -68,9 +68,15 @@ class explorer extends Module {
      "installer" => "yarn",
      "includes" => array("raphael.min.js")
     ),
+    // array(
+    //   'id' =>'jquery-mapael-2.1.0',
+    //   'params' => array( 'jquery-mapael-2.1.0' ),
+    //   'installer' => 'manual',
+    //   'includes' => array( "js/jquery.mapael.min.js")
+    // )
     array(
-      'id' =>'jquery-mapael-2.1.0',
-      'params' => array( 'jquery-mapael-2.1.0' ),
+      'id' =>'jquery-mapael-2.2.0',
+      'params' => array( 'jquery-mapael-2.2.0' ),
       'installer' => 'manual',
       'includes' => array( "js/jquery.mapael.min.js")
     )
