@@ -88,14 +88,14 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       var that = this;
       var filterHtml = that.template( { title: that.options.title } );
 
-      $( that.options.containerClass ).html( filterHtml );
+      that.$el.html( filterHtml );
       that.instanceSlider();
     },
 
 
     instanceSlider: function() {
       var that = this;
-      $( that.options.containerClass+" input" ).ionRangeSlider({
+      that.$el.search("input" ).ionRangeSlider({
           type: that.options.type,
           min: that.options.valueMin,
           max: that.options.valueMax,
@@ -124,7 +124,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
 
             // Filter summaries
-            if(that.options.summaryContainerClass) {
+            if(that.options.elSummaryContainer) {
               that.renderSummary();
             }
 
@@ -135,25 +135,25 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
               //console.log("onUpdate");
           }
       });
-      that.slider = $( that.options.containerClass+" input" ).data("ionRangeSlider");
+      that.slider = that.$el.search("input" ).data("ionRangeSlider");
 
     },
 
     renderSummary: function(  ) {
       var that = this;
 
-      if(that.options.summaryContainerClass) {
+      if(that.options.summaryContainer) {
 
 
 
         if(  that.options.filteredValue  ) {
 
           var summaryHtml = that.templateSummary( { title: that.options.titleSummary, value:  that.options.filteredValue   } );
-          $( summaryContainerClass ).html( summaryHtml );
+          that.$elSummaryContainer.html( summaryHtml );
 
         }
         else {
-          $( summaryContainerClass ).html( "" );
+          that.$elSummaryContainer.html( "" );
         }
       }
 

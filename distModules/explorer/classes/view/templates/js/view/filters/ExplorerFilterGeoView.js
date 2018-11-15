@@ -103,7 +103,7 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
     });
 
 
-    $( that.options.containerClass + ' select').zonaMap({
+    that.$el.find('select').zonaMap({
       width: 358,
       height: 383,
       textReset: that.options.textReset,
@@ -118,13 +118,11 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
 
     if( selectedOption ) {
       var summaryHtml = that.templateSummary( { title: that.options.titleSummary, option: selectedOption  } );
-      $( that.options.summaryContainerClass ).html( summaryHtml );
+      that.$elSummaryContainer.html( summaryHtml );
     }
     else {
-      $( that.options.summaryContainerClass ).html( "" );
+      that.$elSummaryContainer.html( "" );
     }
-
-
   },
 
   reset: function() {

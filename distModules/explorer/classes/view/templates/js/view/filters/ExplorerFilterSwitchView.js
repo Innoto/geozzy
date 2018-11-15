@@ -76,10 +76,10 @@ geozzy.explorerComponents.filters.filterSwitchView = geozzy.filterView.extend({
     var that = this;
 
     var filterHtml = that.template( { title: that.options.title, checked: that.filterValue } );
-    $( that.options.containerClass ).html( filterHtml );
-    var init = new Switchery( $( that.options.containerClass + ' input' )[0] );
-    $( $( that.options.containerClass + ' input' )[0]).change( function( ev ) {
-      that.filterValue = $( $( that.options.containerClass + ' input' )[0]).is(":checked");
+    that.$el.html( filterHtml );
+    var init = new Switchery( that.$el.find('input')[0] );
+    $( that.$el.find('input' )[0]).change( function( ev ) {
+      that.filterValue = $( that.$el.find('input' )[0] ).is(":checked");
       that.parentExplorer.applyFilters();
       that.options.onChange();
     });

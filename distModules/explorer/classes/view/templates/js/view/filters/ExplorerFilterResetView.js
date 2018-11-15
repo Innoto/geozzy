@@ -19,7 +19,7 @@ geozzy.explorerComponents.filters.filterResetView = geozzy.filterView.extend({
 
       that.options = $.extend(true, {}, options, opts);
       that.template = _.template( that.options.template );
-      that.$elSummaryContainer = $(that.options.elSummaryContainer);      
+      that.$elSummaryContainer = $(that.options.elSummaryContainer);
     },
 
     filterAction: function( model ) {
@@ -30,8 +30,8 @@ geozzy.explorerComponents.filters.filterResetView = geozzy.filterView.extend({
       var that = this;
 
       var filterHtml = that.template( { title: that.options.title } );
-      $( that.options.containerClass ).html( filterHtml );
-      $( that.options.containerClass + ' button').bind('click', function(el) {
+      that.$el.html( filterHtml );
+      that.$el.find('button').bind('click', function(el) {
         that.actionResetAllFilters();
       });
 
