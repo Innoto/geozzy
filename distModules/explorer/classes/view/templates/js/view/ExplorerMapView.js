@@ -37,7 +37,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       mapArrowImage: cogumelo.publicConf.media+'/module/explorer/img/mapArrow.png',
       mapArrowImageEmpty: cogumelo.publicConf.media+'/module/explorer/img/mapArrowEmpty.png',
       markerzIndex: 100,
-      chooseMarkerIcon: function() {return false},
+      chooseMarkerIcon: function() {return false;},
       mapZones: {
         outerMargin: {
           left:400,
@@ -414,7 +414,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       inMap:0, // NOT IN MAP OR BUFFER
       //outerZone:false,
       distanceToInnerMargin: 0
-    }
+    };
 
 
     var mb = that.getMapBounds();
@@ -461,43 +461,43 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     var LEFTSegment = [[swInner.x, neInner.y], [swInner.x, swInner.y]];
     var currentIntersectionSegment = false;
 
-    var lineUtils = new twoLinesIntersection()
+    var lineUtils = new twoLinesIntersection();
     // TOP segment
     if( lineUtils.linesIntersect( centerToMarkerSegment, TOPSegment )){
-      var currentIntersectionSegment = TOPSegment;
+      currentIntersectionSegment = TOPSegment;
     }
     else
     // RIGHT segment
     if( lineUtils.linesIntersect( centerToMarkerSegment, RIGHTSegment )){
-      var currentIntersectionSegment = RIGHTSegment;
+      currentIntersectionSegment = RIGHTSegment;
     }
     else
     // BOTTOM segment
     if( lineUtils.linesIntersect( centerToMarkerSegment, BOTTOMSegment) ){
-      var currentIntersectionSegment = BOTTOMSegment;
+      currentIntersectionSegment = BOTTOMSegment;
     }
     else
     // LEFT segment
     if( lineUtils.linesIntersect( centerToMarkerSegment, LEFTSegment )){
-      var currentIntersectionSegment = LEFTSegment;
+      currentIntersectionSegment = LEFTSegment;
     }
 
     if( currentIntersectionSegment ){
       ret.intersectsWithInnerBox = lineUtils.getIntersectionPoint( centerToMarkerSegment , currentIntersectionSegment);
       ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - ret.intersectsWithInnerBox.y, 2 )  + Math.pow( markerPixel.x - ret.intersectsWithInnerBox.x, 2) );
 
-
+      var r;
       if( mapcenterPixel.x > markerPixel.x) {
-        var r = 180;
+        r = 180;
       }
       else {
-        var r = 0;
+        r = 0;
       }
 
       var dy = mapcenterPixel.y - markerPixel.y;
       var dx = mapcenterPixel.x -markerPixel.x;
-      ret.arrowAngle = Math.atan(dy/dx)
-      ret.arrowAngle *= 180/Math.PI // rads to degs
+      ret.arrowAngle = Math.atan(dy/dx);
+      ret.arrowAngle *= 180/Math.PI; // rads to degs
       ret.arrowAngle = ret.arrowAngle + r + 90;
     }
     else {
@@ -518,11 +518,13 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
   getMapBounds: function() {
     var that = this;
+    var ret;
+
     if( that.map.getBounds != 'undefined'){
-      var ret = [ that.map.getBounds().getSouthWest(), that.map.getBounds().getNorthEast() ];
+      ret = [ that.map.getBounds().getSouthWest(), that.map.getBounds().getNorthEast() ];
     }
     else {
-      var ret = [ new google.maps.LatLng(), new google.maps.LatLng() ];
+      ret = [ new google.maps.LatLng(), new google.maps.LatLng() ];
     }
 
     return ret;
@@ -651,7 +653,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
       // PANTO
       var toMove = that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() ;
-      var P = that.coordToPixel( toMove )
+      var P = that.coordToPixel( toMove );
 
       var fromMove = that.map.getCenter();
       var C = that.coordToPixel( fromMove );
@@ -672,7 +674,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
 
       if( mapVisible == 0 ){
-        that.outerPanTo( that.parentExplorer.resourceMinimalList.get( id ) )
+        that.outerPanTo( that.parentExplorer.resourceMinimalList.get( id ) );
       }
     }
   },
@@ -786,7 +788,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     that = this;
 
     if( that.outerPanToIntervalometer  ) {
-      clearInterval( that.outerPanToIntervalometer )
+      clearInterval( that.outerPanToIntervalometer );
       that.outerPanToIntervalometer = false;
     }
 

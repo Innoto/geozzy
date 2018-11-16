@@ -7,8 +7,6 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
   parentExplorer: false,
   template: _.template(""),
   //divId: 'geozzyExplorerMapInfo',
-  template: false,
-
   initialize: function( opts ) {
     var that = this;
     var options = new Object({
@@ -91,8 +89,8 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
         if(smart_infowindow_is_on_infowindow == false) {
           that.infowindow.close();
         }
-      }
-    , 10 );
+      },
+    10 );
 
   },
 

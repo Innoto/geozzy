@@ -11,7 +11,6 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
   containerMap: false,
   divId: 'geozzyExplorerMapInfoMobile',
   currentMousePos: { x: -1, y: -1 },
-  template: false,
   ready: true,
 
   events: {
@@ -80,7 +79,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     });
 
     if( $( '#'+that.divId ).length === 0 ) {
-      $('body').append( '<div id="' + that.divId + '" style="" ></div>' )
+      $('body').append( '<div id="' + that.divId + '" style="" ></div>' );
     }
 
 
@@ -126,7 +125,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
          }
 
       }
-    )
+    );
 
   },
 
@@ -174,7 +173,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
           right: '800px'
       }, 250);
       setTimeout(function(){
-        that.show( resId )
+        that.show( resId );
       }, 250);
     }
   },
@@ -187,7 +186,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     var index =  collectionList.indexOf( collectionList.get( id ) );
     if ((index -1 ) >= 0) {
       var resId = collectionList.at(index - 1).get('id');
-      that.parentExplorer.triggerEvent('mobileTouch', {id:resId})
+      that.parentExplorer.triggerEvent('mobileTouch', {id:resId});
       that.parentExplorer.triggerEvent('resourceHover', {id:resId});
       $( '#'+that.divId+' .gempiItem').animate({
           left: '800px'

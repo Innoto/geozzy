@@ -13,7 +13,6 @@ geozzy.filterView = Backbone.View.extend({
     containerClass: false,
     mainContainerClass: false,
     data:false,
-    title:false,
     afterRender:false
   },
 

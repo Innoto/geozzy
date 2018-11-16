@@ -11,7 +11,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
   that.options = {
     mapView: false,
     circleColour: '#3A4747'
-  }
+  };
   $.extend(true, that.options, opts);
 
 
@@ -28,7 +28,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
     if(! that.blocked) {
       that.realShow(markers);
     }
-  }
+  };
 
   that.realShow = function( markers ) {
 
@@ -143,7 +143,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
         that.markerClustererHover.append( icono );
       });
     }
-  }
+  };
 
 
 
@@ -189,4 +189,4 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
     that.hide();
   });
 
-}
+};

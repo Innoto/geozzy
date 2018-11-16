@@ -8,14 +8,7 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
   template: _.template(""),
   containerMap: false,
   divId: 'geozzyExplorerMapInfo',
-
   currentMousePos: { x: -1, y: -1 },
-
-
-
-
-  template: false,
-
   marginX: 25,
   marginY: 20,
 
@@ -78,7 +71,7 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
     });
 
     if( $( '#'+that.divId ).length === 0 ) {
-      $('body').append( '<div id="' + that.divId + '" ></div>' )
+      $('body').append( '<div id="' + that.divId + '" ></div>' );
     }
 
 
@@ -156,7 +149,7 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
 
                elementCategory = e2;
                if(e2) {
-                 elementCategory = e2.toJSON()
+                 elementCategory = e2.toJSON();
 
                }
                return false;
@@ -181,7 +174,7 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
               that.parentExplorer.navigateUrl( $(ev.target).attr('dataResourceAccessButton') );
               that.parentExplorer.triggerEvent( 'resourceAccess' , {id:$(ev.target).attr('dataResourceAccessButton')} );
 
-            })
+            });
 
           }
         }

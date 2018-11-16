@@ -81,7 +81,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
         var mapVisible = model.get('mapVisible'); // DESC
         var peso = 10000 - model.get('weight'); //ASC
         var dist = parseInt( Math.round( (1000000 * 100) - (model.get('distanceToCenterKm') * 100) ) ); // DESC
-        var ret = mapVisible.toString() + peso.toString() + dist.toString()
+        var ret = mapVisible.toString() + peso.toString() + dist.toString();
         return parseInt(ret);
       }, 'desc');
 
@@ -140,7 +140,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
               elementCategory = e2;
               if(e2) {
-                elementCategory = e2.toJSON()
+                elementCategory = e2.toJSON();
               }
               return false;
               /*
@@ -186,8 +186,6 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
   renderPager: function renderPager() {
     var that = this;
 
-    this.visibleResources.length
-
     var pages = Math.ceil(that.getMapVisibleResourceIds().length/that.options.itemsEachPage );
 
     if( that.options.endPage < pages  &&  that.options.endPage != false) {
@@ -216,7 +214,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
     }
     else
     if( that.options.endPage == false &&  pageNum > that.options.totalPages  ){
-      pageNum = that.options.endPage
+      pageNum = that.options.endPage;
     }
 
     that.currentPage = pageNum;

@@ -15,7 +15,7 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
   initialize: function( opts ) {
     var that = this;
 
-    activateRecommenderDebug = function(){that.activateDebug()};
+    activateRecommenderDebug = function(){ that.activateDebug(); };
   },
 
   activateDebug: function() {
@@ -31,14 +31,12 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
   },
 
   render: function() {
-
     var that = this;
-
     var col = new geozzy.collection.ResourceCollection({urlAlias: true});
-
+    var bounds;
 
     if( that.parentExplorer.displays.map  && that.parentExplorer.displays.map.isReady() ) {
-      var bounds = [
+      bounds = [
                     [
                       that.parentExplorer.displays.map.getMapBoundsInArray()[0][1],
                       that.parentExplorer.displays.map.getMapBoundsInArray()[0][0]
@@ -50,7 +48,7 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
                    ];
     }
     else {
-      var bounds = [[0,0],[0,0]];
+      bounds = [[0,0],[0,0]];
     }
 
     var recommenderFilters = [];
@@ -67,7 +65,7 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
 
 
         $.each(res, function(i,e){
-          res_ids.push(e.resource_id)
+          res_ids.push(e.resource_id);
           //console.log('recomendado por ITG:', e.resource_id)
             //that.debuger.log('Recurso recomendado:'+e.resource_id , e.resource_id);
 
