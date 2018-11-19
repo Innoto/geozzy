@@ -9,6 +9,7 @@ $conf->mergeSetupValue( 'publicConf:setupFields', [
   'google:analytics:key', 'google:maps:key', 'google:recaptcha:key:site',
   'session:lifetime', 'lang:available', 'lang:default', 'date:timezone',
   'socialNetworks', 'mod:geozzy:resource:directUrl', 'mod:admin:defaultURL',
+  'logs:consoleJs', 'mod:mediaserver:productionMode'
 ]);
 
 $conf->setSetupValue( 'publicConf:vars:langDefault', $conf->getSetupValue( 'lang:default' ) );
