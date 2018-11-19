@@ -46,11 +46,11 @@ var elfNode, elfInsrance, dialogName,
         var url = file.url;
         var dialog = CKEDITOR.dialog.getCurrent();
         if (dialogName == 'image') {
-          var urlObj = 'txtUrl'
+          var urlObj = 'txtUrl';
         } else if (dialogName == 'flash') {
-          var urlObj = 'src'
+          var urlObj = 'src';
         } else if (dialogName == 'files' || dialogName == 'link') {
-          var urlObj = 'url'
+          var urlObj = 'url';
         } else {
           return;
         }
@@ -115,7 +115,7 @@ adminFileUploader.getShowImgSize = function(url, callback) {
 adminFileUploader.iniciaUploader = function() {
 
     CKEDITOR.on('dialogDefinition', function (event) {
-      //console.log(event);
+      //cogumelo.log(event);
       if(event.data.name === 'image') {
         adminFileUploader.dialogDefinition(event);
       }
@@ -128,12 +128,12 @@ adminFileUploader.iniciaUploader = function() {
     });
 
 
-}
+};
 
 function hideElFinderToolbars() {
   $('.ui-corner-bottom.elfinder-statusbar, .elfinder-navbar').css('display', 'none');
   $('.ui-dialog .ui-dialog-content').css('padding',0);
-};
+}
 
 
 adminFileUploader.instanceReady = function(e) {
@@ -167,7 +167,7 @@ adminFileUploader.instanceReady = function(e) {
       }
     }
   });
-}
+};
 
 
 adminFileUploader.dialogDefinition = function(event) {
@@ -196,7 +196,7 @@ adminFileUploader.dialogDefinition = function(event) {
           }
           elfNode.dialog('open');
         }
-      }
+      };
     }
 
     if (uploadButton !== null && submitButton !== null) {
@@ -204,7 +204,7 @@ adminFileUploader.dialogDefinition = function(event) {
       submitButton.hidden = false;
       uploadButton.onChange = function() {
         inputId = this.domId;
-      }
+      };
       submitButton.onClick = function(e) {
         dialogName = CKEDITOR.dialog.getCurrent()._.name;
         var target = elfDirHashMap[dialogName]? elfDirHashMap[dialogName] : elfDirHashMap['fb'],
@@ -236,11 +236,11 @@ adminFileUploader.dialogDefinition = function(event) {
               var url = data.added[0].url;
               var dialog = CKEDITOR.dialog.getCurrent();
               if (dialogName == 'image') {
-                var urlObj = 'txtUrl'
+                var urlObj = 'txtUrl';
               } else if (dialogName == 'flash') {
-                var urlObj = 'src'
+                var urlObj = 'src';
               } else if (dialogName == 'files' || dialogName == 'link') {
-                var urlObj = 'url'
+                var urlObj = 'url';
               } else {
                 return;
               }
@@ -266,9 +266,9 @@ adminFileUploader.dialogDefinition = function(event) {
           });
         }
         return false;
-      }
+      };
     }
 
   }
 
-}
+};

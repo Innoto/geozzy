@@ -83,7 +83,7 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
     var that = this;
 
     if( typeof that.parentStory.displays.background.options.map == 'undefined' ) {
-      console.log('STORY ERROR: Story background map not defined')
+      cogumelo.log('STORY ERROR: Story background map not defined')
     }
 
     return new geozzy.explorerComponents.mapView({
@@ -111,7 +111,7 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
     };
 
     that.poisTypes.each( function(e){
-        console.log(cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png')
+        cogumelo.log(cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png')
         if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
           if( jQuery.isNumeric( e.get('icon') )  ){
             retMarker.url = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png';

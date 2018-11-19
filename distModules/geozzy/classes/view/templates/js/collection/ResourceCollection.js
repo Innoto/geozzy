@@ -27,14 +27,14 @@ geozzy.collection.ResourceCollection = Backbone.Collection.extend({
 
     that.url = '/'+cogumelo.publicConf.C_LANG+that.baseUrl;
 
-    that.url += '/fields/'+that.options.fields
-    that.url += '/filters/'+that.options.filters
-    that.url += '/rtype/'+that.options.rtype
-    that.url += '/rextmodels/'+that.options.rextmodels
-    that.url += '/category/'+that.options.category
-    that.url += '/collection/'+that.options.collection
-    that.url += '/updatedfrom/'+that.options.updatedfrom
-    that.url += '/urlAlias/'+that.options.urlAlias
+    that.url += '/fields/'+that.options.fields;
+    that.url += '/filters/'+that.options.filters;
+    that.url += '/rtype/'+that.options.rtype;
+    that.url += '/rextmodels/'+that.options.rextmodels;
+    that.url += '/category/'+that.options.category;
+    that.url += '/collection/'+that.options.collection;
+    that.url += '/updatedfrom/'+that.options.updatedfrom;
+    that.url += '/urlAlias/'+that.options.urlAlias;
   },
 
   filterById: function(idArray) {

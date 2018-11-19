@@ -42,7 +42,7 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
       var terms =  model.get('terms');
       if( typeof terms != "undefined") {
         var diff = $( terms ).not( this.selectedTerms );
-        //console.log(diff.length, terms.length)
+        //cogumelo.log(diff.length, terms.length);
         ret = (diff.length != terms.length );
       }
     }
@@ -111,7 +111,7 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
   },
 
   reset: function() {
-    //console.log('COMBO')
+    //cogumelo.log('COMBO');
     var that = this;
 
     $select = that.$el.search('select');

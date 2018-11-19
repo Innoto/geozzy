@@ -16,7 +16,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
 
   google.maps.event.addListener( that.options.mapView.map, 'bounds_changed', function() {
-    //alert('')
+    //alert('');
     that.hide();
   });
 

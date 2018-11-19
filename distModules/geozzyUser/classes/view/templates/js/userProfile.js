@@ -67,7 +67,7 @@ function instanceProfileMap(){
 
       // Click map event
       google.maps.event.addListener(resourceMap, 'click', function(e) {
-        resourceMarker.setPosition( e.latLng )
+        resourceMarker.setPosition( e.latLng );
         resourceMarker.setMap( resourceMap );
         latInput.val( resourceMarker.position.lat() );
         lonInput.val( resourceMarker.position.lng() );

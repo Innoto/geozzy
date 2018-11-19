@@ -26,7 +26,7 @@ function sendRecoveryPass(){
     data: {'user': userEmail, 'captcha': captchaValue },
     method: "POST",
   }).done(function( data ) {
-    console.log(data);
+    cogumelo.log(data);
     if(data){
       that.$('.loginInfoContainer').hide();
       $('.adminLogin .recoveryPasswordForm').hide();

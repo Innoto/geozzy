@@ -54,7 +54,7 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
         commentTimeCreation: item.timeCreation,
         commentStatusIdName: item.statusIdName,
         commentPublished: item.published
-      }
+      };
       if( item.rate !== null){
         data.commentRate = item.rate/20;
       }else{
@@ -113,9 +113,9 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
     that.comments.editableUrl();
     var comment = that.comments.get(commentID);
     if( $(e.target).is(':checked') ){
-      comment.set("published",'1')
+      comment.set("published",'1');
     }else{
-      comment.set("published",'0')
+      comment.set("published",'0');
     }
     comment.save();
 

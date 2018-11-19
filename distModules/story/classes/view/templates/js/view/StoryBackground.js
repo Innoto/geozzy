@@ -48,7 +48,7 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     var that = this;
 
     that.parentStory.bindEvent('stepChange', function(obj){
-      //console.log(obj)
+      //cogumelo.log(obj);
       that.setStep(obj);
     });
 
@@ -154,7 +154,7 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     // initialize the canvasLayer
     var canvasLayerOptions = {
       map: that.options.map,
-      resizeHandler: function(){ that.resizeCanvasLayer() },
+      resizeHandler: function(){ that.resizeCanvasLayer(); },
       animate: false,
       updateHandler: function(){ that.updateCanvasLayer(); },
       resolutionScale: function(){ return window.devicePixelRatio || 1; }
@@ -176,7 +176,7 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     var canvasHeight = that.canvasLayer.canvas.height;
     that.layerContext.clearRect(0, 0, canvasWidth, canvasHeight);
 
-    var mapProjection = that.getMapProjection()
+    var mapProjection = that.getMapProjection();
 
     that.layerContext.setTransform(1, 0, 0, 1, 0, 0);
 

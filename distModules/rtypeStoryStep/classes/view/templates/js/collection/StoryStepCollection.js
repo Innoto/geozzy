@@ -9,7 +9,7 @@ geozzy.storystepsComponents.StorystepCollection = Backbone.Collection.extend({
 
   search: function( opts ){
     var result = this.where( opts );
-    //console.log(result);
+    //cogumelo.log(result);
     var resultCollection = new geozzy.storystepsComponents.StorystepCollection( result );
 
 

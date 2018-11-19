@@ -56,7 +56,7 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
   },
   render: function() {
     var that = this;
-    //that.$el.html( that.tpl({ content: contentHtml }) )
+    //that.$el.html( that.tpl({ content: contentHtml }) );
   },
   goToRegister: function() {
     var that = this;
@@ -78,7 +78,7 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
       data: {'user': userEmail, 'captcha': captchaValue },
       method: "POST",
     }).done(function( data ) {
-      console.log(data);
+      cogumelo.log(data);
       if(data){
         that.$('.loginInfoContainer').hide();
         $('#loginModal .recoveryPasswordForm').hide();
@@ -88,7 +88,7 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
         $('#loginModal .recoveryCaptchaError').show();
       }
     });
-    
+
   }
 
 });

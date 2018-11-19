@@ -68,7 +68,7 @@
 {if isset($cogumelo.publicConf.google_analytics_key) && $cogumelo.publicConf.google_analytics_key}
 <script>
 function loadGoogleAnalytics() {
-  // console.log('loadGoogleAnalytics');
+  // cogumelo.log('loadGoogleAnalytics');
 
   (function(i,s,o,g,r,a,m) { i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
   (i[r].q=i[r].q||[]).push(arguments) },i[r].l=1*new Date();a=s.createElement(o),

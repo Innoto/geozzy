@@ -69,7 +69,7 @@ var CategoryEditorView = Backbone.View.extend({
       callback: function(l, e) {
         that.saveList();
       }
-    }
+    };
     if(that.category.get('sortable') === 0){
       nestableParams.handleClass = "no-handle-gzz";
     }
@@ -120,15 +120,15 @@ var CategoryEditorView = Backbone.View.extend({
 
     var tId = parseInt($(el.currentTarget).attr('data-id'));
 
-    var c = that.categoryTerms.get( tId )
-    c.set({deleted:1})
+    var c = that.categoryTerms.get( tId );
+    c.set({deleted:1});
 
     that.categoryTerms.search({ parent: tId }).each( function( e,i  ) {
       e.set({deleted:1});
     });
 
     that.updateList();
-    that.saveChangesVisible(true)
+    that.saveChangesVisible(true);
    },
 
   addCategory: function() {

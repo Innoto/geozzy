@@ -1,5 +1,5 @@
 
-console.log('Cargamos adminResource.js');
+cogumelo.log('Cargamos adminResource.js');
 
 
 var app = app || {};
@@ -9,7 +9,7 @@ var resourceMarker = false;
 
 
 $(document).ready( function() {
-  console.log('Inicializamos adminResource.js');
+  cogumelo.log('Inicializamos adminResource.js');
 
   var els = $('.switchery');
   els.each(function( index )  {

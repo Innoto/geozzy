@@ -81,8 +81,8 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
       links.events.addListener(that.timeline, 'select', function( propiedades ) {
         var selection = that.timeline.getSelection();
 
-        //console.log(selection[0].row);
-        //console.log(that.timeline.getSelection()[0].row);
+        //cogumelo.log(selection[0].row);
+        //cogumelo.log(that.timeline.getSelection()[0].row);
         that.parentStory.triggerEvent('forceStep', { id: that.timelineIndex[ selection[0].row ] } );
         //that.timeline.box.align = 'center';
         that.timeline.setVisibleChartRangeAuto();
@@ -106,8 +106,8 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
 
     if( showTimeline != null && showTimeline == 1 ) {
       //$(that.options.container).html(that.tplElement({id:legend}));
-      /*console.log(that.timeline)
-      console.log(that.timeline.getData());
+      /*cogumelo.log(that.timeline)
+      cogumelo.log(that.timeline.getData());
       that.timeline.selectItem(0)*/
       //that.timeline.setSelection([{row: 0}])
 
@@ -117,7 +117,7 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
         }
       });
 
-      //console.log(that.timeline.getSelection())
+      //cogumelo.log(that.timeline.getSelection())
       $(that.options.container).fadeIn();
     }
     else {

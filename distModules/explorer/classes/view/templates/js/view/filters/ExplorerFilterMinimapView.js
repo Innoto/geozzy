@@ -48,7 +48,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       var terms =  model.get('terms');
       if( typeof terms != "undefined") {
         var diff = $( terms ).not( this.selectedTerms );
-        //console.log(diff.length, terms.length)
+        //cogumelo.log(diff.length, terms.length);
         ret = (diff.length != terms.length );
       }
     }
@@ -266,15 +266,15 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
           eval( 'mapaelDataObject.'+ e.get('idName') + ' = "' + e.get('geom') + '";' );
           /* jshint ignore:end */
         } catch(err) {
-          console.log( 'Problema con idName :', e.get('idName') );
+          cogumelo.log( 'Problema con idName :', e.get('idName') );
         }
       });
     }
 
-    //console.log('MAPAEL en filtro', mapaelDataObject );
+    //cogumelo.log('MAPAEL en filtro', mapaelDataObject );
 
     return mapaelDataObject;
-  },
+  }
 
 
 

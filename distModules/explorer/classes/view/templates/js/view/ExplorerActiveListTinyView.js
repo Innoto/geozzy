@@ -133,8 +133,8 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
         var elementCategory = false;
         if( that.options.categories ) {
           that.options.categories.each( function(e2){
-            //console.log(e.get('id'))
-            //console.debug(markerData.get('terms'))
+            //cogumelo.log(e.get('id'));
+            //console.debug(markerData.get('terms'));
 
             if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( e ).get('terms')  ) > -1 ) {
 
@@ -256,7 +256,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
     }
 
 
-    //console.log(that.getMapVisibleResourceIds().length,that.options.itemsEachPage, Math.ceil(that.getMapVisibleResourceIds().length/that.options.itemsEachPage ))
+    //cogumelo.log(that.getMapVisibleResourceIds().length,that.options.itemsEachPage, Math.ceil(that.getMapVisibleResourceIds().length/that.options.itemsEachPage ));
 
     that.setPage(nextPage);
   },

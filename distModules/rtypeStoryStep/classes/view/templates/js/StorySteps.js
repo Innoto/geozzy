@@ -7,6 +7,6 @@ geozzy.storysteps = function() {
   // First Execution
   that.listStorySteps = function(story){
     that.listStoryStepView = new geozzy.storystepsComponents.ListStoryStepView(story);
-  }
+  };
 
-}
+};

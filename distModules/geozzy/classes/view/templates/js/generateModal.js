@@ -39,7 +39,7 @@ geozzy.generateModal = function( options ) {
       html += '</div>';
     html += '</div>';
     return html;
-  }
+  };
 
 
   that.initModal = function( ) {
@@ -61,12 +61,12 @@ geozzy.generateModal = function( options ) {
         that.options.successCallback();
       }
     });
-  }
+  };
 
   that.closeModal = function( ) {
     $('.gzzGenerateModal.'+that.options.modalClasses).modal('hide');
-  }
+  };
 
 
   that.initModal();
-}
+};

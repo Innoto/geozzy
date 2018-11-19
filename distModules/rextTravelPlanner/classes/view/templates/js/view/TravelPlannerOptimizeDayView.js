@@ -24,7 +24,7 @@ geozzy.travelPlannerComponents.TravelPlannerOptimizeDayView = Backbone.View.exte
   render: function() {
     var that = this;
     $('body').append( that.modalTemplate({ 'modalId': 'optimizeDayTpModal', 'modalTitle': __('Select Dates') }) );
-    that.el = '#optimizeDayTpModal'
+    that.el = '#optimizeDayTpModal';
     that.$el = $(that.el);
     that.infoOptimizeContent();
     that.$el.modal({
@@ -76,7 +76,7 @@ geozzy.travelPlannerComponents.TravelPlannerOptimizeDayView = Backbone.View.exte
       init : firstLoc.toJSON(),
       end : lastLoc.toJSON(),
       day : parseInt(that.paramDay)+1
-    }
+    };
 
     that.optimizeDayTpModalTemplate = _.template( $('#optimizeDayTpModalTemplate').html() );
     that.$('.modal-body').html( that.optimizeDayTpModalTemplate({data: data}) );

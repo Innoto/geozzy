@@ -33,7 +33,7 @@ geozzy.userSession = function() {
         }
       }
     );
-  }
+  };
 
   that.getUserSession = function(success){
     that.user = new geozzy.userSessionComponents.UserSessionModel();
@@ -44,38 +44,38 @@ geozzy.userSession = function() {
         }
       }
     });
-  }
+  };
 
   that.initLoginBox = function(){
     that.loginView = new geozzy.userSessionComponents.userLoginView();
     that.loginView.userSessionParent = that;
-  }
+  };
   that.successLoginBox = function(){
     that.loginView.closeLoginModal();
     that.finishCallback();
-  }
+  };
 
   that.initRegisterBox = function(){
     setTimeout(function() {
       that.registerView = new geozzy.userSessionComponents.userRegisterView();
       that.registerView.userSessionParent = that;
     }, 500);
-  }
+  };
   that.successRegisterBox = function(){
     that.registerView.closeRegisterModal();
     that.initRegisterOkBox();
 
-  }
+  };
   that.initRegisterOkBox = function(){
     setTimeout(function() {
       that.registerOkView = new geozzy.userSessionComponents.userRegisterOkView();
       that.registerOkView.userSessionParent = that;
     }, 500);
-  }
+  };
 
   that.getPrivacidad = function getPrivacidad( success ){
     success(false);
-  }
+  };
 
   that.userRouter = new geozzy.userSessionComponents.mainRouter();
   that.userRouter.userSessionParent = that;
@@ -85,7 +85,7 @@ geozzy.userSession = function() {
       Backbone.history.start();
     }
   });
-}
+};
 
 
 

@@ -71,7 +71,7 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
     var that = this;
 
     that.listOrderAccordingIds = true;
-    //that.$el.find('.activeListReset').hide();ç
+    //that.$el.find('.activeListReset').hide();
     that.setPage(0);
     that.render();
 
@@ -122,14 +122,14 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
     var contentHtml = '';
     $.each(  this.visibleResources, function(i,e){
 
-      //that.options.categories
-      //console.log( that.parentExplorer.resourceMinimalList.toJSON/ )
+      //that.options.categories;
+      //cogumelo.log( that.parentExplorer.resourceMinimalList.toJSON/ );
 
       var elementCategory = false;
       if( that.options.categories ) {
         that.options.categories.each( function(e2){
-          //console.log(e.get('id'))
-          //console.debug(markerData.get('terms'))
+          //cogumelo.log(e.get('id'));
+          //console.debug(markerData.get('terms'));
 
           if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( e ).get('terms')  ) > -1 ) {
 
@@ -193,7 +193,7 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
   },
 /*
   onRenderComplete: function onRenderComplete() {
-    //console.log( 'geozzy.explorerComponents.activeListView.onRenderComplete()' );
+    //cogumelo.log( 'geozzy.explorerComponents.activeListView.onRenderComplete()' );
     if( typeof geozzy.rExtFavouriteController !='undefined'  && typeof geozzy.rExtFavouriteController.setBinds === 'function' ) {
       $( '.rExtFavouriteHidden' ).css( 'display', 'inline-block' ).removeClass( 'rExtFavouriteHidden' );
       geozzy.rExtFavouriteController.setBindsAndGetStatus();

@@ -62,7 +62,7 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
             "pitch": parseInt(e.get('panoramaPitch')),
             "yaw": parseInt(e.get('panoramaYaw')),
             "cssClass": "panorama-custom-hotspot",
-            "createTooltipFunc": function(a,e) {that.renderSpot(a,e)},
+            "createTooltipFunc": function(a,e) {that.renderSpot(a,e);},
             "createTooltipArgs": { id: e.get('id') }
           });
         }
@@ -129,10 +129,10 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
 
     var e = that.parentExplorer.resourceMinimalList.get(id);
     if( e.get('panoramaPitch') &&  e.get('panoramaYaw') ) {
-      that.panorama.lookAt(  parseInt(e.get('panoramaPitch')), parseInt(e.get('panoramaYaw'))  )
+      that.panorama.lookAt(  parseInt(e.get('panoramaPitch')), parseInt(e.get('panoramaYaw'))  );
       that.shakeHotspot(id);
 
-      //console.log(e.get('panoramaPitch'), e.get('panoramaYaw') )
+      //cogumelo.log(e.get('panoramaPitch'), e.get('panoramaYaw') );
 
     }
   },
@@ -144,8 +144,8 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
 
 
     if( e.get('panoramaPitch') &&  e.get('panoramaYaw') ) {
-      console.log(e.get('hotSpotDiv'));
-      $(e.get('hotSpotDiv')).addClass('panorama-custom-hotspot-selected')
+      cogumelo.log(e.get('hotSpotDiv'));
+      $(e.get('hotSpotDiv')).addClass('panorama-custom-hotspot-selected');
     }
   },
 
@@ -156,8 +156,8 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
 
 
     if( e.get('panoramaPitch') &&  e.get('panoramaYaw') ) {
-      console.log(e.get('hotSpotDiv'));
-      $(e.get('hotSpotDiv')).removeClass('panorama-custom-hotspot-selected')
+      cogumelo.log(e.get('hotSpotDiv'));
+      $(e.get('hotSpotDiv')).removeClass('panorama-custom-hotspot-selected');
     }
   }
 

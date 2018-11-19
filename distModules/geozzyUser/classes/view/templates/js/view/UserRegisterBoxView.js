@@ -50,7 +50,7 @@ geozzy.userSessionComponents.userRegisterView = Backbone.View.extend({
   },
   render: function() {
     var that = this;
-    //that.$el.html( that.tpl({ content: contentHtml }) )
+    //that.$el.html( that.tpl({ content: contentHtml }) );
   },
   showPrivacidad: function(e) {
     var that = this;

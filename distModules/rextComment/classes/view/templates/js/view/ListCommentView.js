@@ -52,7 +52,7 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
         commentContent: item.content.replace(/\n/g, '<br>\n'),
         commentUserName: false,
         commentTimeCreation: moment(item.timeCreation).format('LLL')
-      }
+      };
       if( item.rate !== 0){
         data.commentRate= item.rate/20;
       }else{

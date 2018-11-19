@@ -5,7 +5,7 @@ var geozzy = geozzy || {};
 
 geozzy.rExtAccommodationReserveController = geozzy.rExtAccommodationReserveController || {
   init: function init() {
-    console.log('init rExtAccommodationReserveController');
+    cogumelo.log('init rExtAccommodationReserveController');
 
     geozzy.rExtAccommodationReserveInfo.values = {
       checkin : moment().add( 1, 'days' ),
@@ -70,7 +70,7 @@ geozzy.rExtAccommodationReserveController = geozzy.rExtAccommodationReserveContr
         geozzy.rExtAccommodationReserveInfo.values.checkin = start;
         geozzy.rExtAccommodationReserveInfo.values.checkout = end;
         geozzy.rExtAccommodationReserveController.updateLink();
-        console.log( 'From: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
+        cogumelo.log( 'From: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
       }
     );
 

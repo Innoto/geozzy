@@ -22,7 +22,7 @@ geozzy.rextReccommended.reccommendedView = Backbone.View.extend({
       that.render();
     }
     else {
-      console.log('rExtReccommender: geozzy.biMetricInstances not defined')
+      cogumelo.log('rExtReccommender: geozzy.biMetricInstances not defined');
     }
 
   },
@@ -39,7 +39,7 @@ geozzy.rextReccommended.reccommendedView = Backbone.View.extend({
         var res_ids = [];
 
         $.each(res, function(i,e){
-          res_ids.push(e.resource_id)
+          res_ids.push(e.resource_id);
         });
         collection.fetchByIds(res_ids, function(){
           $(res_ids).each(function(i, e){

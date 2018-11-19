@@ -28,9 +28,9 @@ geozzy.rExtMapController = function( opts ) {
     }
 
     var $mapContainer = $( that.options.wrapper );
-    //console.log( that.options.wrapper  )
+    //cogumelo.log( that.options.wrapper  );
     if( $mapContainer.length === 1 ) {
-      // console.log( 'prepareMap - OK: ATOPADO O WRAPPER DO MAPA!!!' );
+      // cogumelo.log( 'prepareMap - OK: ATOPADO O WRAPPER DO MAPA!!!' );
       // gmaps init
       that.resourceMapOptions = {
         center: { lat: that.options.lat, lng: that.options.lng },
@@ -103,7 +103,7 @@ geozzy.rExtMapController = function( opts ) {
 
     } // if( $mapContainer.length )
     else {
-      console.log( 'rextMap - NOTICE: I cant find map wrapper' );
+      cogumelo.log( 'rextMap - NOTICE: I cant find map wrapper' );
       that.resourceMap = false;
     }
   };

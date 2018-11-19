@@ -31,7 +31,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     rextmodels: true,
     urlAlias: true,
     category:true
-  }
+  };
 
   if(cogumelo.publicConf.rtypeTaxonomygroup.toString() !== ''){
     var arrayRtypeKeys = [];
@@ -40,7 +40,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     });
     resParam.rtype = arrayRtypeKeys.toString();
   }else{
-    console.log('FALTA CONF');
+    cogumelo.log('FALTA CONF');
   }
 
   that.resources = new geozzy.collection.ResourceCollection( resParam );
@@ -209,6 +209,6 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
 
   that.closeResource = function() {
     $('.tpDuResource').hide();
-    $('.tpDuResource').html('')
+    $('.tpDuResource').html('');
   };
-}
+};

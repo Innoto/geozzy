@@ -85,7 +85,7 @@ var ResourcesStarredListView = Backbone.View.extend({
 
     var rId = parseInt($(el.currentTarget).attr('data-id'));
     var rs = that.resourcesStarred.get( rId );
-    rs.set({deleted:1})
+    rs.set({deleted:1});
     that.updateList();
     that.saveChangesVisible(true);
    },

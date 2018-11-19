@@ -57,7 +57,7 @@ var MenuEditorView = Backbone.View.extend({
       callback: function(l, e) {
         that.saveList();
       }
-    }
+    };
     this.$el.find('.dd').nestable(nestableParams);
 
   },
@@ -104,15 +104,15 @@ var MenuEditorView = Backbone.View.extend({
 
     var tId = parseInt($(el.currentTarget).attr('data-id'));
 
-    var c = that.menuTerms.get( tId )
-    c.set({deleted:1})
+    var c = that.menuTerms.get( tId );
+    c.set({deleted:1});
 
     that.menuTerms.search({ parent: tId }).each( function( e,i  ) {
       e.set({deleted:1});
     });
 
     that.updateList();
-    that.saveChangesVisible(true)
+    that.saveChangesVisible(true);
    },
 
   addMenuterm: function() {

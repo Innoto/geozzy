@@ -104,7 +104,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           keyboard: true,
           prettify: function(num) { return that.options.prettify(num); },
           onStart: function (data) {
-              //console.log("onStart");
+              //cogumelo.log("onStart");
           },
           onChange: function (data) {
 
@@ -132,7 +132,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
           },
           onUpdate: function (data) {
-              //console.log("onUpdate");
+              //cogumelo.log("onUpdate");
           }
       });
       that.slider = that.$el.search("input" ).data("ionRangeSlider");

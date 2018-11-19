@@ -12,7 +12,7 @@ geozzy.explorer = function( opts ) {
       lang = '/'+cogumelo.publicConf.C_LANG;
     }
     return lang;
-  }
+  };
 
   //  Options
 
@@ -28,7 +28,7 @@ geozzy.explorer = function( opts ) {
     debug: false,
     useUrlRouter: false
 
-  }
+  };
   $.extend(true, that.options, opts);
 
   that.explorerTouchDevice = $('html').hasClass('touch');
@@ -54,7 +54,7 @@ geozzy.explorer = function( opts ) {
     activeList: false,
     reccomendList: false,
     plugins: []
-  }
+  };
 
   // filters
   that.filters = [ ];
@@ -95,7 +95,7 @@ geozzy.explorer = function( opts ) {
     // render filters
     if( that.filters.length > 0 ) {
       $.each( that.filters, function(i,e){
-        //console.log('FILTRO',e)
+        //cogumelo.log('FILTRO',e);
         e.render();
       });
     }
@@ -118,13 +118,13 @@ geozzy.explorer = function( opts ) {
           }
           that.applyFilters();
           //that.options.minimalLoadSuccess();
-          that.triggerEvent('minimalLoadSuccess',{})
+          that.triggerEvent('minimalLoadSuccess',{});
         }
       }
 
     );
 
-  }
+  };
 
 
   //
@@ -138,9 +138,9 @@ geozzy.explorer = function( opts ) {
       Backbone.history.start({ pushState: true }); // usar pushstate de forma temporal
       geozzy.explorerComponents.routerInstance.navigate( that.resourcePartialList.get(rid).getUrl() , false);
       Backbone.history.stop();
-      Backbone.history.start()
+      Backbone.history.start();
     }
-  }
+  };
 
 
   //
@@ -149,7 +149,7 @@ geozzy.explorer = function( opts ) {
   that.addFilter = function( filter ) {
     filter.parentExplorer = this;
     that.filters.push( filter );
-  }
+  };
 
 
   //
@@ -181,7 +181,7 @@ geozzy.explorer = function( opts ) {
         });
 
         if( matches == that.filters.length ) {
-          ret = true
+          ret = true;
         }
 
         // if matches number is same of filters number
@@ -199,7 +199,7 @@ geozzy.explorer = function( opts ) {
       that.triggerEvent('applyFilters', {});
     }
 
-  }
+  };
 
 
 
@@ -229,9 +229,9 @@ geozzy.explorer = function( opts ) {
       that.displays.plugins.push( displayObj );
     }
     else {
-      console.log('Geozzy explorer ERROR: Display type key not found');
+      cogumelo.log('Geozzy explorer ERROR: Display type key not found');
     }
-  }
+  };
 
 
 
@@ -338,7 +338,7 @@ geozzy.explorer = function( opts ) {
       }
     });
 
-  }
+  };
 
 
   that.renderPartialList = function(){
@@ -364,7 +364,7 @@ geozzy.explorer = function( opts ) {
     }
 
 
-  }
+  };
 
 
   that.triggerEvent = function( eventName, parameters) {
@@ -378,7 +378,7 @@ geozzy.explorer = function( opts ) {
         }
       }
     });
-  }
+  };
 
 
   that.bindEvent = function( eventName, action ) {
@@ -388,7 +388,7 @@ geozzy.explorer = function( opts ) {
       name: eventName,
       action: action
     });
-  }
+  };
 
 
-}
+};

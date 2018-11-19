@@ -7,9 +7,9 @@ $(document).ready( function(){
       map: geozzy.rExtMapInstance.resourceMap
     });
 
-    console.log('kml layer', rextKMLFile);
+    cogumelo.log('kml layer', rextKMLFile);
 
-    //alert(rextKMLFile)
+    //alert(rextKMLFile);
   }
 
 

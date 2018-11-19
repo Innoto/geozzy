@@ -42,7 +42,7 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
     var that = this;
 
     $('body').append( that.modalTemplate({ 'modalId': 'resourceTpModal', 'modalTitle': __('Add to Plan') }) );
-    that.el = '#resourceTpModal'
+    that.el = '#resourceTpModal';
     that.$el = $(that.el);
 
     item = that.parentTp.resources.get(that.idResource).toJSON();

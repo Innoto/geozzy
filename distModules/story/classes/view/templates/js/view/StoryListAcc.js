@@ -51,7 +51,7 @@ geozzy.storyComponents.StoryListAccView = Backbone.View.extend({
     that.$el.html('');
     that.parentStory.storySteps.each( function( step , i ) {
       var d = step.toJSON();
-      console.log(d)
+      cogumelo.log(d);
       that.$el.append( that.tplElement( d ) );
       that.stepsDOMEquivalences.push( d.id );
     });
@@ -62,7 +62,7 @@ geozzy.storyComponents.StoryListAccView = Backbone.View.extend({
       that.parentStory.triggerEvent('stepChange', {id: that.stepsDOMEquivalences[0] , domElement: that.stepsDOM[0] });
       $('button.accessButton').click( function(ev){
         geozzy.storyComponents.routerInstance.navigate( 'resource/' +$(ev.target).attr('dataResourceAccessButton') , false);
-        that.parentStory.triggerEvent( 'loadResource' , $(ev.target).attr('dataResourceAccessButton') );        
+        that.parentStory.triggerEvent( 'loadResource' , $(ev.target).attr('dataResourceAccessButton') );
       });
     });
 

@@ -1,5 +1,5 @@
 var geozzy = geozzy || {};
-if (! geozzy.userSessionComponents) { geozzy.userSessionComponents= {} }
+if (! geozzy.userSessionComponents) { geozzy.userSessionComponents= {}; }
 geozzy.userSessionComponents.mainRouter = Backbone.Router.extend({
   userSessionParent: false,
   routes: {

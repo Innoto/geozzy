@@ -223,8 +223,8 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
             if(smart_infowindow_is_on_infowindow == false) {
               that.infoWindow.close();
             }
-          }
-        , 10 );
+          },
+          10 );
       });
     }
     else{
@@ -314,7 +314,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
   calcRoute: function( dataPoints, optimize ){
     var that = this;
     var firstLoc = false;
-    var lastLoc = false
+    var lastLoc = false;
     var waypointsLoc = [];
 
     var optimizeRes = (optimize) ? true : false;
@@ -354,7 +354,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
         travelMode: confTravelMode
       };
       if( !that.directionsServiceRequest[that.currentDay] || optimizeRes){
-        //console.log("petición dia: "+that.currentDay);
+        //cogumelo.log("petición dia: "+that.currentDay);
         that.directionsService.route(request, function(response, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             that.directionsServiceRequest[that.currentDay] = response;
@@ -381,11 +381,11 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
             }
           }
           else {
-            console.log("directions status "+status);
+            cogumelo.log("directions status "+status);
           }
         });
       }else{
-        //console.log("petición en cache dia : "+that.currentDay);
+        //cogumelo.log("petición en cache dia : "+that.currentDay);
         that.printRouteOnMaps(that.directionsServiceRequest[that.currentDay], waypointsLoc);
       }
 
@@ -415,7 +415,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     that.parentTp.travelPlannerPlanView.addRouteTotalTime( that.currentDay , totalTimeTransport/60 );
   },
   tramoExtra: function tramoExtra( init, end ) {
-    //console.log( 'tramoExtra:', init, end, reves );
+    //cogumelo.log( 'tramoExtra:', init, end, reves );
     var that = this;
     var tramo = false;
     var diferencia = Math.abs( init.lat() - end.lat()) + Math.abs( init.lng() - end.lng());
@@ -457,7 +457,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
   },
   clearDirectionsServiceRequest: function(days){
     var that = this;
-    console.log("clearDirectionsServiceRequest", days );
+    cogumelo.log("clearDirectionsServiceRequest", days );
     if(days){
       $.each( days, function(i,d){
         that.directionsServiceRequest[d] = '';

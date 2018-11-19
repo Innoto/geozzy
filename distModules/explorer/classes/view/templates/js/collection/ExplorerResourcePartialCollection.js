@@ -1,5 +1,5 @@
 var geozzy = geozzy || {};
-if (! geozzy.explorerComponents) { geozzy.explorerComponents= {} }
+if (! geozzy.explorerComponents) { geozzy.explorerComponents= {}; }
 
 
 geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend({
@@ -72,7 +72,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
           that.allResourcesLoaded = true;
           that.allResourcesLoading = false;
 
-          console.log('Geozzy explorer loaded ' + that.length + ' resources');
+          cogumelo.log('Geozzy explorer loaded ' + that.length + ' resources');
           that.saveLocalStorage();
 
         }
@@ -97,11 +97,11 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
 
         }
         catch(e){
-          console.log('Geozzy exlorer, failed trying to get localstorage data:' + e);
+          cogumelo.log('Geozzy exlorer, failed trying to get localstorage data:' + e);
           lsDataParsed = false;
         }
 
-        that.reset()
+        that.reset();
         that.lastCacheUpdate = lsDataParsed.lastUpdate;
 
         that.set( lsDataParsed.resources );
@@ -120,7 +120,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
       localStorage.removeItem( that.url );
 
 
-      localStorage.setItem( that.url, JSON.stringify({ lastUpdate: Math.floor(Date.now() / 1000) , resources: that.toJSON() }) )
+      localStorage.setItem( that.url, JSON.stringify({ lastUpdate: Math.floor(Date.now() / 1000) , resources: that.toJSON() }) );
 
     }
 

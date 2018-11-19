@@ -25,7 +25,7 @@ geozzy.rExtCommunityController = geozzy.rExtCommunityController || {
       data: formData, cache: false, contentType: false, processData: false,
       success: function getCommunityUrlSuccess( $jsonData, $textStatus, $jqXHR ) {
         if ( $jsonData.result === 'ok' ) {
-          // console.log( $jsonData.status );
+          // cogumelo.log( $jsonData.status );
           window.location = window.location.protocol+'//'+window.location.host+$jsonData.status;
         }
       }

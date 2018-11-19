@@ -38,7 +38,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
 
       if( typeof terms != "undefined") {
         var diff = $( terms ).not( that.selectedTerms );
-        //console.log(diff.length, terms.length)
+        //cogumelo.log(diff.length, terms.length);
         ret = (diff.length != terms.length );
       }
 

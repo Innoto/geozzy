@@ -143,8 +143,8 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
 
 
             that.options.categories.each( function(e2){
-             //console.log(e.get('id'))
-             //console.debug(markerData.get('terms'))
+             //cogumelo.log(e.get('id'));
+             //console.debug(markerData.get('terms'));
              if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( id ).get('terms')  ) > -1 ) {
 
                elementCategory = e2;

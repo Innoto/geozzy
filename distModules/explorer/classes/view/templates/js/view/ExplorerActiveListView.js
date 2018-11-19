@@ -108,14 +108,14 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
     var contentHtml = '';
     $.each(  this.visibleResources, function(i,e){
 
-      //that.options.categories
-      //console.log( that.parentExplorer.resourceMinimalList.toJSON/ )
+      //that.options.categories;
+      //cogumelo.log( that.parentExplorer.resourceMinimalList.toJSON/ );
 
       var elementCategory = false;
       if( that.options.categories ) {
         that.options.categories.each( function(e2){
-          //console.log(e.get('id'))
-          //console.debug(markerData.get('terms'))
+          //cogumelo.log(e.get('id'));
+          //console.debug(markerData.get('terms'));
 
           if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( e ).get('terms')  ) > -1 ) {
 
@@ -150,7 +150,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
         section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
       });
 
-      //console.log(element.title, element.mapVisible, element.weight, element.distanceToCenterKm)
+      //cogumelo.log(element.title, element.mapVisible, element.weight, element.distanceToCenterKm);
 
 
       contentHtml += that.tplElement(element);

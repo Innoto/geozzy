@@ -52,7 +52,7 @@ geozzy.commentComponents.CreateCommentView = Backbone.View.extend({
   },
   render: function() {
     var that = this;
-    //that.$el.html( that.tpl({ content: contentHtml }) )
+    //that.$el.html( that.tpl({ content: contentHtml }) );
   }
 
 });

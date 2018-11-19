@@ -10,7 +10,7 @@ function manageAjaxFailures() {
       statusCode: {
         401: function(datos) {
           geozzy.userSessionInstance.getUserSession( function() {
-            console.log(geozzy.userSessionInstance.user.get('id') );
+            cogumelo.log(geozzy.userSessionInstance.user.get('id') );
 
             if( geozzy.userSessionInstance.user.get('id') == false ) {
               window.location.replace('/admin/login');

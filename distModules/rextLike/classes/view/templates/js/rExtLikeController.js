@@ -83,7 +83,7 @@ geozzy.rExtLikeController = geozzy.rExtLikeController || {
 
       that.resource = resources;
       if( that.resource !== '' ) {
-        // console.log('Facendo un sendGetStatus de varios recursos: '+that.resource );
+        // cogumelo.log('Facendo un sendGetStatus de varios recursos: '+that.resource );
         geozzy.rExtLikeController.sendGetStatus( that.resource );
       }
     }
@@ -105,10 +105,10 @@ geozzy.rExtLikeController = geozzy.rExtLikeController || {
             that.setStatusClient( that.resource, $jsonData.status );
           }
           else {
-            // console.log( 'JSON status non NUMERO. Type: '+ typeof $jsonData.status );
-            // console.log( $jsonData.status );
+            // cogumelo.log( 'JSON status non NUMERO. Type: '+ typeof $jsonData.status );
+            // cogumelo.log( $jsonData.status );
             $.each( $jsonData.status, function( resId, resStatus ) {
-              // console.log( 'resId: ' + resId + ' resStatus: ', resStatus );
+              // cogumelo.log( 'resId: ' + resId + ' resStatus: ', resStatus );
               that.setStatusClient( resId, resStatus );
             });
           }
@@ -122,7 +122,7 @@ geozzy.rExtLikeController = geozzy.rExtLikeController || {
     this.setStatus( resource, newStatus );
   },
   setStatusClient: function setStatusClient( resource, status ) {
-    // console.log( 'setStatusClient: ' + typeof status.value );
+    // cogumelo.log( 'setStatusClient: ' + typeof status.value );
     var that = this;
 
     var likeValue = null;
@@ -180,7 +180,7 @@ geozzy.rExtLikeController = geozzy.rExtLikeController || {
       data: formData, cache: false, contentType: false, processData: false,
       success: function getLikesUrlSuccess( $jsonData, $textStatus, $jqXHR ) {
         if( $jsonData.result === 'ok' ) {
-          // console.log( $jsonData.status );
+          // cogumelo.log( $jsonData.status );
           window.location = window.location.protocol+'//'+window.location.host+$jsonData.status;
         }
       }

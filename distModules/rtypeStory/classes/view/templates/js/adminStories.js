@@ -2,7 +2,7 @@ var geozzy = geozzy || {};
 
 /*
 $(document).ready( function(){
-alert(0)
+alert(0);
   if( typeof geozzy.adminStoryComponents !== 'undefined' && typeof geozzy.storiesInstance === 'undefined' ) {
     geozzy.storiesInstance = {};
     geozzy.storiesInstance.listStoryView = new geozzy.adminStoryComponents.ListStoryView();
@@ -21,7 +21,7 @@ geozzy.story = function() {
 
   that.listStories = function( ){
     that.listStoryView = ;
-  }
+  };
 
-}
+};
 */

@@ -24,7 +24,7 @@ geozzy.travelPlannerComponents.TravelPlannerPrintDayView = Backbone.View.extend(
   render: function() {
     var that = this;
     $('body').append( that.modalTemplate({ 'modalId': 'printDayTpModal', 'modalTitle': __('Print Day') }) );
-    that.el = '#printDayTpModal'
+    that.el = '#printDayTpModal';
     that.$el = $(that.el);
 
     that.printContent();
@@ -68,7 +68,7 @@ geozzy.travelPlannerComponents.TravelPlannerPrintDayView = Backbone.View.extend(
     var data = {
       day : parseInt(that.paramDay)+1,
       route: that.parentTp.travelPlannerMapPlanView.directionsServiceRequest[that.paramDay]
-    }
+    };
 
     if(resourcesToList.length > 0 ){
       data.resources = resourcesToList.toJSON();
@@ -123,7 +123,7 @@ geozzy.travelPlannerComponents.TravelPlannerPrintDayView = Backbone.View.extend(
   data.stringTotalResourceTimes = stringTotalResourceTimes;
   data.stringRouteMode = stringRouteMode;
 
-  console.log(data);
+  cogumelo.log(data);
 
 
     that.printDayTpModalTemplate = _.template( $('#printDayTpModalTemplate').html() );

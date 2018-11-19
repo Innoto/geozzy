@@ -10,7 +10,7 @@ $( document ).ready(function() {
 
   }
   else {
-    console.log('Routes: resource id or MAP not found');
+    cogumelo.log('Routes: resource id or MAP not found');
   }
 
 });
@@ -33,12 +33,12 @@ function setRouteOnResourceMapInstance() {
 
   geozzy.rExtMapInstance.resourceMarker.setMap(null);
 
-  routesCollection.url = '/api/routes/id/' + geozzy.rExtRoutesOptions.resourceId
+  routesCollection.url = '/api/routes/id/' + geozzy.rExtRoutesOptions.resourceId;
 
 
 
 
-    console.log( geozzy.rExtMapInstance.resourceMap);
+    cogumelo.log( geozzy.rExtMapInstance.resourceMap);
     routesCollection.fetch({
       success: function( res ) {
         var route = new geozzy.rextRoutes.routeView({
