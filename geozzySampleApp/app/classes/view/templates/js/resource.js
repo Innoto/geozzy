@@ -1,12 +1,43 @@
 var geozzy = geozzy || {};
 geozzy.app = geozzy.app || {};
 
-$(document).ready(function(){
-  $(document).on('click','.navbar-collapse.in',function(e) {
-    $(this).collapse('hide');
-  });
-  gzzAppPrivacidad();
-});
+$( document ).ready( function() {
+  $( document ).on( 'click', '.navbar-collapse.in', function( e ) {
+    $( this ).collapse( 'hide' );
+  } );
+  commonResource.gzzAppPrivacidad();
+  commonResource.fixVhChromeMobile();
+} );
+
+var commonResource = {
+  fixVhChromeMobile: function() {
+    var that = this;
+    var userAgent = navigator.userAgent.toLowerCase();
+    var isAndroidChrome = /chrome/.test(userAgent) && /android/.test(userAgent);
+    var isIOSChrome = /crios/.test(userAgent);
+
+    if (isAndroidChrome || isIOSChrome) {
+      $( '.fixVhChromeMobile' ).innerHeight( $(this).innerHeight() );
+    }
+  },
+
+  gzzAppPrivacidad: function() {
+    var that = this;
+    if( geozzy.userSessionInstance ) {
+      geozzy.userSessionInstance.getPrivacidad = function(success){
+        geozzy.app.getPrivacidad(success);
+      };
+    }
+
+    $('.gzzAppPrivacidad').on('click', function(e){
+      geozzy.app.getPrivacidad( function(data){
+        if(data){
+          geozzy.generateModal(data.modal);
+        }
+      });
+    });
+  }
+};
 
 geozzy.app.getPrivacidad = function getPrivacidad( privacidadSuccess ){
   $.ajax({
@@ -27,24 +58,6 @@ geozzy.app.getPrivacidad = function getPrivacidad( privacidadSuccess ){
     }
   });
 };
-
-
-function gzzAppPrivacidad() {
-  if( geozzy.userSessionInstance ) {
-    geozzy.userSessionInstance.getPrivacidad = function(success){
-      geozzy.app.getPrivacidad(success);
-    };
-  }
-
-  $('.gzzAppPrivacidad').on('click', function(e){
-    geozzy.app.getPrivacidad( function(data){
-      if(data){
-        geozzy.generateModal(data.modal);
-      }
-    });
-  });
-}
-
 
 $.fn.gzzCounter = function( options ){
   var that = this;
@@ -67,14 +80,3 @@ $.fn.gzzCounter = function( options ){
   };
   that.countAndPrint();
 };
-
-
-function fixVhChromeMobile() {
-  var userAgent = navigator.userAgent.toLowerCase();
-  var isAndroidChrome = /chrome/.test(userAgent) && /android/.test(userAgent);
-  var isIOSChrome = /crios/.test(userAgent);
-
-  if (isAndroidChrome || isIOSChrome) {
-    $('.fixVhChromeMobile').innerHeight( $(this).innerHeight() );
-  }
-}
