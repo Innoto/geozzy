@@ -46,7 +46,7 @@
 
 
 //
-// Google keys DEVELOPMENT: *.geozzy.com 
+// Google keys DEVELOPMENT: *.geozzy.com
 // Estas son para pruebas. Las del proyecto se definen en setup-500.project.php
 //
 // $conf->setSetupValue( 'google:maps:key', 'A..................................Q' );
@@ -68,6 +68,7 @@ $conf->setSetupValue( 'logs:type', 'file' ); // file, syslog, disable
 $conf->setSetupValue( 'logs:error', true ); // Display errors on screen. If you use devel module, you might disable it
 // $conf->setSetupValue( 'logs:rawSql', true ); // Log RAW all SQL ¡WARNING! Private information could be sent to the log
 $conf->setSetupValue( 'logs:disableLabels', ['AccessibilityMode', 'ACI', 'cache'] ); // Disable logs ...
+$conf->setSetupValue( 'logs:consoleJs', true ); // Disable/enable: (js) console.log -> cogumelo.log
 
 
 //

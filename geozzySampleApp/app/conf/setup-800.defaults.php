@@ -45,6 +45,7 @@ $conf->createSetupValue( 'logs:path', $appBasePath.'/log' ); // log files direct
 $conf->createSetupValue( 'logs:debug', true ); // Set Debug mode to log debug messages on log
 $conf->createSetupValue( 'logs:rawSql', false ); // Log RAW all SQL ¡WARNING! application passwords will dump into log files
 $conf->createSetupValue( 'logs:error', false ); // Display errors on screen. If you use devel module, you might disable it
+$conf->createSetupValue( 'logs:consoleJs', false ); // Disable/enable: (js) console.log -> cogumelo.log
 
 
 
