@@ -1,11 +1,13 @@
-$(document).ready(function(){
-  bindResourceForm();
-});
+$( document ).ready( function() {
+  rextStoryAdminJs.bindResourceForm();
+} );
 
-function bindResourceForm(){
-  alert('1');
-  $('select.cgmMForm-field-rExtStory_steps').multiList({
-    itemActions : [],
-    placeholder: __('Select options')
-  });
-}
+var rextStoryAdminJs = {
+  bindResourceForm: function() {
+    var that = this;
+    $('select.cgmMForm-field-rExtStory_steps').multiList( {
+      itemActions : [],
+      placeholder: __('Select options')
+    } );
+  }
+};

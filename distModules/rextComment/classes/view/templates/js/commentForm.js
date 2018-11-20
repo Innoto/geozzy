@@ -1,6 +1,6 @@
 $(document).ready(function(){
   if(commentTermID && suggestTermID){
-    initCtype([ {id: commentTermID ,show: ["rate"]}, {id: suggestTermID, show: ["suggestType"]} ]);
+    commentForm.initCtype([ {id: commentTermID ,show: ["rate"]}, {id: suggestTermID, show: ["suggestType"]} ]);
   }
 
   $("input.inputRating").rating({
@@ -25,31 +25,38 @@ $(document).ready(function(){
 
 });
 
-function initCtype( param ){
-  hideFields(param);
-  showFields(searchCtypeData(param, $('input.cgmMForm-field-type[name=type]:checked').val()));
-  $('input.cgmMForm-field-type').change(function(){
-    hideFields(param);
-    showFields(searchCtypeData(param, $('input.cgmMForm-field-type[name=type]:checked').val()));
-  });
-}
+var commentForm = {
+  initCtype: function( param ) {
+    var that = this;
+    that.hideFields(param);
+    that.showFields(that.searchCtypeData( param, $('input.cgmMForm-field-type[name=type]:checked').val() ) );
+    $('input.cgmMForm-field-type').change( function() {
+      that.hideFields(param);
+      that.showFields(that.searchCtypeData( param, $('input.cgmMForm-field-type[name=type]:checked').val() ) );
+    } );
+  },
 
-function searchCtypeData( param , id ){
-  return $.grep(param, function(e){
-    return e.id == id;
-  })[0];
-}
+  searchCtypeData: function( param , id ) {
+    var that = this;
+    return $.grep( param, function( e ){
+      return e.id == id;
+    } )[0];
+  },
 
-function hideFields( param ){
-  cogumelo.log(param);
-  $.each(param, function(index, item) {
-    $.each(item.show, function(i, e) {
-      $('.cgmMForm-wrap.cgmMForm-field-'+e).hide();
-    });
-  });
-}
-function showFields(param){
-  $.each(param.show, function(index, item) {
-    $('.cgmMForm-wrap.cgmMForm-field-'+item).show();
-  });
-}
+  hideFields: function( param ) {
+    var that = this;
+    cogumelo.log(param);
+    $.each(param, function( index, item ) {
+      $.each(item.show, function( i, e ) {
+        $('.cgmMForm-wrap.cgmMForm-field-'+e).hide();
+      } );
+    } );
+  },
+
+  showFields: function( param ) {
+    var that = this;
+    $.each(param.show, function( index, item ) {
+      $('.cgmMForm-wrap.cgmMForm-field-'+item).show();
+    } );
+  }
+};
