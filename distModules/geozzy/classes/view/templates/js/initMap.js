@@ -1,4 +1,4 @@
-console.log('Cargamos initMap.js');
+cogumelo.log('Cargamos initMap.js');
 
 $(document).ready( function() {
   initializeMaps(  );

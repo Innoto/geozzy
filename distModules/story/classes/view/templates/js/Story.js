@@ -128,7 +128,7 @@ geozzy.story = function( opts ) {
       that.displays.plugins.push( displayObj );
     }
     else {
-      console.log('Geozzy story ERROR: Display type key not found');
+      cogumelo.log('Geozzy story ERROR: Display type key not found');
     }
 
   };

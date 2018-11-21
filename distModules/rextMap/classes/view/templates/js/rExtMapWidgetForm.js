@@ -32,7 +32,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
         var zoomInit = 3;
 
         if(typeof cogumelo.publicConf.admin.adminMap === 'undefined') {
-          console.log('cogumelo.publicConf.admin.adminMap is not defined in conf')
+          cogumelo.log('cogumelo.publicConf.admin.adminMap is not defined in conf')
         }
         else {
           var latInit = Number(cogumelo.publicConf.admin.adminMap.defaultLat);
@@ -126,7 +126,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
   that.fillInAddress = function() {
     // Get the place details from the autocomplete object.
     var place = that.autocomplete.getPlace();
-    console.log(place.geometry.location.lat(), place.geometry.location.lng() );
+    cogumelo.log(place.geometry.location.lat(), place.geometry.location.lng() );
 
     var pos = new google.maps.LatLng(
       place.geometry.location.lat(),

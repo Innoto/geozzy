@@ -21,7 +21,8 @@ var AdminView = Backbone.View.extend({
       var menuCategoriesData = app.categories.toJSON();
       if(menuCategoriesData.length === 0){
         $('#side-menu .categories').hide();
-      }else{
+      }
+      else{
         menuCategoriesDiv.html( menuCategoryElement( { categories: menuCategoriesData } ) );
       }
     }
@@ -38,7 +39,8 @@ var AdminView = Backbone.View.extend({
       var menuStarredData = app.starred.toJSON();
       if(menuCategoriesData.length === 0){
         $('#side-menu .starred').hide();
-      }else{
+      }
+      else{
         menuStarredContainer.prepend( menuStarred( { starred:  menuStarredData  } ) );
       }
     }
@@ -80,7 +82,8 @@ var AdminView = Backbone.View.extend({
         that.chartsLoaded = $('#page-wrapper').html();
       });
 
-    }else{
+    }
+    else{
       $('#page-wrapper').html(that.chartsLoaded);
     }
   },
@@ -89,7 +92,8 @@ var AdminView = Backbone.View.extend({
 
     if( size && size === "md" ){
       var modalTemplate = _.template( $('#modalMdTemplate').html() );
-    }else{
+    }
+    else{
       var modalTemplate = _.template( $('#modalLgTemplate').html() );
     }
 

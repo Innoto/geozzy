@@ -29,7 +29,7 @@ var ResourcesStarredCollection = Backbone.Collection.extend({
     _(mA).each( function(m2) {
 
       if( m2.get('deleted') == 1 ){
-        //console.log(m2.toJSON())
+        //cogumelo.log(m2.toJSON());
         m2.destroy();
       }
       else {

@@ -63,13 +63,13 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
   },
 
   metricTemplate: function() {
-    console.log('biMetrics: template Metric must be declared in "metricTemplate" Method');
+    cogumelo.log('biMetrics: template Metric must be declared in "metricTemplate" Method');
 
     return false;
   },
 
   getMetricsURL: function() {
-    console.log('biMetrics: method "getMetricsURL" not defined');
+    cogumelo.log('biMetrics: method "getMetricsURL" not defined');
   },
 
   addMetric: function( data ) {
@@ -107,7 +107,7 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
         });
       }
       else {
-        console.log( 'BI METRICS:', that.packageTemplate());
+        cogumelo.log( 'BI METRICS:', that.packageTemplate());
       }
 
       that.reset();
@@ -123,7 +123,7 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
       clearInterval(  that.syncInterval );
     }
     else {
-      console.log('biMetrics: that.syncInterval already defined');
+      cogumelo.log('biMetrics: that.syncInterval already defined');
     }
 
   },
@@ -143,7 +143,7 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
       }, that.options.syncPeriod);
     }
     else {
-      console.log('biMetrics: that.syncInterval already defined');
+      cogumelo.log('biMetrics: that.syncInterval already defined');
     }
 
 

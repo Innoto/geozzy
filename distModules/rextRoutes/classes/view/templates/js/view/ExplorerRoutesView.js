@@ -45,7 +45,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
 
       if( typeof( geozzy.explorerComponents.routesCollectionInstance.get( params.id ) ) != 'undefined' ){
-        console.log('PINTA')
+        cogumelo.log('PINTA')
         geozzy.explorerComponents.routesCollectionInstance.get( params.id ).get('routeViewInstance').showRoute();
 
       }
@@ -92,7 +92,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
 
               //geozzy.explorerComponents.routesCollectionInstance.set( res.toJSON() );
-              //console.log(geozzy.explorerComponents.routesCollectionInstance.get(params.id) );
+              //cogumelo.log(geozzy.explorerComponents.routesCollectionInstance.get(params.id) );
 
         });
       }

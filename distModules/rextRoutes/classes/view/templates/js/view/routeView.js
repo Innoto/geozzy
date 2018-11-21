@@ -86,7 +86,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
     routeMap.id = route.get('id');
 
-    //console.log(route.get('trackPoints')[route.get('trackPoints').length - 1])
+    //cogumelo.log(route.get('trackPoints')[route.get('trackPoints').length - 1])
 
 
     if( that.options.markerStart ) {
@@ -263,7 +263,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         },
 
         highlightCallback: function(e, x, pts, row) {
-          //console.log(route.get('trackPoints')[x][2]);
+          //cogumelo.log(route.get('trackPoints')[x][2]);
           $($(".resourceRouteGraphLegend")[0]).html( route.get('trackPoints')[x][2] +' m');
           $($(".resourceRouteGraphLegend")[0]).show();
         },

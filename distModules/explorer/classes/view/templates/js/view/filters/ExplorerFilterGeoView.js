@@ -54,7 +54,7 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
       var terms =  model.get('terms');
       if( typeof terms != "undefined") {
         var diff = $( terms ).not( this.selectedTerms );
-        //console.log(diff.length, terms.length)
+        //cogumelo.log(diff.length, terms.length);
         ret = (diff.length != terms.length );
       }
     }
@@ -152,7 +152,7 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
   },
 
   reset: function() {
-    //console.log('gEO')
+    //cogumelo.log('gEO');
     /*
     var that = this;
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');

@@ -31,7 +31,7 @@ geozzy.explorerComponents.filters.filterSwitchView = geozzy.filterView.extend({
       defaultValue: null,
       keyToFilter: false,
       onChange: function() {}
-    }
+    };
 
 
 

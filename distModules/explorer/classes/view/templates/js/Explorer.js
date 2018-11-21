@@ -95,7 +95,7 @@ geozzy.explorer = function( opts ) {
     // render filters
     if( that.filters.length > 0 ) {
       $.each( that.filters, function(i,e){
-        //console.log('FILTRO',e)
+        //cogumelo.log('FILTRO',e)
         e.render();
       });
     }
@@ -229,7 +229,7 @@ geozzy.explorer = function( opts ) {
       that.displays.plugins.push( displayObj );
     }
     else {
-      console.log('Geozzy explorer ERROR: Display type key not found');
+      cogumelo.log('Geozzy explorer ERROR: Display type key not found');
     }
   }
 

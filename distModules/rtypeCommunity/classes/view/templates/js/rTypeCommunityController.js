@@ -6,7 +6,7 @@ var geozzy = geozzy || {};
 geozzy.rTypeCommunityController = geozzy.rTypeCommunityController || {
 
   ajaxError: function ajaxError( $jqXHR, textStatus, errorThrown ) {
-    console.log( 'geozzy rTypeCommunityController ajaxError', $jqXHR, textStatus, errorThrown );
+    cogumelo.log( 'geozzy rTypeCommunityController ajaxError', $jqXHR, textStatus, errorThrown );
     if( $jqXHR.status === 403 ) {
       location.reload();
     }
@@ -36,7 +36,7 @@ geozzy.rTypeCommunityController = geozzy.rTypeCommunityController || {
           geozzy.rTypeCommunityController.updateCommunityInfo( jsonData.status );
         }
         else {
-          console.log( 'geozzy rTypeCommunityController success error', jsonData, textStatus, $jqXHR );
+          cogumelo.log( 'geozzy rTypeCommunityController success error', jsonData, textStatus, $jqXHR );
           location.reload();
         }
       },
@@ -147,7 +147,7 @@ geozzy.rTypeCommunityController = geozzy.rTypeCommunityController || {
           geozzy.rTypeCommunityController.updateFollowInfo( jsonData.status );
         }
         else {
-          console.log( 'geozzy rTypeCommunityController success error', jsonData, textStatus, $jqXHR );
+          cogumelo.log( 'geozzy rTypeCommunityController success error', jsonData, textStatus, $jqXHR );
           location.reload();
         }
       },
@@ -201,7 +201,7 @@ geozzy.rTypeCommunityController = geozzy.rTypeCommunityController || {
           geozzy.rTypeCommunityController.updateModal( jsonData.view );
         }
         else {
-          console.log( 'geozzy rTypeCommunityController success error', jsonData, textStatus, $jqXHR );
+          cogumelo.log( 'geozzy rTypeCommunityController success error', jsonData, textStatus, $jqXHR );
           location.reload();
         }
       },

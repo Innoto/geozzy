@@ -46,12 +46,15 @@ var elfNode, elfInsrance, dialogName,
         var url = file.url;
         var dialog = CKEDITOR.dialog.getCurrent();
         if (dialogName == 'image') {
-          var urlObj = 'txtUrl'
-        } else if (dialogName == 'flash') {
-          var urlObj = 'src'
-        } else if (dialogName == 'files' || dialogName == 'link') {
-          var urlObj = 'url'
-        } else {
+          var urlObj = 'txtUrl';
+        }
+        else if (dialogName == 'flash') {
+          var urlObj = 'src';
+        }
+        else if (dialogName == 'files' || dialogName == 'link') {
+          var urlObj = 'url';
+        }
+        else {
           return;
         }
         dialog.setValueOf(dialog._.currentTabId, urlObj, url);
@@ -99,7 +102,8 @@ adminFileUploader.getShowImgSize = function(url, callback) {
       if (w > h) {
         h = h * (s / w);
         w = s;
-      } else {
+      }
+      else {
         w = w * (s / h);
         h = s;
       }
@@ -115,7 +119,7 @@ adminFileUploader.getShowImgSize = function(url, callback) {
 adminFileUploader.iniciaUploader = function() {
 
     CKEDITOR.on('dialogDefinition', function (event) {
-      //console.log(event);
+      //cogumelo.log(event);
       if(event.data.name === 'image') {
         adminFileUploader.dialogDefinition(event);
       }
@@ -128,12 +132,12 @@ adminFileUploader.iniciaUploader = function() {
     });
 
 
-}
+};
 
 function hideElFinderToolbars() {
   $('.ui-corner-bottom.elfinder-statusbar, .elfinder-navbar').css('display', 'none');
   $('.ui-dialog .ui-dialog-content').css('padding',0);
-};
+}
 
 
 adminFileUploader.instanceReady = function(e) {
@@ -158,16 +162,18 @@ adminFileUploader.instanceReady = function(e) {
     if (!res.added || res.added.length < 1) {
       data.message = 'Can not upload.';
       e.cancel();
-    } else {
+    }
+    else {
       var file	 = res.added[0];
       if (file.url && file.url != '1') {
         data.url = file.url;
-      } else {
+      }
+      else {
         data.url = elfInsrance.options.url + ((elfInsrance.options.url.indexOf('?') === -1)? '?' : '&') + 'cmd=file&target=' + file.hash;
       }
     }
   });
-}
+};
 
 
 adminFileUploader.dialogDefinition = function(event) {
@@ -196,7 +202,7 @@ adminFileUploader.dialogDefinition = function(event) {
           }
           elfNode.dialog('open');
         }
-      }
+      };
     }
 
     if (uploadButton !== null && submitButton !== null) {
@@ -204,7 +210,7 @@ adminFileUploader.dialogDefinition = function(event) {
       submitButton.hidden = false;
       uploadButton.onChange = function() {
         inputId = this.domId;
-      }
+      };
       submitButton.onClick = function(e) {
         dialogName = CKEDITOR.dialog.getCurrent()._.name;
         var target = elfDirHashMap[dialogName]? elfDirHashMap[dialogName] : elfDirHashMap['fb'],
@@ -236,12 +242,15 @@ adminFileUploader.dialogDefinition = function(event) {
               var url = data.added[0].url;
               var dialog = CKEDITOR.dialog.getCurrent();
               if (dialogName == 'image') {
-                var urlObj = 'txtUrl'
-              } else if (dialogName == 'flash') {
-                var urlObj = 'src'
-              } else if (dialogName == 'files' || dialogName == 'link') {
-                var urlObj = 'url'
-              } else {
+                var urlObj = 'txtUrl';
+              }
+              else if (dialogName == 'flash') {
+                var urlObj = 'src';
+              }
+              else if (dialogName == 'files' || dialogName == 'link') {
+                var urlObj = 'url';
+              }
+              else {
                 return;
               }
               dialog.selectPage('info');
@@ -254,7 +263,8 @@ adminFileUploader.dialogDefinition = function(event) {
                   dialog.preview.$.style.height = size.height+'px';
                 });
               }
-            } else {
+            }
+            else {
               error(data.error || data.warning || 'errUploadFile');
             }
           })
@@ -266,9 +276,9 @@ adminFileUploader.dialogDefinition = function(event) {
           });
         }
         return false;
-      }
+      };
     }
 
   }
 
-}
+};

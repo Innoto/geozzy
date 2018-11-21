@@ -30,7 +30,7 @@ geozzy.explorerComponents.filters.filterSearchView = geozzy.filterView.extend({
     var ret = true;
 
     if( that.searchStr != '' && that.serverResponse.length > 0 ) {
-      console.log(model.get('id'),that.serverResponse);
+      cogumelo.log(model.get('id'),that.serverResponse);
       if( $.inArray( model.get('id'), that.serverResponse ) != -1) {
         ret = true;
       }

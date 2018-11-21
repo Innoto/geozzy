@@ -133,8 +133,8 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
   updateVisibleStep: function() {
 
 
-    //console.log(mathjs)
-    //console.log( math.intersect( [0, 0], [10, 10], [10, 0], [0, 10]) );
+    //cogumelo.log(mathjs)
+    //cogumelo.log( math.intersect( [0, 0], [10, 10], [10, 0], [0, 10]) );
 
 
     var that = this;
@@ -153,7 +153,7 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
     if( that.currentDOMStep != maxVisibleKey ) {
       that.currentDOMStep = maxVisibleKey;
       that.parentStory.triggerEvent('stepChange', {id: that.stepsDOMEquivalences[maxVisibleKey] , domElement: that.stepsDOM[maxVisibleKey] });
-      //console.log('stepChange', {id: that.stepsDOMEquivalences[maxVisibleKey] , domElement: that.stepsDOM[maxVisibleKey] });
+      //cogumelo.log('stepChange', {id: that.stepsDOMEquivalences[maxVisibleKey] , domElement: that.stepsDOM[maxVisibleKey] });
     }
 
 
@@ -202,7 +202,7 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
 
     if( domElement != false) {
       var top = parseInt( $(domElement).css('top'), 10);
-      //console.log('scroll a', top)
+      //cogumelo.log('scroll a', top)
       window.scrollTo( 0 , top );
     }
 

@@ -22,7 +22,7 @@ geozzy.rextReccommended.reccommendedView = Backbone.View.extend({
       that.render();
     }
     else {
-      console.log('rExtReccommender: geozzy.biMetricInstances not defined')
+      cogumelo.log('rExtReccommender: geozzy.biMetricInstances not defined')
     }
 
   },

@@ -2,7 +2,7 @@
 $(document).ready( function() {
 
   //geozzy.rExtMapInstance.onReadyEvent( function() {alert(2)});
-  //console.log(geozzy.rExtMapInstance.resourceMap)
+  //cogumelo.log(geozzy.rExtMapInstance.resourceMap)
   if( geozzy.rExtMapInstance.resourceMap ) {
     if( cogumelo.publicConf.mod_detectMobile_isMobile && !cogumelo.publicConf.mod_detectMobile_isTablet ) {
       $( '.rextMapDirectionsButton' ).on( 'click', function(event) {

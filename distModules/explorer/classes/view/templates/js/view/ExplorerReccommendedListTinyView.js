@@ -68,7 +68,7 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
 
         $.each(res, function(i,e){
           res_ids.push(e.resource_id)
-          //console.log('recomendado por ITG:', e.resource_id)
+          //cogumelo.log('recomendado por ITG:', e.resource_id)
             //that.debuger.log('Recurso recomendado:'+e.resource_id , e.resource_id);
 
         });
@@ -83,7 +83,7 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
             //  shortDescription:elm.get('shortDescription')
             //}));
 
-            console.log('Recomendado ITG existe: ',elm);
+            cogumelo.log('Recomendado ITG existe: ',elm);
             that.debuger.log('Recurso recomendado:'+elm.id , elm.id);
 
           });

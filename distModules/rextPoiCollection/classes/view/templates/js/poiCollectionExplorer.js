@@ -1,7 +1,7 @@
 
   $(document).ready(function(){
 
-    //console.log('LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO' , geozzy.collection.CategorytermCollection );
+    //cogumelo.log('LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO' , geozzy.collection.CategorytermCollection );
 
 
     var categorias = {};
@@ -46,7 +46,7 @@
 
     ex.bindEvent('mapResourceClick', function(o) {
       //alert(o.id)
-      //console.log(ex.resourceMinimalList.get(o.id).toJSON())
+      //cogumelo.log(ex.resourceMinimalList.get(o.id).toJSON())
 
 
       if( ex.resourceMinimalList.get(o.id).get('isNormalResource') == 1 ) {
@@ -54,7 +54,7 @@
         win.focus();
       }
 
-      //console.log(o.id, ex.resourceMinimalList.get(o.id) )
+      //cogumelo.log(o.id, ex.resourceMinimalList.get(o.id) )
     });
 
 

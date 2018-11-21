@@ -41,7 +41,7 @@ function searchCtypeData( param , id ){
 }
 
 function hideFields( param ){
-  console.log(param);
+  cogumelo.log(param);
   $.each(param, function(index, item) {
     $.each(item.show, function(i, e) {
       $('.cgmMForm-wrap.cgmMForm-field-'+e).hide();

@@ -50,7 +50,7 @@ geozzy.rExtMapDirectionsController = {
 
 
   prepareRoutes: function prepareRoutes( directionsData ) {
-    // console.log( 'prepareRoutes', directionsData );
+    // cogumelo.log( 'prepareRoutes', directionsData );
     var that = this;
 
     if( directionsData ) {
@@ -105,7 +105,7 @@ geozzy.rExtMapDirectionsController = {
   },
 
   prepareContainers: function prepareContainers() {
-    // console.log( 'prepareContainers' );
+    // cogumelo.log( 'prepareContainers' );
     var that = this;
 
     if( $('.jsMapDirectionsList').length === 0 ) {
@@ -135,11 +135,11 @@ geozzy.rExtMapDirectionsController = {
         // $resMapWrapper.after( geozzy.rExtMapDirectionsData.html.jsMapDirectionsInMap );
 
         var hList = $jsMapDirectionsInMap.height();
-        // console.log('hList',hList);
+        // cogumelo.log('hList',hList);
         $('.jsMapDirInMapBar').each( function() {
           hList -= $( this ).outerHeight(true);
         });
-        // console.log('hList',hList);
+        // cogumelo.log('hList',hList);
         $('.jsMapDirectionsList').css( 'height', hList+'px' );
       }
     }
@@ -171,7 +171,7 @@ geozzy.rExtMapDirectionsController = {
   },
 
   manipulateContainers: function manipulateContainers() {
-    // console.log( 'manipulateContainers' );
+    // cogumelo.log( 'manipulateContainers' );
   },
 
   destroyContainers: function destroyContainers() {
@@ -194,7 +194,7 @@ geozzy.rExtMapDirectionsController = {
 
 
   resetMap: function resetMap() {
-    // console.log( 'resetMap:' );
+    // cogumelo.log( 'resetMap:' );
     var that = this;
 
     this.resourceMap.setZoom( this.resourceMapInfo.zoom );
@@ -207,12 +207,12 @@ geozzy.rExtMapDirectionsController = {
   },
 
   resetForm: function resetForm() {
-    // console.log( 'resetForm:' );
+    // cogumelo.log( 'resetForm:' );
     this.jqDirInput.val('');
   },
 
   resetFromTo: function resetFromTo() {
-    // console.log( 'resetFromTo:' );
+    // cogumelo.log( 'resetFromTo:' );
     this.routeFrom = {
       title: '',
       dir: false,
@@ -239,7 +239,7 @@ geozzy.rExtMapDirectionsController = {
   },
 
   setMarkerFrom: function setMarkerFrom( latLng ) {
-    // console.log( 'setMarkerFrom:' );
+    // cogumelo.log( 'setMarkerFrom:' );
     if( this.markerFrom ) {
       if( latLng === false || latLng === null ) {
         this.markerFrom.setMap( null );
@@ -269,7 +269,7 @@ geozzy.rExtMapDirectionsController = {
   },
 
   loadRoute: function loadRoute( from, fromTitle, routeMode ) {
-    // console.log( 'loadRoute:', this.resourceMap );
+    // cogumelo.log( 'loadRoute:', this.resourceMap );
 
     var that = this;
 
@@ -289,7 +289,7 @@ geozzy.rExtMapDirectionsController = {
       this.resetMap();
 
       this.traceRoute( 0, this.routeFrom.latlng, this.routeTo.latlng, this.transport , false, function() {
-        // console.log( 'traceRoute thenFunction:', that.resourceLastroute );
+        // cogumelo.log( 'traceRoute thenFunction:', that.resourceLastroute );
 
         travelInfo = false;
         that.clearRoute();
@@ -350,14 +350,14 @@ geozzy.rExtMapDirectionsController = {
     if( directionsData ) {
       that.resourceMapInfo = directionsData;
     }
-    // console.log( 'redirectGMaps:', that.resourceMapInfo );
+    // cogumelo.log( 'redirectGMaps:', that.resourceMapInfo );
 
     window.location.href = 'https://www.google.es/maps/dir//'+that.resourceMapInfo.lat+','+that.resourceMapInfo.lng;
   },
 
   scrollTopWrapper: function scrollTopWrapper( $elem ) {
     var scrollTo = $elem.position().top;
-    // console.log( 'scrollTopWrapper: ', $elem, scrollTo );
+    // cogumelo.log( 'scrollTopWrapper: ', $elem, scrollTo );
 
     $( 'html, body' ).animate( {
       scrollTop: $elem.position().top - geozzy.rExtMapDirectionsData.scrollTopMargin
@@ -365,7 +365,7 @@ geozzy.rExtMapDirectionsController = {
   },
 
   clearRoute: function clearRoute() {
-    // console.log( 'clearRoute:' );
+    // cogumelo.log( 'clearRoute:' );
     // borra ruta del mapa
     if( this.directionsDisplay ) {
       this.directionsDisplay.setDirections( {routes: []} );
@@ -382,7 +382,7 @@ geozzy.rExtMapDirectionsController = {
   },
 
   setRoutePanelInfo: function setRoutePanelInfo( travelInfo ) {
-    // console.log( 'setRoutePanelInfo:', typeof( travelInfo ) );
+    // cogumelo.log( 'setRoutePanelInfo:', typeof( travelInfo ) );
     var htmlMsg = '';
     //var modeNum = 0;
 
@@ -415,7 +415,7 @@ geozzy.rExtMapDirectionsController = {
 
   // traceRoute(0, from, this.to.latlng, this.transport , false, function(){
   traceRoute: function traceRoute( id, from, to, mode, cache, thenFunction ) {
-    // console.log( 'traceRoute:', id, from, to, mode, cache, 'thenFunction' );
+    // cogumelo.log( 'traceRoute:', id, from, to, mode, cache, 'thenFunction' );
     var that = this;
 
     var modeString = 'DRIVING';
@@ -447,7 +447,7 @@ geozzy.rExtMapDirectionsController = {
         if( status === google.maps.DirectionsStatus.OK ) {
           // console.debug( '<p>'+ route.travelMode +' Metros: '+result.routes[0].legs[0].distance.value+' Segundos: '+result.routes[0].legs[0].duration.value+'</p>' );
           // directionsDisplay.setDirections(result);
-          // console.log( 'DirectionsStatus.OK', result, status );
+          // cogumelo.log( 'DirectionsStatus.OK', result, status );
 
           that.resourceLastroute = result;
           if( cache ) {
@@ -456,7 +456,7 @@ geozzy.rExtMapDirectionsController = {
           thenFunction();
         }
         else {
-          // console.log( 'DirectionsStatus.FAIL', result, status );
+          // cogumelo.log( 'DirectionsStatus.FAIL', result, status );
           that.resourceLastroute = false;
           if( cache ) {
             that.resourceRoutes[ mode ][ id ] = false;
@@ -471,7 +471,7 @@ geozzy.rExtMapDirectionsController = {
   },
 
   tramoExtra: function tramoExtra( solicitada, resultado, reves ) {
-    // console.log( 'tramoExtra:', solicitada, resultado, reves );
+    // cogumelo.log( 'tramoExtra:', solicitada, resultado, reves );
     var tramo = false;
     var latLng = solicitada.split(',');
     var diferencia = Math.abs(latLng['0'] - resultado.lat()) + Math.abs(latLng['1'] - resultado.lng());

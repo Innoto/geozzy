@@ -6,7 +6,7 @@ var geozzy = geozzy || {};
 geozzy.favouritesView = geozzy.favouritesView || {
 
   setRemoveIcon: function setRemoveIcon() {
-    console.log( 'setRemoveIcon' );
+    cogumelo.log( 'setRemoveIcon' );
 
     // Element to send delete order
     $('.favouritesElement .favsImage').append( $( '<i>' ).addClass( 'favsDelete fa fa-trash' )
@@ -20,7 +20,7 @@ geozzy.favouritesView = geozzy.favouritesView || {
     );
   }, // setRemoveIcon
   eventRemove: function eventRemove( event ) {
-    console.log( 'eventRemove' );
+    cogumelo.log( 'eventRemove' );
     event.stopPropagation();
 
     $wrap = $( event.target ).closest( '.favouritesElement' );
@@ -38,7 +38,7 @@ geozzy.favouritesView = geozzy.favouritesView || {
 
 $( document ).ready(function() {
 
-  console.log( 'CARGA JS FAVOURITES' );
+  cogumelo.log( 'CARGA JS FAVOURITES' );
 
   geozzy.favouritesView.setRemoveIcon();
 });

@@ -37,7 +37,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         valueMax: 100,
         type: 'single',  // (single|double)
         prettify: function(num) {return num;}
-      }
+      };
 
 
 
@@ -115,7 +115,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           keyboard: true,
           prettify: function(num) { return that.options.prettify(num); },
           onStart: function (data) {
-              //console.log("onStart");
+              //cogumelo.log("onStart");
           },
           onChange: function (data) {
 
@@ -143,7 +143,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
           },
           onUpdate: function (data) {
-              //console.log("onUpdate");
+              //cogumelo.log("onUpdate");
           }
       });
       that.slider = $( ".explorerFilterElement ."+that.options.containerClass+" input" ).data("ionRangeSlider");

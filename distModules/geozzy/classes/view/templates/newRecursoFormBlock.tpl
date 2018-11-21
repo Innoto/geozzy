@@ -41,7 +41,7 @@ $( document ).ready( function() {
   var langForm = false;
 
   function switchFormLang( lang ) {
-    console.log( 'switchFormLang: '+lang );
+    cogumelo.log( 'switchFormLang: '+lang );
     langForm = lang;
     $( '.cgmMForm-groupElem > div' ).hide();
     $( '.cgmMForm-groupElem > div[class$="_'+lang+'"]' ).show();

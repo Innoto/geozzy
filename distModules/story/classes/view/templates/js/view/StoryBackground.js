@@ -48,7 +48,7 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     var that = this;
 
     that.parentStory.bindEvent('stepChange', function(obj){
-      //console.log(obj)
+      //cogumelo.log(obj)
       that.setStep(obj);
     });
 

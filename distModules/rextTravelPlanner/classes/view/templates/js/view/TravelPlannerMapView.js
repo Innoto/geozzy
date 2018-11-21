@@ -82,7 +82,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
     that.parentTp.resources.each( function(e,i) {
 
       var markerLoc = e.get('loc');
-      //console.log( e.get('loc') );
+      //cogumelo.log( e.get('loc') );
       if( markerLoc!= null && typeof markerLoc.lat != 'undefined' && typeof markerLoc.lng != 'undefined' ) {
 
         var marker = new google.maps.Marker({
@@ -152,18 +152,18 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
 
 
         if( jQuery.inArray( e.get('id'), selectedList )  != -1 ) {
-          //console.log('seleccionado'+e.get('id'), selectedList)
+          //cogumelo.log('seleccionado'+e.get('id'), selectedList)
           currentMarker.setIcon( that.getICon(e.get('id'), true) );
           currentMarker.setMap(that.map);
         }
         else
         if( jQuery.inArray( e.get('id'), visibleList )  != -1 ) {  // in list
-          //console.log('visible'+e.get('id'), visibleList)
+          //cogumelo.log('visible'+e.get('id'), visibleList)
           currentMarker.setIcon( that.getICon(e.get('id'), false) );
           currentMarker.setMap(that.map);
         }
         else{ // not in list
-          //console.log('oculto'+e.get('id'))
+          //cogumelo.log('oculto'+e.get('id'))
           currentMarker.setMap(null);
         }
       }
@@ -175,7 +175,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
     var that = this;
     var retObj = false;
     var iconUrl = false;
-    //console.log(that.parentTp.resources.get(resourceId).get('categoryIds') );
+    //cogumelo.log(that.parentTp.resources.get(resourceId).get('categoryIds') );
     //currentCategory
 
     if(selected) {
@@ -187,14 +187,14 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
 
     $.each(that.parentTp.categories, function(i,e) {
       e.each( function(e2,i2) {
-        //console.log( e2.id );
+        //cogumelo.log( e2.id );
 
         if(
           jQuery.inArray( e2.id , that.parentTp.resources.get(resourceId).get('categoryIds')  )  != -1 &&
           e2.get('iconAKey') &&
           e2.get('icon')
         ) {
-          //console.log(resourceId,iconProfile, cogumelo.publicConf.mediaHost+'cgmlImg/'+e2.get('icon')+'-a'+e2.get('iconAKey')+'/'+iconProfile+'/marker.png')
+          //cogumelo.log(resourceId,iconProfile, cogumelo.publicConf.mediaHost+'cgmlImg/'+e2.get('icon')+'-a'+e2.get('iconAKey')+'/'+iconProfile+'/marker.png')
           iconUrl = cogumelo.publicConf.mediaHost+'cgmlImg/'+e2.get('icon')+'-a'+e2.get('iconAKey')+'/'+iconProfile+'/marker.png';
 
           return;
@@ -254,7 +254,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
       selectedMarker.setOptions({
         title: 'selected'
       });
-      console.log(selectedMarker)
+      cogumelo.log(selectedMarker)
     }*/
   },
   markerBounceEnd: function(id) {

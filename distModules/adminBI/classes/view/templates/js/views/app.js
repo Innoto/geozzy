@@ -47,7 +47,7 @@ define([
         //* Listening to some events of change in the view
         //* Requesting Metrics and resetting the Organizations and Filters for the first time
         initialize: function () {
-            console.log("BI: initialize");
+            cogumelo.log("BI: initialize");
             this.setElement($(this.el));      // jQuery template                          
             this.delegateEvents();
 
@@ -340,7 +340,7 @@ define([
             if (!_.isUndefined(this.chart)) {
                 this.chart.render();
             } else {
-                console.log("Chart " + chartType + " not found");
+                cogumelo.log("Chart " + chartType + " not found");
             }
         },
         // Requests the metrics to show. If the fetch success, it will get the Terms and then renders them. If not, only resets Metrics and Charts.

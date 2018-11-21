@@ -37,7 +37,7 @@ geozzy.biMetricsComponents.biRecommender = Backbone.Collection.extend({
       function() {
         var resourceRecommenderURL = geozzy.biMetricsInstances.configuration.conf.recommends.resourceURL;
 
-        //console.log(resourceRecommenderURL);
+        //cogumelo.log(resourceRecommenderURL);
         $.ajax({
           url:resourceRecommenderURL,
           method: 'GET',
@@ -57,7 +57,7 @@ geozzy.biMetricsComponents.biRecommender = Backbone.Collection.extend({
       function() {
         var resourceRecommenderURL = geozzy.biMetricsInstances.configuration.conf.recommends.explorerURL;
 
-//console.log({ explorerID: explorerID, userID: that.getUserIdentifier(), bounds: bounds });
+//cogumelo.log({ explorerID: explorerID, userID: that.getUserIdentifier(), bounds: bounds });
 
         if(filters.length == 0) {
           filters = false;

@@ -81,7 +81,7 @@ define([
                     });
                 }
             });
-            console.log(that.explorers);
+            cogumelo.log(that.explorers);
         },
         // Renders the Map Layer. Specifies the min and max zoom values
         renderMap: function () {

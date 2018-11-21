@@ -132,7 +132,7 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
     };
 
 
-    //console.log('ENGADE', that.accessedCurrent );
+    //cogumelo.log('ENGADE', that.accessedCurrent );
 
     window.onbeforeunload = function() {
       if(that.accessedCurrent != false){
@@ -168,7 +168,7 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
       });
 
 
-      //console.log(that.resourcePendingMetrics)
+      //cogumelo.log(that.resourcePendingMetrics)
 
       that.accessedCurrent = false;
     }

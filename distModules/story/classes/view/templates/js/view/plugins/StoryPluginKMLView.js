@@ -38,7 +38,7 @@ geozzy.storyComponents.StoryPluginKMLView = Backbone.View.extend({
 
     if( KMLID) {
       var urlKML = cogumelo.publicConf.site_host+'/cgmlformfilewd/'+KMLID+'/'+KMLID+'.kml';
-      console.log(urlKML);
+      cogumelo.log(urlKML);
       if( typeof that.kmlLayers[ step.id ] === 'undefined'  ) {
         that.kmlLayers[ step.id ] = new google.maps.KmlLayer({
           url: urlKML,

@@ -132,7 +132,7 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
       that.panorama.lookAt(  parseInt(e.get('panoramaPitch')), parseInt(e.get('panoramaYaw'))  )
       that.shakeHotspot(id);
 
-      //console.log(e.get('panoramaPitch'), e.get('panoramaYaw') )
+      //cogumelo.log(e.get('panoramaPitch'), e.get('panoramaYaw') )
 
     }
   },
@@ -144,7 +144,7 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
 
 
     if( e.get('panoramaPitch') &&  e.get('panoramaYaw') ) {
-      console.log(e.get('hotSpotDiv'));
+      cogumelo.log(e.get('hotSpotDiv'));
       $(e.get('hotSpotDiv')).addClass('panorama-custom-hotspot-selected')
     }
   },
@@ -156,7 +156,7 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
 
 
     if( e.get('panoramaPitch') &&  e.get('panoramaYaw') ) {
-      console.log(e.get('hotSpotDiv'));
+      cogumelo.log(e.get('hotSpotDiv'));
       $(e.get('hotSpotDiv')).removeClass('panorama-custom-hotspot-selected')
     }
   }

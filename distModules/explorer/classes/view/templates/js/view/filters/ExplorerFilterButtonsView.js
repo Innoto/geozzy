@@ -41,7 +41,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
       if( typeof terms != "undefined") {
         var diff = $( terms ).not( that.selectedTerms );
 
-        //console.log(diff.length, terms.length)
+        //cogumelo.log(diff.length, terms.length);
         ret = (diff.length != terms.length );
       }
 
@@ -88,7 +88,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
       var termLi = false;
 
       if( typeof $(el.target).attr('data-term-id') !== "undefined"){
-        termLi = $(el.target)
+        termLi = $(el.target);
         termid = termLi.attr('data-term-id');
 
       }

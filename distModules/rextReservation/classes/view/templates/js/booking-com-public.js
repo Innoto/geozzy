@@ -5,7 +5,7 @@ var geozzy = geozzy || {};
 
 geozzy.rExtReservationController = geozzy.rExtReservationController || {
   init: function init() {
-    //console.log('init rExtReservationController');
+    //cogumelo.log('init rExtReservationController');
 
     geozzy.rExtReservationInfo.values = {
       checkin : moment().add( 1, 'days' ),
@@ -87,7 +87,7 @@ geozzy.rExtReservationController = geozzy.rExtReservationController || {
         geozzy.rExtReservationInfo.values.checkin = start;
         geozzy.rExtReservationInfo.values.checkout = end;
         geozzy.rExtReservationController.updateLink();
-        console.log( 'From: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
+        cogumelo.log( 'From: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
       }
     );
   } // initCalendar

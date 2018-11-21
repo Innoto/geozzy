@@ -40,7 +40,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     });
     resParam.rtype = arrayRtypeKeys.toString();
   }else{
-    console.log('FALTA CONF');
+    cogumelo.log('FALTA CONF');
   }
 
   that.resources = new geozzy.collection.ResourceCollection( resParam );

@@ -1,5 +1,5 @@
 var geozzy = geozzy || {};
-if (! geozzy.explorerComponents) { geozzy.explorerComponents= {} }
+if (! geozzy.explorerComponents) { geozzy.explorerComponents= {}; }
 
 geozzy.explorerComponents.mainRouter = Backbone.Router.extend({
   parentExplorer: false,

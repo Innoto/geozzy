@@ -44,7 +44,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
 
     that.tpl = _.template(that.options.tpl);
     that.tplElement = _.template(that.options.tplElement);
-    that.tplEmpty = _.template(that.options.tplEmpty);    
+    that.tplEmpty = _.template(that.options.tplEmpty);
   },
 
 
@@ -77,7 +77,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
         var mapVisible = model.get('mapVisible'); // DESC
         var peso = 10000 - model.get('weight'); //ASC
         var dist = parseInt( Math.round( (1000000 * 100) - (model.get('distanceToCenterKm') * 100) ) ); // DESC
-        var ret = mapVisible.toString() + peso.toString() + dist.toString()
+        var ret = mapVisible.toString() + peso.toString() + dist.toString();
         return parseInt(ret);
       }, 'desc');
 
@@ -109,19 +109,19 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
     $.each(  this.visibleResources, function(i,e){
 
       //that.options.categories
-      //console.log( that.parentExplorer.resourceMinimalList.toJSON/ )
+      //cogumelo.log( that.parentExplorer.resourceMinimalList.toJSON/ )
 
       var elementCategory = false;
       if( that.options.categories ) {
         that.options.categories.each( function(e2){
-          //console.log(e.get('id'))
+          //cogumelo.log(e.get('id'))
           //console.debug(markerData.get('terms'))
 
           if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( e ).get('terms')  ) > -1 ) {
 
             elementCategory = e2;
             if(e2) {
-              elementCategory = e2.toJSON()
+              elementCategory = e2.toJSON();
             }
             return false;
             /*
@@ -150,7 +150,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
         section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
       });
 
-      //console.log(element.title, element.mapVisible, element.weight, element.distanceToCenterKm)
+      //cogumelo.log(element.title, element.mapVisible, element.weight, element.distanceToCenterKm)
 
 
       contentHtml += that.tplElement(element);
@@ -158,7 +158,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
     });
 
 
-    that.$el.html( that.tpl({ content: contentHtml }) )
+    that.$el.html( that.tpl({ content: contentHtml }) );
 
     that.parentExplorer.triggerEvent('onRenderListComplete',{});
 
@@ -188,7 +188,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
     }
     else
     if( that.options.endPage == false &&  pageNum > that.options.totalPages  ){
-      pageNum = that.options.endPage
+      pageNum = that.options.endPage;
     }
 
     that.currentPage = pageNum;

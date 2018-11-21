@@ -192,7 +192,7 @@ class TestRouteView extends View
 
               });
 
-              //console.log(recorrido)
+              //cogumelo.log(recorrido)
 
 
               var recorridoPolylineBK2 = new google.maps.Polyline({

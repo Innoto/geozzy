@@ -123,7 +123,7 @@ geozzy.travelPlannerComponents.TravelPlannerPrintDayView = Backbone.View.extend(
   data.stringTotalResourceTimes = stringTotalResourceTimes;
   data.stringRouteMode = stringRouteMode;
 
-  console.log(data);
+  cogumelo.log(data);
 
 
     that.printDayTpModalTemplate = _.template( $('#printDayTpModalTemplate').html() );

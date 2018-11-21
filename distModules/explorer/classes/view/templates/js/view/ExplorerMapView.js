@@ -168,7 +168,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         distanceToInnerMargin: false
       };*/
 
-      //console.log( 'distanceToCenterKm', that.getDistanceFromCenter( m.get('lat'), m.get('lng') ) );
+      //cogumelo.log( 'distanceToCenterKm', that.getDistanceFromCenter( m.get('lat'), m.get('lng') ) );
       //that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapOuterZone', markerPosition.outerZone );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapVisible', markerPosition.inMap  );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'distanceToCenterKm', that.getDistanceFromCenter( m.get('lat'), m.get('lng') ) );
@@ -178,7 +178,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       //m.set( 'mapVisible', that.coordsInMap( m.get('lat'), m.get('lng') ) );
     });
 
-    //console.log(visibleResources.length)
+    //cogumelo.log(visibleResources.length)
 
     return visibleResources;
   },
@@ -239,7 +239,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     if( !that.markersCreated ) {
       that.parentExplorer.resourceMinimalList.each( function(e) {
 
-//console.log(that.chooseMarker(e))
+//cogumelo.log(that.chooseMarker(e))
         var marker = e.mapMarker = new google.maps.Marker({
                   position: new google.maps.LatLng( e.get('lat'), e.get('lng') ),
                   map: that.map,
@@ -639,15 +639,15 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     var mapDistanceToInnerMargin = that.parentExplorer.resourceMinimalList.get( id ).get('mapDistanceToInnerMargin');
     var scale = Math.pow(2, that.map.getZoom());
 
-    //console.log(that.options.mapArrowImage);
+    //cogumelo.log(that.options.mapArrowImage);
 
-    //console.log(mapVisible)
+    //cogumelo.log(mapVisible)
     if( mapVisible == 1 || mapVisible == 2  || forcePan == true ) {
       if( that.lastCenter == false ){
         that.lastCenter = that.map.getCenter();
       }
 
-      //console.log(mapDistanceToInnerMargin, mapOuterZone);
+      //cogumelo.log(mapDistanceToInnerMargin, mapOuterZone);
 
       // PANTO
       var toMove = that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() ;
@@ -716,14 +716,14 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     }
 
 
-    //console.log('ANGULO',resource.get('arrowAngle') );
+    //cogumelo.log('ANGULO',resource.get('arrowAngle') );
 
     var icon = that.arrowIconRotated(resource);
 
     setTimeout( function(){
 
 
-      //console.log('ANGULO',resource.get('arrowAngle') );
+      //cogumelo.log('ANGULO',resource.get('arrowAngle') );
       icon = that.arrowIconRotated(resource);
 
 

@@ -51,7 +51,7 @@ geozzy.storyComponents.StoryListAccView = Backbone.View.extend({
     that.$el.html('');
     that.parentStory.storySteps.each( function( step , i ) {
       var d = step.toJSON();
-      console.log(d)
+      cogumelo.log(d)
       that.$el.append( that.tplElement( d ) );
       that.stepsDOMEquivalences.push( d.id );
     });
