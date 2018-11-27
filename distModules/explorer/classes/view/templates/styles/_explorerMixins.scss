@@ -260,7 +260,7 @@
   position: inherit;
   top: 0;
   .explorerLayout{
-    min-height: calc(~"101vh - "$hheight );
+    min-height: calc(101vh - #{$hheight} );
     position: relative;
   }
   .explorerContainer{
@@ -276,14 +276,14 @@
     }
     &.explorer-container-map{
       width: $expl-w;
-      height: calc(~"100vh - "$hheight );
+      height: calc(100vh - #{$hheight} );
       position: fixed;
       top: $hheight;
       z-index: 201;
     }
     &.explorer-container-filter{
       width: $expl-w;
-      height: calc(~"100vh - "$hheight );
+      height: calc(100vh - #{$hheight} );
       overflow: auto;
       position: fixed !important;
       background-color: #fff;
@@ -305,7 +305,7 @@
           left: 0;
           z-index:2;
           width:100%;
-          background-color:$buttonColor;
+          background-color: $buttonColor;
           color:white;
           padding:4px;
           font-weight: bold;
