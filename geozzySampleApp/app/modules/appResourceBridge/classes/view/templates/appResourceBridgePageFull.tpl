@@ -34,8 +34,8 @@
   <meta property="og:description" content="{$res.ext.rextSocialNetwork.data['textFb']|escape:'html'}">
 {/if}
 {if isset($res.data.image.id)}
-  <meta property="og:image" content="{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}-a{$res.data.image.aKey}/big/{$res.data.image.name}">
-  <link rel="image_src" href="{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}-a{$res.data.image.aKey}/fast/{$res.data.image.name}">
+  <meta property="og:image" content="{$cogumelo.publicConf.site_host}{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}-a{$res.data.image.aKey}/rrss/{$res.data.image.name|pathinfo:$smarty.const.PATHINFO_FILENAME}.jpg">
+  <link rel="image_src" href="{$cogumelo.publicConf.site_host}{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}-a{$res.data.image.aKey}/rrss/{$res.data.image.name|pathinfo:$smarty.const.PATHINFO_FILENAME}.jpg">
 {/if}
 {/block}
 
