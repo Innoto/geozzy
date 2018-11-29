@@ -47,6 +47,9 @@ $conf->createSetupValue( 'mod:filedata:profile:wmdpi16', array( 'width' => 640, 
 $conf->createSetupValue( 'mod:filedata:profile:whdpi16', array( 'width' => 960, 'height' => 540, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
 $conf->createSetupValue( 'mod:filedata:profile:wxhdpi16', array( 'width' => 1280, 'height' => 720, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
 
+// $IMAGE_PROFILES (share redes sociales)
+$conf->createSetupValue( 'mod:filedata:profile:rrss', [ 'width' => 640, 'height' => 640, 'cut' => false, 'enlarge' => false, 'saveFormat' => 'JPEG', 'saveQuality' => 80 ] );
+
 $conf->createSetupValue( 'mod:filedata:profile:modFormTn', array( 'width' => 240, 'height' => 180, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 60 ) );
 
 $conf->createSetupValue( 'mod:filedata:profile:big', array( 'width' => 2000, 'height' => 2000, 'cut' => false, 'enlarge' => false, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
