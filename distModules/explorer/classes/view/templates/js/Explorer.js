@@ -28,7 +28,7 @@ geozzy.explorer = function( opts ) {
     debug: false,
     useUrlRouter: false
   };
-  
+
   $.extend(true, that.options, opts);
 
   that.explorerTouchDevice = $('html').hasClass('touch');
@@ -93,12 +93,7 @@ geozzy.explorer = function( opts ) {
     });
 
     // render filters
-    if( that.filters.length > 0 ) {
-      $.each( that.filters, function(i,e){
-        //console.log('FILTRO',e)
-        e.render();
-      });
-    }
+    that.renderFilters();
 
 
     that.resourceMinimalList.fetch(
@@ -352,7 +347,6 @@ geozzy.explorer = function( opts ) {
     });
   };
 
-  }
 
   that.renderPartialList = function(){
     if( that.options.debug ) {
@@ -378,8 +372,6 @@ geozzy.explorer = function( opts ) {
   };
 
 
-  }
-
 
   that.triggerEvent = function( eventName, parameters) {
     var that = this;
@@ -396,12 +388,10 @@ geozzy.explorer = function( opts ) {
 
   that.bindEvent = function( eventName, action ) {
     var that = this;
-
     that.explorerEvents.push( {
       name: eventName,
       action: action
     });
   };
-
 
 };
