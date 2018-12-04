@@ -128,12 +128,10 @@ geozzy.explorer = function( opts ) {
   that.renderFilters = function() {
     if( that.filters.length > 0 ) {
       $.each( that.filters, function(i,e){
-        //console.log('FILTRO',e)
         e.render();
       });
     }
   };
-
 
 
   //
