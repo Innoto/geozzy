@@ -27,8 +27,8 @@ geozzy.explorer = function( opts ) {
     cacheTimeIndex: 20,
     debug: false,
     useUrlRouter: false
-
   };
+  
   $.extend(true, that.options, opts);
 
   that.explorerTouchDevice = $('html').hasClass('touch');
@@ -95,7 +95,7 @@ geozzy.explorer = function( opts ) {
     // render filters
     if( that.filters.length > 0 ) {
       $.each( that.filters, function(i,e){
-        //cogumelo.log('FILTRO',e);
+        //console.log('FILTRO',e)
         e.render();
       });
     }
@@ -125,6 +125,20 @@ geozzy.explorer = function( opts ) {
     );
 
   };
+
+
+  //
+  // Render filters
+  //
+  that.renderFilters = function() {
+    if( that.filters.length > 0 ) {
+      $.each( that.filters, function(i,e){
+        //console.log('FILTRO',e)
+        e.render();
+      });
+    }
+  };
+
 
 
   //
@@ -284,9 +298,9 @@ geozzy.explorer = function( opts ) {
       that.timeDebugerExtended.log('Starting second data fetch at');
     }
 
+    var isFirstTime;
     if( that.resourcePartialList == false ) {
-      var isFirstTime = true;
-
+      isFirstTime = true;
       that.bindEvent('minimalLoadSuccess', function(){
         that.fetchPartialList(
           resourcesToLoad,
@@ -299,8 +313,7 @@ geozzy.explorer = function( opts ) {
 
     }
     else {
-      var isFirstTime = false;
-
+      isFirstTime = false;
       that.fetchPartialList(
         resourcesToLoad,
         function() {
@@ -310,7 +323,7 @@ geozzy.explorer = function( opts ) {
       );
     }
 
-  },
+  };
 
 
   that.fetchPartialList = function( resourcesToLoad, fetchSuccess ) {
@@ -337,9 +350,9 @@ geozzy.explorer = function( opts ) {
 
       }
     });
-
   };
 
+  }
 
   that.renderPartialList = function(){
     if( that.options.debug ) {
@@ -362,13 +375,13 @@ geozzy.explorer = function( opts ) {
     if( that.options.debug ) {
       that.timeDebugerExtended.log( '&nbsp;- Render lists' );
     }
-
-
   };
 
 
-  that.triggerEvent = function( eventName, parameters) {
+  }
 
+
+  that.triggerEvent = function( eventName, parameters) {
     var that = this;
 
     $.each( that.explorerEvents, function( i, event ){
