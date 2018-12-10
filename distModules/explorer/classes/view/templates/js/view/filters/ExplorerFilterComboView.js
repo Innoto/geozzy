@@ -67,7 +67,7 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
     that.$el.html( filterHtml );
 
 
-    that.$el.search( 'select').bind('change', function(el) {
+    that.$el.find( 'select').bind('change', function(el) {
       var val = $(el.target).val();
       if( val == '*' ) {
         that.selectedTerms = false;
@@ -114,7 +114,7 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
     //cogumelo.log('COMBO');
     var that = this;
 
-    $select = that.$el.search('select');
+    $select = that.$el.find('select');
 
     $select.val( "*" );
 

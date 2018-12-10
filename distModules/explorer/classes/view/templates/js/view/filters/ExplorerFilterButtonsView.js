@@ -64,8 +64,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
 
     that.$el.html( filterHtml );
 
-
-    that.$el.search(' ul li').bind('click', function(el) {
+    that.$el.find(' ul li').bind('click', function(el) {
       var termid = false;
       var termLi = false;
 
@@ -130,7 +129,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
 
     var that = this;
 
-    that.$el.search('ul li').removeClass('selected');
+    that.$el.find('ul li').removeClass('selected');
     that.selectedTerms = false;
   }
 

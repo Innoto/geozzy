@@ -95,7 +95,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     instanceSlider: function() {
       var that = this;
-      that.$el.search("input" ).ionRangeSlider({
+      that.$el.find("input" ).ionRangeSlider({
           type: that.options.type,
           min: that.options.valueMin,
           max: that.options.valueMax,
@@ -135,7 +135,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
               //cogumelo.log("onUpdate");
           }
       });
-      that.slider = that.$el.search("input" ).data("ionRangeSlider");
+      that.slider = that.$el.find("input" ).data("ionRangeSlider");
 
     },
 
