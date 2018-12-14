@@ -69,17 +69,19 @@ var rextEventJs = {
     $(modal+'.initDate').on( 'change.datetimepicker', function( e ) {
       if( e.date ) {
         e.date.tz(cogumelo.publicConf.date_timezone.project);
-        initDateTs = e.date.unix();
+        initDateTs = e.date.format();
       }
       else {
         initDateTs = false;
       }
+      // console.log(initDateTs);
+
       $(modal+'input.cgmMForm-field-rextEvent_initDate').val(initDateTs);
     } );
     $(modal+'.endDate').on( 'change.datetimepicker', function( e ) {
       if( e.date ) {
         e.date.tz(cogumelo.publicConf.date_timezone.project);
-        endDateTs = e.date.unix();
+        endDateTs = e.date.format();
       }
       else {
         endDateTs = false;

@@ -203,8 +203,9 @@ class RExtEventController extends RExtController implements RExtInterface {
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
-      if( is_numeric( $form->getFieldValue( 'rextEvent_initDate' ) ) ) {
-        $valuesArray[ 'initDate' ] = gmdate( "Y-m-d H:i:s", $form->getFieldValue( 'rextEvent_initDate' ) );
+      $initDate = date_create( $form->getFieldValue( 'rextEvent_initDate' ) );
+      if( !empty( $initDate ) && !empty( $form->getFieldValue( 'rextEvent_initDate' ) ) ) {
+        $valuesArray[ 'initDate' ] = date_format( $initDate, "Y-m-d H:i:s" );
       }
       else {
         if( strpos($valuesArray[ 'initDate' ],'-') ) {
@@ -214,8 +215,10 @@ class RExtEventController extends RExtController implements RExtInterface {
           $valuesArray[ 'initDate' ] = null;
         }
       }
-      if( is_numeric( $form->getFieldValue( 'rextEvent_endDate' ) ) ) {
-        $valuesArray[ 'endDate' ] = gmdate( "Y-m-d H:i:s", $form->getFieldValue( 'rextEvent_endDate' ) );
+
+      $endDate = date_create( $form->getFieldValue( 'rextEvent_endDate' ) );
+      if( !empty( $endDate ) && !empty( $form->getFieldValue( 'rextEvent_endDate' ) ) ) {
+        $valuesArray[ 'endDate' ] = date_format( $endDate, "Y-m-d H:i:s" );
       }
       else{
         if( strpos($valuesArray[ 'endDate' ],'-') ) {
