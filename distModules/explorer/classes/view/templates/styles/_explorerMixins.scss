@@ -77,7 +77,7 @@
     &.stick{
       &.explorer-container-map{
         position: fixed;
-        top: $hheight + $explFilter-h;
+        top: #{$hheight + $explFilter-h};
         z-index: 100;
       }
       &.explorer-container-filter{
@@ -154,7 +154,7 @@
       }
       &.explorer-container-filter{
         position: fixed !important;
-        top: $hheight + 30px !important;
+        top: calc(#{$hheight} + 30px) !important;
       }
 
       &.explorer-loading-flash,
