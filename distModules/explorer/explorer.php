@@ -51,34 +51,10 @@ class explorer extends Module {
       "includes" => array("dist/switchery.min.js", "dist/switchery.min.css")
     ),
     array(
-     "id" =>"ionrangeslider",
-     "params" => array("ion-rangeslider@2"),
-     "installer" => "yarn",
-     "includes" => array("js/ion.rangeSlider.min.js", "css/ion.rangeSlider.css")
-    ),
-    array(
      "id" =>"tiny_map_utilities",
      "params" => array("tiny_map_utilities"),
      "installer" => "yarn",
      "includes" => array("smart_infowindow/smart_infowindow.js", "smart_infowindow/vendor/jQueryRotate.js")
-    ),
-    array(
-     "id" =>"raphael",
-     "params" => array("raphael"),
-     "installer" => "yarn",
-     "includes" => array("raphael.min.js")
-    ),
-    // array(
-    //   'id' =>'jquery-mapael-2.1.0',
-    //   'params' => array( 'jquery-mapael-2.1.0' ),
-    //   'installer' => 'manual',
-    //   'includes' => array( "js/jquery.mapael.min.js")
-    // )
-    array(
-      'id' =>'jquery-mapael-2.2.0',
-      'params' => array( 'jquery-mapael-2.2.0' ),
-      'installer' => 'manual',
-      'includes' => array( "js/jquery.mapael.min.js")
     )
   );
 
@@ -92,10 +68,7 @@ class explorer extends Module {
     'js/view/ExplorerFilterView.js',
     'js/view/filters/ExplorerFilterButtonsView.js',
     'js/view/filters/ExplorerFilterComboView.js',
-    'js/view/filters/ExplorerFilterMinimapView.js',
     'js/view/filters/ExplorerFilterGeoView.js',
-    'js/view/filters/ExplorerFilterSwitchView.js',
-    'js/view/filters/ExplorerFilterSliderView.js',
     'js/view/filters/ExplorerFilterSwitchView.js',
     'js/view/filters/ExplorerFilterResetView.js',
     'js/view/ExplorerActiveListView.js',
