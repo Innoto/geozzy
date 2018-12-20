@@ -199,7 +199,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
 
   hideBoxMinimap: function() {
     var that = this;
-    that.$el.find( '.boxMinimap' ).removeClass( 'filterMinimapBlock' ).addClass( 'filterMinimapNone' );
+    //that.$el.find( '.boxMinimap' ).removeClass( 'filterMinimapBlock' ).addClass( 'filterMinimapNone' );
   },
 
   evReset: function(ev) {
