@@ -9,9 +9,9 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
   currentIdName: false,
 
   events: {
-    'mouseenter' : 'mouseenterShowBoxMinimap',
-    'mouseleave' : 'mouseleaveHideBoxMinimap',
-    'click' : 'showBoxMinimap',
+    //'mouseenter' : 'mouseenterShowBoxMinimap',
+    //'mouseleave' : 'mouseleaveHideBoxMinimap',
+    //'click' : 'showBoxMinimap',
     'click .filterResetMinimap' : 'evReset'
   },
 
@@ -21,7 +21,6 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     var options = {
       title: false,
       elSummaryContainer:false,
-      iconHtml: '<i class="fas fa-2x fa-globe-americas" aria-hidden="true"></i>',
       resetButtonText: __('All'),
       template: geozzy.explorerComponents.filterMinimapViewTemplate,
       data: false,
@@ -62,7 +61,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
   render: function() {
     var that = this;
 
-
+/*
     $(window).on('click', function(ev){
       if(
         !(
@@ -76,9 +75,9 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
         that.hideBoxMinimap();
       }
 
-    });
+    });*/
 
-    var filterHtml = that.template( { iconHtml : that.options.iconHtml, resetButtonText : that.options.resetButtonText } );
+    var filterHtml = that.template( { resetButtonText : that.options.resetButtonText } );
     that.$el.html( filterHtml );
 
     if( that.minimapExist == false ) {
@@ -199,7 +198,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
 
   hideBoxMinimap: function() {
     var that = this;
-    //that.$el.find( '.boxMinimap' ).removeClass( 'filterMinimapBlock' ).addClass( 'filterMinimapNone' );
+    that.$el.find( '.boxMinimap' ).removeClass( 'filterMinimapBlock' ).addClass( 'filterMinimapNone' );
   },
 
   evReset: function(ev) {

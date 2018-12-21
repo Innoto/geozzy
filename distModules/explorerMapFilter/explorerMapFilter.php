@@ -22,7 +22,8 @@ class explorerMapFilter extends Module {
   );
 
   public $includesCommon = array(
-    'js/ExplorerFilterMinimapView.js'
+    'js/ExplorerFilterMinimapView.js',
+    'js/Templates.js'    
   );
 
 
