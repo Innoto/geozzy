@@ -9,8 +9,8 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
   currentIdName: false,
 
   events: {
-    //'mouseenter' : 'mouseenterShowBoxMinimap',
-    //'mouseleave' : 'mouseleaveHideBoxMinimap',
+    // 'mouseenter' : 'mouseenterShowBoxMinimap',
+    // 'mouseleave' : 'mouseleaveHideBoxMinimap',
     //'click' : 'showBoxMinimap',
     'click .filterResetMinimap' : 'evReset'
   },
@@ -95,7 +95,8 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
         defaultArea : {
           attrs: {
             fill: that.options.styles.background_fill,
-            stroke: that.options.styles.stroke
+            stroke: that.options.styles.stroke,
+            cursor: 'pointer'
           },
           attrsHover: {
             fill: that.options.styles.selected_fill,
@@ -126,10 +127,10 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
               //  Ocultamos el mapa tras el click
               that.hideBoxMinimap();
             },
-            mouseover: function( e, idName, mapElem, textElem, elemOptions ) {
+            mouseenter: function( e, idName, mapElem, textElem, elemOptions ) {
               that.$el.find( '.selectedText' ).html( that.getNameByIdName( idName ) );
             },
-            mouseout: function( e, idName, mapElem, textElem, elemOptions ) {
+            mouseleave: function( e, idName, mapElem, textElem, elemOptions ) {
               if( that.currentIdName !== false ) {
                 that.$el.find( '.selectedText' ).html( that.getNameByIdName( that.currentIdName ) );
               }
