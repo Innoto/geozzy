@@ -2,7 +2,7 @@ var geozzy = geozzy || {};
 geozzy.explorerComponents = geozzy.explorerComponents || {}; //if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
 
-geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
+geozzy.explorerComponents.listTinyView = Backbone.View.extend({
 
   tpl: false,
   tplElement: false,
