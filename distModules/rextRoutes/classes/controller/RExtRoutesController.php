@@ -375,7 +375,6 @@ class RExtRoutesController extends RExtController implements RExtInterface {
        $resData = $this->defResCtrl->getResourceData();
        $rExtViewBlockInfo['data']['resourceId'] = $resData['id'];
 
-       $rExtViewBlockInfo['template']['full'] = new Template();
        $hours = floor($rExtViewBlockInfo['data']['durationMinutes'] / 60);
        $minutes = ($rExtViewBlockInfo['data']['durationMinutes'] % 60);
        $rExtViewBlockInfo['data']['durationHours'] = date('G', mktime(0,$rExtViewBlockInfo['data']['durationMinutes']));
@@ -385,12 +384,19 @@ class RExtRoutesController extends RExtController implements RExtInterface {
        global $rextRoutes_difficulty;
        $rExtViewBlockInfo['data']['difficultyGlobalText'] = __($rextRoutes_difficulty[$rExtViewBlockInfo['data']['difficultyGlobal']]);
 
+       $rExtViewBlockInfo['template']['full'] = new Template();
        $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-
        $rExtViewBlockInfo['template']['full']->addClientScript('js/rextRoutes.js', 'rextRoutes');
-
        $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextRoutes' );
 
+       $rExtViewBlockInfo['template']['partialBtnDownload'] = new Template();
+       $rExtViewBlockInfo['template']['partialBtnDownload']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+       $rExtViewBlockInfo['template']['partialBtnDownload']->setTpl( 'rExtBtnDownloadViewBlock.tpl', 'rextRoutes' );
+
+       $rExtViewBlockInfo['template']['partialBasicInfo'] = new Template();
+       $rExtViewBlockInfo['template']['partialBasicInfo']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+       $rExtViewBlockInfo['template']['partialBasicInfo']->addClientScript('js/rextRoutes.js', 'rextRoutes');
+       $rExtViewBlockInfo['template']['partialBasicInfo']->setTpl( 'rExtBasicInfoViewBlock.tpl', 'rextRoutes' );
      }
 
      return $rExtViewBlockInfo;

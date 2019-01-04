@@ -17,7 +17,7 @@
           </div>
           <div class="routeFile">
             <a class="btn" href="{$cogumelo.publicConf.mediaHost}cgmlformfilewd/{$rExt.data.routeFile.id}/{$rExt.data.routeFile.originalName}">
-              {t}Download route{/t} <i class="fas fa-download" aria-hidden="true"></i>
+              {t}Download route{/t} <i class="fas fa-download"></i>
             </a>
           </div>
         </div>
@@ -47,7 +47,7 @@
               </div>
               <div class="col">
                 <div class="icon">
-                  <img class="img-fluid" alt="{t}circular{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/circular.png"></img>
+                  <img class="img-fluid" alt="{t}circular{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/circular.png">
                 </div>
               </div>
             {else}
@@ -58,7 +58,7 @@
               </div>
               <div class="col">
                 <div class="icon">
-                  <img class="img-fluid" alt="{t}lineal{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/lineal.png"></img>
+                  <img class="img-fluid" alt="{t}lineal{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/lineal.png">
                 </div>
               </div>
             {/if}
@@ -73,14 +73,14 @@
 
             <div class="col-6 col-md-4 col-lg-4">
               <div class="slope-up icon">
-                <img class="img-fluid" alt="{t}slope up{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/ascendente.png"></img>
+                <img class="img-fluid" alt="{t}slope up{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/ascendente.png">
                 <div class="text">{$rExt.data.slopeUp} m.</div>
               </div>
             </div>
 
             <div class="col-6 col-md-4 col-lg-4">
               <div class="slope-down icon">
-                <img class="img-fluid" alt="{t}slope down{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/descendente.png"></img>
+                <img class="img-fluid" alt="{t}slope down{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/descendente.png">
                 <div class="text">{$rExt.data.slopeDown} m.</div>
               </div>
             </div>
