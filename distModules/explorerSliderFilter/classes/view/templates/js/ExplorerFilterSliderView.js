@@ -9,7 +9,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     template: _.template(
       " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-      "<div class='<%= filterClass %>'>"+
+      "<div class='slider'>"+
         "<input type='text'> "+
       "</div>"
     ),
@@ -17,7 +17,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     templateSummary: _.template(
       " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-      "<span class='<%= filterClass %>-Summary'><%= value %>€</span>"
+      "<span class='slider-Summary'><%= value %>€</span>"
     ),
 
 
