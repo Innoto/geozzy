@@ -78,8 +78,11 @@ geozzy.explorerComponents.listTinyView = Backbone.View.extend({
 
       // ordenado múltiple
       visibleResources.setSort( function(model) {
+        var peso = 10000;
         var mapVisible = model.get('mapVisible'); // DESC
-        var peso = 10000 - model.get('weight'); //ASC
+        if(typeof model.get('weight') != 'undefined') {
+          peso = 10000 - parseInt(model.get('weight')) ; //ASC
+        }
         var dist = parseInt( Math.round( (1000000 * 100) - (model.get('distanceToCenterKm') * 100) ) ); // DESC
         var ret = mapVisible.toString() + peso.toString() + dist.toString();
         return parseInt(ret);
