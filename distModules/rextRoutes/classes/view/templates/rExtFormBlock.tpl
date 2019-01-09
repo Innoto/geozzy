@@ -1,43 +1,45 @@
-
 <div class="rExtRoutes formBlock">
-
-  <div class="left-column col-lg-6">
-    <div class="circularSelector">
-      {$rExt.dataForm.formFieldsArray.rExtRoutes_circular}
+  <div class="row">
+    <div class="col-12">
+      <div class="circularSelector">
+        {$rExt.dataForm.formFieldsArray.rExtRoutes_circular}
+      </div>
     </div>
-    {$rExt.dataForm.formFieldsArray.rExtRoutes_durationMinutes}
-    {$rExt.dataForm.formFieldsArray.rExtRoutes_travelDistance}
-    {$rExt.dataForm.formFieldsArray.rExtRoutes_slopeUp}
-    {$rExt.dataForm.formFieldsArray.rExtRoutes_slopeDown}
-  </div>
 
-  <div class="right-column col-lg-6">
-    {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyEnvironment}
-    {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyItinerary}
-    {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyDisplacement}
-    {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyEffort}
-    {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyGlobal}
-  </div>
+    <div class="col-12 col-lg-6">
+      {$rExt.dataForm.formFieldsArray.rExtRoutes_durationMinutes}
+      {$rExt.dataForm.formFieldsArray.rExtRoutes_travelDistance}
+      {$rExt.dataForm.formFieldsArray.rExtRoutes_slopeUp}
+      {$rExt.dataForm.formFieldsArray.rExtRoutes_slopeDown}
+    </div>
 
-  <div class="col-lg-12">
-    {foreach $cogumelo.publicConf.langAvailableIds as $lang}
-      {$rExt.dataForm.formFieldsArray["rExtRoutes_routeStart_$lang"]}
-    {/foreach}
+    <div class="col-12 col-lg-6">
+      {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyEnvironment}
+      {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyItinerary}
+      {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyDisplacement}
+      {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyEffort}
+      {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyGlobal}
+    </div>
 
-    {foreach $cogumelo.publicConf.langAvailableIds as $lang}
-      {$rExt.dataForm.formFieldsArray["rExtRoutes_routeEnd_$lang"]}
-    {/foreach}
+    <div class="col-12">
+      {foreach $cogumelo.publicConf.langAvailableIds as $lang}
+        {$rExt.dataForm.formFieldsArray["rExtRoutes_routeStart_$lang"]}
+      {/foreach}
 
-    {$rExt.dataForm.formFieldsArray.rExtRoutes_routeFile}
-  </div>
+      {foreach $cogumelo.publicConf.langAvailableIds as $lang}
+        {$rExt.dataForm.formFieldsArray["rExtRoutes_routeEnd_$lang"]}
+      {/foreach}
 
-  <div style="display:none;">
-    {$rExt.dataForm.formFieldsArray.rExtRoutes_locStartLat}
-    {$rExt.dataForm.formFieldsArray.rExtRoutes_locStartLon}
+      {$rExt.dataForm.formFieldsArray.rExtRoutes_routeFile}
+    </div>
 
-    {$rExt.dataForm.formFieldsArray.rExtRoutes_locEndLat}
-    {$rExt.dataForm.formFieldsArray.rExtRoutes_locEndLon}
+    <div style="display:none;">
+      {$rExt.dataForm.formFieldsArray.rExtRoutes_locStartLat}
+      {$rExt.dataForm.formFieldsArray.rExtRoutes_locStartLon}
+
+      {$rExt.dataForm.formFieldsArray.rExtRoutes_locEndLat}
+      {$rExt.dataForm.formFieldsArray.rExtRoutes_locEndLon}
+    </div>
   </div>
 </div>
-
-{$client_includes}
+  {$client_includes}
