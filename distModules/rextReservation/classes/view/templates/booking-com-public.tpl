@@ -40,7 +40,7 @@
           </select>
         </div>
       </div>
-      <div class="col-lg-4 mid align-self-end">
+      <div class="col-lg-4 mid">
         <a id="reserve_link_{$rExt.data.idRelate}" href="" class="btn btn-lg" type="button" target="_blank">{t}Reserve{/t}</a>
       </div>
     </div>
