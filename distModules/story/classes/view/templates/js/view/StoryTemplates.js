@@ -10,7 +10,7 @@ geozzy.storyComponents.listElementTemplate = ''+
           '<%if( dialogPosition == 0 ){%>'+
             '<div><img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/storyCentered/<%-img%>.jpg" /></div>' +
           '<%}else {%>'+
-            '<div><img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/elementExplorerImg/<%-img%>.jpg" /></div>' +
+            '<div><img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/fast_cut/<%-img%>.jpg" /></div>' +
           '<%}%>'+
         '<%}%>'+
       '<%}%>'+
