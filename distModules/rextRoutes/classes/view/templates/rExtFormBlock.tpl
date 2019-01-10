@@ -14,11 +14,21 @@
     </div>
 
     <div class="col-12 col-lg-6">
-      {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyEnvironment}
-      {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyItinerary}
-      {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyDisplacement}
-      {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyEffort}
-      {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyGlobal}
+      {if isset($rExt.dataForm.formFieldsArray.rExtRoutes_difficultyEnvironment)}
+        {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyEnvironment}
+      {/if}
+      {if isset($rExt.dataForm.formFieldsArray.rExtRoutes_difficultyItinerary)}
+        {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyItinerary}
+      {/if}
+      {if isset($rExt.dataForm.formFieldsArray.rExtRoutes_difficultyDisplacement)}
+        {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyDisplacement}
+      {/if}
+      {if isset($rExt.dataForm.formFieldsArray.rExtRoutes_difficultyEffort)}
+        {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyEffort}
+      {/if}
+      {if isset($rExt.dataForm.formFieldsArray.rExtRoutes_difficultyGlobal)}
+        {$rExt.dataForm.formFieldsArray.rExtRoutes_difficultyGlobal}
+      {/if}
     </div>
 
     <div class="col-12">
