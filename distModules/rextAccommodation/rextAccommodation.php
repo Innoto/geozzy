@@ -146,7 +146,7 @@ class rextAccommodation extends Module {
       'nestable' => 0,
       'sortable' => 1,
       'initialTerms' => array(
-        array(
+        /*array(
           'idName' => 'telefono',
           'name' => array(
             'en' => 'Telephone',
@@ -223,7 +223,7 @@ class rextAccommodation extends Module {
             'es' => 'Accesible discapacitados',
             'gl' => 'Accesible discapacitados'
           )
-        )
+        )*/
       )
     ),
 
@@ -238,7 +238,7 @@ class rextAccommodation extends Module {
       'nestable' => 0,
       'sortable' => 1,
       'initialTerms' => array(
-        array(
+        /*array(
           'idName' => 'bar',
           'name' => array(
             'en' => 'Bar',
@@ -289,7 +289,7 @@ class rextAccommodation extends Module {
             'es' => 'Lavadora',
             'gl' => 'Lavadora'
           )
-        )
+        )*/
       )
     ),
 
