@@ -75,20 +75,18 @@
 {capture rExtMapDirections assign="jsMapDirectionsForm"}
 <div class="rExtMapDirections dirForm jsMapDirectionsForm">
   <div class="row">
-    <div class="col-md-12">
-      <p class="mapRouteFormTitle">{t}Type a departure address{/t}:</p>
+    <div class="col-lg-12">
+      <div class="mapRouteFormTitle">{t}Type a departure address{/t}:</div>
     </div>
   </div>
-  <form class="mapRouteForm">
-    <div class="row">
-      <div class="col-md-4">
+  <div class="row">
+    <div class="col-12">
+      <form class="mapRouteForm">
         <input name="mapRouteOrigin" aria-label="{t}Type a departure address{/t}" placeholder="{t}Type a departure address{/t}">
-      </div>
-      <div class="col-md-4">
         <button aria-label="{t}Get directions{/t}" type="submit">{t}Get directions{/t}</button>
-      </div>
+      </form>
     </div>
-  </form>
+  </div>
 </div>
 {/capture}
 
@@ -128,9 +126,9 @@
 
 
 
-<div class="rExtMapDirections">
+<div class="container rExtMapDirectionsContainer">
   <div class="mapRoute">
-    <div class="container resDirContainer jsContainer">
+    <div class="resDirContainer jsContainer">
       {$jsMapDirectionsForm}
     </div>
   </div>
