@@ -19,8 +19,9 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     "click .nextButton": "next",
     "click .previousButton": "previous",
     "click .closeButton": "close",
-    "swipeleft": "next",
-    "swiperight": "previous"
+    /*"swipeleft": "next",
+    "swiperight": "previous",*/
+    "swipe": "swipeIt"
   },
 
 
@@ -80,11 +81,21 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
     if( $( '#'+that.divId ).length === 0 ) {
       $('body').append( '<div id="' + that.divId + '" style="" ></div>' );
+      $('#'+that.divId).hammer();
     }
 
 
-
     //$('#'+that.divId).css('z-index',highest);
+  },
+
+  swipeIt: function(e){
+    var that = this;
+    if (e.gesture.direction == 4) {
+      that.next();
+    }
+    else if (e.gesture.direction == 2) {
+      that.previous();
+    }
   },
 
 
