@@ -5,7 +5,7 @@ if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 geozzy.explorerComponents.mapInfoViewTemplate = ''+
   '<div class="gempiContent">'+
     '<div class="gempiImg">'+
-      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/fast_cut/<%-img%>.jpg" />'+
+      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/wmdpi4/<%-img%>.jpg">'+
     '</div>'+
     '<div class="gempiInfo">'+
       '<div class="gempiTitle"><%-title%></div>'+
@@ -19,17 +19,17 @@ geozzy.explorerComponents.mapInfoViewTemplate = ''+
 geozzy.explorerComponents.mapInfoViewMobileTemplate = ''+
 '<div class="gempiContent">'+
   '<div class="gempiItem">'+
-    '<div class="nextButton"><i class="fas fa-chevron-right" aria-hidden="true"></i></div>' +
-    '<div class="previousButton"><i class="fas fa-chevron-left" aria-hidden="true"></i></div>' +
-    '<div class="closeButton"><i class="fas fa-times" aria-hidden="true"></i></div>' +
+    '<div class="nextButton"><i class="fas fa-chevron-right"></i></div>' +
+    '<div class="previousButton"><i class="fas fa-chevron-left"></i></div>' +
+    '<div class="closeButton"><i class="fas fa-times"></i></div>' +
 
     '<div class="gempiImg accessButton">'+
-      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/squareCut/<%-img%>.jpg" />'+
+      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/squareCut/<%-img%>.jpg">'+
     '</div>'+
     '<div class="gempiInfo">'+
       '<div class="gempiTitle"><%-title%></div>'+
       '<div class="gempiDescription"><%=description%></div>'+
-      '<button class="accessButton">ACCEDER</button>'+
+      '<button class="accessButton">'+__('ACCEDER')+'</button>'+
     '</div>'+
     '<div class="extraBottomContent"></div>'+
   '</div>'+
@@ -46,15 +46,15 @@ geozzy.explorerComponents.activeListTinyViewTemplate = ''+
     '<%=pager%>'+
   '</div>'+
   '<div class="explorerListContent container-fluid">'+
-    '<div class="">'+
+    '<div class="row">'+
       '<%=content%>'+
     '</div>'+
   '</div>';
 
 geozzy.explorerComponents.activeListTinyViewElement = ''+
-  '<div data-resource-id="<%- id %>" class="col-md-2 col-sm-2 col-xs-4 element element-<%- id %>">'+
+  '<div data-resource-id="<%- id %>" class="col-4 col-sm-2 element element-<%- id %>">'+
     '<div class="elementImg">'+
-      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/fast_cut/<%- img %>.jpg" />'+
+      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/wmdpi4/<%- img %>.jpg">'+
       '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
         '<ul class="elementOptions container-fluid"></ul>'+
       '</div>'+
@@ -83,18 +83,22 @@ geozzy.explorerComponents.activeListTinyViewPager = ''+
 
 geozzy.explorerComponents.activeListViewTemplate = ''+
   '<div class="explorerActiveListContent ">'+
+    '<div class="container">'+
       '<% if(typeof activeListReset!="undefined" && activeListReset) { %>'+
         '<div class="activeListReset explorerElSticky">' +
-          '<i class="fas fa-info info" aria-hidden="true"></i> <%- activeListResetText %> <i class="fas fa-times clear" aria-hidden="true"></i>'+
+          '<i class="fas fa-info info"></i> <%- activeListResetText %> <i class="fas fa-times clear"></i>'+
         '</div>'+
       '<%}%>'+
-      '<%=content%>'+
+      '<div class="row">'+
+        '<%=content%>'+
+      '</div>'+
+    '</div>'+
   '</div>';
 
 geozzy.explorerComponents.activeListViewElement = '' +
-  '<div data-resource-id="<%- id %>" class="col-md-12 element">'+
+  '<div data-resource-id="<%- id %>" class="col-12 element">'+
     '<div class="elementImg">'+
-      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/explorerXantaresImg/<%- img %>.jpg" />'+
+      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/wmdpi16/<%- img %>.jpg">'+
       '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
         '<ul class="elementOptions container-fluid"></ul>'+
       '</div>'+
@@ -106,7 +110,7 @@ geozzy.explorerComponents.activeListViewElement = '' +
     '</div>'+
     '<div class="elementInfo">'+
       '<div class="elementTitle"><%-title%></div>'+
-      '<div class="elementType"><img src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- category.icon %>/typeIconMini/<%- category.icon %>.png"/></i> <%- category.name %></div>'+
+      '<div class="elementType"><img src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- category.icon %>/typeIconMini/<%- category.icon %>.png"> <%- category.name %></div>'+
     '</div>'+
   '</div>';
 
