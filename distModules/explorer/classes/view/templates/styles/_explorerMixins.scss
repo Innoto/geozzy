@@ -233,14 +233,7 @@
       }
     }
   }
-  &.mapFull{
-    .explorer-container-map{
-      width: 100%;
-    }
-    .explorer-container-gallery{
-      display: none;
-    }
-  }
+
   .explorerArrowLabel {
     font-weight:bold;
     font-size:13px;
@@ -388,10 +381,17 @@
       }
     }
     .explorer-manage-filters-mobile{
+      display: flex;
+      justify-content: space-around;
       width: 100%;
       position:fixed;
       bottom: 15px;
+      padding: 0px 15px;
       z-index: 202;
+      .explorerButton{
+        flex-basis: 45%;
+        text-align: center;
+      }
     }
   }
 
