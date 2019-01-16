@@ -45,9 +45,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
 
       if( typeof( geozzy.explorerComponents.routesCollectionInstance.get( params.id ) ) != 'undefined' ){
-        cogumelo.log('PINTA');
         geozzy.explorerComponents.routesCollectionInstance.get( params.id ).get('routeViewInstance').showRoute();
-
       }
       else {
         //var routesCollectionProvisional = new geozzy.rextRoutes.routeCollection();
