@@ -1,4 +1,4 @@
-# Change HOST_PROYECT_DIRECTORY
+# Change HOST_PROYECT_DIRECTORY and myUSER
 
 /HOST_PROYECT_DIRECTORY/logs/*.log {
   # su myUSER
