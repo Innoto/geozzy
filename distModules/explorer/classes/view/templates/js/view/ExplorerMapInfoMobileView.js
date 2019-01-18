@@ -90,10 +90,10 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
   swipeIt: function(e){
     var that = this;
-    if (e.gesture.direction == 4) {
+    if (e.gesture.direction == 2) {
       that.next();
     }
-    else if (e.gesture.direction == 2) {
+    else if (e.gesture.direction == 4) {
       that.previous();
     }
   },
