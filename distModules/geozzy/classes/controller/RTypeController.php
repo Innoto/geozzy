@@ -234,7 +234,7 @@ class RTypeController {
     // TEMPLATE panel estado de publicacion
     $templates['publication'] = new Template();
     $templates['publication']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['publication']->assign( 'title', __( 'Publication' ) );
+    $templates['publication']->assign( 'title', __( 'Display mode' ) );
     $templates['publication']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array( 'published'/*, 'weight'*/ );
     $templates['publication']->assign( 'formFieldsNames', $formFieldsNames );
