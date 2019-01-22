@@ -207,8 +207,8 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
   evReset: function(ev) {
     var that = this;
     ev.stopImmediatePropagation();
-    that.options.onChange();
     that.reset();
+    that.options.onChange();    
   },
 
   reset: function() {
