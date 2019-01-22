@@ -29,12 +29,14 @@ geozzy.rExtMapController = function( opts ) {
 
     var $mapContainer = $( that.options.wrapper );
     //cogumelo.log( that.options.wrapper  );
-    if( $mapContainer.length === 1 ) {
+
+    if( $mapContainer.length === 1 && (that.options.lat != 0 && that.options.lng != 0 ) ) {
       // cogumelo.log( 'prepareMap - OK: ATOPADO O WRAPPER DO MAPA!!!' );
       // gmaps init
       that.resourceMapOptions = {
         center: { lat: that.options.lat, lng: that.options.lng },
-        zoom: that.options.zoom
+        zoom: that.options.zoom,
+        fullscreenControl: false
       };
 
 
@@ -103,7 +105,7 @@ geozzy.rExtMapController = function( opts ) {
 
     } // if( $mapContainer.length )
     else {
-      cogumelo.log( 'rextMap - NOTICE: I cant find map wrapper' );
+      cogumelo.log( 'rextMap - NOTICE: Cant find map wrapper or latLng = 0' );
       that.resourceMap = false;
     }
   };

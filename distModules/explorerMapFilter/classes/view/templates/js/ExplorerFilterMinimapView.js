@@ -25,6 +25,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       template: geozzy.explorerComponents.filterMinimapViewTemplate,
       data: false,
       openWithHover: true,
+      onChange: function(){},
       styles: {
         width : 336,
         height : 355,
@@ -122,6 +123,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
               that.$el.find( '.minimap' ).trigger( 'update', [ { mapOptions: newData } ] );
               that.$el.find( '.selectedText' ).html( that.getNameByIdName( idName ));
 
+              that.options.onChange();
               that.parentExplorer.applyFilters();
 
               //  Ocultamos el mapa tras el click
@@ -206,6 +208,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     var that = this;
     ev.stopImmediatePropagation();
     that.reset();
+    that.options.onChange();    
   },
 
   reset: function() {

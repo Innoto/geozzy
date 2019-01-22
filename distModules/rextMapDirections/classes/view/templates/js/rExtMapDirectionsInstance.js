@@ -19,4 +19,7 @@ $(document).ready( function() {
       }
     }
   }
+  else {
+    $('.rextMapDirectionsButton').hide();
+  }
 });
