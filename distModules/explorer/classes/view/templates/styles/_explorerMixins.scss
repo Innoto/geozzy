@@ -104,12 +104,16 @@
    $explFilter-h: 150px, $explGallery-w: 30%, $explGallery-h: 100%, $explGallery-minh: $explGallery-h, $hheight: $headerHeight) {
    position: relative;
    height: 100vh;
+   &.stick{
+     height: auto;
+   }
   .explorerContainer{
     -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
     &.explorer-container-du{
       position: absolute;
+      bottom: 0;
       z-index: 103;
       width: $explDu-w;
       height: $explDu-h;

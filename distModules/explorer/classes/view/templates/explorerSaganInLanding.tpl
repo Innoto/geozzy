@@ -1,6 +1,6 @@
 <!--EXPLORADORES SAGAN STICKY-->
 
-<div class="explorerLayout explorerLayoutSticky fixVhChromeMobile clearfix">
+<div class="explorerLayout explorerLayoutSticky explorerElSticky fixVhChromeMobile clearfix">
   <!--duContainer -->
   <div class="explorerContainer explorer-container-du"></div>
   <!--filterContainer -->
