@@ -35,7 +35,8 @@ geozzy.rExtMapController = function( opts ) {
       // gmaps init
       that.resourceMapOptions = {
         center: { lat: that.options.lat, lng: that.options.lng },
-        zoom: that.options.zoom
+        zoom: that.options.zoom,
+        fullscreenControl: false
       };
 
 
