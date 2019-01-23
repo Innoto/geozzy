@@ -11,31 +11,30 @@ var resourceMarker = false;
 $(document).ready( function() {
   cogumelo.log('Inicializamos adminResource.js');
 
-  var els = $('.switchery');
-  els.each(function( index )  {
-    var switchery = new Switchery( this, { color : '#58ba81', secondaryColor : '#FF6A4B'} );
+  $('input.switchery, input[data-switcheryEnable]').each( function( index )  {
+    this.switcheryObj = new Switchery( this, { color : '#58ba81', secondaryColor : '#FF6A4B'} );
   });
 
   /* Anclas a paneles */
-   $('.panelBlocktoLink').each(function(){
-     var idBlock = $(this).attr('id');
-     var panelTag = '<li class="tagBlock" data-idBlockPanel="'+idBlock+'">'+idBlock.replace(/_/g," ")+'</li>';
-     $('.panelIdTags').append(panelTag);
-   });
+  $('.panelBlocktoLink').each(function(){
+    var idBlock = $(this).attr('id');
+    var panelTag = '<li class="tagBlock" data-idBlockPanel="'+idBlock+'">'+idBlock.replace(/_/g," ")+'</li>';
+    $('.panelIdTags').append(panelTag);
+  });
 
-   $('.tagBlock').each(function(){
-       $(this).click(function(e){
-         scroll_to_anchor($(this).attr('data-idBlockPanel'));
-       });
-   });
+  $('.tagBlock').each(function(){
+    $(this).click(function(e){
+      scroll_to_anchor($(this).attr('data-idBlockPanel'));
+    });
+  });
 
   bindResAdminForm();
   initializeMaps( );
 });
 
 function scroll_to_anchor(anchor_id){
-    var tag = $("#"+anchor_id+"");
-    $('html,body').animate({scrollTop: tag.offset().top-130},'slow');
+  var tag = $("#"+anchor_id+"");
+  $('html,body').animate({scrollTop: tag.offset().top-130},'slow');
 }
 
 function bindResAdminForm(){
