@@ -55,7 +55,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $topicId = $urlParamsList['topic'];
 
     table::autoIncludes();
-    $resource =  new ResourceModel();
+    $resource =  new ResourceViewModel();
     $resourcetype =  new ResourcetypeModel();
 
     $resourcetypelist = $resourcetype->listItems( array( 'filters' => array( 'intopic' => $topicId ) ) )->fetchAll();
@@ -138,9 +138,14 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setColClasses('rTypeId', 'hidden-xs'); // hide id rtype mobile version
     $tabla->setCol('title_'.Cogumelo::getSetupValue( 'lang:default' ), __('Title'));
     $tabla->setCol('published', __('Published'));
+    $tabla->setCol('urlAlias_'.Cogumelo::getSetupValue( 'lang:default' ), __('Url'));
 
-
-
+    $tabla->colRule(
+      'urlAlias_'.Cogumelo::getSetupValue( 'lang:default' ),
+      '#^(.*)#',
+      '<a href="'.Cogumelo::getSetupValue( 'lang:default' ).'$1" target="_blank" rel="noopener noreferrer" style="text-align:center;" onClick="event.stopPropagation();"><i class="far fa-share-square"></i></a>',
+      true
+    );
 
     // Publicado/ Despublicado (Pelota verde/roja)
     $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fas fa-circle\"></i></span>');

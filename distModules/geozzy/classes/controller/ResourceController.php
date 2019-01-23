@@ -551,6 +551,8 @@ class ResourceController {
     if(isset($cancelButton) && $cancelButton){
       $form->setField( 'cancel', array( 'type' => 'button', 'value' => __( 'Cancel' ), 'class' => 'btn btn-warning gzzAdminToMove', 'data-href' => $cancelButton ) );
     }
+    $form->setField( 'urlRes', array( 'type' => 'button', 'value' => __( 'Url' ), 'class' => 'btn btn-info gzzAdminToMove', 'data-href-blank' => $form->langDefault.$valuesArray['urlAlias_'.$form->langDefault]  ) );
+
     // Una vez que lo tenemos definido, guardamos el form en sesion
     $form->saveToSession();
 

@@ -24,6 +24,7 @@
 {/foreach}
 {/if}
 
+{$res.dataForm.formFieldsArray.urlRes}
 {$res.dataForm.formFieldsArray.cancel}
 {$res.dataForm.formFieldsArray.submit}
 

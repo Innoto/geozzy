@@ -63,7 +63,7 @@ class AdminViewPage extends AdminViewMaster {
     $type = $resourcetype->getter('id');
 
     table::autoIncludes();
-    $resource =  new ResourceModel();
+    $resource =  new ResourceViewModel();
 
     $tabla = new TableController( $resource );
 
@@ -90,6 +90,14 @@ class AdminViewPage extends AdminViewMaster {
     $tabla->setCol('rTypeId', __('Type'));
     $tabla->setCol('title_'.Cogumelo::getSetupValue( 'lang:default' ), __('Title'));
     $tabla->setCol('published', __('Published'));
+    $tabla->setCol('urlAlias_'.Cogumelo::getSetupValue( 'lang:default' ), __('Url'));
+
+    $tabla->colRule(
+      'urlAlias_'.Cogumelo::getSetupValue( 'lang:default' ),
+      '#^(.*)#',
+      '<a href="'.Cogumelo::getSetupValue( 'lang:default' ).'$1" target="_blank" rel="noopener noreferrer" style="text-align:center;" onClick="event.stopPropagation();"><i class="far fa-share-square"></i></a>',
+      true
+    );
 
     // Filtrar por tipo
 

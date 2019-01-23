@@ -143,6 +143,15 @@ var AdminView = Backbone.View.extend({
           });
         }
 
+        if($(this).attr('data-href-blank')){
+          cloneButtonTop.on( 'click', function(){
+            window.open( $(this).attr('data-href-blank'), '_blank' );
+          });
+          cloneButtonBottom.on( 'click', function(){
+            window.open( $(this).attr('data-href-blank'), '_blank' );
+          });
+        }
+
         cloneButtonTop.appendTo( ".headSection .headerActionsContainer" );
         cloneButtonBottom.appendTo( ".footerSection .footerActionsContainer" );
         $(this).hide();
