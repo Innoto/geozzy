@@ -24,7 +24,9 @@
 {/foreach}
 {/if}
 
-{$res.dataForm.formFieldsArray.urlRes}
+{if !empty($res.dataForm.formFieldsArray.urlRes)}
+  {$res.dataForm.formFieldsArray.urlRes}
+{/if}
 {$res.dataForm.formFieldsArray.cancel}
 {$res.dataForm.formFieldsArray.submit}
 
