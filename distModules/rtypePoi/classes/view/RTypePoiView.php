@@ -182,7 +182,7 @@ class RTypePoiView extends RTypeViewCore implements RTypeViewInterface {
       $resCtrl = new ResourceController();
 
       $form->removeSuccess( 'redirect' );
-      $form->setSuccess( 'jsEval', ' successResourceForm( { '.
+      $form->setSuccess( 'jsEval', ' rextPoiJs.successResourceForm( { '.
         ' id : "'.$resource->getter('id').'",'.
         ' title: "'.$resource->getter('title_'.$form->langDefault).'" });'
       );
