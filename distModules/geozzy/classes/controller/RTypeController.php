@@ -242,7 +242,7 @@ class RTypeController {
 
     // TEMPLATE panel SEO
     $templates['seo'] = new Template();
-    $templates['seo']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['seo']->setTpl( 'rTypeFormSeoPanel.tpl', 'geozzy' );
     $templates['seo']->assign( 'title', __( 'SEO' ) );
     $templates['seo']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array_merge(

@@ -129,6 +129,12 @@ class admin extends Module {
       "params" => array("innoto-switchery"),
       "installer" => "yarn",
       "includes" => array("dist/switchery.min.js", "dist/switchery.min.css")
+    ),
+    array(
+      "id" => "qrcode-generator",
+      "params" => array("qrcode-generator@1.4.1"),
+      "installer" => "yarn",
+      "includes" => array("qrcode.js")
     )
   );
 

@@ -190,6 +190,42 @@ ul.panelIdTags{
 }
 
 
+// START - Maquetación código QR (qr code)
+.langSwitch-wrap[class*="langSwitch-urlAlias_"]{
+  .box-btn-qrgenerator{
+    float: right;
+    .btn-qrgenerator{
+      cursor: pointer;
+      margin-left: 5px;
+      padding: 5px 5px 4px;
+      border: 1px solid $gzzColor-positive;
+      color: $gzzColor-positive;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+      &:hover{
+        color: $gzzColor-positive-hover;
+        border-color: $gzzColor-positive-hover;
+      }
+    }//.btn-qrgenerator
+  }//.box-qrgenerator
+}//..langSwitch-wrap[class*="langSwitch-urlAlias_"]
+
+.popover-qrgenerator{
+  max-width: 300px;
+  .box-qr-image{
+    .qrcode img{
+      max-width: 100%;
+      height: auto;
+    }//.qrcode img
+    .linkDownload{
+      font-weight: bold;
+      .lang{ text-transform: uppercase; }
+    }//.linkDownload
+  }//.box-qr-image
+}//.popover-qrgenerator
+// END - Maquetación código QR (qr code)
+
 /*MULTIMEDIA GALLERY*/
 
 #collectionCreate,
