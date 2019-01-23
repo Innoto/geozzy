@@ -377,14 +377,14 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
       $rExtViewBlockInfo['data']['id'] = $resData['id'];
       $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
       //biMetrics::autoIncludes();
-//      explorer::autoIncludes();
+      //explorer::autoIncludes();
 
 
 
 
-      $template->addClientScript('bower/backbone.obscura/backbone.obscura.js', 'vendor');
-      $template->addClientScript('bower/tiny_map_utilities/smart_infowindow/smart_infowindow.js', 'vendor');
-      $template->addClientScript('bower/tiny_map_utilities/smart_infowindow/vendor/jQueryRotate.js', 'vendor');
+      $template->addClientScript('yarn/backbone.obscura/backbone.obscura.js', 'vendor');
+      $template->addClientScript('yarn/tiny_map_utilities/smart_infowindow/smart_infowindow.js', 'vendor');
+      $template->addClientScript('yarn/tiny_map_utilities/smart_infowindow/vendor/jQueryRotate.js', 'vendor');
 
 
       $template->addClientScript('js/router/ExplorerRouter.js', 'explorer');
@@ -400,7 +400,6 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
       $template->addClientScript('js/view/utils/RotateMapArrow.js', 'explorer');
 
       $template->addClientScript('js/Explorer.js', 'explorer');
-
 
 
 
