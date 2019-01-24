@@ -28,7 +28,7 @@
       </div>
     {/if}
 
-    {if !empty($rExt.data.durationHours) || !empty($rExt.data.durationMinutes)}
+    {if $rExt.data.durationHours === '0' || $rExt.data.durationMinutes === '00'}
       <div class="itemRoute routeTravelTime duration">
         <div class="icon">
           <i class="far fa-clock fa-fw"></i>
