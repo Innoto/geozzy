@@ -1,40 +1,48 @@
 <div class="rExtRoutesBasic">
   <div class="routeInfo">
 
-    <div class="itemRoute routeStart">
-      <div class="icon">
-        <img class="img-fluid" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/markerStart.png" alt="{t}Route start{/t}">
+    {if !empty($rExt.data.routeStart)}
+      <div class="itemRoute routeStart">
+        <div class="icon">
+          <img class="img-fluid" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/markerStart.png" alt="{t}Route start{/t}">
+        </div>
+        <div class="text">{$rExt.data.routeStart}</div>
       </div>
-      <div class="text">{$rExt.data.routeStart}</div>
-    </div>
+    {/if}
 
-    <div class="itemRoute routeEnd">
-      <div class="icon">
-        <img class="img-fluid" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/markerEnd.png" alt="{t}Route end{/t}">
+    {if !empty($rExt.data.routeEnd)}
+      <div class="itemRoute routeEnd">
+        <div class="icon">
+          <img class="img-fluid" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/markerEnd.png" alt="{t}Route end{/t}">
+        </div>
+        <div class="text">{$rExt.data.routeEnd}</div>
       </div>
-      <div class="text">{$rExt.data.routeEnd}</div>
-    </div>
+    {/if}
 
-    <div class="itemRoute routeTravelDistance duration">
-      <div class="icon">
-        <i class="fas fa-map-signs fa-fw"></i>
+    {if !empty($rExt.data.travelDistanceKm)}
+      <div class="itemRoute routeTravelDistance duration">
+        <div class="icon">
+          <i class="fas fa-map-signs fa-fw"></i>
+        </div>
+        <div class="text">{$rExt.data.travelDistanceKm} Km</div>
       </div>
-      <div class="text">{$rExt.data.travelDistance/1000} Km</div>
-    </div>
+    {/if}
 
-    <div class="itemRoute routeTravelTime duration">
-      <div class="icon">
-        <i class="far fa-clock fa-fw"></i>
+    {if !empty($rExt.data.durationHours) || !empty($rExt.data.durationMinutes)}
+      <div class="itemRoute routeTravelTime duration">
+        <div class="icon">
+          <i class="far fa-clock fa-fw"></i>
+        </div>
+        <div class="text">
+          {if $rExt.data.durationHours !== '0'}
+            <span>{$rExt.data.durationHours} h</span>
+          {/if}
+          {if $rExt.data.durationMinutes !== '00'}
+            <span>{$rExt.data.durationMinutes} min</span>
+          {/if}
+        </div>
       </div>
-      <div class="text">
-        {if $rExt.data.durationHours !== '0'}
-          <span>{$rExt.data.durationHours} h</span>
-        {/if}
-        {if $rExt.data.durationMinutes !== '00'}
-          <span>{$rExt.data.durationMinutes} min</span>
-        {/if}
-      </div>
-    </div>
+    {/if}
 
     <div class="itemRoute routeType">
       <div class="title">{if $rExt.data.circular}{t}Circular route{/t}{else}{t}Lineal route{/t}{/if}</div>
@@ -47,48 +55,65 @@
       </div>
     </div>
 
-    <div class="itemRoute routeSlope">
-      <div class="title">{t}Slopes{/t}</div>
-      <div class="slope slope-up">
-        <div class="text">{$rExt.data.slopeUp} m.</div>
-        <div class="icon">
-          <img class="img-fluid" alt="{t}slope up{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/ascendente.png">
-        </div>
+    {if !empty($rExt.data.slopeUp) || !empty($rExt.data.slopeDown)}
+      <div class="itemRoute routeSlope">
+        <div class="title">{t}Slopes{/t}</div>
+        {if !empty($rExt.data.slopeUp)}
+          <div class="slope slope-up">
+            <div class="text">{$rExt.data.slopeUp} m.</div>
+            <div class="icon">
+              <img class="img-fluid" alt="{t}slope up{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/ascendente.png">
+            </div>
+          </div>
+        {/if}
+        {if !empty($rExt.data.slopeDown)}
+          <div class="slope slope-down">
+            <div class="text">{$rExt.data.slopeDown} m.</div>
+            <div class="icon">
+              <img class="img-fluid" alt="{t}slope down{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/descendente.png">
+            </div>
+          </div>
+        {/if}
       </div>
-      <div class="slope slope-down">
-        <div class="text">{$rExt.data.slopeDown} m.</div>
-        <div class="icon">
-          <img class="img-fluid" alt="{t}slope down{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/descendente.png">
-        </div>
-      </div>
-    </div>
+    {/if}
 
-    <div class="itemRoute routeBar">
-      <div class="bar environment">
-        <div class="title">{t}Environment{/t}</div>
-        <div class="squares">
-          <div class="barraEsfuerzo ruta_{$rExt.data.difficultyEnvironment}"></div>
-        </div>
+    {if !empty($rExt.data.difficultyEnvironment) || !empty($rExt.data.difficultyItinerary) ||
+        !empty($rExt.data.difficultyDisplacement) || !empty($rExt.data.difficultyEffort)}
+      <div class="itemRoute routeBar">
+        {if !empty($rExt.data.difficultyEnvironment)}
+          <div class="bar environment">
+            <div class="title">{t}Environment{/t}</div>
+            <div class="squares">
+              <div class="barraEsfuerzo ruta_{$rExt.data.difficultyEnvironment}"></div>
+            </div>
+          </div>
+        {/if}
+        {if !empty($rExt.data.difficultyItinerary)}
+          <div class="bar itinerary">
+            <div class="title">{t}Itinerary{/t}</div>
+            <div class="squares">
+              <div class="barraEsfuerzo ruta_{$rExt.data.difficultyItinerary}"></div>
+            </div>
+          </div>
+        {/if}
+        {if !empty($rExt.data.difficultyDisplacement)}
+          <div class="bar displacement">
+            <div class="title">{t}Displacement{/t}</div>
+            <div class="squares">
+              <div class="barraEsfuerzo ruta_{$rExt.data.difficultyDisplacement}"></div>
+            </div>
+          </div>
+        {/if}
+        {if !empty($rExt.data.difficultyEffort)}
+          <div class="bar effort">
+            <div class="title">{t}Effort{/t}</div>
+            <div class="squares">
+              <div class="barraEsfuerzo ruta_{$rExt.data.difficultyEffort}"></div>
+            </div>
+          </div>
+        {/if}
       </div>
-      <div class="bar itinerary">
-        <div class="title">{t}Itinerary{/t}</div>
-        <div class="squares">
-          <div class="barraEsfuerzo ruta_{$rExt.data.difficultyItinerary}"></div>
-        </div>
-      </div>
-      <div class="bar displacement">
-        <div class="title">{t}Displacement{/t}</div>
-        <div class="squares">
-          <div class="barraEsfuerzo ruta_{$rExt.data.difficultyDisplacement}"></div>
-        </div>
-      </div>
-      <div class="bar effort">
-        <div class="title">{t}Effort{/t}</div>
-        <div class="squares">
-          <div class="barraEsfuerzo ruta_{$rExt.data.difficultyEffort}"></div>
-        </div>
-      </div>
-    </div>
+    {/if}
 
   </div>
 </div>
