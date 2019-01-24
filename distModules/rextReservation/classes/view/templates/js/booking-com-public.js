@@ -58,6 +58,7 @@ geozzy.rExtReservationController = geozzy.rExtReservationController || {
     calDateFormat = geozzy.rExtReservationInfo.calDateFormat;
     $( geozzy.rExtReservationInfo.idCal ).daterangepicker(
       {
+        'parentEl': '.rextReservation',
         'showCustomRangeLabel': false,
         'startDate': geozzy.rExtReservationInfo.values.checkin.format( calDateFormat ),
         'minDate': geozzy.rExtReservationInfo.values.checkin.format( calDateFormat ), /* Evitar poner fecha anterior al día actual */
