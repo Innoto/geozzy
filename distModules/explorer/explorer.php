@@ -74,7 +74,6 @@ class explorer extends Module {
     'js/view/ExplorerListView.js',
     'js/view/ExplorerListMobileView.js',
     'js/view/ExplorerListTinyView.js',
-    'js/view/ExplorerReccommendedListTinyView.js',
     'js/view/utils/twoLinesIntersection.js',
     'js/view/utils/RotateMapArrow.js',
     'js/view/ExplorerMapView.js',

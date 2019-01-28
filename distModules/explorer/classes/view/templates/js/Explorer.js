@@ -52,7 +52,6 @@ geozzy.explorer = function( opts ) {
   that.displays = {
     map: false,
     activeList: false,
-    reccomendList: false,
     plugins: []
   };
 
@@ -200,8 +199,6 @@ geozzy.explorer = function( opts ) {
         that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceIndex.length + ' Records' );
       }
 
-
-
       that.render();
       that.triggerEvent('applyFilters', {});
     }
@@ -226,11 +223,6 @@ geozzy.explorer = function( opts ) {
       that.displays.activeList.setParentExplorer( that );
     }
     else
-    if( displayObj.displayType == 'reccomendList' ) {
-      that.displays.reccomendList = displayObj;
-      that.displays.reccomendList.setParentExplorer( that );
-    }
-    else
     if( displayObj.displayType == 'plugin' ) {
       displayObj.setParentExplorer( that );
       that.displays.plugins.push( displayObj );
@@ -245,28 +237,13 @@ geozzy.explorer = function( opts ) {
   that.render = function( dontRenderMap ) {
 
     var resourcesToLoad = [];
-    var metricData = {bounds:[], zoom: false,  filters:[0], explorerId: that.options.explorerId };
+    //var metricData = {bounds:[], zoom: false,  filters:[0], explorerId: that.options.explorerId };
 
 
     if(that.displays.map ) {
 
       if( that.displays.map.isReady() ){
-
-        var mapbounds = that.displays.map.getMapBounds();
-        metricData.zoom = that.displays.map.map.getZoom();
-
-        metricData.bounds = [ [mapbounds[0].lat(), mapbounds[0].lng()], [mapbounds[1].lat(), mapbounds[1].lng()] ];
-
         resourcesToLoad = that.displays.map.getVisibleResourceIds();
-        //resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
-
-        $.each(that.filters, function(i,e) {
-          metricData.filters = $.merge( metricData.filters, e.getSelectedTerms() );
-
-        });
-
-        // context changed and send metrics by parameter
-        that.triggerEvent('contextChange', metricData );
       }
 
       if( !dontRenderMap ) {
@@ -278,13 +255,6 @@ geozzy.explorer = function( opts ) {
       that.displays.activeList.currentPage = 0;
       resourcesToLoad = $.merge( that.displays.activeList.getVisibleResourceIds() , resourcesToLoad);
     }
-
-    if(that.displays.pasiveList) {
-      that.displays.pasiveList.currentPage = 0;
-      resourcesToLoad = $.merge( that.displays.pasiveList.getVisibleResourceIds() , resourcesToLoad);
-    }
-
-
 
     // Advanced Fetch
     if( that.options.debug ) {
@@ -355,9 +325,6 @@ geozzy.explorer = function( opts ) {
       that.displays.activeList.render();
     }
 
-    if(that.displays.reccomendList) {
-      that.displays.reccomendList.render();
-    }
 
     if( that.displays.plugins.length > 0 ) {
       $.each( that.displays.plugins, function(pluginIndex, plugin) {
