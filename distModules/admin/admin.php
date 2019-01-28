@@ -164,7 +164,6 @@ class admin extends Module {
   public function __construct() {
     $this->addUrlPatterns( '#^admin$#', 'view:AdminViewMaster::commonAdminInterface' );
     $this->addUrlPatterns( '#^admin/home$#', 'view:AdminViewMaster::homePage' );
-    $this->addUrlPatterns( '#^admin/charts$#', 'view:AdminViewBi::dashboard' );
     $this->addUrlPatterns( '#^admin/403#', 'view:AdminViewMaster::accessDenied' );
     $this->addUrlPatterns( '#^admin/multilist$#', 'view:AdminViewMultiList::main' );
 
