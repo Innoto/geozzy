@@ -50,9 +50,15 @@ geozzy.rExtMapDirectionsController = {
 
 
   prepareRoutes: function prepareRoutes( ) {
+    var that = this;
+
+    that.jqDirForm = $('.jsMapDirectionsForm');
+    that.jqDirInput = that.jqDirForm.find( 'input[name=mapRouteOrigin]' );
+    that.jqDirInput.on('focus', function(){
+      geozzy.rExtMapInstance.initializeIfNot();
+    });
 
     geozzy.rExtMapInstance.onLoad( function() {
-      var that = this;
 
       if( geozzy.rExtMapDirectionsData ) {
         that.resourceMapInfo = geozzy.rExtMapDirectionsData;
@@ -60,9 +66,6 @@ geozzy.rExtMapDirectionsController = {
 
       // geozzy.rExtMapInstance.initialize();
       that.resourceMap = geozzy.rExtMapInstance.resourceMap; // Necesario despues de initialize()
-
-      that.jqDirForm = $('.jsMapDirectionsForm');
-      that.jqDirInput = that.jqDirForm.find( 'input[name=mapRouteOrigin]' );
 
       if( that.jqDirForm && that.jqDirForm.length === 1 ) {
         // Input de direcciones
@@ -95,7 +98,6 @@ geozzy.rExtMapDirectionsController = {
 
         // that.opened = true;
         // that.blockCloseButton = true;
-
         that.resourceRoutes[0] = [];
         that.resourceRoutes[1] = [];
         that.resourceRoutes[2] = [];
@@ -107,7 +109,6 @@ geozzy.rExtMapDirectionsController = {
   },
 
   prepareContainers: function prepareContainers() {
-    // cogumelo.log( 'prepareContainers' );
     var that = this;
 
     if( $('.jsMapDirectionsList').length === 0 ) {
@@ -196,7 +197,6 @@ geozzy.rExtMapDirectionsController = {
 
 
   resetMap: function resetMap() {
-    // cogumelo.log( 'resetMap:' );
     var that = this;
 
     that.resourceMap.setZoom( that.resourceMapInfo.zoom );
@@ -209,11 +209,13 @@ geozzy.rExtMapDirectionsController = {
   },
 
   resetForm: function resetForm() {
+    var that = this;
     // cogumelo.log( 'resetForm:' );
     that.jqDirInput.val('');
   },
 
   resetFromTo: function resetFromTo() {
+    var that = this;
     // cogumelo.log( 'resetFromTo:' );
     that.routeFrom = {
       title: '',
@@ -241,6 +243,7 @@ geozzy.rExtMapDirectionsController = {
   },
 
   setMarkerFrom: function setMarkerFrom( latLng ) {
+    var that = this;
     // cogumelo.log( 'setMarkerFrom:' );
     if( that.markerFrom ) {
       if( latLng === false || latLng === null ) {
@@ -271,8 +274,6 @@ geozzy.rExtMapDirectionsController = {
   },
 
   loadRoute: function loadRoute( from, fromTitle, routeMode ) {
-    // cogumelo.log( 'loadRoute:', that.resourceMap );
-
     var that = this;
 
     if( from ) {
@@ -358,6 +359,7 @@ geozzy.rExtMapDirectionsController = {
   },
 
   scrollTopWrapper: function scrollTopWrapper( $elem ) {
+    var that = this;
     var scrollTo = $elem.position().top;
     // cogumelo.log( 'scrollTopWrapper: ', $elem, scrollTo );
 
@@ -367,6 +369,7 @@ geozzy.rExtMapDirectionsController = {
   },
 
   clearRoute: function clearRoute() {
+    var that = this;
     // cogumelo.log( 'clearRoute:' );
     // borra ruta del mapa
     if( that.directionsDisplay ) {
@@ -384,6 +387,7 @@ geozzy.rExtMapDirectionsController = {
   },
 
   setRoutePanelInfo: function setRoutePanelInfo( travelInfo ) {
+    var that = this;
     // cogumelo.log( 'setRoutePanelInfo:', typeof( travelInfo ) );
     var htmlMsg = '';
     //var modeNum = 0;
@@ -417,6 +421,7 @@ geozzy.rExtMapDirectionsController = {
 
   // traceRoute(0, from, that.to.latlng, that.transport , false, function(){
   traceRoute: function traceRoute( id, from, to, mode, cache, thenFunction ) {
+
     // cogumelo.log( 'traceRoute:', id, from, to, mode, cache, 'thenFunction' );
     var that = this;
 
@@ -473,6 +478,7 @@ geozzy.rExtMapDirectionsController = {
   },
 
   tramoExtra: function tramoExtra( solicitada, resultado, reves ) {
+    var that = this;
     // cogumelo.log( 'tramoExtra:', solicitada, resultado, reves );
     var tramo = false;
     var latLng = solicitada.split(',');
