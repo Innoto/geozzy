@@ -13,7 +13,6 @@
 
 </head>
 <body>
-
   <div class="row bodyContent">
     {block name="bodyContent"}{/block}
   </div>

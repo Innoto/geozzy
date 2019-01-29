@@ -1,7 +1,7 @@
 <!-- resourceViewBlock.tpl en geozzy module -->
 
 <p> --- resourceViewBlock.tpl en geozzy module --- </p>
-
+<script>alert('lol');</script>
 <div class="resViewBlock">
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}

@@ -15,7 +15,7 @@ $(document).ready( function() {
     }
     else{
       if( typeof geozzy.rExtMapDirectionsData === 'object' ) {
-        geozzy.rExtMapDirectionsController.prepareRoutes( geozzy.rExtMapDirectionsData );
+        geozzy.rExtMapDirectionsController.prepareRoutes(  );
       }
     }
   }
