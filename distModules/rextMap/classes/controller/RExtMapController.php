@@ -88,7 +88,9 @@ class RExtMapController extends RExtController implements RExtInterface {
     $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
 
     $resData = $this->defResCtrl->getResourceData( $resId );
+
     $rExtViewBlockInfo['data']['title'] = $resData['title'];
+    $rExtViewBlockInfo['data']['rTypeIdName'] = $resData['rTypeIdName'];
 
     if( isset( $resData['locLat'] ) && $resData['locLat'] !== '' ) {
       $rExtViewBlockInfo['data']['locLat'] = $resData['locLat'];
