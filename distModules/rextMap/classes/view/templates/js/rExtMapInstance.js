@@ -13,6 +13,7 @@ $(document).ready( function() {
     geozzy.rExtMapInstance = new geozzy.rExtMapController( geozzy.rExtMapOptions );
 
     if(
+      typeof geozzy.rExtMapOptions != 'undefined' &&
       typeof geozzy.rExtMapOptions.resourceRtypeIdName != 'undefined' &&
       $.inArray( geozzy.rExtMapOptions.resourceRtypeIdName, cogumelo.publicConf.rextMapConf.mapLoadOnDemandRtypes ) != -1
     ){
