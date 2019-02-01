@@ -22,8 +22,9 @@
       });
     }
 
-
-    eval('$.when( '+ multifetchStr+' ).done(function() {  poisResourceExplorer( categorias ); });');
+    geozzy.rExtMapInstance.onLoad(function(){
+      eval('$.when( '+ multifetchStr+' ).done(function() {  poisResourceExplorer( categorias ); });');
+    });
 
   });
 
@@ -142,8 +143,5 @@
     ex.addDisplay( infowindow );
   */
     /* EXEC EXPLORER */
-    geozzy.rExtMapInstance.onLoad(function(){
-      ex.exec();
-    });
-
+    ex.exec();
   }
