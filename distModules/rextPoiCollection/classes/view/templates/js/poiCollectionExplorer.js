@@ -142,5 +142,8 @@
     ex.addDisplay( infowindow );
   */
     /* EXEC EXPLORER */
-    ex.exec();
+    geozzy.rExtMapInstance.onLoad(function(){
+      ex.exec();
+    });
+
   }

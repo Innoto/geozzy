@@ -1,15 +1,16 @@
 
 $( document ).ready(function() {
 
-  if( typeof geozzy.rExtRoutesOptions != 'undefined' && typeof geozzy.rExtMapInstance != 'undefined' ) {
-    google.maps.event.addListenerOnce(geozzy.rExtMapInstance.resourceMap, 'idle', function() {
-      rextRoutesJs.setRouteOnResourceMapInstance();
-    } );
-  }
-  else {
-    cogumelo.log('Routes: resource id or MAP not found');
-  }
-
+  geozzy.rExtMapInstance.onLoad(function(){
+    if( typeof geozzy.rExtRoutesOptions != 'undefined' && typeof geozzy.rExtMapInstance != 'undefined' ) {
+      google.maps.event.addListenerOnce(geozzy.rExtMapInstance.resourceMap, 'idle', function() {
+        rextRoutesJs.setRouteOnResourceMapInstance();
+      } );
+    }
+    else {
+      cogumelo.log('Routes: resource id or MAP not found');
+    }
+  });
 });
 
 var rextRoutesJs = {
