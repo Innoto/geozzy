@@ -81,6 +81,7 @@ geozzy.rExtMapDirectionsController = {
         that.autocomplete = new google.maps.places.Autocomplete( that.jqDirInput.get(0) );
         that.autocomplete.bindTo( 'bounds', that.resourceMap );
         that.autocomplete.addListener( 'place_changed', function() {
+
           var place = that.autocomplete.getPlace();
           var destination = '';
           if( place.geometry && place.geometry.location ) {
@@ -362,10 +363,10 @@ geozzy.rExtMapDirectionsController = {
     var that = this;
     var scrollTo = $elem.position().top;
     // cogumelo.log( 'scrollTopWrapper: ', $elem, scrollTo );
-
+    /*
     $( 'html, body' ).animate( {
       scrollTop: $elem.position().top - geozzy.rExtMapDirectionsData.scrollTopMargin
-    }, 1000 );
+    }, 1000 );*/
   },
 
   clearRoute: function clearRoute() {
