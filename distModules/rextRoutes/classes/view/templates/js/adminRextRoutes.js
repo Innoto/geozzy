@@ -10,7 +10,6 @@ $( document ).ready( function() {
   $('select.cgmMForm-field-rExtRoutes_difficultyGlobal').select2();
 } );
 
-
 var adminRextRoutesJs = {
   fileUpload: function( idForm, fieldName ) {
     var that = this;
