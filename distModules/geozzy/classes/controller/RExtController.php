@@ -169,7 +169,7 @@ class RExtController {
     if( $defRTypeCtrl ) {
       $this->defRTypeCtrl = $defRTypeCtrl;
       $this->defResCtrl = $defRTypeCtrl->defResCtrl;
-      $this->cacheQuery = $defRTypeCtrl->cacheQuery;
+      $this->cacheQuery = isset( $defRTypeCtrl->cacheQuery ) ? $defRTypeCtrl->cacheQuery : false;
     }
     $this->rExtName = $rExtModule->name;
     $this->prefix = ( $prefix ) ? $prefix : $this->rExtName.'_';
