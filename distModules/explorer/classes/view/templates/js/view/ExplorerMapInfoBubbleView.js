@@ -19,12 +19,7 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
     });
 
     that.options = $.extend(true, {}, options, opts);
-
     that.template = _.template( that.options.tpl );
-
-
-
-
   },
 
   setParentExplorer: function( parentExplorer ) {
