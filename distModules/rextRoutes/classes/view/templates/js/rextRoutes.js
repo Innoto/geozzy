@@ -1,7 +1,8 @@
 
-var routesMapInstanceCheck = geozzy.rExtMapInstance.url;
 
+var routesMapInstanceCheck = false
 $( document ).ready(function() {
+  routesMapInstanceCheck = geozzy.rExtMapInstance.url;
   geozzy.rExtMapInstance.onLoad(function(){
     var routeMap = geozzy.rExtMapInstance.resourceMap;
     if( typeof geozzy.rExtRoutesOptions != 'undefined' && typeof geozzy.rExtMapInstance != 'undefined' ) {
