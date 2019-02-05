@@ -66,6 +66,7 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
           width: that.options.width,
           keep_open: true,
           map_scrollwhell_is_enabled: that.options.map_scrollwhell_is_enabled ,
+          peak_img: '/vendor/yarn/tiny_map_utilities/smart_infowindow/img/peak.png',
           onAddSuccess: function() {
             that.infowindow.open(m, 'mouseover' , that.renderContent(params.id), true);
           }

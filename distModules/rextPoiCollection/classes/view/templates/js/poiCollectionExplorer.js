@@ -28,6 +28,17 @@
 
   });
 
+  var poisResourceExplorerInfowindow = ''+
+  '<div class="poiInfoWindow" <% if( isNormalResource == 1 ) { %> onclick="window.open(\'/'+ cogumelo.publicConf.C_LANG +'/resource/<%- id %>\')"<%}%> >'+
+    '<div class="poiImg">'+
+      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-image%>/squareCut/<%-image%>.jpg" />'+
+    '</div>'+
+    '<div class="poiInfo">'+
+      '<div class="poiTitle"><p><%-title%></p></div>'+
+      '<div class="poiDescription"><%=description%></div>'+
+      //'<% if( isNormalResource == 1 ) { %> <a target="_blank" href="/resource/<%-id%>" ><button class="btn btn-primary accessButton">' + __('Discover') + '</button> </a><% }%>'
+    '</div>'+
+  '</div>';
 
 
   /*
@@ -115,28 +126,15 @@
 
     ex.addDisplay( explorerMapa );
 
-    var miniInfoWindow ='<div class="poiInfoWindow" <% if( isNormalResource == 1 ) { %> onclick="window.open(\'/'+ cogumelo.publicConf.C_LANG +'/resource/<%- id %>\')"<%}%> >'+
-                          '<div class="poiImg">'+
-                            '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-image%>/squareCut/<%-image%>.jpg" />'+
-                          '</div>'+
-                          '<div class="poiInfo">'+
-                            '<div class="poiTitle"><p><%-title%></p></div>'+
-                            '<div class="poiDescription"><%=description%></div>'+
-                            //'<% if( isNormalResource == 1 ) { %> <a target="_blank" href="/resource/<%-id%>" ><button class="btn btn-primary accessButton">' + __('Discover') + '</button> </a><% }%>'
-
-                          '</div>'+
-                        '</div>';
-
-
     var infowindow = new geozzy.explorerComponents.mapInfoBubbleView({
-      tpl:miniInfoWindow,
+      tpl:poisResourceExplorerInfowindow,
       width: 350,
       max_height:170,
       marker_distance: [20,20]
     });
     ex.addDisplay( infowindow );
   /*  var infowindow = new geozzy.explorerComponents.mapInfoView({
-      tpl: miniInfoWindow
+      tpl: poisResourceExplorerInfowindow
     }
 
     );
