@@ -78,37 +78,57 @@
     {/if}
 
     {if !empty($rExt.data.difficultyEnvironment) || !empty($rExt.data.difficultyItinerary) ||
-        !empty($rExt.data.difficultyDisplacement) || !empty($rExt.data.difficultyEffort)}
+        !empty($rExt.data.difficultyDisplacement) || !empty($rExt.data.difficultyEffort) ||
+        !empty($rExt.data.difficultyGlobal)}
       <div class="itemRoute routeBar">
+        <div class="titleRoutBar">{t}Difficulty{/t}</div>
         {if !empty($rExt.data.difficultyEnvironment)}
-          <div class="bar environment">
+          <div class="bar environment difficulty lvlDifficulty_{$rExt.data.difficultyEnvironment}">
             <div class="title">{t}Environment{/t}</div>
+            <div class="textDifficulty">{$rExt.data.difficultyEnvironmentText}</div>
+            <div class="graph"></div>
             <div class="squares">
               <div class="barraEsfuerzo ruta_{$rExt.data.difficultyEnvironment}"></div>
             </div>
           </div>
         {/if}
         {if !empty($rExt.data.difficultyItinerary)}
-          <div class="bar itinerary">
+          <div class="bar itinerary difficulty lvlDifficulty_{$rExt.data.difficultyItinerary}">
             <div class="title">{t}Itinerary{/t}</div>
+            <div class="textDifficulty">{$rExt.data.difficultyItineraryText}</div>
+            <div class="graph"></div>
             <div class="squares">
               <div class="barraEsfuerzo ruta_{$rExt.data.difficultyItinerary}"></div>
             </div>
           </div>
         {/if}
         {if !empty($rExt.data.difficultyDisplacement)}
-          <div class="bar displacement">
+          <div class="bar displacement difficulty lvlDifficulty_{$rExt.data.difficultyDisplacement}">
             <div class="title">{t}Displacement{/t}</div>
+            <div class="textDifficulty">{$rExt.data.difficultyDisplacementText}</div>
+            <div class="graph"></div>
             <div class="squares">
               <div class="barraEsfuerzo ruta_{$rExt.data.difficultyDisplacement}"></div>
             </div>
           </div>
         {/if}
         {if !empty($rExt.data.difficultyEffort)}
-          <div class="bar effort">
+          <div class="bar effort difficulty lvlDifficulty_{$rExt.data.difficultyEffort}">
             <div class="title">{t}Effort{/t}</div>
+            <div class="textDifficulty">{$rExt.data.difficultyEffortText}</div>
+            <div class="graph"></div>
             <div class="squares">
               <div class="barraEsfuerzo ruta_{$rExt.data.difficultyEffort}"></div>
+            </div>
+          </div>
+        {/if}
+        {if !empty($rExt.data.difficultyGlobal)}
+          <div class="bar global difficulty lvlDifficulty_{$rExt.data.difficultyGlobal}">
+            <div class="title">{t}Global{/t}</div>
+            <div class="textDifficulty">{$rExt.data.difficultyGlobalText}</div>
+            <div class="graph"></div>
+            <div class="squares">
+              <div class="barraEsfuerzo ruta_{$rExt.data.difficultyGlobal}"></div>
             </div>
           </div>
         {/if}
