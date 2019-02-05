@@ -1,6 +1,6 @@
 
 
-var routesMapInstanceCheck = false
+var routesMapInstanceCheck = false;
 $( document ).ready(function() {
   routesMapInstanceCheck = geozzy.rExtMapInstance.url;
   geozzy.rExtMapInstance.onLoad(function(){
