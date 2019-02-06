@@ -4,7 +4,7 @@
     {if !empty($rExt.data.routeStart)}
       <div class="itemRoute routeStart">
         <div class="icon">
-          <img class="img-fluid" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/markerStart.png" alt="{t}Route start{/t}">
+          <i class="far fa-flag fa-fw"></i>
         </div>
         <div class="text">{$rExt.data.routeStart}</div>
       </div>
@@ -13,7 +13,7 @@
     {if !empty($rExt.data.routeEnd)}
       <div class="itemRoute routeEnd">
         <div class="icon">
-          <img class="img-fluid" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/markerEnd.png" alt="{t}Route end{/t}">
+          <i class="fas fa-flag-checkered"></i>
         </div>
         <div class="text">{$rExt.data.routeEnd}</div>
       </div>
@@ -48,9 +48,9 @@
       <div class="title">{if $rExt.data.circular}{t}Circular route{/t}{else}{t}Lineal route{/t}{/if}</div>
       <div class="icon {if $rExt.data.circular}circular{else}lineal{/if}">
         {if $rExt.data.circular}
-          <img class="img-fluid" alt="{t}circular{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/circular.png">
+          <i class="fas fa-undo-alt fa-flip-horizontal fa-fw"></i>
         {else}
-          <img class="img-fluid" alt="{t}lineal{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/lineal.png">
+          <i class="fas fa-long-arrow-alt-right fa-fw"></i>
         {/if}
       </div>
     </div>
@@ -62,7 +62,8 @@
           <div class="slope slope-up">
             <div class="text">{$rExt.data.slopeUp} m.</div>
             <div class="icon">
-              <img class="img-fluid" alt="{t}slope up{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/ascendente.png">
+              <i class="fas fa-mountain fa-fw"></i>
+              <i class="fas fa-long-arrow-alt-up"></i>
             </div>
           </div>
         {/if}
@@ -70,7 +71,8 @@
           <div class="slope slope-down">
             <div class="text">{$rExt.data.slopeDown} m.</div>
             <div class="icon">
-              <img class="img-fluid" alt="{t}slope down{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/descendente.png">
+              <i class="fas fa-mountain fa-fw"></i>
+              <i class="fas fa-long-arrow-alt-down"></i>
             </div>
           </div>
         {/if}
