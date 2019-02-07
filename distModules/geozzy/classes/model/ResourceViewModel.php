@@ -226,6 +226,151 @@ class ResourceViewModel extends Model {
   );
 
 
+  public function __construct( $datarray = array(), $otherRelObj = false ) {
+    parent::__construct( $datarray, $otherRelObj );
+  }
+
+
+  /**
+   * Create relation between resource and topic
+   *
+   * @return boolean
+   */
+  public function createTopicRelation( $topicId, $resourceId ) {
+    //$this->dataFacade->transactionStart();
+
+    //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
+    $resourcetopic =  new ResourceTopicModel(array("resource" => $resourceId, "topic" => $topicId));
+    $resourcetopic->save();
+    //$this->dataFacade->transactionEnd();
+
+    return true;
+  }
+
+
+  /**
+   * Delete relation between resource and topic
+   *
+   * @return boolean
+   */
+  public function deleteTopicRelation( $topicId, $resourceId ) {
+    //$this->dataFacade->transactionStart();
+    //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
+    $resourcetopic =  new ResourceTopicModel();
+    $resourceRel = $resourcetopic->listItems( array('filters' => array('resource' => $resourceId, 'topic'=> $topicId)))->fetch();
+
+    $deleted = false;
+    if ($resourceRel){
+      $deleted = $resourceRel->delete();
+    }
+
+    if ($deleted){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  /**
+   * Create relation between resource and starred taxonomy
+   *
+   * @return boolean
+   */
+  public function createTaxonomytermRelation( $starredId, $resourceId ) {
+    //$this->dataFacade->transactionStart();
+
+    //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
+    $resourcetopic =  new ResourceTaxonomytermModel(array("resource" => $resourceId, "taxonomyterm" => $starredId));
+    $resourcetopic->save();
+    //$this->dataFacade->transactionEnd();
+
+    return true;
+  }
+
+  /**
+   * Create relation between resource and starred taxonomy
+   *
+   * @return boolean
+   */
+  public function createCollectionRelation( $collectionId, $resourceId ) {
+    //$this->dataFacade->transactionStart();
+    $resourcecollection =  new CollectionResourcesModel(array("resource" => $resourceId, "collection" => $collectionId));
+    $resourcecollection->save();
+    //$this->dataFacade->transactionEnd();
+
+    return true;
+  }
+
+
+
+  /**
+   * Delete item (This method is a mod from Model::delete)
+   *
+   * @param array $parameters array of filters
+   *
+   * @return boolean
+   */
+  public function delete( array $parameters = array() ) {
+
+
+    Cogumelo::debug( 'Called custom delete on '.get_called_class().' with "'.
+      $this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
+    $this->dataFacade->deleteFromKey( $this->getFirstPrimarykeyId(), $this->getter( $this->getFirstPrimarykeyId() )  );
+
+
+
+    // Remove resource taxonomy term
+    $resourceTaxonomytermControl = new ResourceTaxonomytermModel();
+    $resourceTaxonomyTermList = $resourceTaxonomytermControl->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+
+    while( $resourceTaxonomyTerm = $resourceTaxonomyTermList->fetch()  ) {
+      $resourceTaxonomyTerm->delete();
+    }
+
+
+    // Remove resource Topic
+    $resourceTopicControl = new ResourceTopicModel();
+    $resourceTopicList = $resourceTopicControl->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+
+    while( $resourceTopic = $resourceTopicList->fetch()  ) {
+      $resourceTopic->delete();
+    }
+
+
+    // remove all relation between Resource and COLLECTIONS
+    $resourceCollectionsControl = new ResourceCollectionsModel();
+    $resourceCollectionsList = $resourceCollectionsControl->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+
+    $collectionsToRemove = array();
+
+    while( $resourceCollections = $resourceCollectionsList->fetch()  ) {
+      $resourceCollections->delete();
+    }
+
+
+    $collectionResourcesModel = new CollectionResourcesModel();
+    $CollectionResourcesList = $collectionResourcesModel->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+
+    while( $CollectionResources = $CollectionResourcesList->fetch()  ) {
+      $collectionsToRemove[] = $CollectionResources->getter('collection');
+      $CollectionResources->delete();
+    }
+
+
+    // Remove all REXT related models
+    $relatedModels = $this->getRextModels();
+
+    foreach( $relatedModels as $relModelIdName => $relModel ) {
+      if($relModel) {
+        $relModel->delete();
+      }
+    }
+
+    return true;
+  }
+
+
 
   public function getRextModels() {
 
@@ -290,6 +435,34 @@ class ResourceViewModel extends Model {
     }
 
     return $dependences;
+  }
+
+  public function updateTopicTaxonomy( $idResource, $idTopic , $taxonomyTermId) {
+
+    $topic = (new ResourceTopicModel())->listItems(
+      array("filters" => array("resource" =>  $idResource, "topic" => $idTopic ))
+    )->fetch();
+
+    $topic->setter('taxonomyterm', $taxonomyTermId );
+    $topic->save();
+  }
+
+  public function setPublishedStatus( $idResource, $published) {
+
+    $resource = (new ResourceModel())->listItems(
+      array("filters" => array("id" =>  $idResource ))
+    )->fetch();
+
+    $resource->setter('published', $published );
+
+    $resource->save();
+  }
+
+
+  public function deleteResource( $resourceId ) {
+
+    $resource = (new ResourceModel())->listItems( array('filters' => array('id' => $resourceId)))->fetch();
+    $resource->delete();
   }
 
 }
