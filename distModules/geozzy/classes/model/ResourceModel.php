@@ -155,6 +155,8 @@ class ResourceModel extends Model {
     'notAsigned' => 'geozzy_resource.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources)',
 
     'distance2K' => ' geozzy_resource.loc IS NOT NULL AND ST_Distance_Sphere( geozzy_resource.loc, ST_GeomFromText( ? ) ) < 2000 ',
+    'idGt' => ' id > (?) ',
+    'idLt' => ' id < (?) '
   );
 
 
