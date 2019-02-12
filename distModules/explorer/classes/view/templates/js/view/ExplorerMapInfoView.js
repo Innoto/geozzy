@@ -86,10 +86,6 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
     var that = this;
 
     var infoDiv = $( '#'+that.divId );
-
-
-
-
     if(
        infoDiv.offset().left < that.currentMousePos.x &&  infoDiv.offset().left + infoDiv.width() > that.currentMousePos.x &&
        infoDiv.offset().top < that.currentMousePos.y &&  infoDiv.offset().top + infoDiv.height() > that.currentMousePos.y
@@ -115,7 +111,7 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
     resourceInfo.set(that.parentExplorer.resourceMinimalList.get(id).toJSON());
 
 
-    if( id == that.ready) {
+    /*if( id == that.ready) {
       // se xa está aberto accedemos (para touch)
       if(that.parentExplorer.explorerTouchDevice) {
         that.parentExplorer.triggerEvent('resourceClick', {
@@ -123,65 +119,61 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
           section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
         });
       }
-
     }
-    else {
-      that.ready = id;
+    else {*/
+    /*}*/
+    that.ready = id;
+    that.parentExplorer.fetchPartialList(
+      [id],
+      function() {
+        var minJSON = that.parentExplorer.resourceMinimalList.get( id ).toJSON();
+        var partJSON = that.parentExplorer.resourcePartialList.get( id ).toJSON();
 
-      that.parentExplorer.fetchPartialList(
-        [id],
-        function() {
-          var minJSON = that.parentExplorer.resourceMinimalList.get( id ).toJSON();
-          var partJSON = that.parentExplorer.resourcePartialList.get( id ).toJSON();
+        var element = $.extend( true, partJSON, minJSON );
+        element.touchAccess = that.parentExplorer.explorerTouchDevice;
 
-          var element = $.extend( true, partJSON, minJSON );
-          element.touchAccess = that.parentExplorer.explorerTouchDevice;
+        var elementCategory = false;
 
-          var elementCategory = false;
-
-          if(  that.options.categories != false) {
-
-
-            that.options.categories.each( function(e2){
-             //cogumelo.log(e.get('id'));
-             //console.debug(markerData.get('terms'));
-             if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( id ).get('terms')  ) > -1 ) {
-
-               elementCategory = e2;
-               if(e2) {
-                 elementCategory = e2.toJSON();
-
-               }
-               return false;
-               /*
-               if( jQuery.isNumeric( e2.get('icon') )  ){
-                 return false;
-               }*/
-             }
-            });
+        if(  that.options.categories != false) {
 
 
-          }
-          element.category = elementCategory;
+          that.options.categories.each( function(e2){
+            //cogumelo.log(e.get('id'));
+            //console.debug(markerData.get('terms'));
+            if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( id ).get('terms')  ) > -1 ) {
 
-          $( '#'+that.divId ).html( that.template( element ) );
+              elementCategory = e2;
+              if(e2) {
+                elementCategory = e2.toJSON();
 
-          if( that.ready == id){
-            $( '#'+that.divId ).show();
-            that.moveInfoMapDivWhenBehindMouse();
-            $('#' + that.divId + ' button.accessButton').on('click', function(ev){
-              that.hide();
-              that.parentExplorer.navigateUrl( $(ev.target).attr('dataResourceAccessButton') );
-              that.parentExplorer.triggerEvent( 'resourceAccess' , {id:$(ev.target).attr('dataResourceAccessButton')} );
+              }
+              return false;
+              /*
+              if( jQuery.isNumeric( e2.get('icon') )  ){
+                return false;
+              }*/
+            }
+          });
 
-            });
 
-          }
         }
-      );
-    }
+        element.category = elementCategory;
 
+        $( '#'+that.divId ).html( that.template( element ) );
 
+        if( that.ready == id){
+          $( '#'+that.divId ).show();
+          that.moveInfoMapDivWhenBehindMouse();
+          $('#' + that.divId + ' button.accessButton').on('click', function(ev){
+            that.hide();
+            that.parentExplorer.navigateUrl( $(ev.target).attr('dataResourceAccessButton') );
+            that.parentExplorer.triggerEvent( 'resourceAccess' , {id:$(ev.target).attr('dataResourceAccessButton')} );
+
+          });
+
+        }
+      }
+    );
   },
 
   hide: function() {
