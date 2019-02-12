@@ -9,6 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:14
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeViewBlock.tpl:14
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:14
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:14
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:14
@@ -17,9 +19,11 @@ msgstr ""
 msgid "Page"
 msgstr ""
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:15
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeViewBlock.tpl:15
+#: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/controller/RTypeTravelPlannerController.php:128
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:15
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:15
-#: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/controller/RTypeTravelPlannerController.php:128
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:15
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:15
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:15

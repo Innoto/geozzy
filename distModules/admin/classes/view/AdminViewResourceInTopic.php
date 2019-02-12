@@ -55,7 +55,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $topicId = $urlParamsList['topic'];
 
     table::autoIncludes();
-    $resource =  new ResourceViewModel();
+    $resource =  new ResourceModel();
     $resourcetype =  new ResourcetypeModel();
 
     $resourcetypelist = $resourcetype->listItems( array( 'filters' => array( 'intopic' => $topicId ) ) )->fetchAll();
@@ -70,7 +70,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setTabs('published', array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
 
     $filterByRtypeOpts = [];
-    $extendedModels = ['ResourceTopicModel'];
+    $extendedModels = ['ResourceTopicModel','UrlAliasModel'];
     foreach ($resourcetypelist as $typeId => $type){
       $filterByRtypeOpts[$typeId] = $type->getter('name');
       $extendedModels = array_merge($extendedModels, json_decode($type->getter('relatedModels')));
@@ -126,6 +126,11 @@ class AdminViewResourceInTopic extends AdminViewMaster
       $filters =  array('intopic'=> $topicId, 'inRtype'=>$tiposArray );
     }
 
+    // FILTRO UrlAliasModel: http=0 - canonical=1 - lang=default(es)
+    $filters['UrlAliasModel.http'] = 0;
+    $filters['UrlAliasModel.canonical'] = 1;
+    $filters['UrlAliasModel.lang'] = Cogumelo::getSetupValue( 'lang:default' );
+
     $tabla->setDefaultFilters($filters);
     $tabla->setAffectsDependences( $extendedModels ) ;
     //var_dump($extendedModels);
@@ -138,10 +143,9 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setColClasses('rTypeId', 'hidden-xs'); // hide id rtype mobile version
     $tabla->setCol('title_'.Cogumelo::getSetupValue( 'lang:default' ), __('Title'));
     $tabla->setCol('published', __('Published'));
-    $tabla->setCol('urlAlias_'.Cogumelo::getSetupValue( 'lang:default' ), __('Url'));
-
+    $tabla->setCol('UrlAliasModel.urlFrom', __('Url'));
     $tabla->colRule(
-      'urlAlias_'.Cogumelo::getSetupValue( 'lang:default' ),
+      'UrlAliasModel.urlFrom',
       '#^(.*)#',
       '<a href="'.Cogumelo::getSetupValue( 'lang:default' ).'$1" target="_blank" rel="noopener noreferrer" style="text-align:center;" onClick="event.stopPropagation();"><i class="far fa-share-square"></i></a>',
       true

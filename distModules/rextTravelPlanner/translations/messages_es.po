@@ -122,6 +122,8 @@ msgstr "Añadir sitios"
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:13
 #: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:13
 #: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:13
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
 msgid "Filtros :"
 msgstr ""
 
@@ -156,6 +158,8 @@ msgstr "Optimizar"
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:89
 #: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:89
 #: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:89
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
 msgid "Plan"
 msgstr ""
 
@@ -327,6 +331,8 @@ msgstr "¿Comenzamos?"
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:14
 #: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:14
 #: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:14
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:14
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:14
 msgid "Sólo favoritos"
 msgstr ""
 
@@ -349,6 +355,10 @@ msgstr "Imprimir día"
 #: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:383
 #: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:352
 #: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:383
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:352
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:383
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:352
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:383
 msgid "Comienzo"
 msgstr ""
 
@@ -366,5 +376,9 @@ msgstr ""
 #: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:417
 #: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:401
 #: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:417
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:401
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:417
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:401
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:417
 msgid "Llegada"
 msgstr ""

@@ -9,9 +9,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerListMobileView.js:183
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:181
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:179
 msgid "Prioritizing map zone"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/Templates.js:32
+msgid "ACCEDER"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/Templates.js:41
+msgid "No results found"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/filters/ExplorerFilterMinimapView.js:25
@@ -30,6 +39,12 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:13
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:13
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:12
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerBaseInLanding.tpl:14
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerList.tpl:13
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerSaganInLanding.tpl:15
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerSaganInLanding.tpl:15
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerBaseInLanding.tpl:14
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerList.tpl:13
 msgid "Return to content"
 msgstr ""
 
@@ -52,6 +67,14 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:19
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:19
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:19
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer.tpl:18
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerBaseInLanding.tpl:20
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerList.tpl:18
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerSaganInLanding.tpl:20
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorer.tpl:18
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerSaganInLanding.tpl:20
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerBaseInLanding.tpl:20
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerList.tpl:18
 msgid "Apply"
 msgstr ""
 
@@ -74,6 +97,14 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:22
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:22
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:22
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer.tpl:19
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerBaseInLanding.tpl:21
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerList.tpl:19
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerSaganInLanding.tpl:21
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorer.tpl:19
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerSaganInLanding.tpl:21
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerBaseInLanding.tpl:21
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerList.tpl:19
 msgid "Clear filters"
 msgstr ""
 
@@ -93,6 +124,14 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:25
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:25
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:25
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer.tpl:21
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerBaseInLanding.tpl:23
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerList.tpl:21
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerSaganInLanding.tpl:23
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorer.tpl:21
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerSaganInLanding.tpl:23
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerBaseInLanding.tpl:23
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerList.tpl:21
 msgid "List"
 msgstr ""
 
@@ -108,6 +147,12 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:26
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:26
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:26
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer.tpl:22
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerBaseInLanding.tpl:24
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerSaganInLanding.tpl:24
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorer.tpl:22
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerSaganInLanding.tpl:24
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerBaseInLanding.tpl:24
 msgid "Map"
 msgstr ""
 
@@ -130,5 +175,13 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:27
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:27
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:27
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer.tpl:23
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerBaseInLanding.tpl:25
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerList.tpl:22
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerSaganInLanding.tpl:25
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorer.tpl:23
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorer_classes_view_templates_explorerSaganInLanding.tpl:25
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerBaseInLanding.tpl:25
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/explorerList.tpl:22
 msgid "Filters"
 msgstr ""

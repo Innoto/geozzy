@@ -33,6 +33,10 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:20
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:20
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:20
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:20
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtViewBlock.tpl:20
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBtnDownloadViewBlock.tpl:2
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBtnDownloadViewBlock.tpl:2
 msgid "Download route"
 msgstr ""
 
@@ -41,6 +45,10 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:46
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:46
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:46
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:48
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBasicInfoViewBlock.tpl:48
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:45
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtViewBlock.tpl:45
 msgid "Circular route"
 msgstr ""
 
@@ -49,6 +57,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:51
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:51
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:50
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtViewBlock.tpl:50
 msgid "circular"
 msgstr ""
 
@@ -57,6 +67,10 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:57
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:57
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:57
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:48
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBasicInfoViewBlock.tpl:48
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:56
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtViewBlock.tpl:56
 msgid "Lineal route"
 msgstr ""
 
@@ -65,6 +79,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:62
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:62
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:61
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtViewBlock.tpl:61
 msgid "lineal"
 msgstr ""
 
@@ -73,6 +89,10 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:73
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:73
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:73
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:60
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBasicInfoViewBlock.tpl:60
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:70
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtViewBlock.tpl:70
 msgid "Slopes"
 msgstr ""
 
@@ -81,6 +101,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:79
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:79
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:79
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:76
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtViewBlock.tpl:76
 msgid "slope up"
 msgstr ""
 
@@ -89,6 +111,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:86
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:86
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:86
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:83
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtViewBlock.tpl:83
 msgid "slope down"
 msgstr ""
 
@@ -97,6 +121,10 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:100
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:100
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:100
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:89
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBasicInfoViewBlock.tpl:89
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:95
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtViewBlock.tpl:95
 msgid "Environment"
 msgstr ""
 
@@ -105,6 +133,10 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:113
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:113
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:113
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:99
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBasicInfoViewBlock.tpl:99
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:106
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtViewBlock.tpl:106
 msgid "Itinerary"
 msgstr ""
 
@@ -113,6 +145,10 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:126
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:126
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:126
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:109
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBasicInfoViewBlock.tpl:109
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:117
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtViewBlock.tpl:117
 msgid "Displacement"
 msgstr ""
 
@@ -121,6 +157,10 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:139
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:139
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:139
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:119
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBasicInfoViewBlock.tpl:119
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:128
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtViewBlock.tpl:128
 msgid "Effort"
 msgstr ""
 
@@ -283,5 +323,19 @@ msgstr "High"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:378
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:386
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:385
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:387
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:388
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:389
 msgid "data"
+msgstr ""
+
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:86
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBasicInfoViewBlock.tpl:86
+msgid "Difficulty"
+msgstr ""
+
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:129
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBasicInfoViewBlock.tpl:129
+msgid "Global"
 msgstr ""

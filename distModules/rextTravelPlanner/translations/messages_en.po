@@ -46,12 +46,15 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:84
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:127
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:333
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:45
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:84
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:127
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:333
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:45
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:84
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:127
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:333
 msgid "Day"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
-msgid "Select Dates"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:44
@@ -67,6 +70,11 @@ msgstr "Enter between 0 and 23 hours"
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:102
 msgid "Introduce entre 0 y 59 minutos"
 msgstr "Enter between 0 and 59 minutes"
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
+msgid "Select Dates"
+msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:7
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
@@ -84,6 +92,10 @@ msgstr "Enter between 0 and 59 minutes"
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:58
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:16
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:58
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:16
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:58
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:16
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:58
 msgid "All"
 msgstr ""
 
@@ -102,6 +114,10 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:59
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:17
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:59
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:17
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:59
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:17
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:59
 msgid "Favourites"
 msgstr ""
 
@@ -139,6 +155,10 @@ msgstr "All Content"
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:255
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:117
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:255
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:117
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:255
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:117
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:255
 msgid "When do you want to travel? "
 msgstr ""
 
@@ -164,6 +184,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:198
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:198
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:198
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:198
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:198
 msgid "Select date to visit this place or event"
 msgstr ""
 
@@ -184,6 +206,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:209
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:209
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:209
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:209
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:209
 msgid "How long do you want to visit this place?"
 msgstr ""
 
@@ -243,6 +267,14 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:213
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:237
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:238
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:212
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:213
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:237
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:238
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:212
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:213
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:237
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:238
 msgid "hours"
 msgstr ""
 
@@ -302,6 +334,14 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:217
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:241
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:242
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:216
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:217
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:241
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:242
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:216
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:217
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:241
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:242
 msgid "minutes"
 msgstr ""
 
@@ -355,6 +395,12 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:221
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:246
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:326
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:221
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:246
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:326
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:221
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:246
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:326
 msgid "Cancel"
 msgstr ""
 
@@ -375,6 +421,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:222
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:222
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:222
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:222
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:222
 msgid "Add to plan"
 msgstr ""
 
@@ -395,6 +443,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:234
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:234
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:234
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:234
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:234
 msgid "How long?"
 msgstr ""
 
@@ -415,6 +465,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:247
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:247
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:247
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:247
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:247
 msgid "Save"
 msgstr ""
 
@@ -422,6 +474,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:7
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:7
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
 msgid "Go to my plan"
 msgstr ""
 
@@ -429,6 +483,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:8
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:8
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
 msgid "Add Places"
 msgstr ""
 
@@ -475,6 +531,8 @@ msgstr "Maximise route of day"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:305
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:305
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:305
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:305
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:305
 msgid ""
 "The route between the first and the last place of the day will be optimized."
 msgstr ""
@@ -498,6 +556,8 @@ msgstr "Maximise"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:89
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:89
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
 msgid "Plan"
 msgstr ""
 
@@ -507,6 +567,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:90
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:90
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:90
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:90
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:90
 msgid "Add"
 msgstr ""
 
@@ -516,6 +578,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:91
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:91
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
 msgid "Dates"
 msgstr ""
 
@@ -525,6 +589,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:92
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:92
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:92
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:92
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:92
 msgid "Map"
 msgstr ""
 
@@ -540,6 +606,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:266
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:266
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:266
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:266
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:266
 msgid "Organizing your trip is very easy"
 msgstr ""
 
@@ -555,6 +623,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:267
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:267
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:267
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:267
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:267
 msgid "Is this your first time using our travel planner?"
 msgstr ""
 
@@ -570,6 +640,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:268
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:268
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:268
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:268
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:268
 msgid "Follow these simple steps"
 msgstr ""
 
@@ -585,6 +657,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:272
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:272
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:272
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:272
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:272
 msgid "Step 1 - Travel Planner"
 msgstr ""
 
@@ -600,6 +674,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:276
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:276
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:276
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:276
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:276
 msgid "Step 2 - Travel Planner"
 msgstr ""
 
@@ -615,6 +691,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:280
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:280
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:280
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:280
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:280
 msgid "Step 3 - Travel Planner"
 msgstr ""
 
@@ -630,6 +708,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:284
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:284
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:284
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:284
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:284
 msgid "Step 4 - Travel Planner"
 msgstr ""
 
@@ -645,6 +725,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:288
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:288
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:288
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:288
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:288
 msgid "Step 5 - Travel Planner"
 msgstr ""
 
@@ -658,6 +740,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:271
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:271
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
 msgid "STEP 1: While exploring the contents of the website,"
 msgstr ""
 
@@ -671,6 +755,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:271
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:271
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
 msgid ""
 "you can select any content that might interest you and append it to your "
 "‘favourites collection’."
@@ -686,6 +772,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:271
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:271
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
 msgid "Just click on the star icon."
 msgstr ""
 
@@ -699,6 +787,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:275
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:275
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:275
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:275
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:275
 msgid "STEP 2: Access the travel planner, and select your traveling dates"
 msgstr ""
 
@@ -712,6 +802,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:279
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:279
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:279
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:279
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:279
 msgid ""
 "STEP 3: From your favorite collection, select those places that you would "
 "like to add to your journey plan."
@@ -727,6 +819,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:279
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:279
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:279
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:279
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:279
 msgid ""
 "You can specify the day that most interests you to visit it and / or the "
 "time you want to spend there"
@@ -742,6 +836,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:283
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:283
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:283
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:283
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:283
 msgid "STEP 4: Press ‘Go to my plan’."
 msgstr ""
 
@@ -755,6 +851,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:283
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:283
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:283
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:283
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:283
 msgid ""
 "You can schedule visits as you wish by dragging and dropping the items. "
 msgstr ""
@@ -769,6 +867,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:287
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:287
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:287
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:287
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:287
 msgid ""
 "STEP 5: You can also optimize your day of visits. Simply click on 'Optimize "
 "day'"
@@ -784,6 +884,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:291
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:291
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:291
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:291
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:291
 msgid "STEP 6: Follow your travel plan on your smartphone"
 msgstr ""
 
@@ -797,6 +899,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:292
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:292
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:292
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:292
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:292
 msgid "Step 6 - Travel Planner"
 msgstr ""
 
@@ -810,6 +914,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:296
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:296
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:296
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:296
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:296
 msgid "Choose your dates and start your travel plan"
 msgstr ""
 
@@ -823,6 +929,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:299
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:299
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:299
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:299
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:299
 msgid "Select your dates"
 msgstr ""
 
@@ -836,6 +944,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:295
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:295
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:295
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:295
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:295
 msgid "Shall we begin?"
 msgstr ""
 

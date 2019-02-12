@@ -9,6 +9,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtPrintMapDirections.js:36
+msgid "Directions request failed due to "
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:333
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:329
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:365
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:319
@@ -67,6 +72,10 @@ msgstr "Información de la ruta"
 #: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:122
 #: /home/proxectos/becarios/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
 #: /home/proxectos/becarios/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:119
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:120
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:119
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:120
 msgid "Print directions"
 msgstr ""
 
@@ -78,6 +87,8 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/rExtPrintDirectionsPageFull.tpl:10
 #: /home/proxectos/becarios/app/tmp/tpl/rExtPrintDirectionsPageFull.tpl:10
 #: /home/proxectos/becarios/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
 msgid "Print Map Directions"
 msgstr ""
 

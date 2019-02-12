@@ -41,6 +41,14 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtcalendarViewBlock.tpl:53
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:46
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:51
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtlistViewBlock.tpl:46
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtlistViewBlock.tpl:51
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtcalendarViewBlock.tpl:48
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtcalendarViewBlock.tpl:53
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:48
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:53
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:46
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:51
 msgid "More information"
 msgstr ""
 

@@ -9,6 +9,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:96
+msgid "Are you sure you want to delete this comment?"
+msgstr "Está seguro de que quere borrar este comentario"
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:125
+msgid "Are you sure you want to try this suggestion?"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:141
+msgid "Are you sure you want to mark as irrelevant this suggestion?"
+msgstr "Está seguro de que quere marcar como irrelevante esta suxerencia"
+
 #: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/Templates.js:23
 msgid "Your contribution is welcome"
 msgstr "Moitas grazas polo teu comentario!"
@@ -25,18 +37,6 @@ msgstr "Publicado"
 msgid "Comment"
 msgstr "Comentario"
 
-#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:96
-msgid "Are you sure you want to delete this comment?"
-msgstr "Está seguro de que quere borrar este comentario"
-
-#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:125
-msgid "Are you sure you want to try this suggestion?"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:141
-msgid "Are you sure you want to mark as irrelevant this suggestion?"
-msgstr "Está seguro de que quere marcar como irrelevante esta suxerencia"
-
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/mailCommentValidated.tpl:2
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:2
 #: /home/proxectos/canlers/app/tmp/tpl/mailCommentValidated.tpl:2
@@ -44,6 +44,8 @@ msgstr "Está seguro de que quere marcar como irrelevante esta suxerencia"
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/mailCommentValidated.tpl:2
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:2
 #: /home/proxectos/canlers/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:2
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/mailCommentValidated.tpl:2
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextComment_classes_view_templates_mailCommentValidated.tpl:2
 msgid "Estimado usuario,"
 msgstr ""
 
@@ -133,3 +135,7 @@ msgstr "Produciuse un erro"
 #: /home/proxectos/geozzy/distModules/rextComment/classes/controller/RExtCommentController.php:62
 msgid "Active comment"
 msgstr "Comentario Activo"
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentView.php:266
+msgid "You have received a comment"
+msgstr ""

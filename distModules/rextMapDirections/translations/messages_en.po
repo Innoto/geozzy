@@ -9,6 +9,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtPrintMapDirections.js:36
+msgid "Directions request failed due to "
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:333
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:329
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:319
 msgid "A route could not be found."
@@ -39,6 +44,10 @@ msgstr "Enter a departure address"
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:88
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:44
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock-pre171024.tpl:44
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock-pre171024.tpl:44
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:86
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:86
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:44
 msgid "Get directions"
 msgstr ""
 
@@ -56,6 +65,10 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:96
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:54
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock-pre171024.tpl:54
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock-pre171024.tpl:54
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:94
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:94
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:54
 msgid "Show route description"
 msgstr ""
 
@@ -67,6 +80,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:101
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:101
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:101
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:99
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:99
 msgid "Route by car"
 msgstr ""
 
@@ -78,6 +93,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:102
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:102
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:102
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:100
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:100
 msgid "Walking route"
 msgstr ""
 
@@ -89,6 +106,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:103
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:103
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:103
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:101
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:101
 msgid "Route by public transport"
 msgstr ""
 
@@ -106,6 +125,10 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:104
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:52
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock-pre171024.tpl:52
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock-pre171024.tpl:52
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:102
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:102
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:52
 msgid "Route information"
 msgstr ""
 
@@ -121,6 +144,10 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:122
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:119
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:120
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:119
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:120
 msgid "Print directions"
 msgstr ""
 
@@ -128,6 +155,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtPrintDirectionsPageFull.tpl:10
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
 msgid "Print Map Directions"
 msgstr ""
 
@@ -137,6 +166,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:40
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:37
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock-pre171024.tpl:37
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock-pre171024.tpl:37
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:37
 msgid "Type an address or mark on the map the place of departure"
 msgstr ""
 

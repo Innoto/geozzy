@@ -53,6 +53,7 @@ msgstr "Hai erros no formulario"
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:524
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:545
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:546
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:554
 msgid "Send"
 msgstr "Enviar"
 
@@ -123,6 +124,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/userProfile.tpl:4
 #: /home/proxectos/canlers/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/userProfile.tpl:4
 msgid "Perfil de Usuario"
 msgstr ""
 
@@ -202,6 +205,8 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:393
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:413
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:414
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:421
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:422
 msgid "Recovery Password"
 msgstr ""
 

@@ -9,6 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypeBlog_classes_view_templates_rTypeViewBlock.tpl:103
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeViewBlock.tpl:103
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:103
 #: /home/proxectos/canlers/app/tmp/tpl/rtypeBlog_classes_view_templates_rTypeViewBlock.tpl:103
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:103
@@ -19,6 +21,8 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypeBlog_classes_view_templates_rTypeViewBlock.tpl:118
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeViewBlock.tpl:118
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:118
 #: /home/proxectos/canlers/app/tmp/tpl/rtypeBlog_classes_view_templates_rTypeViewBlock.tpl:118
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:118
@@ -29,6 +33,8 @@ msgstr ""
 msgid "See indications"
 msgstr ""
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypeBlog_classes_view_templates_rTypeViewBlock.tpl:127
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeViewBlock.tpl:127
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:127
 #: /home/proxectos/canlers/app/tmp/tpl/rtypeBlog_classes_view_templates_rTypeViewBlock.tpl:127
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:127

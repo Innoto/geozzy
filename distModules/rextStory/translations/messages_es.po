@@ -9,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextStory/classes/view/templates/js/rextStoryAdmin.js:10
 #: /home/proxectos/geozzy/distModules/rextStory/classes/view/templates/js/rextStoryAdmin.js:8
 msgid "Select options"
 msgstr "Seleccione las opciones"

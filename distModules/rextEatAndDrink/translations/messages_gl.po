@@ -9,6 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:10
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:10
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:10
 #: /home/proxectos/canlers/app/tmp/tpl/rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:10
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:10
@@ -19,6 +21,8 @@ msgstr ""
 msgid "Reservation URL"
 msgstr ""
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:15
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:15
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:15
 #: /home/proxectos/canlers/app/tmp/tpl/rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:15
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:15
@@ -29,6 +33,8 @@ msgstr ""
 msgid "Reservation phone"
 msgstr ""
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:20
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:20
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:20
 #: /home/proxectos/canlers/app/tmp/tpl/rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:20
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:20
@@ -39,6 +45,8 @@ msgstr ""
 msgid "Capacity"
 msgstr ""
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:25
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:25
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:25
 #: /home/proxectos/canlers/app/tmp/tpl/rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:25
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:25
@@ -49,6 +57,8 @@ msgstr ""
 msgid "Average Price"
 msgstr ""
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:30
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:30
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:30
 #: /home/proxectos/canlers/app/tmp/tpl/rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:30
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:30
@@ -59,6 +69,8 @@ msgstr ""
 msgid "Restaurant type"
 msgstr ""
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:41
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:41
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:41
 #: /home/proxectos/canlers/app/tmp/tpl/rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:41
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:41

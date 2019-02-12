@@ -9,6 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypePoiFormModalBlock.tpl:24
 #: /home/proxectos/becarios/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
 #: /home/proxectos/becarios/app/tmp/tpl/rTypePoiFormModalBlock.tpl:24
 #: /home/proxectos/canlers/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
@@ -26,6 +28,8 @@ msgstr ""
 msgid "If not uploaded, an automatic thumbnail will be created"
 msgstr ""
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeViewBlock.tpl:58
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:58
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:58
 #: /home/proxectos/becarios/app/tmp/tpl/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:58
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:58
@@ -40,6 +44,8 @@ msgstr ""
 msgid "volver"
 msgstr ""
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeViewBlock.tpl:121
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:121
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:121
 #: /home/proxectos/becarios/app/tmp/tpl/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:121
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:121
