@@ -14,6 +14,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBlock.tpl:3
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBlock.tpl:3
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextAudioguide_classes_view_templates_rExtFormBlock.tpl:3
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextAudioguide_classes_view_templates_rExtFormBlock.tpl:3
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtFormBlock.tpl:3
 msgid "Upload audio file (mp3)"
 msgstr ""
 
@@ -22,6 +24,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBlock.tpl:7
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBlock.tpl:7
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextAudioguide_classes_view_templates_rExtFormBlock.tpl:7
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextAudioguide_classes_view_templates_rExtFormBlock.tpl:7
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtFormBlock.tpl:7
 msgid "Activation distance (m.)"
 msgstr ""
 
@@ -30,6 +34,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:6
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:6
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextAudioguide_classes_view_templates_rExtViewBlock.tpl:6
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:11
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextAudioguide_classes_view_templates_rExtViewBlock.tpl:11
 msgid "Audioguide"
 msgstr ""
 

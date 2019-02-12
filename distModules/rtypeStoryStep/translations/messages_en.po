@@ -32,6 +32,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/listSteps.tpl:5
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeStoryStep_classes_view_templates_listSteps.tpl:5
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/listSteps.tpl:5
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypeStoryStep_classes_view_templates_listSteps.tpl:5
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/listSteps.tpl:5
 msgid "Steps available"
 msgstr ""
 

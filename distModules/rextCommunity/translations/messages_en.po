@@ -14,5 +14,7 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/otherUserCommunityViewBlock.tpl:30
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextCommunity_classes_view_templates_otherUserCommunityViewBlock.tpl:30
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/otherUserCommunityViewBlock.tpl:30
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextCommunity_classes_view_templates_otherUserCommunityViewBlock.tpl:30
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/otherUserCommunityViewBlock.tpl:30
 msgid "Favoritos:"
 msgstr ""

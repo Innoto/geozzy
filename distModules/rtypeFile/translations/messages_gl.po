@@ -9,6 +9,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeMultiFileFormModalBlock.tpl:18
+msgid "Files up to 8MB can be upload in JPG and PNG format"
+msgstr ""
+
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/canlers/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
+msgid "If not uploaded, an automatic thumbnail will be created"
+msgstr ""
+
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeMultiFileAdminFormModalBlock.tpl:19
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
 #: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
 #: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
@@ -33,6 +54,8 @@ msgstr ""
 msgid "Files up to 5MB can be upload in JPG and PNG format"
 msgstr ""
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:13
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeViewBlock.tpl:13
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:13
 #: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:13
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:13
@@ -45,6 +68,8 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:18
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeViewBlock.tpl:18
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:18
 #: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:18
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:18
@@ -57,6 +82,8 @@ msgstr ""
 msgid "Short description"
 msgstr ""
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:23
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeViewBlock.tpl:23
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:23
 #: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:23
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:23
@@ -69,6 +96,8 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:29
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeViewBlock.tpl:29
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:29
 #: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:29
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:29
@@ -79,16 +108,6 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:26
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:26
 msgid "None"
-msgstr ""
-
-#: /home/proxectos/canlers/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/canlers/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
-msgid "If not uploaded, an automatic thumbnail will be created"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:39

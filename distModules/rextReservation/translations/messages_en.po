@@ -35,6 +35,8 @@ msgstr "Arrival date - Departure date"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:18
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/booking-com-public.tpl:18
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextReservation_classes_view_templates_booking-com-public.tpl:18
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/booking-com-public.tpl:21
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextReservation_classes_view_templates_booking-com-public.tpl:21
 msgid "Rooms"
 msgstr ""
 
@@ -42,6 +44,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:30
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/booking-com-public.tpl:30
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextReservation_classes_view_templates_booking-com-public.tpl:30
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/booking-com-public.tpl:33
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextReservation_classes_view_templates_booking-com-public.tpl:33
 msgid "Adults"
 msgstr ""
 

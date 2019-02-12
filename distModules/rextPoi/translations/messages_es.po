@@ -9,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextPoi/classes/view/templates/js/rextPoi.js:23
 #: /home/proxectos/geozzy/distModules/rextPoi/classes/view/templates/js/rextPoi.js:22
 msgid "Select options"
 msgstr ""
@@ -21,6 +22,8 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
 #: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:11
 #: /home/proxectos/becarios/app/tmp/tpl/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:11
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
 msgid "Datos Panorama"
 msgstr ""
 
@@ -38,6 +41,8 @@ msgstr ""
 
 #: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:22
 #: /home/proxectos/becarios/app/tmp/tpl/rextPoi_classes_view_templates_rExtViewBlock.tpl:22
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:22
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextPoi_classes_view_templates_rExtViewBlock.tpl:22
 msgid ""
 "Haz click en el lugar donde se ubica el recurso, podrás arrastrar y soltar "
 "la localización"

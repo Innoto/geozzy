@@ -9,6 +9,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:11
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:62
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:68
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
@@ -17,12 +20,14 @@ msgstr ""
 msgid "Select options"
 msgstr "Seleccionar opciones"
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:75
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:74
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:12
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:75
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:57
 msgid "Add existing resources"
 msgstr "Añadir recursos existentes"
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:87
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:88
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:70
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
@@ -137,6 +142,8 @@ msgstr "Añadir"
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:59
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:21
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:59
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:190
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:191
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -159,6 +166,8 @@ msgstr "Lista de términos para"
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:11
 #: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:11
 #: /home/proxectos/becarios/app/tmp/tpl/menuTermEditor.tpl:11
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/admin_classes_view_templates_menuTermEditor.tpl:11
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/menuTermEditor.tpl:11
 msgid "Menu management"
 msgstr ""
 
@@ -170,6 +179,8 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:16
 #: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:16
 #: /home/proxectos/becarios/app/tmp/tpl/menuTermEditor.tpl:16
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/admin_classes_view_templates_menuTermEditor.tpl:16
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/menuTermEditor.tpl:16
 msgid "Add menu term"
 msgstr ""
 
@@ -181,6 +192,8 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:34
 #: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:34
 #: /home/proxectos/becarios/app/tmp/tpl/menuTermEditor.tpl:34
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/admin_classes_view_templates_menuTermEditor.tpl:34
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/menuTermEditor.tpl:34
 msgid "List of menu terms"
 msgstr ""
 
@@ -192,6 +205,8 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:52
 #: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:52
 #: /home/proxectos/becarios/app/tmp/tpl/menuTermEditor.tpl:52
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/admin_classes_view_templates_menuTermEditor.tpl:52
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/menuTermEditor.tpl:52
 msgid "Add term menu"
 msgstr ""
 
@@ -243,6 +258,8 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:143
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:139
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:148
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:145
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:158
 msgid "Published"
 msgstr "Publicado"
 
@@ -253,6 +270,7 @@ msgstr "Publicado"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:43
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:118
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:149
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:159
 msgid "Unpublished"
 msgstr "No publicado"
 
@@ -265,6 +283,7 @@ msgstr "No publicado"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:92
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:118
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:190
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:200
 msgid "All"
 msgstr "Todo"
 
@@ -290,6 +309,7 @@ msgstr "Despublicar"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:51
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:126
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:101
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:115
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -299,6 +319,7 @@ msgstr "Eliminar"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:90
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:108
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:136
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:142
 msgid "Type"
 msgstr "Tipo"
 
@@ -308,6 +329,7 @@ msgstr "Tipo"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:91
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:109
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:138
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:144
 msgid "Title"
 msgstr "Título"
 
@@ -355,11 +377,13 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:72
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:74
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:75
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:71
 msgid "Access denied"
 msgstr "Acceso denegado"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:104
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:181
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:186
 msgid "Selecciona un icono"
 msgstr ""
 
@@ -373,10 +397,13 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:161
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:182
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:166
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:187
 msgid "Related resource"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:184
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:189
 msgid "Menu form"
 msgstr ""
 
@@ -450,50 +477,63 @@ msgstr "añadir usuario"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:99
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:118
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:112
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:134
 msgid "Active"
 msgstr "Activo"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:100
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:113
 msgid "Inactive"
 msgstr "Inactivo"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:112
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:127
 msgid "Id"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:113
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:128
 msgid "Login"
 msgstr "Acceder"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:114
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:129
 msgid "Name"
 msgstr "Nombre"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:115
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:130
 msgid "Surname"
 msgstr "Apellidos"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:116
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:131
 msgid "Email"
 msgstr "Correo-e"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:117
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:132
 msgid "Creation date"
 msgstr "Fecha de creación"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:158
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:175
 msgid "Create user"
 msgstr "Crear usuario"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:202
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:219
 msgid "Change Password"
 msgstr "Cambiar contraseña"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:211
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:228
 msgid "Edit Roles"
 msgstr "Editar roles"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:214
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:231
 msgid "Edit user"
 msgstr "Editar usuario"
 
@@ -601,6 +641,8 @@ msgstr "Enviar"
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:37
 #: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:37
 #: /home/proxectos/becarios/app/tmp/tpl/loginForm.tpl:37
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/loginForm.tpl:35
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/admin_classes_view_templates_loginForm.tpl:35
 msgid "He olvidado mi contraseña"
 msgstr ""
 
@@ -612,6 +654,8 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:39
 #: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:39
 #: /home/proxectos/becarios/app/tmp/tpl/loginForm.tpl:39
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/loginForm.tpl:37
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/admin_classes_view_templates_loginForm.tpl:37
 msgid "Recuperar contraseña"
 msgstr ""
 
@@ -623,6 +667,8 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:40
 #: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:40
 #: /home/proxectos/becarios/app/tmp/tpl/loginForm.tpl:40
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/loginForm.tpl:38
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/admin_classes_view_templates_loginForm.tpl:38
 msgid ""
 "Introduce la dirección de correo electrónico asociada a tu cuenta y te "
 "enviaremos un enlace para restablecer tu contraseña"
@@ -636,6 +682,8 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:45
 #: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:45
 #: /home/proxectos/becarios/app/tmp/tpl/loginForm.tpl:45
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/loginForm.tpl:43
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/admin_classes_view_templates_loginForm.tpl:43
 msgid "Hay errores en el formulario"
 msgstr ""
 
@@ -647,6 +695,8 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:46
 #: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:46
 #: /home/proxectos/becarios/app/tmp/tpl/loginForm.tpl:46
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/loginForm.tpl:44
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/admin_classes_view_templates_loginForm.tpl:44
 msgid "Recuperar"
 msgstr ""
 
@@ -658,6 +708,25 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:51
 #: /home/proxectos/becarios/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:51
 #: /home/proxectos/becarios/app/tmp/tpl/loginForm.tpl:51
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/loginForm.tpl:49
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/admin_classes_view_templates_loginForm.tpl:49
 msgid ""
 "Se ha enviado un correo electrónico para recuperar tu cuenta de usuario."
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:93
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:146
+msgid "Url"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:99
+msgid "Todos los roles"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:108
+msgid "Rol de usuario"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:133
+msgid "Role"
 msgstr ""

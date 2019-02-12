@@ -9,6 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/canlers/app/tmp/tpl/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21

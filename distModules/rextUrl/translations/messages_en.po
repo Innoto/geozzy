@@ -9,9 +9,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:25
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextUrl_classes_view_templates_rExtViewBlock.tpl:25
+#: /home/proxectos/geozzy/distModules/rextUrl/classes/controller/RExtUrlController.php:59
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:25
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextUrl_classes_view_templates_rExtViewBlock.tpl:25
-#: /home/proxectos/geozzy/distModules/rextUrl/classes/controller/RExtUrlController.php:59
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:25
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextUrl_classes_view_templates_rExtViewBlock.tpl:25
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:25

@@ -247,5 +247,19 @@ msgstr "Alta"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:378
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:386
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:385
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:387
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:388
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:389
 msgid "data"
+msgstr ""
+
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:86
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBasicInfoViewBlock.tpl:86
+msgid "Difficulty"
+msgstr ""
+
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:129
+#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBasicInfoViewBlock.tpl:129
+msgid "Global"
 msgstr ""
