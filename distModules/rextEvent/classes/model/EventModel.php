@@ -46,7 +46,8 @@ class EventModel extends Model
   );
 
   static $extraFilters = array(
-    'inId' => ' geozzy_resource_rext_event.resource IN (?) '
+    'inId' => ' geozzy_resource_rext_event.resource IN (?) ',
+    'resourceIn' => ' geozzy_resource_rext_event.resource IN (?) '
   );
 
 
