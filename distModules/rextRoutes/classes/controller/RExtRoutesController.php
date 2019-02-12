@@ -382,11 +382,21 @@ class RExtRoutesController extends RExtController implements RExtInterface {
        $rExtViewBlockInfo['data']['travelDistanceKm'] = $rExtViewBlockInfo['data']['travelDistance']/1000;
 
        global $rextRoutes_difficulty;
-       $rExtViewBlockInfo['data']['difficultyEnvironmentText'] = __($rextRoutes_difficulty[$rExtViewBlockInfo['data']['difficultyEnvironment']]);
-       $rExtViewBlockInfo['data']['difficultyItineraryText'] = __($rextRoutes_difficulty[$rExtViewBlockInfo['data']['difficultyItinerary']]);
-       $rExtViewBlockInfo['data']['difficultyDisplacementText'] = __($rextRoutes_difficulty[$rExtViewBlockInfo['data']['difficultyDisplacement']]);
-       $rExtViewBlockInfo['data']['difficultyEffortText'] = __($rextRoutes_difficulty[$rExtViewBlockInfo['data']['difficultyEffort']]);
-       $rExtViewBlockInfo['data']['difficultyGlobalText'] = __($rextRoutes_difficulty[$rExtViewBlockInfo['data']['difficultyGlobal']]);
+       if( !empty( $rExtViewBlockInfo['data']['difficultyEnvironment'] ) ) {
+         $rExtViewBlockInfo['data']['difficultyEnvironmentText'] = __($rextRoutes_difficulty[$rExtViewBlockInfo['data']['difficultyEnvironment']]);
+       }
+       if( !empty( $rExtViewBlockInfo['data']['difficultyItinerary'] ) ) {
+         $rExtViewBlockInfo['data']['difficultyItineraryText'] = __($rextRoutes_difficulty[$rExtViewBlockInfo['data']['difficultyItinerary']]);
+       }
+       if( !empty( $rExtViewBlockInfo['data']['difficultyDisplacement'] ) ) {
+         $rExtViewBlockInfo['data']['difficultyDisplacementText'] = __($rextRoutes_difficulty[$rExtViewBlockInfo['data']['difficultyDisplacement']]);
+       }
+       if( !empty( $rExtViewBlockInfo['data']['difficultyEffort'] ) ) {
+         $rExtViewBlockInfo['data']['difficultyEffortText'] = __($rextRoutes_difficulty[$rExtViewBlockInfo['data']['difficultyEffort']]);
+       }
+       if( !empty( $rExtViewBlockInfo['data']['difficultyGlobal'] ) ) {
+         $rExtViewBlockInfo['data']['difficultyGlobalText'] = __($rextRoutes_difficulty[$rExtViewBlockInfo['data']['difficultyGlobal']]);
+       }
 
        $rExtViewBlockInfo['template']['full'] = new Template();
        $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
