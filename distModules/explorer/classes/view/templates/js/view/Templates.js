@@ -11,7 +11,7 @@ geozzy.explorerComponents.mapInfoViewTemplate = ''+
       '<div class="gempiTitle"><%-title%></div>'+
       '<div class="gempiLocation"><% if( typeof city !="undefined" && city ){ %><%- city %> <% } %></div>'+
       '<div class="gempiDescription"><%=description%></div>'+
-      '<a href="#resource/<%-id%>"><div class="gempiTouchAccess"><% if(touchAccess){ %><button class="btn btn-primary accessButton">Descúbreo</button> <% } %></div></a>'+
+      '<% if('+cogumelo.publicConf.mod_detectMobile_isTablet+'){ %><button class="gempiTouchAccess btn btn-primary">Descúbreo</button><% } %>'+
     '</div>'+
     '<div class="extraBottomContent"></div>'+
   '</div>';
@@ -96,23 +96,27 @@ geozzy.explorerComponents.activeListViewTemplate = ''+
   '</div>';
 
 geozzy.explorerComponents.activeListViewElement = '' +
-  '<div data-resource-id="<%- id %>" class="col-12 element">'+
-    '<div class="elementImg">'+
-      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/wmdpi16/<%- img %>.jpg">'+
-      '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
-        '<ul class="elementOptions container-fluid"></ul>'+
-      '</div>'+
-      '<div class="elementFav">'+
-        '<div style="display:none;" data-favourite-resource="<%- id %>" data-favourite-status="0" class="rExtFavourite rExtFavouriteHidden">'+
-          '<i class="far fa-heart fav-off"></i><i class="fas fa-heart fav-on"></i>'+
-        '</div>'+
+'<div data-resource-id="<%- id %>" class="col-12 element">'+
+  '<div class="elementImg">'+
+    '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/wmdpi4/<%- img %>.jpg">'+
+    '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
+      '<% if('+cogumelo.publicConf.mod_detectMobile_isTablet+'){ %><button class="buttonTabletAccess btn btn-primary">Descúbreo</button><% } %>'+
+    '</div>'+
+    '<%  if( parseInt(isRoute) == 1 ){ %> ' +
+      '<% if( typeof difficultyGlobalText !="undefined" ){ %><div class="routeDifficulty difficulty_<%- difficultyGlobal %>"><%- difficultyGlobalText %></div><% } %>' +
+    '<% } %>'+
+    '<div class="elementFav">'+
+      '<div style="display:none;" data-favourite-resource="<%- id %>" data-favourite-status="0" class="rExtFavourite rExtFavouriteHidden">'+
+        '<i class="far fa-heart fav-off"></i><i class="fas fa-heart fav-on"></i>'+
       '</div>'+
     '</div>'+
-    '<div class="elementInfo">'+
-      '<div class="elementTitle"><%-title%></div>'+
-      '<div class="elementType"><img src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- category.icon %>/typeIconMini/<%- category.icon %>.png"> <%- category.name %></div>'+
-    '</div>'+
-  '</div>';
+  '</div>'+
+  '<div class="elementInfo">'+
+    '<div class="elementTitle"><%-title%></div>'+
+    '<div class="elementType"><%- category.name %></div>'+
+    /*'<div class="elementLocation">(<% if(ayuntamientoLugar){ %><%-ayuntamientoLugar%>, <% } %><%-appLugarProvinciaName%>)</div>'+*/
+  '</div>'+
+'</div>';
 
 
 geozzy.explorerComponents.filterButtonsViewTemplate = "" +
