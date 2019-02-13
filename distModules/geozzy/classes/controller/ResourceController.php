@@ -1416,7 +1416,6 @@ class ResourceController {
 
         $resSonId = $collection->getter('resourceSon');
         $resourcesSon[ $resSonId ] = true;
-        $collResources[ $collId ]['col']['idResSon'][] = $resSonId;
         $collResources[ $collId ]['res'][ $resSonId ] = true;
       } // while( $collection = $resCollectionList->fetch() )
 
