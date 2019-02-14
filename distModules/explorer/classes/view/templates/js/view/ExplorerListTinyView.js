@@ -20,6 +20,7 @@ geozzy.explorerComponents.listTinyView = Backbone.View.extend({
     "click .explorerListPager .pageNum" : "setPageClick",
     // resource events
     "click .explorerListContent .accessButton": "resourceClick",
+    "click .explorerListContent .buttonTabletAccess": "resourceClickTablet",
     "touchend .explorerListContent .element": "resourceTouch",
     "mouseenter .explorerListContent .element": "resourceHover",
     "mouseleave .explorerListContent .element": "resourceOut",
@@ -274,6 +275,15 @@ geozzy.explorerComponents.listTinyView = Backbone.View.extend({
     if(!that.parentExplorer.explorerTouchDevice){
       that.resourceEvent( element, 'click');
     }
+  },
+
+  resourceClickTablet: function(element) {
+    var that = this;
+    that.parentExplorer.triggerEvent('resourceClick',{
+      id: $(element.target).parent().attr('data-resource-id'),
+      section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
+    });
+    //that.resourceEvent( element, 'click');
   },
 
   resourceTouch: function( element ) {

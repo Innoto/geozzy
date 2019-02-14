@@ -16,10 +16,11 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
   events: {
     // resource events
 
+    "click .explorerActiveListContent .buttonTabletAccess": "resourceClickTablet",
     "click .explorerActiveListContent .accessButton": "resourceClick",
     "touchend .explorerActiveListContent .element": "resourceTouch",
     "mouseenter .explorerActiveListContent .element": "resourceHover",
-    "mouseleave .explorerActiveListContent .element": "resourceOut",
+    "mouseleave .explorerActiveListContent .element": "resourceOut"
   },
 
   initialize: function( opts ) {
@@ -217,6 +218,15 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
     /*if(!that.parentExplorer.explorerTouchDevice){
       that.resourceEvent( element, 'click');
     }*/
+  },
+
+  resourceClickTablet: function(element) {
+    var that = this;
+    that.parentExplorer.triggerEvent('resourceClick',{
+      id: $(element.target).parent().attr('data-resource-id'),
+      section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
+    });
+    //that.resourceEvent( element, 'click');
   },
 
   resourceTouch: function( element ) {

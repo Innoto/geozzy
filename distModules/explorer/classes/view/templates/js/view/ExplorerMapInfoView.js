@@ -1,6 +1,7 @@
 var geozzy = geozzy || {};
 if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
+
 geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
 
   displayType: 'plugin',
@@ -164,10 +165,14 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
         if( that.ready == id){
           $( '#'+that.divId ).show();
           that.moveInfoMapDivWhenBehindMouse();
-          $('#' + that.divId + ' button.accessButton').on('click', function(ev){
+          $('#' + that.divId + ' button.buttonTabletAccess').on('click', function(ev){
             that.hide();
-            that.parentExplorer.navigateUrl( $(ev.target).attr('dataResourceAccessButton') );
-            that.parentExplorer.triggerEvent( 'resourceAccess' , {id:$(ev.target).attr('dataResourceAccessButton')} );
+            //that.parentExplorer.navigateUrl( $(ev.target).attr('dataResourceAccessButton') );
+            //that.parentExplorer.triggerEvent( 'resourceAccess' , {id: id } );
+            that.parentExplorer.triggerEvent('resourceClick',{
+              id: id,
+              section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
+            });
 
           });
 

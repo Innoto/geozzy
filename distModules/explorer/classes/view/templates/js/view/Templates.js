@@ -11,7 +11,7 @@ geozzy.explorerComponents.mapInfoViewTemplate = ''+
       '<div class="gempiTitle"><%-title%></div>'+
       '<div class="gempiLocation"><% if( typeof city !="undefined" && city ){ %><%- city %> <% } %></div>'+
       '<div class="gempiDescription"><%=description%></div>'+
-      '<% if('+cogumelo.publicConf.mod_detectMobile_isTablet+'){ %><div class="gempiTouchAccess"><button class="gempiTouchAccess btn btn-primary">Descúbreo</button></div><% } %>'+
+      '<% if('+cogumelo.publicConf.mod_detectMobile_isTablet+'){ %><div class="gempiTouchAccess"><button class="buttonTabletAccess  btn btn-primary">Discover</button></div><% } %>'+
     '</div>'+
     '<div class="extraBottomContent"></div>'+
   '</div>';
@@ -56,7 +56,7 @@ geozzy.explorerComponents.activeListTinyViewElement = ''+
     '<div class="elementImg">'+
       '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/wmdpi4/<%- img %>.jpg">'+
       '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
-        '<ul class="elementOptions container-fluid"></ul>'+
+        '<% if('+cogumelo.publicConf.mod_detectMobile_isTablet+'){ %><button class="buttonTabletAccess btn btn-primary">Discover</button><% } %>'+
       '</div>'+
       '<div class="elementFav">'+
         '<div data-favourite-resource="<%- id %>" data-favourite-status="0" class="rExtFavourite rExtFavouriteHidden">'+
@@ -100,7 +100,7 @@ geozzy.explorerComponents.activeListViewElement = '' +
   '<div class="elementImg">'+
     '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/wmdpi4/<%- img %>.jpg">'+
     '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
-      '<% if('+cogumelo.publicConf.mod_detectMobile_isTablet+'){ %><button class="buttonTabletAccess btn btn-primary">Descúbreo</button><% } %>'+
+      '<% if('+cogumelo.publicConf.mod_detectMobile_isTablet+'){ %><button class="buttonTabletAccess btn btn-primary">Discover</button><% } %>'+
     '</div>'+
     '<%  if( parseInt(isRoute) == 1 ){ %> ' +
       '<% if( typeof difficultyGlobalText !="undefined" ){ %><div class="routeDifficulty difficulty_<%- difficultyGlobal %>"><%- difficultyGlobalText %></div><% } %>' +
