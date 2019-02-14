@@ -3,6 +3,7 @@ if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
 
 geozzy.explorerComponents.mapInfoViewTemplate = ''+
+  '<% if('+cogumelo.publicConf.mod_detectMobile_isTablet+'){ %> <button class="buttonTabletClose"><i class="fas fa-times"></i><button> <% } %>' +
   '<div class="gempiContent">'+
     '<div class="gempiImg">'+
       '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/wmdpi4/<%-img%>.jpg">'+
@@ -14,6 +15,7 @@ geozzy.explorerComponents.mapInfoViewTemplate = ''+
       '<% if('+cogumelo.publicConf.mod_detectMobile_isTablet+'){ %><div class="gempiTouchAccess"><button class="buttonTabletAccess  btn btn-primary">Discover</button></div><% } %>'+
     '</div>'+
     '<div class="extraBottomContent"></div>'+
+
   '</div>';
 
 geozzy.explorerComponents.mapInfoViewMobileTemplate = ''+

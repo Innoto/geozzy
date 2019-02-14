@@ -165,6 +165,11 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
         if( that.ready == id){
           $( '#'+that.divId ).show();
           that.moveInfoMapDivWhenBehindMouse();
+
+          $('#' + that.divId + ' button.buttonTabletClose').on('click', function(ev){
+            that.hide();
+          });
+
           $('#' + that.divId + ' button.buttonTabletAccess').on('click', function(ev){
             that.hide();
             //that.parentExplorer.navigateUrl( $(ev.target).attr('dataResourceAccessButton') );
