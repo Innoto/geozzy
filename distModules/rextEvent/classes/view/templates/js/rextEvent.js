@@ -48,20 +48,26 @@ var rextEventJs = {
     // lanzamos los calendarios
     if( typeof(initDay)!='undefined' && initDay!=false ) {
       $(modal+'.initDate').datetimepicker( {
-        defaultDate:initDay
+        defaultDate:initDay,
+        locale: cogumelo.publicConf.langDefault
       } );
     }
     else {
-      $(modal+'.initDate').datetimepicker();
+      $(modal+'.initDate').datetimepicker({
+        locale: cogumelo.publicConf.langDefault
+      });
     }
 
     if( typeof(endDay)!='undefined' && endDay!=false ) {
       $(modal+'.endDate').datetimepicker( {
-        defaultDate:endDay
+        defaultDate:endDay,
+        locale: cogumelo.publicConf.langDefault
       } );
     }
     else {
-      $(modal+'.endDate').datetimepicker();
+      $(modal+'.endDate').datetimepicker({
+        locale: cogumelo.publicConf.langDefault
+      });
     }
 
 
