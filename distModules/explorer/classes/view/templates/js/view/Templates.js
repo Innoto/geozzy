@@ -3,7 +3,7 @@ if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
 
 geozzy.explorerComponents.mapInfoViewTemplate = ''+
-  '<% if('+cogumelo.publicConf.mod_detectMobile_isTablet+'){ %> <button class="buttonTabletClose"><i class="fas fa-times"></i><button> <% } %>' +
+  '<% if('+cogumelo.publicConf.mod_detectMobile_isTablet+'){ %> <button class="buttonTabletClose"><i class="fas fa-times"></i></button> <% } %>' +
   '<div class="gempiContent">'+
     '<div class="gempiImg">'+
       '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/wmdpi4/<%-img%>.jpg">'+
