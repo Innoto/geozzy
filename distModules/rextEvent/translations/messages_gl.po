@@ -16,8 +16,10 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBlock.tpl:6
 #: /home/proxectos/canlers/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
+#: /home/proxectos/wanaspot/app/tmp/tpl/rExtFormBlock.tpl:10
+#: /home/proxectos/wanaspot/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:10
 msgid "Event init date"
-msgstr ""
+msgstr "Data de inicio do evento"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtFormBlock.tpl:19
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
@@ -26,15 +28,23 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBlock.tpl:19
 #: /home/proxectos/canlers/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
+#: /home/proxectos/wanaspot/app/tmp/tpl/rExtFormBlock.tpl:23
+#: /home/proxectos/wanaspot/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:23
 msgid "Event end date"
-msgstr ""
+msgstr "Data de fin do evento"
 
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:93
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:91
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:98
 msgid "Event type"
-msgstr ""
+msgstr "Tipo evento"
 
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:98
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:96
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:103
 msgid "Related resource"
 msgstr "Contido relacionado"
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:86
+msgid "Literal Date"
+msgstr "Data literal"
