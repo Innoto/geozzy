@@ -137,6 +137,12 @@
       width: $explMap-w;
       height: $explMap-h;
       float: left;
+      &.explorerElSticky{
+        height: 100%;
+        &.stick{
+          height: $explMap-h;
+        }
+      }
     }
     &.explorer-container-filter{
       width: 100%;
