@@ -2,7 +2,7 @@
   {$client_includes}
 
   {foreach from=$cogumelo.publicConf.langAvailableIds item=lang}
-    {$rExt.dataForm.formFieldsArray['rextEvent_eventTitle_'|cat:$lang]}
+    {$rExt.dataForm.formFieldsArray['rextEvent_literalDate_'|cat:$lang]}
   {/foreach}
 
   <div class="row">

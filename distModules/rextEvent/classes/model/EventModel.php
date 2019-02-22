@@ -29,7 +29,7 @@ class EventModel extends Model
     'endDate' => array(
       'type' => 'DATETIME'
     ),
-    'eventTitle' => array(
+    'literalDate' => array(
       'multilang' => true,
       'type' => 'VARCHAR',
       'size' => 100
@@ -40,7 +40,7 @@ class EventModel extends Model
     array(
       'version' => 'rextEvent#2',
       'sql' => '
-        {multilang:ALTER TABLE geozzy_resource_rext_event ADD COLUMN eventTitle_$lang VARCHAR(100) NULL;}
+        {multilang:ALTER TABLE geozzy_resource_rext_event ADD COLUMN literalDate_$lang VARCHAR(100) NULL;}
       '
     )
   );

@@ -81,7 +81,7 @@ class RExtEventController extends RExtController implements RExtInterface {
     }
 
     $fieldsInfo = array(
-      'eventTitle' => array(
+      'literalDate' => array(
         'translate' => true,
         'params' => array( 'label' => __( 'Literal Date' ) ),
         'rules' => array( 'maxlength' => 50 )
