@@ -103,7 +103,8 @@
 @mixin explorerLayoutSagan( $explDu-w: 100%, $explDu-h: 100%, $explMap-w: 70%, $explMap-h: 100%, $explFilter-w: 400px,
    $explFilter-h: 150px, $explGallery-w: 30%, $explGallery-h: 100%, $explGallery-minh: $explGallery-h, $hheight: $headerHeight) {
    position: relative;
-   height: 100vh;
+   height: calc(100vh - #{$hheight} );
+   //height: 100vh;
    &.stick{
      height: auto;
    }
@@ -113,10 +114,12 @@
           box-sizing: border-box;
     &.explorer-container-du{
       position: absolute;
+      //top: $hheight;
       bottom: 0;
       z-index: 103;
       width: $explDu-w;
       height: $explDu-h;
+
       display:none;
       overflow: auto;
     }
@@ -160,7 +163,9 @@
         position: fixed !important;
         top: calc(#{$hheight} + 30px) !important;
       }
-
+      &.explorer-container-du{
+        position: fixed;
+      }
       &.explorer-loading-flash,
       &.explorer-loading{
         position: fixed;

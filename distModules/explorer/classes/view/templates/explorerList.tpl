@@ -6,7 +6,7 @@
   <!--filterContainer -->
   <div class="explorerContainer explorer-container-filter explorerElSticky"></div>
   <!--galleryContainer -->
-  <div class="explorerContainer explorer-container-gallery clearfix"></div>
+  <div class="explorerContainer explorer-container-gallery explorerElSticky clearfix"></div>
 
   <!--galleryContainer -->
   <div class="explorerContainer explorer-loading" style="display:none;"><i class="far fa-compass fa-spin"></i></div>

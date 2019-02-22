@@ -2,7 +2,7 @@
 
 <div class="explorerLayout explorerLayoutSticky explorerElSticky fixVhChromeMobile clearfix">
   <!--duContainer -->
-  <div class="explorerContainer explorer-container-du"></div>
+  <div class="explorerContainer explorer-container-du explorerElSticky"></div>
   <!--filterContainer -->
   <div class="explorerContainer explorer-container-filter explorerElSticky"></div>
   <!--mapContainer -->
