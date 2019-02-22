@@ -18,4 +18,4 @@ msgstr "Localización do Recurso"
 
 #: /home/proxectos/geozzy/distModules/rextMap/classes/view/templates/js/rExtMapController.js:123
 msgid "View map"
-msgstr ""
+msgstr "Ver mapa"
