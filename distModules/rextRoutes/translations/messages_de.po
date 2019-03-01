@@ -24,63 +24,63 @@ msgstr "Routenende"
 msgid "Altitude"
 msgstr "Höhenlage"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:20
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:20
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:20
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:20
 msgid "Download route"
 msgstr "Download Anfahrtsskizze"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:46
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:46
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:46
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:46
 msgid "Circular route"
 msgstr "Rundweg"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
 msgid "circular"
 msgstr "Rundweg"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:57
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:57
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:57
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:57
 msgid "Lineal route"
 msgstr "Linienwanderweg"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
 msgid "lineal"
 msgstr "Linienwanderweg"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:73
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:73
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:73
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:73
 msgid "Slopes"
 msgstr "Pisten"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:79
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:79
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:79
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:79
 msgid "slope up"
 msgstr "Steigung nach oben"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:86
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:86
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:86
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:86
 msgid "slope down"
 msgstr "Hang abwärts"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:100
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:100
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:100
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:100
 msgid "Environment"
 msgstr "Umwelt"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:113
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:113
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:113
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:113
 msgid "Itinerary"
 msgstr "Reiseroute"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:126
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:126
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:126
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:126
 msgid "Displacement"
 msgstr "Verdrängung"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:139
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:139
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:139
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:139
 msgid "Effort"
 msgstr "Anstrengung"
 

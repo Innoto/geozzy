@@ -10,7 +10,7 @@ msgstr ""
 "Language: \n"
 
 #: /home/proxectos/geozzy/distModules/rextUrl/classes/controller/RExtUrlController.php:59
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextUrl_classes_view_templates_rExtViewBlock.tpl:25
+#: /home/proxectos/geozzy/distModules/rextUrl/classes/view/templates/rExtViewBlock.tpl:25
 msgid "Author"
 msgstr "Autor"
 

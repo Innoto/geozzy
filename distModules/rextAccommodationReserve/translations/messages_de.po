@@ -9,35 +9,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/netubi-com-public.tpl:5
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/netubi-com-public.tpl:18
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:5
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:42
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_ruralgest-net-public.tpl:4
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_netubi-com-public.tpl:5
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_netubi-com-public.tpl:18
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/thebookingbutton-com-public.tpl:5
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:5
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:42
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/ruralgest-net-public.tpl:4
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_thebookingbutton-com-public.tpl:5
+#: /home/proxectos/geozzy/classes/view/templates/netubi-com-public.tpl:5
+#: /home/proxectos/geozzy/classes/view/templates/netubi-com-public.tpl:18
+#: /home/proxectos/geozzy/classes/view/templates/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:5
+#: /home/proxectos/geozzy/classes/view/templates/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:42
+#: /home/proxectos/geozzy/classes/view/templates/rextAccommodationReserve_classes_view_templates_ruralgest-net-public.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/rextAccommodationReserve_classes_view_templates_netubi-com-public.tpl:5
+#: /home/proxectos/geozzy/classes/view/templates/rextAccommodationReserve_classes_view_templates_netubi-com-public.tpl:18
+#: /home/proxectos/geozzy/classes/view/templates/thebookingbutton-com-public.tpl:5
+#: /home/proxectos/geozzy/classes/view/templates/booking-com-public.tpl:5
+#: /home/proxectos/geozzy/classes/view/templates/booking-com-public.tpl:42
+#: /home/proxectos/geozzy/classes/view/templates/ruralgest-net-public.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/rextAccommodationReserve_classes_view_templates_thebookingbutton-com-public.tpl:5
 msgid "Reserve"
 msgstr "Buchen"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/netubi-com-public.tpl:11
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:11
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_netubi-com-public.tpl:11
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/netubi-com-public.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rextAccommodationReserve_classes_view_templates_netubi-com-public.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/booking-com-public.tpl:11
 msgid "Check in date - Check out date"
 msgstr "Anreisedatum - Abreisedatum"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:18
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:18
+#: /home/proxectos/geozzy/classes/view/templates/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:18
+#: /home/proxectos/geozzy/classes/view/templates/booking-com-public.tpl:18
 msgid "Rooms"
 msgstr "Zimmer"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:30
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:30
+#: /home/proxectos/geozzy/classes/view/templates/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:30
+#: /home/proxectos/geozzy/classes/view/templates/booking-com-public.tpl:30
 msgid "Adults"
 msgstr "Erwachsene"
 

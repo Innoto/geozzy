@@ -9,36 +9,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:8
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/view/templates/rExtViewBlock.tpl:8
 msgid "Reservation URL"
 msgstr "URL de reserva"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:13
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/view/templates/rExtViewBlock.tpl:13
 msgid "Reservation phone"
 msgstr "Teléfono de reservas"
 
 #: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:98
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:18
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/view/templates/rExtViewBlock.tpl:18
 msgid "Accommodation category"
 msgstr "Categoría del alojamiento"
 
 #: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:103
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:29
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/view/templates/rExtViewBlock.tpl:29
 msgid "Accommodation services"
 msgstr "Servicios del alojamiento"
 
 #: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:108
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:40
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/view/templates/rExtViewBlock.tpl:40
 msgid "Accommodation facilities"
 msgstr "Facilidades del alojamiento"
 
 #: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:113
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/view/templates/rExtViewBlock.tpl:51
 msgid "Accommodation brand"
 msgstr "Marca"
 
 #: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:118
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/view/templates/rExtViewBlock.tpl:62
 msgid "Accommodation users profile"
 msgstr "Perfil de los usuarios del alojamiento"
 

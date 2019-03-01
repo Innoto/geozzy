@@ -9,10 +9,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21
+#: /home/proxectos/geozzy/classes/view/templates/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
+#: /home/proxectos/geozzy/classes/view/templates/rTypeEventFormModalBlock.tpl:21
+#: /home/proxectos/geozzy/classes/view/templates/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
+#: /home/proxectos/geozzy/classes/view/templates/rTypeEventFormModalBlock.tpl:21
 msgid "If not uploaded, an automatic thumbnail will be created"
 msgstr ""
 

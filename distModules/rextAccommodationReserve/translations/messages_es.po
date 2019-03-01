@@ -9,25 +9,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_ruralgest-net-public.tpl:4
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_netubi-com-public.tpl:5
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_netubi-com-public.tpl:18
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_thebookingbutton-com-public.tpl:5
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:5
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:42
+#: /home/proxectos/geozzy/distModules/rextAccommodationReserve/classes/view/templates/ruralgest-net-public.tpl:4
+#: /home/proxectos/geozzy/distModules/rextAccommodationReserve/classes/view/templates/netubi-com-public.tpl:5
+#: /home/proxectos/geozzy/distModules/rextAccommodationReserve/classes/view/templates/netubi-com-public.tpl:18
+#: /home/proxectos/geozzy/distModules/rextAccommodationReserve/classes/view/templates/thebookingbutton-com-public.tpl:5
+#: /home/proxectos/geozzy/distModules/rextAccommodationReserve/classes/view/templates/booking-com-public.tpl:5
+#: /home/proxectos/geozzy/distModules/rextAccommodationReserve/classes/view/templates/booking-com-public.tpl:42
 msgid "Reserve"
 msgstr "Reservar"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_netubi-com-public.tpl:11
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:11
+#: /home/proxectos/geozzy/distModules/rextAccommodationReserve/classes/view/templates/netubi-com-public.tpl:11
+#: /home/proxectos/geozzy/distModules/rextAccommodationReserve/classes/view/templates/booking-com-public.tpl:11
 msgid "Check in date - Check out date"
 msgstr "Fecha de entrada - Fecha de salida"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:18
+#: /home/proxectos/geozzy/distModules/rextAccommodationReserve/classes/view/templates/booking-com-public.tpl:18
 msgid "Rooms"
 msgstr "Habitaciones"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:30
+#: /home/proxectos/geozzy/distModules/rextAccommodationReserve/classes/view/templates/booking-com-public.tpl:30
 msgid "Adults"
 msgstr "Adultos"
 

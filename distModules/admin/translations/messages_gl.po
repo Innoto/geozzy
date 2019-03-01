@@ -46,91 +46,91 @@ msgstr "Subir múltiples arquivos"
 msgid "Link or embed multimedia resource"
 msgstr "Enlazar ou embeber recurso multimedia"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/modal.tpl:15
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/modal.tpl:35
+#: /home/proxectos/geozzy/classes/view/templates/modal.tpl:15
+#: /home/proxectos/geozzy/classes/view/templates/modal.tpl:35
 msgid "Close"
 msgstr "Pechar"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/listAsignStarred.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/listAsignStarred.tpl:4
 msgid "Resources not starred yet"
 msgstr "Recursos aínda non destacados"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:25
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:25
 msgid "User Profile"
 msgstr "Perfil do usuario"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:26
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:26
 msgid "Edit Profile"
 msgstr "Editar perfil"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:29
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:29
 msgid "Logout"
 msgstr "Sair"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:52
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:52
 msgid "Charts"
 msgstr "Gráficos"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:57
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:57
 msgid "Pages"
 msgstr "Páxinas"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:62
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:62
 msgid "Starred"
 msgstr "Destacados"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:113
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:113
 msgid "Menu"
 msgstr "Menú"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:78
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:78
 msgid "Comments"
 msgstr "Comentarios"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:84
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:84
 msgid "Suggestions"
 msgstr "Suxerencias"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:90
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:90
 msgid "Contents"
 msgstr "Contidos"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:95
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:95
 msgid "Categories"
 msgstr "Categorías"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:110
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:110
 msgid "Settings"
 msgstr "Axustes"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:117
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:117
 msgid "Users"
 msgstr "Usuarios"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:65
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:141
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:120
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:120
 msgid "User"
 msgstr "Usuario"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:123
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:123
 msgid "Roles"
 msgstr "Roles"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/admin403.tpl:5
+#: /home/proxectos/geozzy/classes/view/templates/admin403.tpl:5
 msgid "Forbidden: Access is denied"
 msgstr "Proibido: Acceso denegado"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/admin403.tpl:6
+#: /home/proxectos/geozzy/classes/view/templates/admin403.tpl:6
 msgid "You don't have permission to access on this section"
 msgstr "Non tes permisos para acceder a esta sección"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:14
+#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:14
 msgid "Category management for"
 msgstr "Xestión de categorías para"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:19
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:57
+#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:19
+#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:57
 msgid "Add"
 msgstr "Engadir"
 
@@ -138,58 +138,58 @@ msgstr "Engadir"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:108
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:185
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:186
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:21
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:59
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:21
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:59
+#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:21
+#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:59
+#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:21
+#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:59
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:190
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:191
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:22
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:60
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:22
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:60
+#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:22
+#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:60
+#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:22
+#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:60
 msgid "Save"
 msgstr "Gardar"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:38
+#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:38
 msgid "List of terms for"
 msgstr "Lista de termos para"
 
-#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:11
 msgid "Menu management"
 msgstr "Xestión de Menús"
 
-#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:16
 msgid "Add menu term"
 msgstr "Engadir elemento de menú"
 
-#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:34
+#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:34
 msgid "List of menu terms"
 msgstr "Listaxe de elementos de menús"
 
-#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:52
+#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:52
 msgid "Add term menu"
 msgstr "Engadir elemento de menú"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:14
+#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:14
 msgid "Resources Starred in"
 msgstr "Recursos destacados"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:98
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:111
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:19
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:57
+#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:19
+#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:57
 msgid "Assign"
 msgstr "Asignar"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:38
+#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:38
 msgid "List of resources for"
 msgstr "Listaxe de recursos para"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/listResourceOutTopic.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/listResourceOutTopic.tpl:4
 msgid "Available and unallocated resources"
 msgstr "Recursos dispoñibles e non asignados aínda"
 
@@ -517,139 +517,139 @@ msgstr "Crear rol"
 msgid "Edit role"
 msgstr "Editar rol"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:99
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:99
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:99
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:99
-#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:99
-#: /home/proxectos/canlers/app/tmp/tpl/adminMenu.tpl:99
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:99
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:99
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:99
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:99
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:99
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:99
 msgid "Translates"
 msgstr "Traduccións"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:103
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:103
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:103
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:103
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:66
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:67
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:103
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:103
-#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:103
-#: /home/proxectos/canlers/app/tmp/tpl/adminMenu.tpl:103
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:103
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:103
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:103
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:103
 msgid "Export"
 msgstr "Exportar"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:105
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:105
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:105
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:105
-#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:105
-#: /home/proxectos/canlers/app/tmp/tpl/adminMenu.tpl:105
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:105
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:105
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:105
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:105
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:105
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:105
 msgid "Resources"
 msgstr "Recursos"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:106
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:106
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:106
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:106
-#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:106
-#: /home/proxectos/canlers/app/tmp/tpl/adminMenu.tpl:106
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:106
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:106
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:106
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:106
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:106
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:106
 msgid "Collections"
 msgstr "Coleccións"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:110
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:110
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:110
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:110
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:222
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:235
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:247
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:110
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:110
-#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:110
-#: /home/proxectos/canlers/app/tmp/tpl/adminMenu.tpl:110
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:110
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:110
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:110
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:110
 msgid "Import"
 msgstr "Importar"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:112
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:112
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:112
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:112
-#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:112
-#: /home/proxectos/canlers/app/tmp/tpl/adminMenu.tpl:112
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:112
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:112
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:112
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:112
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:112
+#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:112
 msgid "Files"
 msgstr "Ficheiros"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/translatesPage.tpl:53
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/translatesPage.tpl:90
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:53
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:90
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:91
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/translatesPage.tpl:91
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:53
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:91
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/translatesPage.tpl:53
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/translatesPage.tpl:91
-#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:53
-#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:91
-#: /home/proxectos/canlers/app/tmp/tpl/translatesPage.tpl:53
-#: /home/proxectos/canlers/app/tmp/tpl/translatesPage.tpl:91
+#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:53
+#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:90
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:53
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:90
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:91
+#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:91
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:53
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:91
+#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:53
+#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:91
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:53
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:91
+#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:53
+#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:91
 msgid "Send"
 msgstr "Enviar"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:37
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:37
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:37
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:37
-#: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:37
-#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:37
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:37
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:37
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:37
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:37
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:37
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:37
 msgid "He olvidado mi contraseña"
 msgstr "Esquecín o meu contrasinal"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:39
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:39
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:39
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:39
-#: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:39
-#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:39
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:39
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:39
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:39
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:39
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:39
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:39
 msgid "Recuperar contraseña"
 msgstr "Recuperar o contrasinal"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:40
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:40
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:40
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:40
-#: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:40
-#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:40
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/loginForm.tpl:38
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/admin_classes_view_templates_loginForm.tpl:38
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:40
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:40
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:40
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:40
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:40
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:40
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:38
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:38
 msgid ""
 "Introduce la dirección de correo electrónico asociada a tu cuenta y te "
 "enviaremos un enlace para restablecer tu contraseña"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:45
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:45
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:45
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:45
-#: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:45
-#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:45
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:45
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:45
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:45
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:45
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:45
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:45
 msgid "Hay errores en el formulario"
 msgstr "Hai erros no formulario"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:46
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:46
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:46
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:46
-#: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:46
-#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:46
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/loginForm.tpl:44
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/admin_classes_view_templates_loginForm.tpl:44
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:46
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:46
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:46
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:46
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:46
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:46
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:44
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:44
 msgid "Recuperar"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:51
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:51
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:51
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:51
-#: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:51
-#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:51
 msgid ""
 "Se ha enviado un correo electrónico para recuperar tu cuenta de usuario."
 msgstr "Enviouse un correo electrónico para recuperar a túa conta de usuario."

@@ -9,18 +9,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:9
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextFile_classes_view_templates_rExtViewBlock.tpl:9
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:9
+#: /home/proxectos/geozzy/classes/view/templates/rextFile_classes_view_templates_rExtViewBlock.tpl:9
 msgid "File name"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:15
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextFile_classes_view_templates_rExtViewBlock.tpl:15
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:15
+#: /home/proxectos/geozzy/classes/view/templates/rextFile_classes_view_templates_rExtViewBlock.tpl:15
 msgid "Download"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:19
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextFile_classes_view_templates_rExtViewBlock.tpl:19
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:19
+#: /home/proxectos/geozzy/classes/view/templates/rextFile_classes_view_templates_rExtViewBlock.tpl:19
 msgid "None"
 msgstr ""
 

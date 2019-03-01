@@ -20,84 +20,84 @@ msgstr ""
 msgid "A route could not be found."
 msgstr "No se ha podido encontrar una ruta."
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:73
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:73
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:73
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:73
 msgid "Type a departure address"
 msgstr "Escriba una dirección de salida"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:47
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:47
 msgid "Get directions"
 msgstr "Obtener direcciones"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:57
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:57
 msgid "Show route description"
 msgstr "Mostrar descripción de la ruta"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:93
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:93
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:93
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:93
 msgid "Route by car"
 msgstr "Ruta en coche"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:94
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:94
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:94
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:94
 msgid "Walking route"
 msgstr "Ruta caminando"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:95
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:95
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:95
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:95
 msgid "Route by public transport"
 msgstr "Ruta en transporte público"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:55
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:55
 msgid "Route information"
 msgstr "Información de la ruta"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:117
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:118
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:117
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:118
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:121
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:122
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:121
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:122
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
-#: /home/proxectos/canlers/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
-#: /home/proxectos/canlers/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:121
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:122
-#: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:121
-#: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:122
-#: /home/proxectos/becarios/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
-#: /home/proxectos/becarios/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:119
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:120
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:119
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:120
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:117
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:118
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:117
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:118
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:121
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:122
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:121
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:122
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:121
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:122
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:121
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:122
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:119
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:120
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:119
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:120
 msgid "Print directions"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/canlers/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/canlers/app/tmp/tpl/rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/becarios/app/tmp/tpl/rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/becarios/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
 msgid "Print Map Directions"
 msgstr ""
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:40
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:40
 msgid "Type an address or mark on the map the place of departure"
 msgstr "Introduce una dirección o marca en el mapa el punto de partida"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:112
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:112
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:112
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:112
 msgid "Print route"
 msgstr "Imprimir ruta"
 
@@ -105,7 +105,7 @@ msgstr "Imprimir ruta"
 msgid "No se ha podido localizar una ruta."
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:85
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:85
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:85
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:85
 msgid "Enter a location"
 msgstr "Introduce una ubicación"

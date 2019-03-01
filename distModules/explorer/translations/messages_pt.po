@@ -17,64 +17,64 @@ msgstr "Priorizando a zona do mapa"
 msgid "All"
 msgstr "Todo"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:12
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:13
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:11
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:11
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:12
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:13
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:12
+#: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:13
+#: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:12
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:13
 msgid "Return to content"
 msgstr "Voltar ao conteúdo"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:17
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:17
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:17
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:17
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:19
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:19
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:19
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:19
+#: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:17
+#: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:17
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:17
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorer.tpl:17
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:19
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:19
+#: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:19
+#: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:19
 msgid "Apply"
 msgstr "Aplicar"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:20
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:20
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:20
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:20
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:22
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:22
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:22
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:22
+#: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:20
+#: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:20
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:20
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorer.tpl:20
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:22
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:22
+#: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:22
+#: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:22
 msgid "Clear filters"
 msgstr "Eliminar filtros"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:23
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:23
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:23
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:23
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:25
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:25
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:25
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:25
+#: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:23
+#: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:23
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:23
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorer.tpl:23
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:25
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:25
+#: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:25
+#: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:25
 msgid "List"
 msgstr "Lista"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:24
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:24
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:26
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:26
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:26
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:26
+#: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:24
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorer.tpl:24
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:26
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:26
+#: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:26
+#: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:26
 msgid "Map"
 msgstr "Mapa"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:24
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:25
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:24
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:25
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:27
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:27
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:27
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:27
+#: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:24
+#: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:25
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:24
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorer.tpl:25
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:27
+#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:27
+#: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:27
+#: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:27
 msgid "Filters"
 msgstr "Filtros"

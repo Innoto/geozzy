@@ -21,10 +21,10 @@ msgstr "Crear un evento"
 msgid "Edit Event Collection"
 msgstr "Editar una colección de eventos"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:46
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:51
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:48
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:53
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/view/templates/rExtlistViewBlock.tpl:46
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/view/templates/rExtlistViewBlock.tpl:51
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/view/templates/rExtcalendarViewBlock.tpl:48
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/view/templates/rExtcalendarViewBlock.tpl:53
 msgid "More information"
 msgstr "Más información"
 

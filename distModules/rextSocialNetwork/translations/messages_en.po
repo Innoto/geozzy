@@ -9,51 +9,51 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtFormBasic.tpl:10
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtFormBasic.tpl:21
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:10
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:21
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBasic.tpl:10
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBasic.tpl:21
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:10
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:21
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtFormBasic.tpl:10
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtFormBasic.tpl:21
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:10
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:21
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:10
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:21
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:21
+#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:21
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:21
+#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:21
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:21
+#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:21
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:21
 msgid ""
 "Si no se especifica ningún texto, se utilizará por defecto el texto en el "
 "recuadro."
 msgstr ""
 
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtFormBasic.tpl:11
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtFormBasic.tpl:22
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:11
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:22
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBasic.tpl:11
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBasic.tpl:22
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:11
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:22
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtFormBasic.tpl:11
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtFormBasic.tpl:22
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:11
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:22
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:11
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:22
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:22
+#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:22
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:22
+#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:22
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:22
+#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:22
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:22
 msgid ""
 "Para mostrar el nombre del recurso se debe usar #TITLE# y para compartir la "
 "url de la página se debe poner #URL#:"
 msgstr ""
 
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtFormBasic.tpl:28
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:28
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBasic.tpl:28
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:28
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtFormBasic.tpl:28
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:28
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:28
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:28
+#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:28
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:28
+#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:28
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:28
+#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:28
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:28
 msgid "Google+ compartira automáticamente la URL del recurso"
 msgstr ""
 

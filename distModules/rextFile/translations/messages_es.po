@@ -9,15 +9,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextFile_classes_view_templates_rExtViewBlock.tpl:9
+#: /home/proxectos/geozzy/distModules/rextFile/classes/view/templates/rExtViewBlock.tpl:9
 msgid "File name"
 msgstr "Nombre del fichero"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextFile_classes_view_templates_rExtViewBlock.tpl:15
+#: /home/proxectos/geozzy/distModules/rextFile/classes/view/templates/rExtViewBlock.tpl:15
 msgid "Download"
 msgstr "Descargar"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextFile_classes_view_templates_rExtViewBlock.tpl:19
+#: /home/proxectos/geozzy/distModules/rextFile/classes/view/templates/rExtViewBlock.tpl:19
 msgid "None"
 msgstr "Ninguno"
 

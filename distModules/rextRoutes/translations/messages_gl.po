@@ -28,63 +28,63 @@ msgstr "Fin de ruta"
 msgid "Altitude"
 msgstr "Altitud"
 
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:20
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:20
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:20
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:20
 msgid "Download route"
 msgstr "Descargar ruta"
 
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:46
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:46
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:46
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:46
 msgid "Circular route"
 msgstr "Ruta circular"
 
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:51
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
 msgid "circular"
 msgstr "circular"
 
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:57
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:57
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:57
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:57
 msgid "Lineal route"
 msgstr "Ruta lineal"
 
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:62
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
 msgid "lineal"
 msgstr "lineal"
 
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:73
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:73
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:73
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:73
 msgid "Slopes"
 msgstr "Desnivel"
 
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:79
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:79
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:79
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:79
 msgid "slope up"
 msgstr "desnivel subida"
 
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:86
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:86
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:86
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:86
 msgid "slope down"
 msgstr "desnivel bajada"
 
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:100
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:100
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:100
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:100
 msgid "Environment"
 msgstr "Entorno"
 
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:113
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:113
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:113
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:113
 msgid "Itinerary"
 msgstr "Camiño"
 
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:126
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:126
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:126
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:126
 msgid "Displacement"
 msgstr "Desplazamento"
 
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:139
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:139
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:139
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:139
 msgid "Effort"
 msgstr "Esforzo"
 
@@ -254,12 +254,12 @@ msgstr "Alta"
 msgid "data"
 msgstr ""
 
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:86
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBasicInfoViewBlock.tpl:86
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:86
+#: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:86
 msgid "Difficulty"
 msgstr ""
 
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:129
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBasicInfoViewBlock.tpl:129
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:129
+#: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:129
 msgid "Global"
 msgstr ""

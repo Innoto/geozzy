@@ -28,75 +28,75 @@ msgstr "Fin de la ruta"
 msgid "Altitude"
 msgstr "Altitud"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:20
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:20
 msgid "Download route"
 msgstr "Descargar ruta"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:46
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:46
 msgid "Circular route"
 msgstr "Ruta circular"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:51
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:51
-#: /home/proxectos/profesores/app/tmp/tpl/rExtViewBlock.tpl:51
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:51
-#: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:51
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:51
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
-#: /home/proxectos/canlers/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
-#: /home/proxectos/becarios/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:50
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtViewBlock.tpl:50
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:50
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:50
 msgid "circular"
 msgstr ""
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:57
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:57
 msgid "Lineal route"
 msgstr "Ruta lineal"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:62
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:62
-#: /home/proxectos/profesores/app/tmp/tpl/rExtViewBlock.tpl:62
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:62
-#: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:62
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:62
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
-#: /home/proxectos/canlers/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
-#: /home/proxectos/becarios/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:61
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtViewBlock.tpl:61
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:61
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:61
 msgid "lineal"
 msgstr ""
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:73
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:73
 msgid "Slopes"
 msgstr "Desniveles"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:79
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:79
 msgid "slope up"
 msgstr "Desnivel ascendente"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:86
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:86
 msgid "slope down"
 msgstr "Desnivel descendente"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:100
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:100
 msgid "Environment"
 msgstr "Entorno"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:113
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:113
 msgid "Itinerary"
 msgstr "Itinerario"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:126
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:126
 msgid "Displacement"
 msgstr "Desplazamiento"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:139
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:139
 msgid "Effort"
 msgstr "Esfuerzo"
 
@@ -266,12 +266,12 @@ msgstr "Alta"
 msgid "data"
 msgstr ""
 
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:86
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBasicInfoViewBlock.tpl:86
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:86
+#: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:86
 msgid "Difficulty"
 msgstr ""
 
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:129
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtBasicInfoViewBlock.tpl:129
+#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:129
+#: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:129
 msgid "Global"
 msgstr ""

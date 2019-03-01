@@ -9,18 +9,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:14
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:14
-#: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:14
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:14
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:14
+#: /home/proxectos/geozzy/classes/view/templates/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:14
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:14
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:14
 msgid "Page"
 msgstr "Páxina"
 
 #: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/controller/RTypeTravelPlannerController.php:128
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:15
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:15
-#: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:15
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:15
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:15
+#: /home/proxectos/geozzy/classes/view/templates/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:15
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:15
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:15
 msgid "Travel Planner"
 msgstr "Planificador de viaxes"
 

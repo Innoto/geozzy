@@ -14,74 +14,74 @@ msgstr ""
 msgid "A route could not be found."
 msgstr "Er kon geen route worden gevonden."
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:73
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:73
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:73
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:73
 msgid "Type a departure address"
 msgstr "Gib eine Startadresse ein"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:44
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:80
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:44
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:80
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:47
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock-pre171024.tpl:44
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:80
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:44
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:80
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:47
 msgid "Get directions"
 msgstr "Adressen abrufen"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:54
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:88
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:54
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:88
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:57
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock-pre171024.tpl:54
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:88
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:54
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:88
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:57
 msgid "Show route description"
 msgstr "Routebeschrijving weergeven"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:93
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:93
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:93
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:93
 msgid "Route by car"
 msgstr "Anfahrt mit dem Auto"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:94
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:94
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:94
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:94
 msgid "Walking route"
 msgstr "Wanderroute"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:95
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:95
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:95
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:95
 msgid "Route by public transport"
 msgstr "Anfahrt mit öffentlichen Verkehrsmitteln"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:52
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:96
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:52
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:96
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:55
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock-pre171024.tpl:52
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:96
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:52
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:96
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:55
 msgid "Route information"
 msgstr "Route-informatie"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:117
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:118
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:117
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:118
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:121
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:122
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:117
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:118
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:117
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:118
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:121
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:122
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
 msgid "Print directions"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzy/classes/view/templates/rExtPrintDirectionsPageFull.tpl:10
 msgid "Print Map Directions"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:37
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:37
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:40
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock-pre171024.tpl:37
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:37
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:40
 msgid "Type an address or mark on the map the place of departure"
 msgstr "Typ een adres of merkteken op de kaart van de plaats van vertrek"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:112
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:112
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:112
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:112
 msgid "Print route"
 msgstr "Route drucken"
 
@@ -89,7 +89,7 @@ msgstr "Route drucken"
 msgid "No se ha podido localizar una ruta."
 msgstr "Anfahrtsbeschreibung zur Bestimmung nicht lokalisierbar"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:85
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:85
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:85
+#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:85
 msgid "Enter a location"
 msgstr "Gib einen Standort ein"

@@ -9,27 +9,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtFormBlock.tpl:6
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
-#: /home/proxectos/canlers/app/tmp/tpl/rExtFormBlock.tpl:6
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBlock.tpl:6
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBlock.tpl:6
-#: /home/proxectos/canlers/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtFormBlock.tpl:14
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextEvent_classes_view_templates_rExtFormBlock.tpl:14
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:6
+#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:6
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:6
+#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:6
+#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:14
+#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:14
 msgid "Event init date"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtFormBlock.tpl:19
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
-#: /home/proxectos/canlers/app/tmp/tpl/rExtFormBlock.tpl:19
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBlock.tpl:19
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBlock.tpl:19
-#: /home/proxectos/canlers/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtFormBlock.tpl:27
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextEvent_classes_view_templates_rExtFormBlock.tpl:27
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:19
+#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:19
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:19
+#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:19
+#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:27
+#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:27
 msgid "Event end date"
 msgstr ""
 

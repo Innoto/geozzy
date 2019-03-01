@@ -9,123 +9,123 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:11
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:11
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:11
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:11
 msgid "Tu Comunidad"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:20
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:20
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:20
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:20
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:20
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:20
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:20
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:20
 msgid "Mi perfil"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:39
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:39
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:39
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:39
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:39
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:39
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:39
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:39
 msgid "Editar"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:40
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:40
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:40
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:40
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:40
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:40
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:40
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:40
 msgid "Guardar"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:56
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:56
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:56
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:56
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:56
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:56
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:56
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:56
 msgid "Compartir mis datos con la comunidad"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:81
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:81
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:81
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:81
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:81
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:81
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:81
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:81
 msgid "Perfil enlazado con Facebook"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:82
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:82
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:82
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:82
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:82
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:82
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:82
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:82
 msgid "Enlazar mi perfil con Facebook"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:100
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:100
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:100
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:100
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:100
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:100
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:100
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:100
 msgid "Perfil enlazado con Twitter"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:101
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:101
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:101
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:101
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:101
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:101
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:101
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:101
 msgid "Enlazar mi perfil con Twitter"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:166
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:258
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:166
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:258
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:166
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:258
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:166
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:258
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:166
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:258
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:166
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:258
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:166
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:258
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:166
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:258
 msgid "Seguir"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:167
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:259
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:167
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:259
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:167
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:259
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:167
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:259
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:167
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:259
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:167
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:259
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:167
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:259
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:167
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:259
 msgid "Siguiendo"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:184
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:276
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:184
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:276
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:184
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:276
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:184
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:276
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:184
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:276
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:184
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:276
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:184
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:276
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:184
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:276
 msgid "Le gusta..."
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:200
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:292
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:200
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:292
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:200
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:292
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:200
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:292
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:200
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:292
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:200
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:292
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:200
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:292
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:200
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:292
 msgid "ver todos"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:215
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:215
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:215
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:215
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:215
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:215
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:215
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:215
 msgid "Parece que todavía no has añadido a nadie a tu Comunidad..."
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:228
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:228
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:228
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:228
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:228
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:228
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:228
+#: /home/proxectos/geozzy/classes/view/templates/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:228
 msgid "Usuarios similares a tí..."
 msgstr ""

@@ -9,26 +9,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:1
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:1
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:1
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:1
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
-#: /home/proxectos/canlers/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:1
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:1
+#: /home/proxectos/geozzy/classes/view/templates/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:1
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:1
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:1
+#: /home/proxectos/geozzy/classes/view/templates/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
+#: /home/proxectos/geozzy/classes/view/templates/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:1
+#: /home/proxectos/geozzy/classes/view/templates/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
 msgid "Recursos recomendados:"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:17
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:17
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:17
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:17
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:17
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:17
-#: /home/proxectos/canlers/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:17
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rExtViewBlock.tpl:17
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rextReccommended_classes_view_templates_rExtViewBlock.tpl:17
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:17
+#: /home/proxectos/geozzy/classes/view/templates/rextReccommended_classes_view_templates_rExtViewBlock.tpl:17
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:17
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:17
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:17
+#: /home/proxectos/geozzy/classes/view/templates/rextReccommended_classes_view_templates_rExtViewBlock.tpl:17
+#: /home/proxectos/geozzy/classes/view/templates/rextReccommended_classes_view_templates_rExtViewBlock.tpl:17
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:17
+#: /home/proxectos/geozzy/classes/view/templates/rextReccommended_classes_view_templates_rExtViewBlock.tpl:17
 msgid "Find out!"
 msgstr ""

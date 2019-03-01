@@ -13,10 +13,10 @@ msgstr ""
 msgid "Select options"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:11
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:11
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:11
+#: /home/proxectos/geozzy/classes/view/templates/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
 msgid "Datos Panorama"
 msgstr ""
 

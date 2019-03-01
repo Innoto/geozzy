@@ -9,15 +9,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAudioguide_classes_view_templates_rExtFormBlock.tpl:3
+#: /home/proxectos/geozzy/distModules/rextAudioguide/classes/view/templates/rExtFormBlock.tpl:3
 msgid "Upload audio file (mp3)"
 msgstr "Subir fichero de audio (mp3)"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAudioguide_classes_view_templates_rExtFormBlock.tpl:7
+#: /home/proxectos/geozzy/distModules/rextAudioguide/classes/view/templates/rExtFormBlock.tpl:7
 msgid "Activation distance (m.)"
 msgstr "Distancia de activación (m.)"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextAudioguide_classes_view_templates_rExtViewBlock.tpl:6
+#: /home/proxectos/geozzy/distModules/rextAudioguide/classes/view/templates/rExtViewBlock.tpl:6
 msgid "Audioguide"
 msgstr "Audioguía"
 

@@ -94,33 +94,33 @@ msgstr ""
 msgid "Continuar"
 msgstr ""
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzyUser_classes_view_templates_recoveryPassword.tpl:5
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/recoveryPassword.tpl:5
 msgid "Enter a new password:"
 msgstr "Introduzca una nueva contraseña"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzyUser_classes_view_templates_recoveryPassword.tpl:8
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/recoveryPassword.tpl:8
 msgid "Your url has expired. Please restart the password recovery process"
 msgstr ""
 "Su url ha expirado. Por favor, reinicie el proceso de recuperación de "
 "contraseña"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/userProfile.tpl:4
-#: /home/proxectos/canlers/app/tmp/tpl/userProfile.tpl:4
-#: /home/proxectos/profesores/app/tmp/tpl/userProfile.tpl:4
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/userProfile.tpl:4
-#: /home/proxectos/becarios/app/tmp/tpl/userProfile.tpl:4
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/userProfile.tpl:4
-#: /home/proxectos/canlers/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/becarios/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
 msgid "Perfil de Usuario"
 msgstr ""
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzyUser_classes_view_templates_userProfile.tpl:25
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/userProfile.tpl:25
 msgid "Write only if you want to change the password"
 msgstr "Escribe sólo si deseas cambiar la contraseña"
 

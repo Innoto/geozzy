@@ -9,27 +9,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:10
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/view/templates/rExtViewBlock.tpl:10
 msgid "Reservation URL"
 msgstr "URL de reservas"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:15
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/view/templates/rExtViewBlock.tpl:15
 msgid "Reservation phone"
 msgstr "Teléfono de reservas"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:20
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/view/templates/rExtViewBlock.tpl:20
 msgid "Capacity"
 msgstr "Capacidad"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:25
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/view/templates/rExtViewBlock.tpl:25
 msgid "Average Price"
 msgstr "Precio medio"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:30
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/view/templates/rExtViewBlock.tpl:30
 msgid "Restaurant type"
 msgstr "Tipo de restaurante"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:41
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/view/templates/rExtViewBlock.tpl:41
 msgid "Specialities"
 msgstr "Especialidades"
 

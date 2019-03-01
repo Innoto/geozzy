@@ -9,18 +9,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:107
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:107
+#: /home/proxectos/geozzy/classes/view/templates/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:107
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:107
 msgid "Contact"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:122
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:122
+#: /home/proxectos/geozzy/classes/view/templates/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:122
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:122
 msgid "See indications"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:131
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:131
+#: /home/proxectos/geozzy/classes/view/templates/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:131
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:131
 msgid "How to arrive from?"
 msgstr ""
 

@@ -27,10 +27,10 @@ msgstr ""
 msgid "Editar historia"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/listSteps.tpl:5
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeStoryStep_classes_view_templates_listSteps.tpl:5
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeStoryStep_classes_view_templates_listSteps.tpl:5
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/listSteps.tpl:5
+#: /home/proxectos/geozzy/classes/view/templates/listSteps.tpl:5
+#: /home/proxectos/geozzy/classes/view/templates/rtypeStoryStep_classes_view_templates_listSteps.tpl:5
+#: /home/proxectos/geozzy/classes/view/templates/rtypeStoryStep_classes_view_templates_listSteps.tpl:5
+#: /home/proxectos/geozzy/classes/view/templates/listSteps.tpl:5
 msgid "Steps available"
 msgstr ""
 

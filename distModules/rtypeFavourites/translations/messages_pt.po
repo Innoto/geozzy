@@ -17,13 +17,13 @@ msgstr "Remover favoritos"
 msgid "Remove from favorites"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:31
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFavourites_classes_view_templates_rTypeViewBlock.tpl:31
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:31
+#: /home/proxectos/geozzy/classes/view/templates/rtypeFavourites_classes_view_templates_rTypeViewBlock.tpl:31
 msgid "Favourites page"
 msgstr "Favoritos"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:74
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFavourites_classes_view_templates_rTypeViewBlock.tpl:74
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:74
+#: /home/proxectos/geozzy/classes/view/templates/rtypeFavourites_classes_view_templates_rTypeViewBlock.tpl:74
 msgid "It seems you haven't added any items to your favorites list yet..."
 msgstr ""
 "Parece que ainda não acrescentaste nenhum elemento à tua lista de "

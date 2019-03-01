@@ -9,11 +9,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEvent_classes_view_templates_rExtFormBlock.tpl:6
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:6
 msgid "Event init date"
 msgstr "Data de inicio del evento"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEvent_classes_view_templates_rExtFormBlock.tpl:19
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:19
 msgid "Event end date"
 msgstr "Data de fin del evento"
 

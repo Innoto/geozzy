@@ -101,42 +101,42 @@ msgid ""
 "seguinte formulario"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/recoveryPassword.tpl:5
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzyUser_classes_view_templates_recoveryPassword.tpl:5
-#: /home/proxectos/canlers/app/tmp/tpl/recoveryPassword.tpl:5
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/recoveryPassword.tpl:5
+#: /home/proxectos/geozzy/classes/view/templates/recoveryPassword.tpl:5
+#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_recoveryPassword.tpl:5
+#: /home/proxectos/geozzy/classes/view/templates/recoveryPassword.tpl:5
+#: /home/proxectos/geozzy/classes/view/templates/recoveryPassword.tpl:5
 msgid "Enter a new password:"
 msgstr "Introduce un novo contrasinal"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/recoveryPassword.tpl:8
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzyUser_classes_view_templates_recoveryPassword.tpl:8
-#: /home/proxectos/canlers/app/tmp/tpl/recoveryPassword.tpl:8
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/recoveryPassword.tpl:8
+#: /home/proxectos/geozzy/classes/view/templates/recoveryPassword.tpl:8
+#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_recoveryPassword.tpl:8
+#: /home/proxectos/geozzy/classes/view/templates/recoveryPassword.tpl:8
+#: /home/proxectos/geozzy/classes/view/templates/recoveryPassword.tpl:8
 msgid "Your url has expired. Please restart the password recovery process"
 msgstr ""
 "A túa url expirou. Por favor, reinicia o proceso de recuperación de "
 "contrasinal"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/userProfile.tpl:4
-#: /home/proxectos/canlers/app/tmp/tpl/userProfile.tpl:4
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/userProfile.tpl:4
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/userProfile.tpl:4
-#: /home/proxectos/canlers/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
 msgid "Perfil de Usuario"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:25
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/userProfile.tpl:25
-#: /home/proxectos/canlers/app/tmp/tpl/userProfile.tpl:25
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/userProfile.tpl:25
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:28
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/userProfile.tpl:28
-#: /home/proxectos/canlers/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:28
-#: /home/proxectos/canlers/app/tmp/tpl/userProfile.tpl:28
+#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:25
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:25
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:25
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:25
+#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:28
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:28
+#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:28
+#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:28
 msgid "Write only if you want to change the password"
 msgstr "Escribe só se queres cambiar o contrasinal"
 
