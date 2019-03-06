@@ -31,7 +31,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:361
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:344
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:385
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:10
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/resourceViewBlock.tpl:10
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:374
 msgid "Title"
 msgstr "Título"
@@ -40,7 +40,7 @@ msgstr "Título"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:366
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:349
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:390
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:14
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/resourceViewBlock.tpl:14
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:379
 msgid "Short description"
 msgstr "Descripción corta"
@@ -50,7 +50,7 @@ msgstr "Descripción corta"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:78
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:354
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:395
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:51
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/resourceViewBlock.tpl:51
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:384
 msgid "Medium description"
 msgstr "Descripción media"
@@ -58,7 +58,7 @@ msgstr "Descripción media"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:376
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:359
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:400
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:56
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/resourceViewBlock.tpl:56
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:389
 msgid "Content"
 msgstr "Contenido"
@@ -66,57 +66,57 @@ msgstr "Contenido"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:384
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:367
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:408
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:61
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/resourceViewBlock.tpl:61
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:397
 msgid "Image"
 msgstr "Imagen"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:67
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/resourceViewBlock.tpl:67
 msgid "None"
 msgstr "Ninguna"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:73
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/resourceViewBlock.tpl:73
 msgid "External Url"
 msgstr "Url externa"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:430
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:413
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:454
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:80
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/resourceViewBlock.tpl:80
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:443
 msgid "Collections"
 msgstr "Colecciones"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/canlers/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/profesores/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/canlers/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/becarios/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/geozzyproject2/app/tmp/smarty/tmp/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
 msgid ""
 "Haz click en el lugar donde se ubica tu centro educativo con la mayor "
 "precisión que puedas, podrás arrastrar y soltar la localización"
 msgstr ""
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:25
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:25
 msgid "Automatic Location"
 msgstr "Localización automática"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceMultimediaViewBlock.tpl:59
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/resourceMultimediaViewBlock.tpl:59
 msgid "See more..."
 msgstr "Ver más..."
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceMultimediaViewBlock.tpl:61
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/resourceMultimediaViewBlock.tpl:61
 msgid "Less"
 msgstr "Menos"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceCollectionViewBlock.tpl:12
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/resourceCollectionViewBlock.tpl:12
 msgid "Find out!"
 msgstr "Averígualo"
 
@@ -526,7 +526,7 @@ msgstr "Contacto"
 msgid "Event"
 msgstr "Evento"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:12
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:12
 msgid "Search an address"
 msgstr "Buscar unha dirección"
 
