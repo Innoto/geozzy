@@ -238,9 +238,9 @@ class geozzy extends Module {
     $this->initializeOrUpdateTerms( true );
   }
 
-  /*
-  *  Add taxonomías base de app, STARRED and MENU
-  */
+  /**
+   *  Add taxonomías base de app, STARRED and MENU
+   */
   public function initializeOrUpdateTerms( $isDeploy =false ) {
 
 
@@ -405,4 +405,22 @@ class geozzy extends Module {
     // Return the password
     return $password;
   }
+
+
+  /**
+    Busca elementos abandonados
+    @param array $params Parametros
+    @return bool
+   */
+  public function garbageCollection() {
+    Cogumelo::debug( __METHOD__ );
+    error_log( __METHOD__ );
+
+    geozzy::load( 'controller/GeozzyGarbageCollection.php' );
+    $garbageCtrl = new GeozzyGarbageCollection();
+
+    $result = $garbageCtrl->garbageCollection();
+
+    return $result;
+  } // function garbageCollection()
 }

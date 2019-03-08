@@ -49,6 +49,7 @@ class UrlAliasModel extends Model {
 
   static $extraFilters = array(
     'resourceIn' => ' geozzy_url_alias.resource IN (?) ',
+    'resourceNotIn' => ' geozzy_url_alias.resource NOT IN (?) ',
     'resourceNot' => ' geozzy_url_alias.resource <> ? ',
   );
 
