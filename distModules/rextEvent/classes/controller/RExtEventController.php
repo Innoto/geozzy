@@ -3,8 +3,18 @@ geozzy::load( 'controller/RExtController.php' );
 
 class RExtEventController extends RExtController implements RExtInterface {
 
-  public function __construct( $defRTypeCtrl ){
+  public $selectOptions = [];
+
+  public function __construct( $defRTypeCtrl = null ){
     parent::__construct( $defRTypeCtrl, new rextEvent(), 'rextEvent_' );
+
+    $this->selectOptions = [
+      'selectTime' => [
+        'notTime' => __('No time'),
+        'notRangeTime' => __('Without time range'),
+        'rangeTime' => __('Time range')
+      ]
+    ];
   }
 
 
@@ -86,14 +96,41 @@ class RExtEventController extends RExtController implements RExtInterface {
         'params' => array( 'label' => __( 'Literal Date' ) ),
         'rules' => array( 'maxlength' => 50 )
       ),
-      'initDate' => array(
-        'params' => array('type' => 'hidden'),
+
+      'selectInitTime' => array(
+        'params' => array( 'label' => __('Select time'), 'type' => 'select',
+          'class' => 'gzzSelect2',
+          'options' => $this->selectOptions['selectTime'], 'value' => 'notTime'
+        )
+      ),
+      'initDateFirst' => array(
+        'params' => array( 'type' => 'hidden' ),
         'rules' => array( 'maxlength' => 200 )
       ),
-      'endDate' => array(
-        'params' => array('type' => 'hidden'),
+      'initDateSecond' => array(
+        'params' => array( 'type' => 'hidden' ),
         'rules' => array( 'maxlength' => 200 )
       ),
+
+      'dateRange' => array(
+        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> [ '1' => __('Final date of event ') ] )
+      ),
+
+      'selectEndTime' => array(
+        'params' => array( 'label' => __('Select time'), 'type' => 'select',
+          'class' => 'gzzSelect2',
+          'options' => $this->selectOptions['selectTime'], 'value' => 'notTime'
+        )
+      ),
+      'endDateFirst' => array(
+        'params' => array( 'type' => 'hidden' ),
+        'rules' => array( 'maxlength' => 200 )
+      ),
+      'endDateSecond' => array(
+        'params' => array( 'type' => 'hidden' ),
+        'rules' => array( 'maxlength' => 200 )
+      ),
+
       'rextEventType' => array(
         'params' => array( 'label' => __( 'Event type' ), 'type' => 'select',  'multiple' => true, 'class' => 'cgmMForm-order',
           'options' => $this->defResCtrl->getOptionsTax( 'rextEventType' )
@@ -203,44 +240,63 @@ class RExtEventController extends RExtController implements RExtInterface {
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
-      $initDate = date_create( $form->getFieldValue( 'rextEvent_initDate' ) );
-      if( !empty( $initDate ) && !empty( $form->getFieldValue( 'rextEvent_initDate' ) ) ) {
-        $valuesArray[ 'initDate' ] = date_format( $initDate, "Y-m-d H:i:s" );
+      $initDateFirst = date_create( $valuesArray['initDateFirst'] );
+      if( !empty( $initDateFirst ) && !empty( $valuesArray['initDateFirst'] ) ) {
+        $valuesArray[ 'initDateFirst' ] = date_format( $initDateFirst, "Y-m-d H:i:s" );
       }
       else {
-        if( strpos($valuesArray[ 'initDate' ],'-') ) {
-          unset($valuesArray[ 'initDate' ]);
+        if( strpos($valuesArray[ 'initDateFirst' ],'-') ) {
+          unset($valuesArray[ 'initDateFirst' ]);
         }
         else {
-          $valuesArray[ 'initDate' ] = null;
+          $valuesArray[ 'initDateFirst' ] = null;
         }
       }
 
-      $endDate = date_create( $form->getFieldValue( 'rextEvent_endDate' ) );
-      if( !empty( $endDate ) && !empty( $form->getFieldValue( 'rextEvent_endDate' ) ) ) {
-        $valuesArray[ 'endDate' ] = date_format( $endDate, "Y-m-d H:i:s" );
+      $initDateSecond = date_create( $valuesArray['initDateSecond'] );
+      if( !empty( $initDateSecond ) && !empty( $valuesArray['initDateSecond'] ) ) {
+        $valuesArray[ 'initDateSecond' ] = date_format( $initDateSecond, "Y-m-d H:i:s" );
+      }
+      else {
+        if( strpos($valuesArray[ 'initDateSecond' ],'-') ) {
+          unset($valuesArray[ 'initDateSecond' ]);
+        }
+        else {
+          $valuesArray[ 'initDateSecond' ] = null;
+        }
+      }
+
+      if( $valuesArray[ 'dateRange' ] ) {
+        $endDateFirst = date_create( $valuesArray['endDateFirst'] );
+        if( !empty( $endDateFirst ) && !empty( $valuesArray['endDateFirst'] ) ) {
+          $valuesArray[ 'endDateFirst' ] = date_format( $endDateFirst, "Y-m-d H:i:s" );
+        }
+        else {
+          if( strpos($valuesArray[ 'endDateFirst' ],'-') ) {
+            unset($valuesArray[ 'endDateFirst' ]);
+          }
+          else {
+            $valuesArray[ 'endDateFirst' ] = null;
+          }
+        }
+
+        $endDateSecond = date_create( $valuesArray['endDateSecond'] );
+        if( !empty( $endDateSecond ) && !empty( $valuesArray['endDateSecond'] ) ) {
+          $valuesArray[ 'endDateSecond' ] = date_format( $endDateSecond, "Y-m-d H:i:s" );
+        }
+        else {
+          if( strpos($valuesArray[ 'endDateSecond' ],'-') ) {
+            unset($valuesArray[ 'endDateSecond' ]);
+          }
+          else {
+            $valuesArray[ 'endDateSecond' ] = null;
+          }
+        }
       }
       else{
-        if( strpos($valuesArray[ 'endDate' ],'-') ) {
-          unset($valuesArray[ 'endDate' ]);
-        }
-        else {
-          $valuesArray[ 'endDate' ] = null;
-        }
+        $valuesArray[ 'endDateFirst' ] = null;
+        $valuesArray[ 'endDateSecond' ] = null;
       }
-
-      // if( is_numeric( $form->getFieldValue( 'rextEvent_initDate' ) ) ) {
-      //   $valuesArray[ 'initDate' ] = gmdate( "Y-m-d H:i:s", $form->getFieldValue( 'rextEvent_initDate' ) );
-      // }
-      // else{
-      //   $valuesArray[ 'initDate' ] = '0000-00-00 00:00:00';
-      // }
-      // if( is_numeric( $form->getFieldValue( 'rextEvent_endDate' ) ) ) {
-      //   $valuesArray[ 'endDate' ] = gmdate( "Y-m-d H:i:s", $form->getFieldValue( 'rextEvent_endDate' ) );
-      // }
-      // else{
-      //   $valuesArray[ 'endDate' ] = '0000-00-00 00:00:00';
-      // }
 
       // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
       $rExtModel = new EventModel( $valuesArray );
@@ -286,20 +342,91 @@ class RExtEventController extends RExtController implements RExtInterface {
 
     $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
 
-    if( $rExtViewBlockInfo['data'] ) {
-      // TODO: esto será un campo da BBDD
+    if( !empty( $rExtViewBlockInfo['data'] ) ) {
       $rExtViewBlockInfo['data'] = $this->defResCtrl->getTranslatedData( $rExtViewBlockInfo['data'] );
 
-      if (isset($rExtViewBlockInfo['data']['date'])){
-        $template = new Template();
+      $rExtViewBlockInfo['data']['eventText'] = $this->getEventTextFormated( $rExtViewBlockInfo['data'] );
 
-        $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
 
-        $rExtViewBlockInfo['template'] = array( 'full' => $template );
-      }
+      $rExtViewBlockInfo['template']['full'] = new Template();
+      $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextEvent' );
     }
 
     return $rExtViewBlockInfo;
+  }
+
+
+  /* Function to get text formated of one event */
+  public function getEventTextFormated( $eventDataArray ) {
+
+    /*
+    // VALORES QUE NECESITAMOS PARA OBTENER DATOS (return $eventText;)
+      $nameArray = [
+        'eventTitle' => $eventObj->getter('eventTitle',false),
+        'initDateFirst' => $eventObj->getter('initDateFirst'),
+        'selectInitTime' => $eventObj->getter('selectInitTime'),
+        'dateRange' => $eventObj->getter('dateRange'),
+        'selectEndTime' => $eventObj->getter('selectEndTime'),
+        'initDateSecond' => $eventObj->getter('initDateSecond'),
+        'endDateFirst' => $eventObj->getter('endDateFirst'),
+        'endDateSecond' => $eventObj->getter('endDateSecond')
+      ];
+    */
+
+    $eventText = '';
+    $formatDate = 'Y/m/d';
+    global $C_LANG;
+    if( $C_LANG === 'es' || $C_LANG === 'gl' ) {
+      $formatDate = 'd/m/Y';
+    }
+
+    if( !empty( $eventDataArray['eventTitle'] ) ) {
+      $eventText = $eventDataArray['eventTitle'];
+    }
+    else {
+      if( !empty( $eventDataArray['initDateFirst'] ) ) {
+        $dateEvent = date_create( $eventDataArray['initDateFirst'] );
+        if( $eventDataArray['selectInitTime'] === 'notTime' ) {
+          $eventText = date_format( $dateEvent, $formatDate );
+        }
+        else if( $eventDataArray['selectInitTime'] === 'notRangeTime' ) {
+          $eventText = date_format( $dateEvent, $formatDate.__(' \a\t ').'H:i' ).'h';
+        }
+        else if( $eventDataArray['selectInitTime'] === 'rangeTime' ) {
+          $eventText = date_format( $dateEvent, $formatDate.' (H:i' ).'h';
+          if( !empty( $eventDataArray['initDateSecond'] ) ) {
+            $dateEventSecond = date_create( $eventDataArray['initDateSecond'] );
+            $eventText .= ' '.__('to').' '.date_format( $dateEventSecond, 'H:i' ).'h';
+          }
+          $eventText .= ')';
+        }
+      }
+
+      if( $eventDataArray['dateRange'] ) {
+        // Existen 2 fechas (initDate/endDate)
+        if( !empty( $eventDataArray['endDateFirst'] ) ) {
+          $eventText = __('from').' '.$eventText;
+          $dateEvent = date_create( $eventDataArray['endDateFirst'] );
+          if( $eventDataArray['selectEndTime'] === 'notTime' ) {
+            $eventText .= ' '.__('to').' '.date_format( $dateEvent, $formatDate );
+          }
+          else if( $eventDataArray['selectEndTime'] === 'notRangeTime' ) {
+            $eventText .= ' '.__('to').' '.date_format( $dateEvent, $formatDate.__(' \a\t ').'H:i' ).'h';
+          }
+          else if( $eventDataArray['selectEndTime'] === 'rangeTime' ) {
+            $eventText .= ' '.__('to').' '.date_format( $dateEvent, $formatDate.' (H:i' ).'h';
+            if( !empty( $eventDataArray['endDateSecond'] ) ) {
+              $dateEventSecond = date_create( $eventDataArray['endDateSecond'] );
+              $eventText .= ' '.__('to').' '.date_format( $dateEventSecond, 'H:i' ).'h';
+            }
+            $eventText .= ')';
+          }
+        }
+      }
+    }
+
+    return $eventText;
   }
 
 } // class RExtEventController

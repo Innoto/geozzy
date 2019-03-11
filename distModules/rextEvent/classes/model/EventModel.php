@@ -23,12 +23,33 @@ class EventModel extends Model
       'vo' => 'ResourceModel',
       'key' => 'id'
     ),
-    'initDate' => array(
+
+    'initDateFirst' => array(
       'type' => 'DATETIME'
     ),
-    'endDate' => array(
+    'initDateSecond' => array(
       'type' => 'DATETIME'
     ),
+    'selectInitTime' => array(
+      'type' => 'VARCHAR',
+      'size' => 50
+    ),
+
+    'dateRange' => array(
+      'type' => 'BOOLEAN'
+    ),
+
+    'endDateFirst' => array(
+      'type' => 'DATETIME'
+    ),
+    'endDateSecond' => array(
+      'type' => 'DATETIME'
+    ),
+    'selectEndTime' => array(
+      'type' => 'VARCHAR',
+      'size' => 50
+    ),
+
     'eventTitle' => array(
       'multilang' => true,
       'type' => 'VARCHAR',
@@ -37,6 +58,21 @@ class EventModel extends Model
   );
 
   var $deploySQL = array(
+    array(
+      'version' => 'rextEvent#3',
+      'sql' => '
+        ALTER TABLE geozzy_resource_rext_event
+          CHANGE COLUMN initDate initDateFirst DATETIME NULL DEFAULT NULL,
+          ADD COLUMN initDateSecond DATETIME NULL AFTER initDateFirst,
+          ADD COLUMN selectInitTime VARCHAR(50) NULL AFTER initDateSecond,
+
+          ADD COLUMN dateRange INT NULL AFTER selectInitTime,
+
+          CHANGE COLUMN endDate endDateFirst DATETIME NULL DEFAULT NULL,
+          ADD COLUMN endDateSecond DATETIME NULL AFTER endDateFirst,
+          ADD COLUMN selectEndTime VARCHAR(50) NULL AFTER endDateSecond;
+      '
+    ),
     array(
       'version' => 'rextEvent#2',
       'sql' => '
