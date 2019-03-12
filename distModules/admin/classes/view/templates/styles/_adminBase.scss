@@ -623,3 +623,18 @@ select.cgmMForm-field{ width: 100% !important; }
 /*.select2-selection.select2-selection--multiple{
   background-color: $gzzColor-bck-2;
 }*/
+
+
+/* Clases para ocultar las las tabllas -> hidden-{xs/sm/md/lg} -> gzz-hidden-{xs/sm/md/lg} */
+@media #{$mqLTDesktop}{
+  .gzz-hidden-lg{ display: none; }
+}
+@media #{$mqLTTablet}{
+  .gzz-hidden-md{ display: none; }
+}
+@media #{$mqLTPhoneLandscape}{
+  .gzz-hidden-sm{ display: none; }
+}
+@media #{$mqLTPhonePortrait}{
+  .gzz-hidden-xs{ display: none; }
+}

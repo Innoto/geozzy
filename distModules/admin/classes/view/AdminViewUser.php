@@ -133,11 +133,11 @@ class AdminViewUser extends AdminViewMaster
     $tabla->setCol('role', __('Role'));
     $tabla->setCol('active', __('Active'));
 
-    $tabla->setColClasses('name', 'd-none');
-    $tabla->setColClasses('surname', 'd-md-none d-none ');
-    $tabla->setColClasses('email', 'd-none d-sm-none ');
-    $tabla->setColClasses('timeCreateUser', 'd-md-none d-none');
-    $tabla->setColClasses('role', 'd-none d-sm-none');
+    $tabla->setColClasses('name', 'gzz-hidden-sm');
+    $tabla->setColClasses('surname', 'gzz-hidden-lg ');
+    $tabla->setColClasses('email', 'gzz-hidden-md ');
+    $tabla->setColClasses('timeCreateUser', 'gzz-hidden-lg');
+    $tabla->setColClasses('role', 'gzz-hidden-md');
 
     // Contido especial
     $tabla->colRule('active', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fas fa-circle\"></i></span>');

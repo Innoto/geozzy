@@ -138,9 +138,9 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     // Nome das columnas
     $tabla->setCol('id', 'ID');
-    $tabla->setColClasses('id', 'd-none'); // hide id in mobile version
+    $tabla->setColClasses('id', 'gzz-hidden-sm'); // hide id in mobile version
     $tabla->setCol('rTypeId', __('Type'));
-    $tabla->setColClasses('rTypeId', 'd-none'); // hide id rtype mobile version
+    $tabla->setColClasses('rTypeId', 'gzz-hidden-sm'); // hide id rtype mobile version
     $tabla->setCol('title_'.Cogumelo::getSetupValue( 'lang:default' ), __('Title'));
     $tabla->setCol('published', __('Published'));
     $tabla->setCol('UrlAliasModel.urlFrom', __('Url'));
@@ -180,7 +180,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
       $taxonomygroupName = $taxonomygroup->getter('name', Cogumelo::getSetupValue( 'lang:default' ));
 
       $tabla->setCol('ResourceTopicModel.taxonomyterm', $taxonomygroupName );
-      $tabla->setColClasses('ResourceTopicModel.taxonomyterm', 'd-sm-none'); // hide in medium screen version
+      $tabla->setColClasses('ResourceTopicModel.taxonomyterm', 'gzz-hidden-sm'); // hide in medium screen version
 
       // Contido especial
       if( is_array($taxonomyterms) && count($taxonomyterms) > 0 ) {
