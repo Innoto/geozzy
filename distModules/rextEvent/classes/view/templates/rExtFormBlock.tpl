@@ -18,7 +18,7 @@
               {$rExt.dataForm.formFieldsArray.rextEvent_selectInitTime}
             </div>
             <div class="col-sm-6">
-              <label class="cgmMForm">{t}Event init first date{/t}</label>
+              <label class="cgmMForm">{t}Event init{/t}</label>
               <div class="form-group">
                 <div class="input-group date initDateFirst" data-target-input="nearest">
                   <input type="text" class="form-control datetimepicker-input" data-target=".initDateFirst">
@@ -35,7 +35,7 @@
         <div class="col-12">
           <div class="row">
             <div class="col-sm-6">
-              <label class="cgmMForm js-hidden-initTimeFirst">{t}Time 1 (First date){/t}</label>
+              <label class="cgmMForm js-hidden-initTimeFirst">{t}Time init{/t} ({t}Event init{/t})</label>
               <div class="form-group js-hidden-initTimeFirst">
                 <div class="input-group date initTimeFirst" data-target-input="nearest">
                   <input type="text" class="form-control datetimepicker-input" data-target=".initTimeFirst">
@@ -46,7 +46,7 @@
               </div>
             </div>
             <div class="col-sm-6">
-              <label class="cgmMForm js-hidden-initTimeSecond">{t}Time 2 (First date){/t}</label>
+              <label class="cgmMForm js-hidden-initTimeSecond">{t}Time end{/t} ({t}Event init{/t})</label>
               <div class="form-group js-hidden-initTimeSecond">
                 <div class="input-group date initTimeSecond" data-target-input="nearest">
                   <input type="text" class="form-control datetimepicker-input" data-target=".initTimeSecond">
@@ -73,7 +73,7 @@
               {$rExt.dataForm.formFieldsArray.rextEvent_selectEndTime}
             </div>
             <div class="col-sm-6">
-              <label class="cgmMForm">{t}Event end first date{/t}</label>
+              <label class="cgmMForm">{t}Event end{/t}</label>
               <div class="form-group">
                 <div class="input-group date endDateFirst" data-target-input="nearest">
                   <input type="text" class="form-control datetimepicker-input" data-target=".endDateFirst">
@@ -90,7 +90,7 @@
         <div class="col-12">
           <div class="row">
             <div class="col-sm-6">
-              <label class="cgmMForm js-hidden-endTimeFirst">{t}Time 1 (End date){/t}</label>
+              <label class="cgmMForm js-hidden-endTimeFirst">{t}Time init{/t} ({t}Event end{/t})</label>
               <div class="form-group js-hidden-endTimeFirst">
                 <div class="input-group date endTimeFirst" data-target-input="nearest">
                   <input type="text" class="form-control datetimepicker-input" data-target=".endTimeFirst">
@@ -101,7 +101,7 @@
               </div>
             </div>
             <div class="col-sm-6">
-              <label class="cgmMForm js-hidden-endTimeSecond">{t}Time 2 (End date){/t}</label>
+              <label class="cgmMForm js-hidden-endTimeSecond">{t}Time end{/t} ({t}Event end{/t})</label>
               <div class="form-group js-hidden-endTimeSecond">
                 <div class="input-group date endTimeSecond" data-target-input="nearest">
                   <input type="text" class="form-control datetimepicker-input" data-target=".endTimeSecond">

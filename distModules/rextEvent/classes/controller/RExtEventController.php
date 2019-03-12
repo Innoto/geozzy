@@ -113,7 +113,7 @@ class RExtEventController extends RExtController implements RExtInterface {
       ),
 
       'dateRange' => array(
-        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> [ '1' => __('Final date of event ') ] )
+        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> [ '1' => __('Final date of event') ] )
       ),
 
       'selectEndTime' => array(
@@ -364,13 +364,13 @@ class RExtEventController extends RExtController implements RExtInterface {
     // VALORES QUE NECESITAMOS PARA OBTENER DATOS (return $eventText;)
       $nameArray = [
         'eventTitle' => $eventObj->getter('eventTitle',false),
-        'initDateFirst' => $eventObj->getter('initDateFirst'),
         'selectInitTime' => $eventObj->getter('selectInitTime'),
-        'dateRange' => $eventObj->getter('dateRange'),
-        'selectEndTime' => $eventObj->getter('selectEndTime'),
+        'initDateFirst' => $eventObj->getter('initDateFirst'),
         'initDateSecond' => $eventObj->getter('initDateSecond'),
+        'selectEndTime' => $eventObj->getter('selectEndTime'),
         'endDateFirst' => $eventObj->getter('endDateFirst'),
-        'endDateSecond' => $eventObj->getter('endDateSecond')
+        'endDateSecond' => $eventObj->getter('endDateSecond'),
+        'dateRange' => $eventObj->getter('dateRange')
       ];
     */
 
@@ -380,6 +380,10 @@ class RExtEventController extends RExtController implements RExtInterface {
     if( $C_LANG === 'es' || $C_LANG === 'gl' ) {
       $formatDate = 'd/m/Y';
     }
+    // Conexiones
+    $fromText = __('from');
+    $toText = __('to');
+    $atText = __('\a\t'); //  Al estar dentro de un date_format necesita estar escapado para no provocar problemas de formateo (en po's también)
 
     if( !empty( $eventDataArray['eventTitle'] ) ) {
       $eventText = $eventDataArray['eventTitle'];
@@ -391,13 +395,13 @@ class RExtEventController extends RExtController implements RExtInterface {
           $eventText = date_format( $dateEvent, $formatDate );
         }
         else if( $eventDataArray['selectInitTime'] === 'notRangeTime' ) {
-          $eventText = date_format( $dateEvent, $formatDate.__(' \a\t ').'H:i' ).'h';
+          $eventText = date_format( $dateEvent, $formatDate.' '.$atText.' '.'H:i' ).'h';
         }
         else if( $eventDataArray['selectInitTime'] === 'rangeTime' ) {
           $eventText = date_format( $dateEvent, $formatDate.' (H:i' ).'h';
           if( !empty( $eventDataArray['initDateSecond'] ) ) {
             $dateEventSecond = date_create( $eventDataArray['initDateSecond'] );
-            $eventText .= ' '.__('to').' '.date_format( $dateEventSecond, 'H:i' ).'h';
+            $eventText .= ' '.$toText.' '.date_format( $dateEventSecond, 'H:i' ).'h';
           }
           $eventText .= ')';
         }
@@ -406,19 +410,19 @@ class RExtEventController extends RExtController implements RExtInterface {
       if( $eventDataArray['dateRange'] ) {
         // Existen 2 fechas (initDate/endDate)
         if( !empty( $eventDataArray['endDateFirst'] ) ) {
-          $eventText = __('from').' '.$eventText;
+          $eventText = $fromText.' '.$eventText;
           $dateEvent = date_create( $eventDataArray['endDateFirst'] );
           if( $eventDataArray['selectEndTime'] === 'notTime' ) {
-            $eventText .= ' '.__('to').' '.date_format( $dateEvent, $formatDate );
+            $eventText .= ' '.$toText.' '.date_format( $dateEvent, $formatDate );
           }
           else if( $eventDataArray['selectEndTime'] === 'notRangeTime' ) {
-            $eventText .= ' '.__('to').' '.date_format( $dateEvent, $formatDate.__(' \a\t ').'H:i' ).'h';
+            $eventText .= ' '.$toText.' '.date_format( $dateEvent, $formatDate.' '.$atText.' '.'H:i' ).'h';
           }
           else if( $eventDataArray['selectEndTime'] === 'rangeTime' ) {
-            $eventText .= ' '.__('to').' '.date_format( $dateEvent, $formatDate.' (H:i' ).'h';
+            $eventText .= ' '.$toText.' '.date_format( $dateEvent, $formatDate.' (H:i' ).'h';
             if( !empty( $eventDataArray['endDateSecond'] ) ) {
               $dateEventSecond = date_create( $eventDataArray['endDateSecond'] );
-              $eventText .= ' '.__('to').' '.date_format( $dateEventSecond, 'H:i' ).'h';
+              $eventText .= ' '.$toText.' '.date_format( $dateEventSecond, 'H:i' ).'h';
             }
             $eventText .= ')';
           }

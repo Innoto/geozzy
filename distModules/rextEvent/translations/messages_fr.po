@@ -9,20 +9,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:6
-#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
-#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:6
-msgid "Event init date"
-msgstr ""
-
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:19
-msgid "Event end date"
-msgstr ""
-
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:93
 msgid "Event type"
 msgstr ""
