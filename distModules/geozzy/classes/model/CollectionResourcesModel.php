@@ -40,7 +40,10 @@ class CollectionResourcesModel extends Model {
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = [
+    'resourceNotIn' => ' geozzy_collection_resources.resource NOT IN (?) ',
+    'collectionNotIn' => ' geozzy_collection_resources.collection NOT IN (?) ',
+  ];
 
 
   var $deploySQL = array(

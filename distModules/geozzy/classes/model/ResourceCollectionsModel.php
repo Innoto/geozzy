@@ -29,7 +29,10 @@ class ResourceCollectionsModel extends Model {
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = [
+    'resourceNotIn' => ' geozzy_resource_collections.resource NOT IN (?) ',
+    'collectionNotIn' => ' geozzy_resource_collections.collection NOT IN (?) ',
+  ];
 
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {

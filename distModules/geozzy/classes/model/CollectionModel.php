@@ -60,7 +60,8 @@ class CollectionModel extends Model {
   static $extraFilters = array(
     'createdfrom' => ' ( geozzy_collection.timeCreation >= ? ) ',
     'lastUpdatefrom' => ' ( geozzy_collection.timeLastUpdate >= ? ) ',
-    'idIn' => ' ( geozzy_collection.id IN (?) ) '
+    'idIn' => ' ( geozzy_collection.id IN (?) ) ',
+    'idNotIn' => ' geozzy_collection.id NOT IN (?) ',
   );
 
 
