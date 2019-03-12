@@ -40,7 +40,7 @@
           <img class="iconTitleBar img-fluid" alt="Aloxamentos con encanto" src="{$cogumelo.publicConf.media}/img/aloxamentosIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>
-        <div class="stars hidden-xs col-sm-3 col-md-2">
+        <div class="stars d-none col-sm-3 col-md-2">
           <i class="far fa-star"></i>
           <i class="far selected fa-star"></i>
           <i class="far selected fa-star"></i>

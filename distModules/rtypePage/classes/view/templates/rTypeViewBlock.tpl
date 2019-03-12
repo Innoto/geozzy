@@ -37,7 +37,7 @@
           <h1>{$res.data.title}</h1>
         </div>
         {if isset($stars)}
-        <div class="stars hidden-xs col-sm-3 col-md-2">
+        <div class="stars d-none col-sm-3 col-md-2">
           <i class="far fa-star"></i>
           <i class="far selected fa-star"></i>
           <i class="far selected fa-star"></i>
