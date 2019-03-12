@@ -36,7 +36,7 @@
   <div class="titleBar">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-10">
+        <div class="col-12 col-sm-9 col-md-10">
           <img class="iconTitleBar img-fluid" alt="Aloxamentos con encanto" src="{$cogumelo.publicConf.media}/img/aloxamentosIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>

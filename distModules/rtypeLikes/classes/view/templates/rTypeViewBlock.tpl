@@ -26,7 +26,7 @@
   <div class="titleBar">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-10">
+        <div class="col-12 col-sm-9 col-md-10">
           {*<img class="iconTitleBar img-fluid" alt="Páxina xeral" src="{$cogumelo.publicConf.media}/img/paxinaIcon.png"></img>*}
           <h1>{t}Likes page{/t}</h1>
         </div>
@@ -55,7 +55,7 @@
         <div class="row row-eq-height">
           {foreach $likesResourcesInfo as $likesResInfo}
           {* title shortDescription image url rTypeId *}
-          <div class="col-xs-12 col-sm-6 col-md-3 likesElement rtid{$likesResInfo.rTypeId}" data-id="{$likesResInfo.id}" data-rTypeId="{$likesResInfo.rTypeId}">
+          <div class="col-12 col-sm-6 col-md-3 likesElement rtid{$likesResInfo.rTypeId}" data-id="{$likesResInfo.id}" data-rTypeId="{$likesResInfo.rTypeId}">
             <div class="likesImage">
               <a href="{$likesResInfo.url}"><img src="/cgmlImg/{$likesResInfo.image}-a{$likesResInfo.imageAKey}/{$likesResInfo.perfilLikeImg}/{$likesResInfo.imageName}"></a>
             </div>

@@ -28,7 +28,7 @@
       <div id="ele{$eventDate.id}" class="accordion-body collapse {if $eventDate@first}in{/if} clearfix">
         {foreach $eventDate.data as $i => $elm}
         <div class="extendedData accordion-inner">
-          <div class="externalBox col-md-4 col-sm-6 col-xs-12">
+          <div class="externalBox col-md-4 col-sm-6 col-12">
             <div class="box">
               <div class="eventImg">
                 <img class="img-fluid" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$elm.resource.image}/calendarEvent/{$elm.resource.image}.jpg"/>

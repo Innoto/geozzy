@@ -6,7 +6,7 @@
   <div class="titleBar">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-10">
+        <div class="col-12 col-sm-9 col-md-10">
           <img class="iconTitleBar img-fluid" alt="Tu Comunidad" src="{$cogumelo.publicConf.media}/img/paxinaIcon.png">
           <h1>{t}Tu Comunidad{/t}</h1>
         </div>
@@ -34,13 +34,13 @@
                     <div class="col-md-6">
                       <div class="row">
                         <div class="shareComm">
-                          <div class="col-xs-12 ">
+                          <div class="col-12 ">
                             <div class="actions">
                               <span class="view actionEdit"><i class="fas fa-lg fa-pencil-alt" aria-hidden="true"></i> {t}Editar{/t}</span>
                               <span class="edit actionSave"><i class="far fa-lg fa-save" aria-hidden="true"></i> {t}Guardar{/t}</span>
                             </div>
                           </div>
-                          <div class="col-xs-12">
+                          <div class="col-12">
                             <div class="myShare">
                               <span class="view">
                                 <span class="shareOn"><i class="fas fa-lg fa-check" aria-hidden="true"></i></span>
@@ -74,7 +74,7 @@
                     <div class="col-md-6">
                       <div class="row">
                         <div class="rs">
-                          <div class="col-xs-12">
+                          <div class="col-12">
                             <div class="myFacebook noShare">
                               <span class="iconRs rsFacebook"><i class="fab fa-fw fa-3x fa-facebook-f" aria-hidden="true"></i></span>
                               <div class="view">
@@ -93,7 +93,7 @@
                               {/if}
                             </style>
                           </div>
-                          <div class="col-xs-12">
+                          <div class="col-12">
                             <div class="myTwitter noShare">
                               <span class="iconRs rsTwitter"><i class="fab fa-fw fa-3x fa-twitter" aria-hidden="true"></i></span>
                               <div class="view">
@@ -210,7 +210,7 @@
             </div>
           {else}
             <div class="row">
-              <div class="col-xs-12">
+              <div class="col-12">
                 <div class="communityEmpty">
                   <h4>{t}Parece que todavía no has añadido a nadie a tu Comunidad...{/t}</h4>
                 </div>

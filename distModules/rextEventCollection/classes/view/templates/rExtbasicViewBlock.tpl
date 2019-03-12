@@ -3,7 +3,7 @@
 {if isset($rExt.data.events)}
   <div class="row">
   {foreach $rExt.data.events as $eventDate}
-    <div class="event col-md-3 col-sm-6 col-xs-12">
+    <div class="event col-md-3 col-sm-6 col-12">
       {if isset($eventDate.event.relatedResource) && $eventDate.event.relatedResource!==0}
       <a href="{$eventDate.event.relatedResource}">
       {/if}
