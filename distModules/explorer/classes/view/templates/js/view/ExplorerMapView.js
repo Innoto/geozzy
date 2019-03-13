@@ -759,10 +759,6 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         that.mapArrowMarker.setIcon( icon );
         $('.explorerArrowLabel').html(that.outerPanToIntervalometerValue);
 
-        that.outerPanToNestedIntervalometer = setTimeout( function(){
-          //$('.explorerArrowLabel').hide();
-          that.mapArrowMarker.setIcon( that.options.mapArrowImageEmpty );
-        }, 400 );
 
         if( that.outerPanToIntervalometerValue == 0){
           that.resetOuterPanTo();
