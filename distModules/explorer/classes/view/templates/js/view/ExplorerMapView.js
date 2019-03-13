@@ -34,8 +34,6 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       clustererMaxZoom: 15,
       clustererGridSize: 90,
       clustererZoomOnClick: true,
-      mapArrowImage: cogumelo.publicConf.media+'/module/explorer/img/mapArrow.png',
-      mapArrowImageEmpty: cogumelo.publicConf.media+'/module/explorer/img/mapArrowEmpty.png',
       markerzIndex: 100,
       chooseMarkerIcon: function() {return false;},
       mapZones: {
@@ -711,7 +709,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     if( that.mapArrowMarker === false ) {
       that.mapArrowMarker = new MarkerWithLabel({
          labelContent: "4",
-         labelAnchor: new google.maps.Point(-1,-2),
+         labelAnchor: new google.maps.Point(7,10),
          labelClass: "explorerArrowLabel", // the CSS class for the label
          labelStyle: {opacity: 1}
       });
@@ -721,16 +719,16 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     //cogumelo.log('ANGULO',resource.get('arrowAngle') );
 
     var icon = that.arrowIconRotated(resource);
-
+    var strobo = true;
     setTimeout( function(){
 
 
       //cogumelo.log('ANGULO',resource.get('arrowAngle') );
+
+
       icon = that.arrowIconRotated(resource);
-
-
-
       that.mapArrowMarker.setIcon( icon );
+
 
       that.mapArrowMarker.setPosition( that.pixelToCoord( intersectsWithInnerBox.x, intersectsWithInnerBox.y ) );
 
@@ -745,6 +743,17 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       clearInterval(that.outerPanToIntervalometer);
 
       that.outerPanToIntervalometer = setInterval( function(){
+        if(strobo == true) {
+          icon = {path:''};
+          strobo = false;
+          console.log('strobo:on');
+        }
+        else {
+          icon = that.arrowIconRotated(resource);
+          strobo = true;
+                  console.log('strobo:off');
+        }
+        that.mapArrowMarker.setIcon( icon );
 
         //$('.explorerArrowLabel').show();
         that.mapArrowMarker.setIcon( icon );
@@ -771,13 +780,27 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
   arrowIconRotated: function( resource ) {
     var that = this;
-    var icon = {
+    /*var icon = {
       url: RotateIcon.makeIcon( that.options.mapArrowImage ).setRotation({
         deg: resource.get('arrowAngle'),
         width: 32,
         height: 32
       }).getUrl(),
       anchor:new google.maps.Point(32, 32)
+    };*/
+
+    var icon = {
+      //path: 'M 0,-20 15,-34 l 14.107143,13.75 -9.375,0 -4.910714,-5.17857 -5.357143,5.35714 z',
+      path: 'M -15,75 -108,0 -15,-75 -15,-50 -75,0 -15,50 z',
+
+      fillColor: '#000000',
+      fillOpacity: 0.7,
+      scale: 0.4,
+      //anchor: new google.maps.Point(5, -10)
+      rotation: resource.get('arrowAngle')+90,
+      strokeColor: '#ffffff',
+      strokeWeight: 1
+      //anchor: [10,0],
     };
 
     return icon;
