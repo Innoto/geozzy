@@ -141,6 +141,9 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         that.parentExplorer.render(true);
         that.currentCenterToUse = that.map.getCenter();
       }
+      else {
+        this.getVisibleResourceIds();
+      }
     }
 
 
@@ -746,12 +749,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         if(strobo == true) {
           icon = {path:''};
           strobo = false;
-          console.log('strobo:on');
         }
         else {
           icon = that.arrowIconRotated(resource);
           strobo = true;
-                  console.log('strobo:off');
         }
         that.mapArrowMarker.setIcon( icon );
 
