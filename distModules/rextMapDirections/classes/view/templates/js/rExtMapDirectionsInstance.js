@@ -3,7 +3,8 @@ $(document).ready( function() {
 
   //geozzy.rExtMapInstance.onReadyEvent( function() {alert(2);});
   //cogumelo.log(geozzy.rExtMapInstance.resourceMap);
-  if( geozzy.rExtMapInstance ) {
+
+  if( geozzy.rExtMapInstance && geozzy.rExtMapInstance.resourceMap!= false) {
     if( cogumelo.publicConf.mod_detectMobile_isMobile && !cogumelo.publicConf.mod_detectMobile_isTablet ) {
       $( '.rextMapDirectionsButton' ).on( 'click', function(event) {
         if( typeof geozzy.rExtMapDirectionsData === 'object' ) {
@@ -20,6 +21,7 @@ $(document).ready( function() {
     }
   }
   else {
+    $('.mapRouteForm').hide();
     $('.rextMapDirectionsButton').hide();
   }
 });
