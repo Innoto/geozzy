@@ -114,6 +114,8 @@ class MenuViewModel extends Model {
           AND geozzy_taxonomyterm.taxgroup = geozzy_taxonomygroup.id AND geozzy_taxonomygroup.idName = "menu"
         GROUP BY
           geozzy_taxonomyterm.id
+        '. $extraArrayParam['strOrderBy'] . '
+        '. $extraArrayParam['strRange'] . '
     ';
   }
 
