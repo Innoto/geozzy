@@ -32,6 +32,8 @@ class ResourceTaxonomytermModel extends Model {
   static $extraFilters = array(
     'idIn' => ' geozzy_resource_taxonomyterm.id IN ( ? ) ',
     'taxonomytermIn' => ' geozzy_resource_taxonomyterm.taxonomyterm IN ( ? ) ',
+    'taxonomytermNotIn' => ' geozzy_resource_taxonomyterm.taxonomyterm NOT IN ( ? ) ',
+    'resourceNotIn' => ' geozzy_resource_taxonomyterm.resource NOT IN ( ? ) ',
     'idInCSV' => ' geozzy_resource_taxonomyterm.id IN ( ? ) ',
     'idTermInCSV' => ' geozzy_resource_taxonomyterm.idName IN ( ? ) '
   );

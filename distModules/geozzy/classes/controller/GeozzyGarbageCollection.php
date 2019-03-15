@@ -34,8 +34,7 @@ class GeozzyGarbageCollection {
     echo "\n\n";
 
     $this->resourcesId = $this->garbageCollCtrl->listModelIds('resourceModel');
-    // echo "\nRes. IDs: ".implode(', ', $this->resourcesId)."\n\n";
-    echo "\n\n";
+    // echo "\nRes. IDs: ".implode(', ', $this->resourcesId)."\n\n\n";
 
     $this->gcUrlAlias();
     echo "\n\n";
@@ -43,22 +42,18 @@ class GeozzyGarbageCollection {
     $this->gcCollections();
     echo "\n\n";
 
+    $this->gcTaxonomyModels();
+    echo "\n\n";
+
     return $result;
   } // function garbageCollection()
+
 
 
   // Eliminando URLs con recursos desaparecidos
   public function gcUrlAlias() {
     Cogumelo::debug( __METHOD__ );
     error_log( __METHOD__ );
-
-    // $modelName = 'UrlAliasModel';
-
-    // $relations = $this->garbageCollCtrl->listModelRelations( $modelName );
-    // var_dump( $relations );
-
-    // $idFilesUsed = $this->garbageCollCtrl->listModelUsedIds( $modelName );
-    // var_dump( $idFilesUsed );
 
     $objModel = new UrlAliasModel();
 
@@ -71,10 +66,8 @@ class GeozzyGarbageCollection {
       while( $dataObj = $listModel->fetch() ) {
         $resId = $dataObj->getter('resource');
         if( !empty( $resId ) ) {
-          echo "\nSobra a URL Id:".$dataObj->getter('id')." - non hai o recurso $resId";
-
+          error_log('UrlAliasModel('.$dataObj->getter('id').')->delete() - non ten Resource');
           // $dataObj->delete();
-
         }
       }
     }
@@ -91,18 +84,14 @@ class GeozzyGarbageCollection {
     $modelName = 'CollectionModel';
 
     $listCollIds = $this->garbageCollCtrl->listModelIds( $modelName );
-    // echo "\nlistCollIds:     ".implode( ', ', $listCollIds )."\n\n";
+
 
     // Limpieza inicial de relaciones "Normales"
     $this->gcCollNormalRelsRes();
     $this->gcCollNormalRelsColl( $listCollIds );
 
 
-
-
-
     $listCollUsedIds = array_keys( $this->garbageCollCtrl->listModelUsedIds( $modelName ) );
-    // echo "\nlistCollUsedIds: ".implode( ', ', $listCollUsedIds )."\n\n";
 
     $collBorrados = [];
 
@@ -114,25 +103,19 @@ class GeozzyGarbageCollection {
       while( $dataObj = $listModel->fetch() ) {
         $collId = $dataObj->getter('id');
         $collBorrados[] = $collId;
-        echo "\nSobra CollectionModel Id:".$collId." - non ten Pai";
-
+        error_log('CollectionModel('.$collId.')->delete() - non ten Pai');
         // $dataObj->delete();
-
       }
     }
     echo "\n\n";
-    echo "\ncollBorrados: ".implode( ', ', $collBorrados )."\n\n";
 
-
-
-
+    // echo "\ncollBorrados: ".implode( ', ', $collBorrados )."\n\n";
 
     if( !empty( $collBorrados ) ) {
-      // $listCollIds = $this->garbageCollCtrl->listModelIds( $modelName );
-      $listCollIds = array_diff( $listCollIds, $collBorrados );
-      // echo "\nlistCollIds: ".implode( ', ', $listCollIds )."\n\n";
-
       // Segunda limpieza de relaciones "Normales" con CollectionModel
+
+      $listCollIds = array_diff( $listCollIds, $collBorrados );
+
       $this->gcCollNormalRelsRes();
       $this->gcCollNormalRelsColl( $listCollIds );
     }
@@ -151,10 +134,8 @@ class GeozzyGarbageCollection {
     ]);
     if( is_object( $listModel ) ) {
       while( $dataObj = $listModel->fetch() ) {
-        echo "\nSobra CollectionResourcesModel Id:".$dataObj->getter('id')." - non ten Resource";
-
+        error_log('CollectionResourcesModel('.$dataObj->getter('id').')->delete() - non ten Resource');
         // $dataObj->delete();
-
       }
     }
     echo "\n\n";
@@ -166,10 +147,8 @@ class GeozzyGarbageCollection {
     ]);
     if( is_object( $listModel ) ) {
       while( $dataObj = $listModel->fetch() ) {
-        echo "\nSobra ResourceCollectionsModel Id:".$dataObj->getter('id')." - non ten Resource";
-
+        error_log('ResourceCollectionsModel('.$dataObj->getter('id').')->delete() - non ten Resource');
         // $dataObj->delete();
-
       }
     }
     echo "\n\n";
@@ -187,10 +166,8 @@ class GeozzyGarbageCollection {
     ]);
     if( is_object( $listModel ) ) {
       while( $dataObj = $listModel->fetch() ) {
-        echo "\nSobra CollectionResourcesModel Id:".$dataObj->getter('id')." - non ten Collection";
-
+        error_log('CollectionResourcesModel('.$dataObj->getter('id').')->delete() - non ten Collection');
         // $dataObj->delete();
-
       }
     }
     echo "\n\n";
@@ -202,14 +179,52 @@ class GeozzyGarbageCollection {
     ]);
     if( is_object( $listModel ) ) {
       while( $dataObj = $listModel->fetch() ) {
-        echo "\nSobra ResourceCollectionsModel Id:".$dataObj->getter('id')." - non ten Collection";
-
+        error_log('ResourceCollectionsModel('.$dataObj->getter('id').')->delete() - non ten Collection');
         // $dataObj->delete();
-
       }
     }
     echo "\n\n";
   }
+
+
+
+  // Eliminando Taxonomy Models y relelaciones descolgadas
+  public function gcTaxonomyModels() {
+    Cogumelo::debug( __METHOD__ );
+    error_log( __METHOD__ );
+
+    $modelName = 'TaxonomytermModel';
+
+    $listModelIds = $this->garbageCollCtrl->listModelIds( $modelName );
+
+
+    $objModel = new ResourceTaxonomytermModel();
+
+
+    $listModel = $objModel->listItems([
+      'filters' => ['taxonomytermNotIn' => $listModelIds], 'fields' => ['id']
+    ]);
+    if( is_object( $listModel ) ) {
+      while( $dataObj = $listModel->fetch() ) {
+        error_log('ResourceTaxonomytermModel('.$dataObj->getter('id').')->delete() - non ten Taxonomyterm');
+        // $dataObj->delete();
+      }
+    }
+    echo "\n\n";
+
+
+    $listModel = $objModel->listItems([
+      'filters' => ['resourceNotIn' => $this->resourcesId], 'fields' => ['id']
+    ]);
+    if( is_object( $listModel ) ) {
+      while( $dataObj = $listModel->fetch() ) {
+        error_log('ResourceTaxonomytermModel('.$dataObj->getter('id').')->delete() - non ten Resource');
+        // $dataObj->delete();
+      }
+    }
+    echo "\n\n";
+  }
+
 
   /*
     ResourceModel
@@ -237,7 +252,7 @@ class GeozzyGarbageCollection {
 
     TaxonomygroupModel
 
-    ResourceTaxonomytermModel extends Model {
+    ResourceTaxonomytermModel
       TaxonomytermModel',
       ResourceModel',
 
