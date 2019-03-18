@@ -24,10 +24,7 @@ msgstr "Favourites"
 
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:74
 #: /home/proxectos/geozzy/classes/view/templates/rtypeFavourites_classes_view_templates_rTypeViewBlock.tpl:74
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:74
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFavourites_classes_view_templates_rTypeViewBlock.tpl:74
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFavourites_classes_view_templates_rTypeViewBlock.tpl:74
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:74
+#: /home/proxectos/geozzy/distModules/rtypeFavourites/classes/view/templates/rTypeViewBlock.tpl:74
 msgid "It seems you haven't added any items to your favorites list yet..."
 msgstr ""
 

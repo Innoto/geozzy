@@ -40,7 +40,7 @@ msgstr "Subir recursos multimedia"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:21
 msgid "Upload multiple files"
-msgstr "Subir múltiples ficheros"
+msgstr "Cargar múltiples ficheros"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:24
 msgid "Link or embed multimedia resource"
@@ -160,53 +160,25 @@ msgstr "Lista de términos para"
 
 #: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:11
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:11
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/menuTermEditor.tpl:11
 msgid "Menu management"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:16
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:16
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/menuTermEditor.tpl:16
 msgid "Add menu term"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:34
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:34
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:34
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:34
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:34
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:34
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:34
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:34
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:34
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:34
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/menuTermEditor.tpl:34
 msgid "List of menu terms"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:52
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:52
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:52
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:52
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:52
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:52
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:52
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:52
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:52
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:52
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/menuTermEditor.tpl:52
 msgid "Add term menu"
 msgstr ""
 
@@ -559,10 +531,6 @@ msgstr "Historias"
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:99
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:99
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:99
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:99
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:99
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:99
 msgid "Translates"
 msgstr "Traducciones"
 
@@ -570,26 +538,14 @@ msgstr "Traducciones"
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:103
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:66
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:67
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:103
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:103
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:103
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:103
 msgid "Export"
 msgstr "Exportar"
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:105
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:105
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:105
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:105
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:105
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:105
 msgid "Resources"
 msgstr "Recursos"
 
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:106
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:106
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:106
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:106
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:106
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:106
 msgid "Collections"
@@ -600,17 +556,9 @@ msgstr "Colecciones"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:222
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:235
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:247
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:110
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:110
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:110
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:110
 msgid "Import"
 msgstr "Importar"
 
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:112
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:112
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:112
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:112
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:112
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:112
 msgid "Files"
@@ -622,53 +570,30 @@ msgstr "Ficheros"
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:90
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:91
 #: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:91
 msgid "Send"
 msgstr "Enviar"
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:37
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:37
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:37
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:37
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:37
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:37
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:37
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:37
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:35
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:35
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/loginForm.tpl:35
 msgid "He olvidado mi contraseña"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:39
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:39
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:39
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:39
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:39
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:39
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:39
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:39
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:37
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:37
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/loginForm.tpl:37
 msgid "Recuperar contraseña"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:40
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:40
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:40
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:40
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:40
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:40
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:40
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:40
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:38
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:38
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/loginForm.tpl:38
 msgid ""
 "Introduce la dirección de correo electrónico asociada a tu cuenta y te "
 "enviaremos un enlace para restablecer tu contraseña"
@@ -676,40 +601,25 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:45
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:45
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:43
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:43
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/loginForm.tpl:43
 msgid "Hay errores en el formulario"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:46
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:46
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:44
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/loginForm.tpl:44
 msgid "Recuperar"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:51
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:51
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:49
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:49
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/loginForm.tpl:49
 msgid ""
 "Se ha enviado un correo electrónico para recuperar tu cuenta de usuario."
 msgstr ""

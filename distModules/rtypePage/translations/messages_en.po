@@ -9,31 +9,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/classes/view/templates/rtypePage_classes_view_templates_rTypeViewBlock.tpl:107
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:107
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:107
-#: /home/proxectos/geozzy/classes/view/templates/rtypePage_classes_view_templates_rTypeViewBlock.tpl:107
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:107
+#: /home/proxectos/geozzy/distModules/rtypePage/classes/view/templates/rTypeViewBlock.tpl:107
 #: /home/proxectos/geozzy/classes/view/templates/rtypePage_classes_view_templates_rTypeViewBlock.tpl:107
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:107
 msgid "Contact"
 msgstr ""
 
-#: /home/proxectos/geozzy/classes/view/templates/rtypePage_classes_view_templates_rTypeViewBlock.tpl:122
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:122
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:122
-#: /home/proxectos/geozzy/classes/view/templates/rtypePage_classes_view_templates_rTypeViewBlock.tpl:122
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:122
+#: /home/proxectos/geozzy/distModules/rtypePage/classes/view/templates/rTypeViewBlock.tpl:122
 #: /home/proxectos/geozzy/classes/view/templates/rtypePage_classes_view_templates_rTypeViewBlock.tpl:122
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:122
 msgid "See indications"
 msgstr ""
 
-#: /home/proxectos/geozzy/classes/view/templates/rtypePage_classes_view_templates_rTypeViewBlock.tpl:131
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:131
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:131
-#: /home/proxectos/geozzy/classes/view/templates/rtypePage_classes_view_templates_rTypeViewBlock.tpl:131
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:131
+#: /home/proxectos/geozzy/distModules/rtypePage/classes/view/templates/rTypeViewBlock.tpl:131
 #: /home/proxectos/geozzy/classes/view/templates/rtypePage_classes_view_templates_rTypeViewBlock.tpl:131
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:131
 msgid "How to arrive from?"

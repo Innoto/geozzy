@@ -35,7 +35,7 @@ msgstr "Especialidades"
 
 #: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:59
 msgid "Restaurant reservation URL"
-msgstr "URL de reservas"
+msgstr "URL de reserva"
 
 #: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:63
 msgid "Restaurant reservation phone"

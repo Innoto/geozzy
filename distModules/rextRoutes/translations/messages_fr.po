@@ -81,8 +81,8 @@ msgstr "Déplacement"
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:139
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:139
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:139
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:139
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:119
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:128
 msgid "Effort"
 msgstr ""
 
@@ -223,5 +223,17 @@ msgstr "Élevé"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:378
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:386
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:389
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:392
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:395
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:398
 msgid "data"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:86
+msgid "Difficulty"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:129
+msgid "Global"
 msgstr ""

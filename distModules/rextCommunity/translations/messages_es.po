@@ -11,16 +11,6 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextCommunity_classes_view_templates_otherUserCommunityViewBlock.tpl:30
 #: /home/proxectos/geozzy/classes/view/templates/otherUserCommunityViewBlock.tpl:30
-#: /home/proxectos/geozzy/classes/view/templates/otherUserCommunityViewBlock.tpl:30
-#: /home/proxectos/geozzy/classes/view/templates/otherUserCommunityViewBlock.tpl:30
-#: /home/proxectos/geozzy/classes/view/templates/otherUserCommunityViewBlock.tpl:30
-#: /home/proxectos/geozzy/classes/view/templates/otherUserCommunityViewBlock.tpl:30
 #: /home/proxectos/geozzy/distModules/rextCommunity/classes/view/templates/otherUserCommunityViewBlock.tpl:30
-#: /home/proxectos/geozzy/classes/view/templates/rextCommunity_classes_view_templates_otherUserCommunityViewBlock.tpl:30
-#: /home/proxectos/geozzy/classes/view/templates/otherUserCommunityViewBlock.tpl:30
-#: /home/proxectos/geozzy/classes/view/templates/rextCommunity_classes_view_templates_otherUserCommunityViewBlock.tpl:30
-#: /home/proxectos/geozzy/classes/view/templates/rextCommunity_classes_view_templates_otherUserCommunityViewBlock.tpl:30
-#: /home/proxectos/geozzy/classes/view/templates/rextCommunity_classes_view_templates_otherUserCommunityViewBlock.tpl:30
-#: /home/proxectos/geozzy/classes/view/templates/otherUserCommunityViewBlock.tpl:30
 msgid "Favoritos:"
 msgstr ""

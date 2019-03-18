@@ -28,8 +28,6 @@ msgid "Editar historia"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/listSteps.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/listSteps.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/listSteps.tpl:5
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/templates/listSteps.tpl:5
 msgid "Steps available"
 msgstr "Pasos disponibles"

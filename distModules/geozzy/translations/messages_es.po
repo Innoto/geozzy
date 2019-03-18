@@ -88,17 +88,7 @@ msgid "Collections"
 msgstr "Colecciones"
 
 #: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
 msgid ""
 "Haz click en el lugar donde se ubica tu centro educativo con la mayor "
 "precisión que puedas, podrás arrastrar y soltar la localización"
@@ -118,7 +108,7 @@ msgstr "Menos"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/resourceCollectionViewBlock.tpl:12
 msgid "Find out!"
-msgstr "Averígualo"
+msgstr "Decúbrelos!"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:58
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:61

@@ -9,44 +9,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:13
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:13
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:13
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:13
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:10
-msgid "Title"
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/view/templates/rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/view/templates/rTypeMultiFileFormModalBlock.tpl:18
+msgid "Files up to 8MB can be upload in JPG and PNG format"
 msgstr ""
 
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:18
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:18
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:18
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:18
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:15
-msgid "Short description"
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/view/templates/rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFileFormModalBlock.tpl:22
+msgid "If not uploaded, an automatic thumbnail will be created"
 msgstr ""
 
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:23
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:23
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:23
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:23
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:20
-msgid "Image"
-msgstr ""
-
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:29
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:29
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:29
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:29
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:26
-msgid "None"
-msgstr ""
-
-#: /home/proxectos/geozzy/classes/view/templates/rTypeMultiFileFormModalBlock.tpl:18
-#: /home/proxectos/geozzy/classes/view/templates/rTypeMultiFileAdminFormModalBlock.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/view/templates/rTypeMultiFileAdminFormModalBlock.tpl:19
 #: /home/proxectos/geozzy/classes/view/templates/rTypeMultiFileFormModalBlock.tpl:18
 #: /home/proxectos/geozzy/classes/view/templates/rTypeMultiFileAdminFormModalBlock.tpl:19
 #: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
@@ -56,11 +30,32 @@ msgstr ""
 msgid "Files up to 5MB can be upload in JPG and PNG format"
 msgstr ""
 
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/rTypeFileFormModalBlock.tpl:22
-msgid "If not uploaded, an automatic thumbnail will be created"
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/view/templates/rTypeViewBlock.tpl:13
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:13
+#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:13
+#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:10
+msgid "Title"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/view/templates/rTypeViewBlock.tpl:18
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:18
+#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:18
+#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:15
+msgid "Short description"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/view/templates/rTypeViewBlock.tpl:23
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:23
+#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:23
+#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:20
+msgid "Image"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/view/templates/rTypeViewBlock.tpl:29
+#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:29
+#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:29
+#: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:26
+msgid "None"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:39

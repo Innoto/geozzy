@@ -9,22 +9,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/classes/view/templates/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:14
+#: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/view/templates/rTypeViewBlock.tpl:14
 #: /home/proxectos/geozzy/classes/view/templates/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:14
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:14
 msgid "Page"
 msgstr ""
 
-#: /home/proxectos/geozzy/classes/view/templates/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:15
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:15
+#: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/view/templates/rTypeViewBlock.tpl:15
 #: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/controller/RTypeTravelPlannerController.php:128
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:15
-#: /home/proxectos/geozzy/classes/view/templates/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:15
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:15
 #: /home/proxectos/geozzy/classes/view/templates/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:15
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:15
 msgid "Travel Planner"

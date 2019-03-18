@@ -9,54 +9,47 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:8
-#: /home/proxectos/geozzy/classes/view/templates/rextAccommodation_classes_view_templates_rExtViewBlock.tpl:8
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/view/templates/rExtViewBlock.tpl:8
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:8
 #: /home/proxectos/geozzy/classes/view/templates/rextAccommodation_classes_view_templates_rExtViewBlock.tpl:8
 msgid "Reservation URL"
 msgstr ""
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:13
-#: /home/proxectos/geozzy/classes/view/templates/rextAccommodation_classes_view_templates_rExtViewBlock.tpl:13
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/view/templates/rExtViewBlock.tpl:13
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:13
 #: /home/proxectos/geozzy/classes/view/templates/rextAccommodation_classes_view_templates_rExtViewBlock.tpl:13
 msgid "Reservation phone"
 msgstr ""
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:18
-#: /home/proxectos/geozzy/classes/view/templates/rextAccommodation_classes_view_templates_rExtViewBlock.tpl:18
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/view/templates/rExtViewBlock.tpl:18
 #: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:98
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:18
 #: /home/proxectos/geozzy/classes/view/templates/rextAccommodation_classes_view_templates_rExtViewBlock.tpl:18
 msgid "Accommodation category"
 msgstr ""
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:29
-#: /home/proxectos/geozzy/classes/view/templates/rextAccommodation_classes_view_templates_rExtViewBlock.tpl:29
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/view/templates/rExtViewBlock.tpl:29
 #: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:103
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:29
 #: /home/proxectos/geozzy/classes/view/templates/rextAccommodation_classes_view_templates_rExtViewBlock.tpl:29
 msgid "Accommodation services"
 msgstr ""
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:40
-#: /home/proxectos/geozzy/classes/view/templates/rextAccommodation_classes_view_templates_rExtViewBlock.tpl:40
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/view/templates/rExtViewBlock.tpl:40
 #: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:108
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:40
 #: /home/proxectos/geozzy/classes/view/templates/rextAccommodation_classes_view_templates_rExtViewBlock.tpl:40
 msgid "Accommodation facilities"
 msgstr ""
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rextAccommodation_classes_view_templates_rExtViewBlock.tpl:51
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/view/templates/rExtViewBlock.tpl:51
 #: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:113
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
 #: /home/proxectos/geozzy/classes/view/templates/rextAccommodation_classes_view_templates_rExtViewBlock.tpl:51
 msgid "Accommodation brand"
 msgstr ""
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
-#: /home/proxectos/geozzy/classes/view/templates/rextAccommodation_classes_view_templates_rExtViewBlock.tpl:62
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/view/templates/rExtViewBlock.tpl:62
 #: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:118
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
 #: /home/proxectos/geozzy/classes/view/templates/rextAccommodation_classes_view_templates_rExtViewBlock.tpl:62

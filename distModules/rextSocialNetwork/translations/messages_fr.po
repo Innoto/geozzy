@@ -9,10 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:10
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:21
-#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:10
-#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:21
+#: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/view/templates/rExtFormBasic.tpl:10
+#: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/view/templates/rExtFormBasic.tpl:21
 #: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:10
 #: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:21
 #: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:10
@@ -22,10 +20,8 @@ msgid ""
 "recuadro."
 msgstr ""
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:22
+#: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/view/templates/rExtFormBasic.tpl:11
+#: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/view/templates/rExtFormBasic.tpl:22
 #: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:11
 #: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:22
 #: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:11
@@ -35,8 +31,7 @@ msgid ""
 "url de la página se debe poner #URL#:"
 msgstr ""
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:28
-#: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:28
+#: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/view/templates/rExtFormBasic.tpl:28
 #: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:28
 #: /home/proxectos/geozzy/classes/view/templates/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:28
 msgid "Google+ compartira automáticamente la URL del recurso"

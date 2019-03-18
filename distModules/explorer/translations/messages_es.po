@@ -16,10 +16,12 @@ msgstr ""
 msgid "Prioritizing map zone"
 msgstr "Priorizando zona del mapa"
 
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/Templates.js:34
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/Templates.js:32
 msgid "ACCEDER"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/Templates.js:43
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/Templates.js:41
 msgid "No results found"
 msgstr ""
@@ -53,10 +55,6 @@ msgstr "Limpiar los filtros"
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:25
 #: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:25
 #: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:23
-#: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:23
 msgid "List"
 msgstr "Lista"
 
@@ -65,9 +63,6 @@ msgstr "Lista"
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:26
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:26
 #: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:26
-#: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:26
-#: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:26
-#: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:24
 #: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:26
 msgid "Map"
 msgstr "Mapa"

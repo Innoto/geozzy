@@ -29,26 +29,10 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:53
 #: /home/proxectos/geozzy/classes/view/templates/rExtcalendarViewBlock.tpl:48
 #: /home/proxectos/geozzy/classes/view/templates/rExtcalendarViewBlock.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/rExtlistViewBlock.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/rExtlistViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rExtcalendarViewBlock.tpl:48
-#: /home/proxectos/geozzy/classes/view/templates/rExtcalendarViewBlock.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:48
-#: /home/proxectos/geozzy/classes/view/templates/rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/rExtlistViewBlock.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/rExtlistViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rExtcalendarViewBlock.tpl:48
-#: /home/proxectos/geozzy/classes/view/templates/rExtcalendarViewBlock.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rExtlistViewBlock.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/rExtlistViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rExtcalendarViewBlock.tpl:48
-#: /home/proxectos/geozzy/classes/view/templates/rExtcalendarViewBlock.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:48
-#: /home/proxectos/geozzy/classes/view/templates/rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:51
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/view/templates/rExtlistViewBlock.tpl:46
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/view/templates/rExtlistViewBlock.tpl:51
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/view/templates/rExtcalendarViewBlock.tpl:48
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/view/templates/rExtcalendarViewBlock.tpl:53
 msgid "More information"
 msgstr ""
 

@@ -106,17 +106,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
 #: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
 msgid "Perfil de Usuario"
 msgstr ""
 

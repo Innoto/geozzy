@@ -15,10 +15,12 @@ msgstr ""
 msgid "Prioritizing map zone"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/Templates.js:34
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/Templates.js:32
 msgid "ACCEDER"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/Templates.js:43
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/Templates.js:41
 msgid "No results found"
 msgstr ""
@@ -33,18 +35,15 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:11
 #: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:12
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:13
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:12
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:13
-#: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:13
-#: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:12
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:14
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:13
 #: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:15
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:15
 #: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:14
 #: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:13
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerSaganInLanding.tpl:15
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerBaseInLanding.tpl:14
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerList.tpl:13
 msgid "Return to content"
 msgstr ""
 
@@ -59,15 +58,6 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:18
 #: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:17
 #: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:17
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:17
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:17
-#: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:17
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorer.tpl:17
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:18
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:20
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:18
 #: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:20
@@ -75,6 +65,10 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:20
 #: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:20
 #: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:18
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorer.tpl:18
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerSaganInLanding.tpl:20
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerBaseInLanding.tpl:20
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerList.tpl:18
 msgid "Apply"
 msgstr ""
 
@@ -89,14 +83,6 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:21
 #: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:20
 #: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:20
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:20
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:20
-#: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:20
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorer.tpl:20
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:22
 #: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:19
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:21
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:19
@@ -105,6 +91,10 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:21
 #: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:21
 #: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:19
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorer.tpl:19
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerSaganInLanding.tpl:21
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerBaseInLanding.tpl:21
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerList.tpl:19
 msgid "Clear filters"
 msgstr ""
 
@@ -116,14 +106,6 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorer.tpl:23
 #: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:25
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:23
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:23
-#: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:23
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorer.tpl:23
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:25
 #: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:21
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:23
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:21
@@ -132,6 +114,10 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:23
 #: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:23
 #: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:21
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorer.tpl:21
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerSaganInLanding.tpl:23
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerBaseInLanding.tpl:23
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerList.tpl:21
 msgid "List"
 msgstr ""
 
@@ -141,18 +127,15 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorer.tpl:24
 #: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:26
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:26
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:26
-#: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:24
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorer.tpl:24
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:26
-#: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:26
-#: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:26
 #: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:22
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:24
 #: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:24
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorer.tpl:22
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:24
 #: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:24
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorer.tpl:22
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerSaganInLanding.tpl:24
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerBaseInLanding.tpl:24
 msgid "Map"
 msgstr ""
 
@@ -167,14 +150,6 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:26
 #: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:24
 #: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:24
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:27
-#: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:24
-#: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:24
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorer.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:27
-#: /home/proxectos/geozzy/classes/view/templates/explorerSaganInLanding.tpl:27
-#: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:27
 #: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:23
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerBaseInLanding.tpl:25
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerList.tpl:22
@@ -183,5 +158,9 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/explorer_classes_view_templates_explorerSaganInLanding.tpl:25
 #: /home/proxectos/geozzy/classes/view/templates/explorerBaseInLanding.tpl:25
 #: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:22
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorer.tpl:23
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerSaganInLanding.tpl:25
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerBaseInLanding.tpl:25
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorerList.tpl:22
 msgid "Filters"
 msgstr ""

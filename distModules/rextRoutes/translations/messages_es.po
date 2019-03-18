@@ -38,17 +38,10 @@ msgstr "Ruta circular"
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:50
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:50
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:50
 msgid "circular"
 msgstr ""
 
@@ -58,17 +51,10 @@ msgstr "Ruta lineal"
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:62
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:61
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:61
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:61
 msgid "lineal"
 msgstr ""
 
@@ -263,15 +249,20 @@ msgstr "Alta"
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:387
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:388
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:389
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:392
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:395
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:398
 msgid "data"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:86
 #: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:86
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:86
 msgid "Difficulty"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:129
 #: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:129
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:129
 msgid "Global"
 msgstr ""

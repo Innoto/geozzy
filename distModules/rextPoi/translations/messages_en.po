@@ -16,10 +16,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:11
 #: /home/proxectos/geozzy/classes/view/templates/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
+#: /home/proxectos/geozzy/distModules/rextPoi/classes/view/templates/rExtViewBlock.tpl:11
 msgid "Datos Panorama"
 msgstr ""
 
@@ -37,6 +34,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:22
 #: /home/proxectos/geozzy/classes/view/templates/rextPoi_classes_view_templates_rExtViewBlock.tpl:22
+#: /home/proxectos/geozzy/distModules/rextPoi/classes/view/templates/rExtViewBlock.tpl:22
 msgid ""
 "Haz click en el lugar donde se ubica el recurso, podrás arrastrar y soltar "
 "la localización"

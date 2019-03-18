@@ -9,9 +9,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerListMobileView.js:183
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:181
 msgid "Prioritizing map zone"
 msgstr "Prioriser la zone de la carte"
+
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/Templates.js:34
+msgid "ACCEDER"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/Templates.js:43
+msgid "No results found"
+msgstr ""
 
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/filters/ExplorerFilterMinimapView.js:25
 msgid "All"

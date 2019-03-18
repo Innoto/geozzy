@@ -38,22 +38,10 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:127
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:333
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:333
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:84
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:127
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:333
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:84
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:127
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:333
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:84
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:127
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:333
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:84
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:127
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:333
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:45
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:84
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:127
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:333
 msgid "Day"
 msgstr ""
 
@@ -78,7 +66,6 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:7
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:7
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:13
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:15
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:15
@@ -88,20 +75,13 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:58
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:16
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:58
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:58
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:58
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:58
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:58
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:16
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:58
 msgid "All"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:8
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:8
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:16
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:16
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:58
@@ -110,14 +90,8 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:59
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:17
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:59
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:17
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:59
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:17
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:59
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:17
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:59
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:17
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:59
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:17
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:59
 msgid "Favourites"
 msgstr ""
 
@@ -151,14 +125,8 @@ msgstr "All Content"
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:254
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:255
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:255
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:117
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:255
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:117
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:255
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:117
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:255
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:117
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:255
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:117
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:255
 msgid "When do you want to travel? "
 msgstr ""
 
@@ -182,10 +150,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:197
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:198
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:198
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:198
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:198
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:198
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:198
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:198
 msgid "Select date to visit this place or event"
 msgstr ""
 
@@ -204,10 +169,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:208
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:209
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:209
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:209
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:209
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:209
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:209
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:209
 msgid "How long do you want to visit this place?"
 msgstr ""
 
@@ -259,22 +221,10 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:238
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:213
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:238
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:212
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:213
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:237
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:238
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:212
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:213
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:237
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:238
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:212
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:213
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:237
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:238
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:212
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:213
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:237
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:238
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:212
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:213
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:237
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:238
 msgid "hours"
 msgstr ""
 
@@ -326,22 +276,10 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:242
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:217
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:242
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:216
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:217
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:241
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:242
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:216
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:217
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:241
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:242
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:216
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:217
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:241
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:242
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:216
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:217
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:241
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:242
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:216
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:217
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:241
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:242
 msgid "minutes"
 msgstr ""
 
@@ -389,18 +327,9 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:221
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:246
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:326
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:221
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:246
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:326
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:221
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:246
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:326
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:221
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:246
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:326
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:221
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:246
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:326
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:221
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:246
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:326
 msgid "Cancel"
 msgstr ""
 
@@ -419,10 +348,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:221
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:222
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:222
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:222
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:222
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:222
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:222
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:222
 msgid "Add to plan"
 msgstr ""
 
@@ -441,10 +367,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:233
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:234
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:234
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:234
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:234
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:234
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:234
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:234
 msgid "How long?"
 msgstr ""
 
@@ -463,28 +386,19 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:246
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:247
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:247
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:247
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:247
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:247
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:247
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:247
 msgid "Save"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:7
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:7
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:7
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:7
 msgid "Go to my plan"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:8
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:8
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:8
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:8
 msgid "Add Places"
 msgstr ""
 
@@ -529,10 +443,7 @@ msgstr "Maximise route of day"
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:304
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:305
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:305
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:305
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:305
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:305
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:305
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:305
 msgid ""
 "The route between the first and the last place of the day will be optimized."
 msgstr ""
@@ -554,10 +465,7 @@ msgstr "Maximise"
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:88
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:89
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:89
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:89
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:89
 msgid "Plan"
 msgstr ""
 
@@ -565,10 +473,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:90
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:90
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:90
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:90
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:90
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:90
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:90
 msgid "Add"
 msgstr ""
 
@@ -576,10 +481,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:90
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:91
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:91
 msgid "Dates"
 msgstr ""
 
@@ -587,10 +489,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:92
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:92
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:92
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:92
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:92
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:92
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:92
 msgid "Map"
 msgstr ""
 
@@ -604,10 +503,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:265
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:266
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:266
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:266
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:266
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:266
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:266
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:266
 msgid "Organizing your trip is very easy"
 msgstr ""
 
@@ -621,10 +517,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:266
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:267
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:267
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:267
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:267
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:267
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:267
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:267
 msgid "Is this your first time using our travel planner?"
 msgstr ""
 
@@ -638,10 +531,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:267
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:268
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:268
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:268
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:268
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:268
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:268
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:268
 msgid "Follow these simple steps"
 msgstr ""
 
@@ -655,10 +545,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:272
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:272
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:272
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:272
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:272
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:272
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:272
 msgid "Step 1 - Travel Planner"
 msgstr ""
 
@@ -672,10 +559,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:275
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:276
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:276
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:276
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:276
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:276
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:276
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:276
 msgid "Step 2 - Travel Planner"
 msgstr ""
 
@@ -689,10 +573,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:279
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:280
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:280
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:280
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:280
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:280
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:280
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:280
 msgid "Step 3 - Travel Planner"
 msgstr ""
 
@@ -706,10 +587,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:283
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:284
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:284
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:284
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:284
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:284
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:284
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:284
 msgid "Step 4 - Travel Planner"
 msgstr ""
 
@@ -723,10 +601,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:287
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:288
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:288
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:288
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:288
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:288
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:288
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:288
 msgid "Step 5 - Travel Planner"
 msgstr ""
 
@@ -738,10 +613,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:270
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:271
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:271
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:271
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:271
 msgid "STEP 1: While exploring the contents of the website,"
 msgstr ""
 
@@ -753,10 +625,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:270
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:271
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:271
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:271
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:271
 msgid ""
 "you can select any content that might interest you and append it to your "
 "‘favourites collection’."
@@ -770,10 +639,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:270
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:271
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:271
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:271
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:271
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:271
 msgid "Just click on the star icon."
 msgstr ""
 
@@ -785,10 +651,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:274
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:275
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:275
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:275
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:275
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:275
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:275
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:275
 msgid "STEP 2: Access the travel planner, and select your traveling dates"
 msgstr ""
 
@@ -800,10 +663,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:278
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:279
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:279
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:279
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:279
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:279
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:279
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:279
 msgid ""
 "STEP 3: From your favorite collection, select those places that you would "
 "like to add to your journey plan."
@@ -817,10 +677,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:278
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:279
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:279
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:279
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:279
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:279
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:279
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:279
 msgid ""
 "You can specify the day that most interests you to visit it and / or the "
 "time you want to spend there"
@@ -834,10 +691,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:282
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:283
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:283
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:283
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:283
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:283
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:283
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:283
 msgid "STEP 4: Press ‘Go to my plan’."
 msgstr ""
 
@@ -849,10 +703,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:282
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:283
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:283
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:283
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:283
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:283
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:283
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:283
 msgid ""
 "You can schedule visits as you wish by dragging and dropping the items. "
 msgstr ""
@@ -865,10 +716,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:286
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:287
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:287
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:287
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:287
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:287
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:287
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:287
 msgid ""
 "STEP 5: You can also optimize your day of visits. Simply click on 'Optimize "
 "day'"
@@ -882,10 +730,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:290
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:291
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:291
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:291
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:291
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:291
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:291
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:291
 msgid "STEP 6: Follow your travel plan on your smartphone"
 msgstr ""
 
@@ -897,10 +742,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:291
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:292
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:292
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:292
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:292
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:292
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:292
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:292
 msgid "Step 6 - Travel Planner"
 msgstr ""
 
@@ -912,10 +754,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:295
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:296
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:296
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:296
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:296
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:296
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:296
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:296
 msgid "Choose your dates and start your travel plan"
 msgstr ""
 
@@ -927,10 +766,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:298
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:299
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:299
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:299
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:299
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:299
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:299
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:299
 msgid "Select your dates"
 msgstr ""
 
@@ -942,10 +778,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:294
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:295
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:295
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:295
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:295
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:295
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:295
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:295
 msgid "Shall we begin?"
 msgstr ""
 
@@ -954,8 +787,6 @@ msgstr ""
 msgid "Sólo favoritos"
 msgstr "Only favourites"
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:136
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:136
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:136
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:136
 msgid "Print day"

@@ -15,14 +15,12 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rtypeLikes_classes_view_templates_rTypeViewBlock.tpl:31
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:31
-#: /home/proxectos/geozzy/classes/view/templates/rtypeLikes_classes_view_templates_rTypeViewBlock.tpl:31
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:31
+#: /home/proxectos/geozzy/distModules/rtypeLikes/classes/view/templates/rTypeViewBlock.tpl:31
 msgid "Likes page"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rtypeLikes_classes_view_templates_rTypeViewBlock.tpl:74
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:74
-#: /home/proxectos/geozzy/classes/view/templates/rtypeLikes_classes_view_templates_rTypeViewBlock.tpl:74
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:74
+#: /home/proxectos/geozzy/distModules/rtypeLikes/classes/view/templates/rTypeViewBlock.tpl:74
 msgid "It seems you haven't added any items to your likes list yet..."
 msgstr ""

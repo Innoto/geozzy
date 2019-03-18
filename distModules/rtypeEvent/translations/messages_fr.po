@@ -9,8 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/classes/view/templates/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
-#: /home/proxectos/geozzy/classes/view/templates/rTypeEventFormModalBlock.tpl:21
+#: /home/proxectos/geozzy/distModules/rtypeEvent/classes/view/templates/rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/geozzy/classes/view/templates/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/geozzy/classes/view/templates/rTypeEventFormModalBlock.tpl:21
 msgid "If not uploaded, an automatic thumbnail will be created"

@@ -9,8 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/rextUrl_classes_view_templates_rExtViewBlock.tpl:25
+#: /home/proxectos/geozzy/distModules/rextUrl/classes/view/templates/rExtViewBlock.tpl:25
 #: /home/proxectos/geozzy/distModules/rextUrl/classes/controller/RExtUrlController.php:59
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:25
 #: /home/proxectos/geozzy/classes/view/templates/rextUrl_classes_view_templates_rExtViewBlock.tpl:25

@@ -30,137 +30,119 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:20
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:20
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:20
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:20
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:20
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:20
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:20
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBtnDownloadViewBlock.tpl:2
 #: /home/proxectos/geozzy/classes/view/templates/rExtBtnDownloadViewBlock.tpl:2
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:20
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBtnDownloadViewBlock.tpl:2
 msgid "Download route"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:46
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:46
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:48
 #: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:48
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:45
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:45
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:48
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:45
 msgid "Circular route"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:50
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:50
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:50
 msgid "circular"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:57
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:57
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:48
 #: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:48
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:56
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:56
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:48
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:56
 msgid "Lineal route"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:62
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:61
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:61
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:61
 msgid "lineal"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:73
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:73
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:73
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:73
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:73
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:60
 #: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:60
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:70
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:70
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:60
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:70
 msgid "Slopes"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:79
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:79
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:79
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:79
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:79
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:76
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:76
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:76
 msgid "slope up"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:86
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:86
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:86
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:86
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:86
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:83
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:83
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:83
 msgid "slope down"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:100
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:100
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:100
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:100
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:100
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:89
 #: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:89
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:95
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:95
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:89
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:95
 msgid "Environment"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:113
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:113
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:113
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:113
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:113
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:99
 #: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:99
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:106
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:106
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:99
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:106
 msgid "Itinerary"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:126
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:126
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:126
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:126
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:126
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:109
 #: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:109
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:117
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:117
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:109
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:117
 msgid "Displacement"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:139
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:139
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:139
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:139
-#: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:139
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:119
 #: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:119
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:128
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtViewBlock.tpl:128
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:119
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtViewBlock.tpl:128
 msgid "Effort"
 msgstr ""
 
@@ -327,15 +309,20 @@ msgstr "High"
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:387
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:388
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:389
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:392
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:395
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:398
 msgid "data"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:86
 #: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:86
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:86
 msgid "Difficulty"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:129
 #: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:129
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:129
 msgid "Global"
 msgstr ""

@@ -24,11 +24,6 @@ msgstr ""
 msgid "Day"
 msgstr "Jour"
 
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
-msgid "Select Dates"
-msgstr "Sélectionne dates"
-
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:44
 msgid "Add to Plan"
 msgstr "Ajouter au plan"
@@ -40,6 +35,11 @@ msgstr "Entrez entre 0 et 23 heures"
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:134
 msgid "Introduce entre 0 y 59 minutos"
 msgstr "Entrez entre 0 et 23 minutes"
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
+msgid "Select Dates"
+msgstr "Sélectionne dates"
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:7
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
@@ -161,8 +161,7 @@ msgstr "Optimiser"
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:88
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:89
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:89
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:89
 msgid "Plan"
 msgstr ""
 
@@ -175,8 +174,7 @@ msgstr "Ajouter"
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:90
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:91
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:91
 msgid "Dates"
 msgstr ""
 
@@ -184,8 +182,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:92
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:92
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:92
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:92
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:92
 msgid "Map"
 msgstr ""
 

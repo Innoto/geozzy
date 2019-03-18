@@ -9,10 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/classes/view/templates/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
-#: /home/proxectos/geozzy/classes/view/templates/rTypePoiFormModalBlock.tpl:24
-#: /home/proxectos/geozzy/classes/view/templates/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
-#: /home/proxectos/geozzy/classes/view/templates/rTypePoiFormModalBlock.tpl:24
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/view/templates/rTypePoiFormModalBlock.tpl:24
 #: /home/proxectos/geozzy/classes/view/templates/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
 #: /home/proxectos/geozzy/classes/view/templates/rTypePoiFormModalBlock.tpl:24
 #: /home/proxectos/geozzy/classes/view/templates/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:21
@@ -20,23 +17,15 @@ msgstr ""
 msgid "If not uploaded, an automatic thumbnail will be created"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/view/templates/rTypeViewBlock.tpl:58
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:58
 #: /home/proxectos/geozzy/classes/view/templates/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:58
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:58
-#: /home/proxectos/geozzy/classes/view/templates/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:58
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:58
-#: /home/proxectos/geozzy/classes/view/templates/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:58
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:58
 msgid "volver"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/view/templates/rTypeViewBlock.tpl:121
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:121
 #: /home/proxectos/geozzy/classes/view/templates/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:121
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:121
-#: /home/proxectos/geozzy/classes/view/templates/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:121
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:121
-#: /home/proxectos/geozzy/classes/view/templates/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:121
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:121
 msgid "Contact"
 msgstr ""
 

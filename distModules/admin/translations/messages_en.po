@@ -51,86 +51,57 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_modal.tpl:35
 #: /home/proxectos/geozzy/classes/view/templates/modal.tpl:15
 #: /home/proxectos/geozzy/classes/view/templates/modal.tpl:35
-#: /home/proxectos/geozzy/classes/view/templates/modal.tpl:15
-#: /home/proxectos/geozzy/classes/view/templates/modal.tpl:35
-#: /home/proxectos/geozzy/classes/view/templates/modal.tpl:15
-#: /home/proxectos/geozzy/classes/view/templates/modal.tpl:35
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_modal.tpl:15
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_modal.tpl:35
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_modal.tpl:15
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_modal.tpl:35
-#: /home/proxectos/geozzy/classes/view/templates/modal.tpl:15
-#: /home/proxectos/geozzy/classes/view/templates/modal.tpl:35
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/modal.tpl:15
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/modal.tpl:35
 msgid "Close"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_listAsignStarred.tpl:4
 #: /home/proxectos/geozzy/classes/view/templates/listAsignStarred.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/listAsignStarred.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/listAsignStarred.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_listAsignStarred.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/listAsignStarred.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_listAsignStarred.tpl:4
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/listAsignStarred.tpl:4
 msgid "Resources not starred yet"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:25
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:25
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:25
 msgid "User Profile"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:26
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:26
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:26
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:26
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:26
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:26
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:26
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:26
 msgid "Edit Profile"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:29
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:29
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:29
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:29
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:29
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:29
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:29
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:29
 msgid "Logout"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:52
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:52
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:52
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:52
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:52
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:56
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:56
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:56
 msgid "Charts"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:57
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:57
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:62
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:62
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:62
 msgid "Pages"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:63
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:63
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:62
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:63
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:63
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:67
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:67
 msgid "Starred"
 msgstr ""
 
@@ -141,42 +112,36 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:113
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:139
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:139
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:78
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:139
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:78
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:139
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:82
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:82
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:82
 msgid "Menu"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:83
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:83
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:78
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:83
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:83
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:122
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:122
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:122
 msgid "Comments"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:89
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:89
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:84
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:89
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:89
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:128
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:128
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:128
 msgid "Suggestions"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:95
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:95
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:90
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:95
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:95
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:50
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:50
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:50
 msgid "Contents"
 msgstr ""
 
@@ -185,18 +150,15 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:95
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:121
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:121
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:121
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:121
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:87
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:87
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:87
 msgid "Categories"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:115
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:115
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:110
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:136
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:136
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:136
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:136
 msgid "Settings"
@@ -207,10 +169,9 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:117
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:143
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:143
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:143
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:143
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:135
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:135
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:135
 msgid "Users"
 msgstr ""
 
@@ -221,10 +182,9 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:120
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:146
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:146
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:146
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:146
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:138
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:138
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:138
 msgid "User"
 msgstr ""
 
@@ -233,40 +193,27 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:123
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:149
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:149
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:149
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:149
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:141
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:141
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:141
 msgid "Roles"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin403.tpl:5
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_admin403.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/admin403.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/admin403.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_admin403.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/admin403.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_admin403.tpl:5
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/admin403.tpl:5
 msgid "Forbidden: Access is denied"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin403.tpl:6
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_admin403.tpl:6
-#: /home/proxectos/geozzy/classes/view/templates/admin403.tpl:6
-#: /home/proxectos/geozzy/classes/view/templates/admin403.tpl:6
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_admin403.tpl:6
-#: /home/proxectos/geozzy/classes/view/templates/admin403.tpl:6
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_admin403.tpl:6
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/admin403.tpl:6
 msgid "You don't have permission to access on this section"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:14
 #: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:14
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/categoryEditor.tpl:14
 msgid "Category management for"
 msgstr ""
 
@@ -274,16 +221,8 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:57
 #: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:19
 #: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:57
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/categoryEditor.tpl:19
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/categoryEditor.tpl:57
 msgid "Add"
 msgstr ""
 
@@ -303,36 +242,14 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:108
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:185
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:186
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:21
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:59
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:21
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:59
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:18
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:54
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:21
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:59
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:21
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:59
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:21
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:59
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:18
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:54
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:21
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:59
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:21
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:59
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:21
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:59
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:21
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:59
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:18
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:54
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:18
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:54
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:21
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:59
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:190
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:191
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/categoryEditor.tpl:21
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/categoryEditor.tpl:59
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/resourcesStarredList.tpl:21
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/resourcesStarredList.tpl:59
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/menuTermEditor.tpl:18
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/menuTermEditor.tpl:54
 msgid "Cancel"
 msgstr ""
 
@@ -348,90 +265,48 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:60
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:22
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:60
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:60
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:60
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:55
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:60
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:60
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:60
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:55
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:60
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:60
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:60
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:60
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:55
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:55
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:60
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/categoryEditor.tpl:22
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/categoryEditor.tpl:60
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/resourcesStarredList.tpl:22
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/resourcesStarredList.tpl:60
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/menuTermEditor.tpl:19
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/menuTermEditor.tpl:55
 msgid "Save"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:38
 #: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:38
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:38
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:38
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:38
-#: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:38
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:38
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/categoryEditor.tpl:38
 msgid "List of terms for"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:11
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:11
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/menuTermEditor.tpl:11
 msgid "Menu management"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:16
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:16
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:16
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/menuTermEditor.tpl:16
 msgid "Add menu term"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:34
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:34
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:34
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:34
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:34
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:34
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/menuTermEditor.tpl:34
 msgid "List of menu terms"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:52
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:52
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:52
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:52
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_menuTermEditor.tpl:52
-#: /home/proxectos/geozzy/classes/view/templates/menuTermEditor.tpl:52
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/menuTermEditor.tpl:52
 msgid "Add term menu"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:14
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:14
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/resourcesStarredList.tpl:14
 msgid "Resources Starred in"
 msgstr ""
 
@@ -441,36 +316,20 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:57
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:98
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:111
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:57
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/resourcesStarredList.tpl:19
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/resourcesStarredList.tpl:57
 msgid "Assign"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:38
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:38
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:38
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:38
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:38
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:38
-#: /home/proxectos/geozzy/classes/view/templates/resourcesStarredList.tpl:38
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/resourcesStarredList.tpl:38
 msgid "List of resources for"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_listResourceOutTopic.tpl:4
 #: /home/proxectos/geozzy/classes/view/templates/listResourceOutTopic.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/listResourceOutTopic.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_listResourceOutTopic.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/listResourceOutTopic.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/listResourceOutTopic.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_listResourceOutTopic.tpl:4
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/listResourceOutTopic.tpl:4
 msgid "Available and unallocated resources"
 msgstr ""
 
@@ -800,10 +659,9 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:99
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:99
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:99
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:99
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:102
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:102
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:102
 msgid "Translates"
 msgstr ""
 
@@ -811,28 +669,25 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:103
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:66
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:67
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:103
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:103
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:105
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:105
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:105
 msgid "Export"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:105
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:105
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:105
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:105
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:107
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:107
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:107
 msgid "Resources"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:106
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:106
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:106
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:106
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:108
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:108
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:108
 msgid "Collections"
 msgstr ""
 
@@ -841,19 +696,17 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:222
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:235
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:247
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:110
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:110
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:112
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:112
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:112
 msgid "Import"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:112
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:112
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:112
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:112
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:114
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:114
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:114
 msgid "Files"
 msgstr ""
 
@@ -863,41 +716,32 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:90
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:91
 #: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:91
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/translatesPage.tpl:53
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/translatesPage.tpl:91
 msgid "Send"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:37
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:37
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:37
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:37
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:35
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:35
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/loginForm.tpl:35
 msgid "He olvidado mi contraseña"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:39
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:39
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:39
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:39
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:37
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:37
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/loginForm.tpl:37
 msgid "Recuperar contraseña"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:40
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:40
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:40
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:40
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:38
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:38
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/loginForm.tpl:38
 msgid ""
 "Introduce la dirección de correo electrónico asociada a tu cuenta y te "
 "enviaremos un enlace para restablecer tu contraseña"
@@ -905,28 +749,25 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:45
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:45
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:43
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:43
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/loginForm.tpl:43
 msgid "Hay errores en el formulario"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:46
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:46
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:44
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/loginForm.tpl:44
 msgid "Recuperar"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:51
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:51
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:49
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:49
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/loginForm.tpl:49
 msgid ""
 "Se ha enviado un correo electrónico para recuperar tu cuenta de usuario."
 msgstr ""

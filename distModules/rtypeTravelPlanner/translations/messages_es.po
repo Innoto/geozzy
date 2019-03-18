@@ -10,15 +10,11 @@ msgstr ""
 "Language: \n"
 
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:14
 #: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/view/templates/rTypeViewBlock.tpl:14
 msgid "Page"
 msgstr "Página"
 
 #: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/controller/RTypeTravelPlannerController.php:128
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:15
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:15
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:15
 #: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/view/templates/rTypeViewBlock.tpl:15
 msgid "Travel Planner"
@@ -26,8 +22,8 @@ msgstr "Planificador de viajes"
 
 #: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/controller/RTypeTravelPlannerController.php:50
 msgid "Main Resource information"
-msgstr "Información del Recurso Principal"
+msgstr "Información principal del recurso"
 
 #: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/controller/RTypeTravelPlannerController.php:65
 msgid "Edit Resource"
-msgstr "Editar Recurso"
+msgstr "Editar recurso"

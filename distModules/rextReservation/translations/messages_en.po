@@ -33,19 +33,17 @@ msgstr "Arrival date - Departure date"
 
 #: /home/proxectos/geozzy/classes/view/templates/rextReservation_classes_view_templates_booking-com-public.tpl:18
 #: /home/proxectos/geozzy/classes/view/templates/booking-com-public.tpl:18
-#: /home/proxectos/geozzy/classes/view/templates/booking-com-public.tpl:18
-#: /home/proxectos/geozzy/classes/view/templates/rextReservation_classes_view_templates_booking-com-public.tpl:18
 #: /home/proxectos/geozzy/classes/view/templates/booking-com-public.tpl:21
 #: /home/proxectos/geozzy/classes/view/templates/rextReservation_classes_view_templates_booking-com-public.tpl:21
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/view/templates/booking-com-public.tpl:21
 msgid "Rooms"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextReservation_classes_view_templates_booking-com-public.tpl:30
 #: /home/proxectos/geozzy/classes/view/templates/booking-com-public.tpl:30
-#: /home/proxectos/geozzy/classes/view/templates/booking-com-public.tpl:30
-#: /home/proxectos/geozzy/classes/view/templates/rextReservation_classes_view_templates_booking-com-public.tpl:30
 #: /home/proxectos/geozzy/classes/view/templates/booking-com-public.tpl:33
 #: /home/proxectos/geozzy/classes/view/templates/rextReservation_classes_view_templates_booking-com-public.tpl:33
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/view/templates/booking-com-public.tpl:33
 msgid "Adults"
 msgstr ""
 

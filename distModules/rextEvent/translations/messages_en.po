@@ -11,21 +11,17 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:6
 #: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:6
-#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:6
 #: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:14
 #: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:14
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:14
 msgid "Event init date"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:19
 #: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:19
 #: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:27
 #: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:27
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:27
 msgid "Event end date"
 msgstr ""
 
