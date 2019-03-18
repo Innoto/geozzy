@@ -5,7 +5,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class rextEvent extends Module {
 
   public $name = 'rextEvent';
-  public $version = '2';
+  public $version = '3';
 
 
   public $models = array(

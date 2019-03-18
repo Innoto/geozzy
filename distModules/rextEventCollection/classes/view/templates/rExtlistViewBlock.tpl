@@ -4,10 +4,10 @@
 
   {$eventsByDate = array()}
   {foreach $rExt.data.events as $key=>$res}
-    {$eventsByDate[$res.event.formatedDate.initDate]['id'] = $res.event.resource}
-    {$eventsByDate[$res.event.formatedDate.initDate]['formatedDate'] = $res.event.formatedDate}
-    {$eventsByDate[$res.event.formatedDate.initDate]['relatedResource'] = $res.event.relatedResource}
-    {$eventsByDate[$res.event.formatedDate.initDate]['data'][] = $res}
+    {$eventsByDate[$res.event.formatedDate.initDateFirst]['id'] = $res.event.resource}
+    {$eventsByDate[$res.event.formatedDate.initDateFirst]['formatedDate'] = $res.event.formatedDate}
+    {$eventsByDate[$res.event.formatedDate.initDateFirst]['relatedResource'] = $res.event.relatedResource}
+    {$eventsByDate[$res.event.formatedDate.initDateFirst]['data'][] = $res}
   {/foreach}
 
 

@@ -32,7 +32,7 @@
   <div class="titleBar">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-10">
+        <div class="col-12 col-sm-9 col-md-10">
           <img class="iconTitleBar img-fluid" alt="Páxina xeral" src="{$cogumelo.publicConf.media}/img/paxinaIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>
@@ -57,7 +57,7 @@
 
   <section class="contentSec container gzSection">
     <div class="typeBar row">
-      <ul class="social col-xs-12 col-sm-12 col-md-12 clearfix">
+      <ul class="social col-12 col-sm-12 col-md-12 clearfix">
         <li class="elementShare">
           {if isset($res.ext.rextSocialNetwork) && (isset($res.ext.rextSocialNetwork.data.activeFb) || isset($res.ext.rextSocialNetwork.data.activeTwitter))}
             <div class="share"><i class="fas fa-share-alt"></i></div>

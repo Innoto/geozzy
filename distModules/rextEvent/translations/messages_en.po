@@ -9,34 +9,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:6
-#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:14
-#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:14
-#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:14
-msgid "Event init date"
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:21
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:38
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:49
+msgid "Event init"
 msgstr ""
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBlock.tpl:27
-#: /home/proxectos/geozzy/classes/view/templates/rextEvent_classes_view_templates_rExtFormBlock.tpl:27
-#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:27
-msgid "Event end date"
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:38
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:93
+msgid "Time init"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:93
-#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:91
-#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:98
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:49
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:104
+msgid "Time end"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:76
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:93
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:104
+msgid "Event end"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:13
+msgid "No time"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:14
+msgid "Without time range"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:15
+msgid "Time range"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:96
+msgid "Literal Date"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:101
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:120
+msgid "Select time"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:116
+msgid "Final date of event"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:135
 msgid "Event type"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:98
-#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:96
-#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:103
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:140
 msgid "Related resource"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:86
-msgid "Literal Date"
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:384
+msgid "from"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:385
+msgid "to"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:386
+msgid "\\a\\t"
 msgstr ""

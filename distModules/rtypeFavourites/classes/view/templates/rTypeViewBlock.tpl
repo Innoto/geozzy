@@ -26,7 +26,7 @@
   <div class="titleBar">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-10">
+        <div class="col-12 col-sm-9 col-md-10">
           {*<img class="iconTitleBar img-fluid" alt="Páxina xeral" src="{$cogumelo.publicConf.media}/img/paxinaIcon.png"></img>*}
           <h1>{t}Favourites page{/t}</h1>
         </div>
@@ -55,7 +55,7 @@
         <div class="row row-eq-height">
           {foreach $favsResourcesInfo as $favsResInfo}
           {* title shortDescription image url rTypeId *}
-          <div class="col-xs-12 col-sm-6 col-md-3 favouritesElement rtid{$favsResInfo.rTypeId}" data-id="{$favsResInfo.id}" data-rTypeId="{$favsResInfo.rTypeId}">
+          <div class="col-12 col-sm-6 col-md-3 favouritesElement rtid{$favsResInfo.rTypeId}" data-id="{$favsResInfo.id}" data-rTypeId="{$favsResInfo.rTypeId}">
             <div class="favsImage">
               <a href="{$favsResInfo.url}"><img src="/cgmlImg/{$favsResInfo.image}-a{$favsResInfo.imageAKey}/{$favsResInfo.perfilFavouriteImg}/{$favsResInfo.imageName}"></a>
             </div>

@@ -15,37 +15,37 @@
   <div class="col-lg-8">
     <form class="form-horizontal" role="form">
       <div class="form-group">
-        <label class="col-md-4 control-label">Name:</label>
+        <label class="col-md-4 col-form-label">Name:</label>
         <div class="col-md-8">
-          <p class="form-control-static">{$user['data']['name']} {$user['data']['surname']}</p>
+          <p class="form-control-plaintext">{$user['data']['name']} {$user['data']['surname']}</p>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="col-md-4 control-label">Login:</label>
+        <label class="col-md-4 col-form-label">Login:</label>
         <div class="col-md-8">
-          <p class="form-control-static">{$user['data']['login']}</p>
+          <p class="form-control-plaintext">{$user['data']['login']}</p>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="col-md-4 control-label">Email:</label>
+        <label class="col-md-4 col-form-label">Email:</label>
         <div class="col-md-8">
-          <p class="form-control-static">{$user['data']['email']}</p>
+          <p class="form-control-plaintext">{$user['data']['email']}</p>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="col-md-4 control-label">Description:</label>
+        <label class="col-md-4 col-form-label">Description:</label>
         <div class="col-md-8">
-          <p class="form-control-static">{if !empty($user['data']['description_es'])}{$user['data']['description_es']}{/if}</p>
+          <p class="form-control-plaintext">{if !empty($user['data']['description_es'])}{$user['data']['description_es']}{/if}</p>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="col-md-4 control-label">Last login:</label>
+        <label class="col-md-4 col-form-label">Last login:</label>
         <div class="col-md-8">
-          <p class="form-control-static">{$user['data']['timeLastLogin']}</p>
+          <p class="form-control-plaintext">{$user['data']['timeLastLogin']}</p>
         </div>
       </div>
     </form>

@@ -377,7 +377,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
         }
 
         $eventModel =  new EventModel();
-        $eventList = $eventModel->listItems( array( 'filters' => array( 'inId' => $eventIdsArray), 'order' => array( 'initDate' => 1 ) ));
+        $eventList = $eventModel->listItems( array( 'filters' => array( 'inId' => $eventIdsArray), 'order' => array( 'initDateFirst' => 1 ) ));
 
         /* Establecemos locale para obtener las fechas en el idioma actual */
         global $C_LANG;
@@ -388,7 +388,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
 
           $eventInfo = $event->getAllData('onlydata');
 
-          $initDate = new DateTime($eventInfo['initDate']);
+          $initDate = new DateTime($eventInfo['initDateFirst']);
           $eventDate = $initDate->format('Y').$initDate->format('m').$initDate->format('d');
           $today = date('Ymd');
           if ($eventFilterSelectedTerm['idName'] == 'nextEvents' && strcmp($eventDate,$today)<0){
@@ -402,7 +402,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
             $eventCollection[$event->getter('resource')]['event']['relatedResource'] = $relatedResourceAlias;
           }
 
-          $eventCollection[$event->getter('resource')]['event']['formatedDate']['initDate'] = $initDate->format('Ymd');
+          $eventCollection[$event->getter('resource')]['event']['formatedDate']['initDateFirst'] = $initDate->format('Ymd');
           $eventCollection[$event->getter('resource')]['event']['formatedDate']['j'] = $initDate->format('j');
           $eventCollection[$event->getter('resource')]['event']['formatedDate']['l'] = strftime('%A', $initDate->format('U'));
           $eventCollection[$event->getter('resource')]['event']['formatedDate']['m'] = $initDate->format('m');

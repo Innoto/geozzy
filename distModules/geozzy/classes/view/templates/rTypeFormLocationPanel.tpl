@@ -10,8 +10,8 @@
 
   <div class="col-md-12">
     <div class="row row-eq-height-vertical-centered">
-      <div class="col-md-6 col-sm-6 col-xs-12"><input class="address"></div>
-      <div class="col-md-6 col-sm-6 col-xs-12 ">
+      <div class="col-md-6 col-sm-6 col-12"><input class="address"></div>
+      <div class="col-md-6 col-sm-6 col-12 ">
         <div class="descMap">
           {t}Haz click en el lugar donde se ubica tu centro educativo con la mayor precisión que puedas, podrás arrastrar y soltar la localización{/t}
         </div>
