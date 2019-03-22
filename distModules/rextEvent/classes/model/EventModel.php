@@ -83,7 +83,11 @@ class EventModel extends Model
 
   static $extraFilters = array(
     'inId' => ' geozzy_resource_rext_event.resource IN (?) ',
-    'resourceIn' => ' geozzy_resource_rext_event.resource IN (?) '
+    'resourceIn' => ' geozzy_resource_rext_event.resource IN (?) ',
+    'datesIsNotNull' => ' ( geozzy_resource_rext_event.initDateFirst IS NOT NULL OR geozzy_resource_rext_event.initDateSecond IS NOT NULL OR
+                            geozzy_resource_rext_event.endDateFirst IS NOT NULL OR geozzy_resource_rext_event.endDateSecond IS NOT NULL ) ',
+    'initEndDateBetween' => ' ( geozzy_resource_rext_event.initDateFirst < (?) AND geozzy_resource_rext_event.endDateFirst >= (?) ) ',
+    'initDateBefore' => ' ( geozzy_resource_rext_event.initDateFirst >= (?) ) '
   );
 
 
