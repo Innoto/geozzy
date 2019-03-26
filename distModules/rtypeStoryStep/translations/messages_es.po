@@ -99,4 +99,16 @@ msgstr "Paso"
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:95
 msgid "Edit Resource"
-msgstr ""
+msgstr "Editar recurso"
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:95
+msgid "Create a new resource"
+msgstr "Crear un nuevo recurso"
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:95
+msgid "Working with resource types"
+msgstr "Trabajando con tipos de recursos"
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:95
+msgid "Assign to this story"
+msgstr "Asignar a esta historia"

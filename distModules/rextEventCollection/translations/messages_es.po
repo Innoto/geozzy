@@ -11,7 +11,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextEventCollection/classes/view/templates/js/rextEventCollectionAdmin.js:10
 msgid "Select options"
-msgstr "Seleccionar opciones"
+msgstr "Seleccione opciones"
 
 #: /home/proxectos/geozzy/distModules/rextEventCollection/classes/view/templates/js/rextEventCollectionAdmin.js:13
 msgid "Create Event"

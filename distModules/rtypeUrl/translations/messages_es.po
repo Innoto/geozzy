@@ -31,7 +31,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rTypeUrlFormModalBlock.tpl:33
 #: /home/proxectos/geozzy/classes/view/templates/rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:33
 msgid "If not uploaded, an automatic thumbnail will be created"
-msgstr ""
+msgstr "Si no se especifica, se genera una miniatura"
 
 #: /home/proxectos/geozzy/distModules/rtypeUrl/classes/controller/RTypeUrlController.php:41
 msgid "Main Resource information"

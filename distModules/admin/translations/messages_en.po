@@ -9,30 +9,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:67
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:11
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:62
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:68
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
-msgid "Select options"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:74
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:12
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:74
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:75
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:57
 msgid "Add existing resources"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:87
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:88
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:70
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:69
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
-msgid "Edit Collection"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:18
@@ -45,6 +26,25 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:24
 msgid "Link or embed multimedia resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:11
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:62
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:68
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
+msgid "Select options"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:87
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:88
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:70
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:69
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
+msgid "Edit Collection"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_modal.tpl:15
@@ -462,12 +462,6 @@ msgid "Assign selected"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
-msgid ""
-"<ul style=\"list-style:none;\"><li>Create a new resource</li><li>Working "
-"with resource types)</li><li>Assign to this starred)</li></ul>"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
 msgid "Assign resources: howto"
 msgstr ""
@@ -533,10 +527,12 @@ msgid "Stats Page"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
 msgid "Create a new resource"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
 msgid "Working with resource types"
 msgstr ""
 
@@ -787,4 +783,8 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:133
 msgid "Role"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
+msgid "Assign to this starred"
 msgstr ""
