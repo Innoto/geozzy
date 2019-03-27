@@ -61,13 +61,13 @@ class ExplorerSearchAPIView extends View
 
 
   // explorer
-  public function explorerSearch(  ) {
+  public function explorerSearch() {
 
     $resArray = [];
 
     if( !empty( $_POST['searchString']) &&  str_replace(' ', '', $_POST['searchString']) != '') {
       $resResult = (new ExplorerSearchModel())->listItems( [ 'filters'=> ['findFull'=> $_POST['searchString'] ] ] );
-      if( $resResult !== COGUMELO_ERROR) {
+      if( is_object( $resResult ) ) {
         while( $res = $resResult->fetch() ) {
           $resArray[] = $res->getter('id');
         }
