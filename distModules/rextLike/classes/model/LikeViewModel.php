@@ -48,7 +48,7 @@ class LikeViewModel extends Model {
   );
 
   static $extraFilters = array(
-    'idNotNull' => ' id IS NOT NULL '
+    'idNotNull' => ' geozzy_like_view.id IS NOT NULL '
   );
 
   var $notCreateDBTable = true;

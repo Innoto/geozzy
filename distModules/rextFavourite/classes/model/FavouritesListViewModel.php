@@ -42,8 +42,8 @@ class FavouritesListViewModel extends Model {
   static $extraFilters = array(
     'idIn' => ' geozzy_favourites_list_view.id IN (?) ',
     'userIn' => ' geozzy_favourites_list_view.user IN (?) ',
-    'resourceListNotNull' => ' resourceList IS NOT NULL ',
-    'inResourceList' => ' ( resourceList like concat(?,",%") OR resourceList LIKE CONCAT("%,",?,",%") OR resourceList LIKE CONCAT("%,",?)  OR resourceList = ? ) '
+    'resourceListNotNull' => ' geozzy_favourites_list_view.resourceList IS NOT NULL ',
+    'inResourceList' => ' ( geozzy_favourites_list_view.resourceList like concat(?,",%") OR geozzy_favourites_list_view.resourceList LIKE CONCAT("%,",?,",%") OR geozzy_favourites_list_view.resourceList LIKE CONCAT("%,",?)  OR geozzy_favourites_list_view.resourceList = ? ) '
   );
 
   var $notCreateDBTable = true;

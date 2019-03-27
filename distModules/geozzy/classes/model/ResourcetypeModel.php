@@ -34,9 +34,9 @@ class ResourcetypeModel extends Model {
   );
 
   static $extraFilters = array(
-    'intopic' => ' id IN ( select resourceType from geozzy_resourcetype_topic where topic=? ) ',
-    'idNameExists' => ' idName IN (?) ',
-    'inIdName' => ' idName IN (?) ',
+    'intopic' => ' geozzy_resourcetype.id IN ( select geozzy_resourcetype_topic.resourceType from geozzy_resourcetype_topic where topic=? ) ',
+    'idNameExists' => ' geozzy_resourcetype.idName IN (?) ',
+    'inIdName' => ' geozzy_resourcetype.idName IN (?) ',
     'notIdName' => ' geozzy_resourcetype.idName NOT IN (?) ',
   );
 

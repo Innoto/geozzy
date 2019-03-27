@@ -126,12 +126,12 @@ class RExtUrlResourceViewModel extends Model {
 
   static $extraFilters = array(
     'find' => " ( UPPER( geozzy_rext_url_resource_view.title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR geozzy_rext_url_resource_view.id = ? )",
-    'nottopic' => ' geozzy_rext_url_resource_view.id NOT IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
-    'intopic' => ' geozzy_rext_url_resource_view.id IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
+    'nottopic' => ' geozzy_rext_url_resource_view.id NOT IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
+    'intopic' => ' geozzy_rext_url_resource_view.id IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
 
-    'inTopicTaxonomyterm' => ' geozzy_rext_url_resource_view.id IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.taxonomyterm=? ) ',
+    'inTopicTaxonomyterm' => ' geozzy_rext_url_resource_view.id IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.taxonomyterm=? ) ',
 
-    'notintaxonomyterm' => ' geozzy_rext_url_resource_view.id NOT IN ( select resource from geozzy_resource_taxonomyterm where geozzy_resource_taxonomyterm.taxonomyterm=? )',
+    'notintaxonomyterm' => ' geozzy_rext_url_resource_view.id NOT IN ( select geozzy_resource_taxonomyterm.resource from geozzy_resource_taxonomyterm where geozzy_resource_taxonomyterm.taxonomyterm=? )',
     'inRtype' => ' geozzy_rext_url_resource_view.rTypeId IN (?) ',
     'notInRtype' => ' geozzy_rext_url_resource_view.rTypeId NOT IN (?) ',
     'inRtypeIdName' => ' geozzy_rext_url_resource_view.rTypeIdName IN (?) ',

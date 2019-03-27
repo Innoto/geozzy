@@ -55,13 +55,13 @@ class ExplorerSearchModel extends Model
   );
 
   static $extraFilters = array(
-    'ids' => ' id IN (?)',
+    'ids' => ' geozzy_explorer_search_index.id IN (?)',
     'findFull{multilang}' => ' (
         UPPER( geozzy_explorer_search_index.title_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR
         UPPER( geozzy_explorer_search_index.shortDescription_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR
         UPPER( geozzy_explorer_search_index.mediumDescription_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR
         UPPER( geozzy_explorer_search_index.content_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR
-        UPPER( geozzy_explorer_search_index.termsName_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) 
+        UPPER( geozzy_explorer_search_index.termsName_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' )
     )
     ',
 

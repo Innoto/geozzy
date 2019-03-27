@@ -66,8 +66,8 @@ class GenericExplorerModel extends Model
   );
 
   static $extraFilters = array(
-    'ids' => ' id IN (?)',
-    'updatedfrom' => ' timeLastUpdate > FROM_UNIXTIME(?) '
+    'ids' => ' geozzy_generic_explorer_index.id IN (?)',
+    'updatedfrom' => ' geozzy_generic_explorer_index.timeLastUpdate > FROM_UNIXTIME(?) '
 
   );
 

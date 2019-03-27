@@ -212,7 +212,7 @@ class AllstoryStepsViewModel extends Model
   );
 
   static $extraFilters = array(
-    'updatedfrom' => ' timeLastUpdate > FROM_UNIXTIME(?) '
+    'updatedfrom' => ' geozzy_allstories_index.timeLastUpdate > FROM_UNIXTIME(?) '
 
   );
 

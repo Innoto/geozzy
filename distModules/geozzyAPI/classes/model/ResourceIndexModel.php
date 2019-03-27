@@ -39,8 +39,6 @@ class ResourceIndexModel extends Model
   );
 
   public static $extraFilters = array(
-  //  'taxonomyterm' => 'taxonomyterm in (?)',
-//    'topic' => 'topic in (?)'
       'taxonomyterms' => 'geozzy_resource_index.taxonomyterm IN( ? )',
       'types' => 'geozzy_resource_index.rTypeId IN( ? )',
       'topics' => 'geozzy_resource_index.topic IN( ? )',

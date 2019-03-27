@@ -42,8 +42,8 @@ class LikeListViewModel extends Model {
   static $extraFilters = array(
     'idIn' => ' geozzy_like_list_view.id IN (?) ',
     'userIn' => ' geozzy_like_list_view.user IN (?) ',
-    'resourceListNotNull' => ' resourceList IS NOT NULL ',
-    'inResourceList' => ' ( resourceList LIKE CONCAT(?,",%") OR resourceList LIKE CONCAT("%,",?,",%") OR resourceList LIKE CONCAT("%,",?) OR resourceList = ? ) '
+    'resourceListNotNull' => ' geozzy_like_list_view.resourceList IS NOT NULL ',
+    'inResourceList' => ' ( geozzy_like_list_view.resourceList LIKE CONCAT(?,",%") OR geozzy_like_list_view.resourceList LIKE CONCAT("%,",?,",%") OR geozzy_like_list_view.resourceList LIKE CONCAT("%,",?) OR geozzy_like_list_view.resourceList = ? ) '
   );
 
   var $notCreateDBTable = true;

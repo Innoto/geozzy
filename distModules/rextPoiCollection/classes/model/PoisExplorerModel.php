@@ -103,7 +103,7 @@ class PoisExplorerModel extends Model
   );
 
   static $extraFilters = array(
-    'ids' => ' id IN (?)'
+    'ids' => ' geozzy_pois_explorer_index.id IN (?)'
 
   );
 
