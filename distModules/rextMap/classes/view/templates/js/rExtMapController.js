@@ -1,8 +1,5 @@
 var geozzy = geozzy || {};
 
-
-
-
 geozzy.rExtMapController = function( opts ) {
 
 
@@ -12,6 +9,8 @@ geozzy.rExtMapController = function( opts ) {
   that.resourceMap = false;
   that.resourceMarker = false;
 
+  that.loaded = false;
+  that.onLoadFunctions = [];
 
   that.options = {
     lat: false,
@@ -23,24 +22,21 @@ geozzy.rExtMapController = function( opts ) {
 
 
   $.extend(true, that.options, opts);
+  if( typeof cogumelo.publicConf.rextMapConf == 'undefined') {
+    cogumelo.publicConf.rextMapConf = {};
+  }
+  var $mapContainer = $( that.options.wrapper );
 
+
+  // initialize map
   that.initialize = function() {
 
-    if( typeof cogumelo.publicConf.rextMapConf == 'undefined') {
-      cogumelo.publicConf.rextMapConf = {}
-    }
-
-    var $mapContainer = $( that.options.wrapper );
-    //cogumelo.log( that.options.wrapper  )
-    if( $mapContainer.length === 1 ) {
-      // cogumelo.log( 'prepareMap - OK: ATOPADO O WRAPPER DO MAPA!!!' );
-      // gmaps init
+    if( $mapContainer.length === 1 && (that.options.lat != 0 && that.options.lng != 0 ) ) {
       that.resourceMapOptions = {
         center: { lat: that.options.lat, lng: that.options.lng },
-        zoom: that.options.zoom
+        zoom: that.options.zoom,
+        fullscreenControl: false
       };
-
-
 
       that.resourceMapOptions.scrollwheel = (
         typeof cogumelo.publicConf.rextMapConf.scrollwheel == 'undefined'
@@ -58,7 +54,9 @@ geozzy.rExtMapController = function( opts ) {
         that.resourceMapOptions.styles = false;
       }
       else {
+        /* jshint ignore:start */
         eval("that.resourceMapOptions.styles = " + cogumelo.publicConf.rextMapConf.styles +";");
+        /* jshint ignore:end */
       }
 
 
@@ -71,7 +69,7 @@ geozzy.rExtMapController = function( opts ) {
         size: new google.maps.Size(30, 36), // The origin for that image is (0, 0).
         origin: new google.maps.Point(0, 0), // The anchor for that image is the base of the flagpole at (0, 36).
         anchor: new google.maps.Point(13, 36)
-      }
+      };
 
       // ten icono personalizado
       if( typeof cogumelo.publicConf.rextMapConf.defaultMarker != 'undefined') {
@@ -100,13 +98,54 @@ geozzy.rExtMapController = function( opts ) {
         icon: icono
       });
 
+      that.loaded = true;
+      $.each( that.onLoadFunctions, function(i,func){
+        func();
+      });
 
 
     } // if( $mapContainer.length )
     else {
-      cogumelo.log( 'rextMap - NOTICE: I cant find map wrapper' );
+      that.cantRenderLigMsg();
       that.resourceMap = false;
     }
+  };
+
+  that.initializeIfNot = function() {
+    if(that.loaded == false) {
+      that.initialize();
+    }
+  };
+
+  // preload with on demmand render
+  that.renderInitButton = function() {
+    if( $mapContainer.length === 1 && (that.options.lat != 0 && that.options.lng != 0 ) ) {
+      $mapContainer.html('<div class="viewMapButtonContainer"><button class="viewMapButton">'+__('View map')+'</button></div>');
+      that.resourceMap = 'waiting';
+      $mapContainer.find('.viewMapButton').on('click', function(){
+        that.initialize();
+      });
+    }
+    else {
+      that.cantRenderLigMsg();
+      that.resourceMap = false;
+    }
+  };
+
+
+  // onload Event
+  that.onLoad = function( onLoadFunction ){
+    if( that.loaded == false ) {
+      that.onLoadFunctions.push(onLoadFunction);
+    }
+    else {
+      onLoadFunction();
+    }
+  };
+
+  // Log MSG
+  that.cantRenderLigMsg = function() {
+    cogumelo.log( 'rextMap - NOTICE: Cant find map wrapper or latLng = 0' );
   };
 
 };

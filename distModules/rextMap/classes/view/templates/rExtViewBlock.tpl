@@ -10,6 +10,8 @@
   }
 </style>
 
+
+
   {if $rExt.data.visible}
   <div class="rExtMapResource">
     <div class="resMapWrapper">
@@ -27,7 +29,8 @@
     lat: {$rExt.data.locLat},
     lng: {$rExt.data.locLon},
     zoom: {$rExt.data.defaultZoom},
-    wrapper: {if $rExt.data.visible}'.rExtMapResource .resMapContainer'{else}false{/if}
+    wrapper: {if $rExt.data.visible}'.rExtMapResource .resMapContainer'{else}false{/if},
+    resourceRtypeIdName: '{$rExt.data.rTypeIdName}'
   };
 </script>
 <!-- /rExtViewBlock.tpl en rExtMap module -->

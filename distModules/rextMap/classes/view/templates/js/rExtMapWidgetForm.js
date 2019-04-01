@@ -32,7 +32,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
         var zoomInit = 3;
 
         if(typeof cogumelo.publicConf.admin.adminMap === 'undefined') {
-          cogumelo.log('cogumelo.publicConf.admin.adminMap is not defined in conf')
+          cogumelo.log('cogumelo.publicConf.admin.adminMap is not defined in conf');
         }
         else {
           var latInit = Number(cogumelo.publicConf.admin.adminMap.defaultLat);
@@ -131,7 +131,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
     var pos = new google.maps.LatLng(
       place.geometry.location.lat(),
       place.geometry.location.lng()
-    )
+    );
 
     that.resourceMap.setCenter( pos );
 
@@ -185,4 +185,4 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
 
   that.initializeMap();
   that.initAddressAutocompletion();
-}
+};
