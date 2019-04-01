@@ -74,11 +74,6 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
     var route = that.options.routeModel;
 
-    if( typeof route.get('trackPoints')[0] != 'undefined' ) {
-      that.options.map.setCenter(
-        new google.maps.LatLng({lat: route.get('trackPoints')[0][0], lng: route.get('trackPoints')[0][1]})
-      );
-    }
     var routeMap = {};
     var routeData = [ ];
 
