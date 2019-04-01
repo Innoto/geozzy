@@ -14,8 +14,12 @@ class PoisExplorerController extends ExplorerController {
     }
 
     $lang_default = Cogumelo::getSetupValue( 'lang:default' );
+    $actLang = $GLOBALS['C_LANG'];
+    if( !empty( $actLang ) ) {
+      $actLang = $lang_default;
+    }
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id','rType','content_'.$lang_default,'loc','isNormalResource','terms'), 'filters'=> $filters, 'cache' => $this->cacheQuery ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id','rType','urlAlias_'.$actLang,'content_'.$lang_default,'loc','isNormalResource','terms'), 'filters'=> $filters, 'cache' => $this->cacheQuery ) );
 
     $coma = '';
 
@@ -30,6 +34,10 @@ class PoisExplorerController extends ExplorerController {
         if( isset($resourceDataArray['id']) ) {
           echo $coma;
           $row['isNormalResource'] = $resourceDataArray['isNormalResource'];
+
+          if( !empty( $resourceDataArray['urlAlias_'.$actLang] ) ) {
+            $row['urlAlias'] =$resourceDataArray['urlAlias_'.$actLang];
+          }
 
           if( isset($resourceDataArray['terms']) ) {
             $row['terms'] = array_map( 'intval', explode(',',$resourceDataArray['terms']) );
