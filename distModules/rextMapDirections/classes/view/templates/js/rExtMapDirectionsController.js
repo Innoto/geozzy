@@ -49,59 +49,65 @@ geozzy.rExtMapDirectionsController = {
   jqDirRouteList: false,
 
 
-  prepareRoutes: function prepareRoutes( directionsData ) {
-    // cogumelo.log( 'prepareRoutes', directionsData );
+
+  prepareRoutes: function prepareRoutes( ) {
     var that = this;
 
-    if( directionsData ) {
-      that.resourceMapInfo = directionsData;
-    }
+    that.jqDirForm = $('.jsMapDirectionsForm');
+    that.jqDirInput = that.jqDirForm.find( 'input[name=mapRouteOrigin]' );
+    that.jqDirInput.on('focus', function(){
+      geozzy.rExtMapInstance.initializeIfNot();
+    });
 
-    // geozzy.rExtMapInstance.initialize();
-    that.resourceMap = geozzy.rExtMapInstance.resourceMap; // Necesario despues de initialize()
+    geozzy.rExtMapInstance.onLoad( function() {
 
-    this.jqDirForm = $('.jsMapDirectionsForm');
-    this.jqDirInput = this.jqDirForm.find( 'input[name=mapRouteOrigin]' );
+      if( geozzy.rExtMapDirectionsData ) {
+        that.resourceMapInfo = geozzy.rExtMapDirectionsData;
+      }
 
-    if( that.jqDirForm && that.jqDirForm.length === 1 ) {
-      // Input de direcciones
-      that.jqDirForm.on( 'submit', function( evt ) {
-        evt.preventDefault();
-        that.resetMap();
-        that.clearRoute();
-        var destination = $( evt.target ).find('input').val();
-        that.loadRoute( destination, false, false );
-        return false;
-      });
+      // geozzy.rExtMapInstance.initialize();
+      that.resourceMap = geozzy.rExtMapInstance.resourceMap; // Necesario despues de initialize()
 
-      that.autocomplete = new google.maps.places.Autocomplete( that.jqDirInput.get(0) );
-      that.autocomplete.bindTo( 'bounds', that.resourceMap );
-      that.autocomplete.addListener( 'place_changed', function() {
-        var place = that.autocomplete.getPlace();
-        var destination = '';
-        if( place.geometry && place.geometry.location ) {
-          destination = place.geometry.location.lat()+', '+place.geometry.location.lng();
-        }
-        else {
-          destination = that.jqDirInput.val();
-        }
-        that.loadRoute( destination, false, false );
-      });
+      if( that.jqDirForm && that.jqDirForm.length === 1 ) {
+        // Input de direcciones
+        that.jqDirForm.on( 'submit', function( evt ) {
+          evt.preventDefault();
+          that.resetMap();
+          that.clearRoute();
+          var destination = $( evt.target ).find('input').val();
+          that.loadRoute( destination, false, false );
+          return false;
+        });
 
-      // Prepare Routes controller
-      that.directionsDisplay = new google.maps.DirectionsRenderer( { suppressMarkers: true } );
-      that.directionsService = new google.maps.DirectionsService();
+        that.autocomplete = new google.maps.places.Autocomplete( that.jqDirInput.get(0) );
+        that.autocomplete.bindTo( 'bounds', that.resourceMap );
+        that.autocomplete.addListener( 'place_changed', function() {
 
-      // that.opened = true;
-      // that.blockCloseButton = true;
+          var place = that.autocomplete.getPlace();
+          var destination = '';
+          if( place.geometry && place.geometry.location ) {
+            destination = place.geometry.location.lat()+', '+place.geometry.location.lng();
+          }
+          else {
+            destination = that.jqDirInput.val();
+          }
+          that.loadRoute( destination, false, false );
+        });
 
-      that.resourceRoutes[0] = [];
-      that.resourceRoutes[1] = [];
-      that.resourceRoutes[2] = [];
-      that.resourceRoutes[3] = [];
+        // Prepare Routes controller
+        that.directionsDisplay = new google.maps.DirectionsRenderer( { suppressMarkers: true } );
+        that.directionsService = new google.maps.DirectionsService();
 
-      that.resetFromTo();
-    }
+        // that.opened = true;
+        // that.blockCloseButton = true;
+        that.resourceRoutes[0] = [];
+        that.resourceRoutes[1] = [];
+        that.resourceRoutes[2] = [];
+        that.resourceRoutes[3] = [];
+
+        that.resetFromTo();
+      }
+    });
   },
 
   prepareContainers: function prepareContainers() {
