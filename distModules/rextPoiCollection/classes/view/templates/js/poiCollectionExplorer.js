@@ -22,9 +22,10 @@
       });
     }
 
-
-    eval('$.when( '+ multifetchStr+' ).done(function() {  poisResourceExplorer( categorias ); });');
-
+    geozzy.rExtMapInstance.onLoad(function(){
+      eval('$.when( '+ multifetchStr+' ).done(function() {  poisResourceExplorer( categorias ); });');
+    });
+    
   });
 
 
