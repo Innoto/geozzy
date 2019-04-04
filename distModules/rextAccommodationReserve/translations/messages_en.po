@@ -44,6 +44,8 @@ msgstr "Arrival date - Departure date"
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/booking-com-public.tpl:18
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/booking-com-public.tpl:18
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:18
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/booking-com-public.tpl:18
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:18
 msgid "Rooms"
 msgstr ""
 
@@ -52,6 +54,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/booking-com-public.tpl:30
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/booking-com-public.tpl:30
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:30
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/booking-com-public.tpl:30
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:30
 msgid "Adults"
 msgstr ""
 

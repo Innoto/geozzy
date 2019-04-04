@@ -9,6 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rtypeBlog_classes_view_templates_rTypeViewBlock.tpl:103
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rTypeViewBlock.tpl:103
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:103
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeBlog_classes_view_templates_rTypeViewBlock.tpl:103
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:103
@@ -16,6 +18,8 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rtypeBlog_classes_view_templates_rTypeViewBlock.tpl:118
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rTypeViewBlock.tpl:118
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:118
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeBlog_classes_view_templates_rTypeViewBlock.tpl:118
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:118
@@ -23,6 +27,8 @@ msgstr ""
 msgid "See indications"
 msgstr ""
 
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rtypeBlog_classes_view_templates_rTypeViewBlock.tpl:127
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rTypeViewBlock.tpl:127
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:127
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeBlog_classes_view_templates_rTypeViewBlock.tpl:127
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:127

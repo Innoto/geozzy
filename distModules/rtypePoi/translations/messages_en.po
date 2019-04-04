@@ -9,6 +9,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rTypePoiFormModalBlock.tpl:24
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypePoiFormModalBlock.tpl:24
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypePoiFormModalBlock.tpl:24
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:21
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypePoiFormModalBlock.tpl:21
+msgid "If not uploaded, an automatic thumbnail will be created"
+msgstr ""
+
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:58
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rTypeViewBlock.tpl:58
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:58
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:58
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:58
@@ -17,21 +30,14 @@ msgstr ""
 msgid "volver"
 msgstr ""
 
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:121
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rTypeViewBlock.tpl:121
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:121
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:121
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:121
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:121
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:121
 msgid "Contact"
-msgstr ""
-
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
-#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypePoiFormModalBlock.tpl:24
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypePoiFormModalBlock.tpl:24
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:21
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypePoiFormModalBlock.tpl:21
-msgid "If not uploaded, an automatic thumbnail will be created"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:60

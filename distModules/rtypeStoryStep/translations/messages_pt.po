@@ -29,6 +29,8 @@ msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/listSteps.tpl:5
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeStoryStep_classes_view_templates_listSteps.tpl:5
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/listSteps.tpl:5
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rtypeStoryStep_classes_view_templates_listSteps.tpl:5
 msgid "Steps available"
 msgstr ""
 

@@ -9,6 +9,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:96
+msgid "Are you sure you want to delete this comment?"
+msgstr "¿Estás seguro/a de que deseas borrar este comentario?"
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:125
+msgid "Are you sure you want to try this suggestion?"
+msgstr "¿Estás seguro/a de que quieres probar esta sugerencia?"
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:141
+msgid "Are you sure you want to mark as irrelevant this suggestion?"
+msgstr ""
+"¿Estás seguro/a de que quieres marcar esta sugerencia como irrelevante?"
+
 #: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/Templates.js:23
 msgid "Your contribution is welcome"
 msgstr "Tu contribución es bienvenida"
@@ -25,19 +38,6 @@ msgstr "Publicado"
 msgid "Comment"
 msgstr "Comentario"
 
-#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:96
-msgid "Are you sure you want to delete this comment?"
-msgstr "¿Estás seguro/a de que deseas borrar este comentario?"
-
-#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:125
-msgid "Are you sure you want to try this suggestion?"
-msgstr "¿Estás seguro/a de que quieres probar esta sugerencia?"
-
-#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:141
-msgid "Are you sure you want to mark as irrelevant this suggestion?"
-msgstr ""
-"¿Estás seguro/a de que quieres marcar esta sugerencia como irrelevante?"
-
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/mailCommentValidated.tpl:2
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:2
 #: /home/proxectos/canlers/app/tmp/tpl/mailCommentValidated.tpl:2
@@ -49,6 +49,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:2
 #: /home/proxectos/canlers/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:2
 #: /home/proxectos/becarios/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:2
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/mailCommentValidated.tpl:2
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:2
 msgid "Estimado usuario,"
 msgstr ""
 
@@ -63,6 +65,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:3
 #: /home/proxectos/canlers/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:3
 #: /home/proxectos/becarios/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:3
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/mailCommentValidated.tpl:3
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:3
 msgid "Muchas gracias por su aportación. Nos será de mucha utilidad."
 msgstr ""
 
@@ -77,6 +81,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:4
 #: /home/proxectos/canlers/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:4
 #: /home/proxectos/becarios/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:4
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/mailCommentValidated.tpl:4
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:4
 msgid "Un saludo."
 msgstr ""
 
@@ -91,6 +97,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:4
 #: /home/proxectos/canlers/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:4
 #: /home/proxectos/becarios/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:4
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:4
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:4
 msgid "Comentarios"
 msgstr ""
 
@@ -120,6 +128,8 @@ msgstr "Hacer una sugerencia"
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:60
 #: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:60
 #: /home/proxectos/becarios/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:60
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:60
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:60
 msgid "Loading..."
 msgstr ""
 

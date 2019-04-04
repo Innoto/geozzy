@@ -13,6 +13,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:1
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:1
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
 msgid "Recursos recomendados:"
 msgstr ""
 
@@ -20,5 +22,7 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:17
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:17
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:17
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:17
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:17
 msgid "Find out!"
 msgstr ""

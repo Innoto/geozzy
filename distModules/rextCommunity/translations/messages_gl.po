@@ -16,5 +16,7 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextCommunity_classes_view_templates_otherUserCommunityViewBlock.tpl:30
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/otherUserCommunityViewBlock.tpl:30
 #: /home/proxectos/canlers/app/tmp/tpl/rextCommunity_classes_view_templates_otherUserCommunityViewBlock.tpl:30
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/otherUserCommunityViewBlock.tpl:30
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextCommunity_classes_view_templates_otherUserCommunityViewBlock.tpl:30
 msgid "Favoritos:"
 msgstr ""

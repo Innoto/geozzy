@@ -13,6 +13,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:107
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:107
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:107
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:107
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rTypeViewBlock.tpl:107
 msgid "Contact"
 msgstr ""
 
@@ -20,6 +22,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:122
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:122
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:122
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:122
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rTypeViewBlock.tpl:122
 msgid "See indications"
 msgstr ""
 
@@ -27,6 +31,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:131
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:131
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:131
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:131
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rTypeViewBlock.tpl:131
 msgid "How to arrive from?"
 msgstr ""
 

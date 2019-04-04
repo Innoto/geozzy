@@ -9,6 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/becarios/app/tmp/tpl/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21

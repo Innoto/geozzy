@@ -36,6 +36,8 @@ msgstr "Rota circular"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:51
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:51
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
 msgid "circular"
 msgstr ""
 

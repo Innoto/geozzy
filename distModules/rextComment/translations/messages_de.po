@@ -9,6 +9,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:96
+msgid "Are you sure you want to delete this comment?"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:125
+msgid "Are you sure you want to try this suggestion?"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:141
+msgid "Are you sure you want to mark as irrelevant this suggestion?"
+msgstr ""
+
 #: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/Templates.js:23
 msgid "Your contribution is welcome"
 msgstr ""
@@ -25,35 +37,31 @@ msgstr ""
 msgid "Comment"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:96
-msgid "Are you sure you want to delete this comment?"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:125
-msgid "Are you sure you want to try this suggestion?"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:141
-msgid "Are you sure you want to mark as irrelevant this suggestion?"
-msgstr ""
-
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/mailCommentValidated.tpl:2
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:2
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/mailCommentValidated.tpl:2
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:2
 msgid "Estimado usuario,"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/mailCommentValidated.tpl:3
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:3
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/mailCommentValidated.tpl:3
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:3
 msgid "Muchas gracias por su aportación. Nos será de mucha utilidad."
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/mailCommentValidated.tpl:4
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:4
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/mailCommentValidated.tpl:4
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:4
 msgid "Un saludo."
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:4
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:4
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:4
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:4
 msgid "Comentarios"
 msgstr ""
 
@@ -63,6 +71,10 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:35
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:33
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:35
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:33
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:35
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:33
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:35
 msgid "Post a comment or suggestion"
 msgstr ""
 
@@ -72,6 +84,10 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:49
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:42
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:49
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:42
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:49
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:42
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:49
 msgid "Post a comment"
 msgstr ""
 
@@ -85,6 +101,12 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:45
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:52
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:68
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:45
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:52
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:68
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:45
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:52
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:68
 msgid "Post a suggestion"
 msgstr ""
 
@@ -92,6 +114,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:47
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:60
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:60
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:60
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:60
 msgid "Loading..."
 msgstr ""
 
@@ -142,4 +166,8 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextComment/classes/controller/RExtCommentController.php:65
 msgid "Active comment"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentView.php:266
+msgid "You have received a comment"
 msgstr ""

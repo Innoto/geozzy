@@ -11,16 +11,22 @@ msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtFormBlock.tpl:3
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAudioguide_classes_view_templates_rExtFormBlock.tpl:3
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextAudioguide_classes_view_templates_rExtFormBlock.tpl:3
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtFormBlock.tpl:3
 msgid "Upload audio file (mp3)"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtFormBlock.tpl:7
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAudioguide_classes_view_templates_rExtFormBlock.tpl:7
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextAudioguide_classes_view_templates_rExtFormBlock.tpl:7
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtFormBlock.tpl:7
 msgid "Activation distance (m.)"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:6
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAudioguide_classes_view_templates_rExtViewBlock.tpl:6
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:11
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextAudioguide_classes_view_templates_rExtViewBlock.tpl:11
 msgid "Audioguide"
 msgstr ""
 

@@ -115,6 +115,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/userProfile.tpl:4
 #: /home/proxectos/canlers/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
 #: /home/proxectos/becarios/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/userProfile.tpl:4
 msgid "Perfil de Usuario"
 msgstr ""
 

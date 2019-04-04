@@ -37,6 +37,14 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtcalendarViewBlock.tpl:53
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:46
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:51
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtlistViewBlock.tpl:46
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtlistViewBlock.tpl:51
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:46
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:51
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:48
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:53
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtcalendarViewBlock.tpl:48
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtcalendarViewBlock.tpl:53
 msgid "More information"
 msgstr ""
 

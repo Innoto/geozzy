@@ -9,12 +9,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/plugins/StoryPluginPOISView.js:74
+msgid "Points of interest"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/StoryTemplates.js:21
+#: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/StoryTemplates.js:30
 #: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/StoryTemplates.js:15
 #: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/StoryTemplates.js:24
 #: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/StoryTemplates.js:28
 msgid "Discover"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/plugins/StoryPluginPOISView.js:74
-msgid "Points of interest"
 msgstr ""

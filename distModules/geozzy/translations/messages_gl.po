@@ -466,3 +466,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:320
 msgid "Unknown"
 msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:393
+msgid "http://ejemplo.com/ejemplo"
+msgstr ""

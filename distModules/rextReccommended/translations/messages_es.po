@@ -20,6 +20,8 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
 #: /home/proxectos/canlers/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
 #: /home/proxectos/becarios/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:1
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
 msgid "Recursos recomendados:"
 msgstr ""
 

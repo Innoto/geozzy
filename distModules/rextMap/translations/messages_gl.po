@@ -10,7 +10,12 @@ msgstr ""
 "Language: : #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-#-#  cgml-"
 "msgcat.sh.tmp.from  #-#-#-#-#\n"
 
+#: /home/proxectos/geozzy/distModules/rextMap/classes/view/templates/js/rExtMapController.js:7
 #: /home/proxectos/geozzy/distModules/rextMap/classes/view/templates/js/rExtMapWidgetForm.js:10
 #: /home/proxectos/geozzy/distModules/rextMap/classes/view/templates/js/rExtMapController.js:10
 msgid "Resource location"
 msgstr "Localización do Recurso"
+
+#: /home/proxectos/geozzy/distModules/rextMap/classes/view/templates/js/rExtMapController.js:123
+msgid "View map"
+msgstr ""

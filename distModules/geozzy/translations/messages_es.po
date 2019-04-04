@@ -85,6 +85,8 @@ msgstr "Colecciones"
 #: /home/proxectos/canlers/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
 msgid ""
 "Haz click en el lugar donde se ubica tu centro educativo con la mayor "
 "precisión que puedas, podrás arrastrar y soltar la localización"
@@ -523,4 +525,8 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:320
 msgid "Unknown"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:393
+msgid "http://ejemplo.com/ejemplo"
 msgstr ""

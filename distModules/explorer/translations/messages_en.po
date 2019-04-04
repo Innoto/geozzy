@@ -9,13 +9,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/filters/ExplorerFilterMinimapView.js:26
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/filters/ExplorerFilterMinimapView.js:25
+msgid "All"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:182
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:181
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:179
 msgid "Prioritizing map zone"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/filters/ExplorerFilterMinimapView.js:25
-msgid "All"
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/Templates.js:41
+msgid "No results found"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:12
@@ -30,6 +36,12 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:13
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:13
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:12
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerBaseInLanding.tpl:12
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:13
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:12
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:11
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerSaganInLanding.tpl:13
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerList.tpl:11
 msgid "Return to content"
 msgstr ""
 
@@ -52,6 +64,14 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:19
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:19
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:19
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerBaseInLanding.tpl:19
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:19
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:17
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:19
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:17
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerSaganInLanding.tpl:19
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerList.tpl:17
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer.tpl:17
 msgid "Apply"
 msgstr ""
 
@@ -74,6 +94,14 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:22
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:22
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:22
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerBaseInLanding.tpl:22
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:22
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:20
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:22
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:20
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerSaganInLanding.tpl:22
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerList.tpl:20
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer.tpl:20
 msgid "Clear filters"
 msgstr ""
 
@@ -93,6 +121,14 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:25
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:25
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:25
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerBaseInLanding.tpl:25
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:25
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:23
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:25
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:23
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerSaganInLanding.tpl:25
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerList.tpl:23
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer.tpl:23
 msgid "List"
 msgstr ""
 
@@ -108,6 +144,12 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:26
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:26
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:26
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerBaseInLanding.tpl:26
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:26
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:24
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:26
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerSaganInLanding.tpl:26
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer.tpl:24
 msgid "Map"
 msgstr ""
 
@@ -130,5 +172,13 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:27
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:27
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:27
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerBaseInLanding.tpl:27
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:27
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:25
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:27
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:24
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerSaganInLanding.tpl:27
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorerList.tpl:24
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/explorer.tpl:25
 msgid "Filters"
 msgstr ""

@@ -11,18 +11,28 @@ msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtFormBlock.tpl:6
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:10
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtFormBlock.tpl:10
 msgid "Event init date"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtFormBlock.tpl:19
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:23
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtFormBlock.tpl:23
 msgid "Event end date"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:93
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:98
 msgid "Event type"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:98
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:103
 msgid "Related resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:86
+msgid "Literal Date"
 msgstr ""
