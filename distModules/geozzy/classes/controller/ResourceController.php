@@ -158,7 +158,6 @@ class ResourceController {
      * @return array OR false
      */
     public function getResourceData( $resId = false ) {
-      echo('INICIO CARGA RECURSO: '.$time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"])."\n";
 
       $resourceobj = null;
 
@@ -344,7 +343,6 @@ class ResourceController {
       // else {
       //   $resourceData = $this->resData;
       // }
-echo('FIN CARGA RECURSO: '.$time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"])."\n";
       return $resourceData;
     }
 
