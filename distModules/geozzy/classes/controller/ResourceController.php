@@ -127,226 +127,27 @@ class ResourceController {
    * @return array OR false
    */
   public function loadResourceObject( $resId = false ) {
-    // $resourceobj = null;
-    //
-    // if( !$this->resObj || ( $resId && $resId !== $this->resObj->getter('id') ) ) {
-    //   $resModel = new ResourceModel();
-    //   $resList = $resModel->listItems([
-    //     'affectsDependences' => [ 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ExtraDataModel' ],
-    //     'filters' => [ 'id' => $resId ],  /*, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 */
-    //     'cache' => $this->cacheQuery,
-    //   ]);
-    //   $resourceobj = ( gettype( $resList ) === 'object' ) ? $resList->fetch() : null;
-    //
-    //   if( $resourceobj && !$this->resObj ) {
-    //     $this->resObj = $resourceobj;
-    //   }
-    // }
-    // else {
-    //   $resourceobj = $this->resObj;
-    // }
-    //
-    // return( $resourceobj );
-  }
+    $resourceobj = null;
 
+    if( !$this->resObj || ( $resId && $resId !== $this->resObj->getter('id') ) ) {
+      $resModel = new ResourceModel();
+      $resList = $resModel->listItems([
+        'affectsDependences' => [ 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ExtraDataModel' ],
+        'filters' => [ 'id' => $resId ],  /*, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 */
+        'cache' => $this->cacheQuery,
+      ]);
+      $resourceobj = ( gettype( $resList ) === 'object' ) ? $resList->fetch() : null;
 
-    /**
-     * Load basic data values
-     *
-     * @param $resId integer
-     *
-     * @return array OR false
-     */
-    public function getResourceData( $resId = false ) {
-
-      $resourceobj = null;
-
-      if( !$this->resObj || ( $resId && $resId !== $this->resObj->getter('id') ) ) {
-        $resModel = new ResourceModel();
-        $resList = $resModel->listItems([
-          //'affectsDependences' => [ 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ExtraDataModel' ],
-          'affectsDependences' => ['ResourceTopicModel', 'ExtraDataModel' ],
-          'filters' => [ 'id' => $resId ],  /*, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 */
-          'cache' => $this->cacheQuery,
-        ]);
-        $resourceobj = ( gettype( $resList ) === 'object' ) ? $resList->fetch() : null;
-
-        if( $resourceobj && !$this->resObj ) {
-          $this->resObj = $resourceobj;
-
-        }
+      if( $resourceobj && !$this->resObj ) {
+        $this->resObj = $resourceobj;
       }
-      else {
-        $resourceobj = $this->resObj;
-      }
-
-      $resObj=$resourceobj;
-
-      // error_log(__METHOD__);
-      $resourceData = false;
-
-      // if( (!$this->resData || ( $resId && $resId !== $this->resData['id'] ) ) && $resObj=$this->loadResourceObject( $resId ) ) {
-      // if( $resObj=$this->loadResourceObject( $resId ) ) {
-      if( $resObj ) {
-        $langDefault = Cogumelo::getSetupValue( 'lang:default' );
-
-        $langsConf = Cogumelo::getSetupValue( 'lang:available' );
-        if( is_array( $langsConf ) ) {
-          $langAvailable = array_keys( $langsConf );
-        }
-
-        // Cargamos todos los campos "en bruto"
-        $resourceData = $resObj->getAllData( 'onlydata' );
-
-        // Añadimos los campos en el idioma actual o el idioma principal
-        $resourceFields = $resObj->getCols();
-        foreach( $resourceFields as $key => $value ) {
-          if( !isset( $resourceData[ $key ] ) ) {
-            $resourceData[ $key ] = $resObj->getter( $key );
-            // Si en el idioma actual es una cadena vacia, buscamos el contenido en el idioma principal
-            if( $resourceData[ $key ] === '' && isset( $resourceData[ $key.'_'.$langDefault ] ) ) {
-              $resourceData[ $key ] = $resourceData[ $key.'_'.$langDefault ];
-            }
-          }
-        }
-
-        // Geograpic Location
-        Cogumelo::load('coreModel/DBUtils.php');
-        if( isset( $resourceData['loc'] ) ) {
-          $geoLocation = DBUtils::decodeGeometry( $resourceData['loc'] );
-          $resourceData['locLat'] = $geoLocation['data'][0];
-          $resourceData['locLon'] = $geoLocation['data'][1];
-        }
-
-        // Cargo los datos de urlAlias dentro de los del recurso
-
-        //$urlAliasDep = $resObj->getterDependence( 'id', 'UrlAliasModel' );
-        //if( $urlAliasDep !== false ) {
-          //foreach( $urlAliasDep as $urlAlias ) {
-          //  }
-        //}
-        if($resId){
-          $urlAliasModel = new UrlAliasModel();
-          $urlAliasList = $urlAliasModel->listItems(['filters'=>['resource'=>$resId]]);
-          if(is_object($urlAliasList)){
-            if($urlAlias = $urlAliasList->fetch()){
-              $urlLang = $urlAlias->getter('lang');
-              $urlFrom = $urlAlias->getter('urlFrom');
-
-              // 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1
-              if( empty( $urlAlias->getter('http') ) && !empty( $urlAlias->getter('canonical') ) && $urlLang ) {
-                $resourceData[ 'urlAlias_'.$urlLang ] = $urlFrom;
-                if( $urlLang === $this->actLang ) {
-                  $resourceData['urlAlias'] = $resourceData[ 'urlAlias_'.$urlLang ];
-                  if( count( $this->allLang ) > 1 ) {
-                    $resourceData['urlAlias'] = '/'.$urlLang.$resourceData['urlAlias'];
-                  }
-                }
-              }
-
-              if( $urlAlias->getter('label') === 'adminAlias' ) {
-                $resourceData[ 'urlAdminAlias_'.$urlLang ] = $urlFrom;
-                if( $urlLang === $this->actLang ) {
-                  $resourceData['urlAdminAlias'] = $resourceData[ 'urlAdminAlias_'.$urlLang ];
-                  if( count( $this->allLang ) > 1 ) {
-                    $resourceData['urlAdminAlias'] = '/'.$urlLang.$resourceData['urlAdminAlias'];
-                  }
-                }
-              }
-
-              if( !isset($resourceData['urlAlias']) ) {
-                $resourceData['urlAlias'] = '/'.$this->actLang.'/'.
-                  Cogumelo::getSetupValue('mod:geozzy:resource:directUrl').'/'.
-                  $resourceData[ 'id' ].'#UAF';
-              }
-
-            }
-          }
-        }
-
-
-
-        // Cargo los datos de image dentro de los del recurso
-        if($resObj){
-          if($fileDataId = $resObj->getter('image')){
-            $fileDataModel = new FiledataModel();
-            $fileDataList = $fileDataModel->listItems(['filters'=>['id'=>$fileDataId]]);
-            if($fileDataList){
-              if($fileDataObj = $fileDataList->fetch()){
-                $resourceData[ 'image' ] = $this->getTranslatedData( $fileDataObj->getAllData( 'onlydata' ) );
-              }
-            }
-          }
-        }
-        /*$fileDep = $resObj->getterDependence( 'image' );
-        if( $fileDep !== false ) {
-          foreach( $fileDep as $fileModel ) {
-            $resourceData[ 'image' ] = $this->getTranslatedData( $fileModel->getAllData( 'onlydata' ) );
-          }
-        }*/
-
-        // Cargo los datos de temáticas con las que está asociado el recurso
-        $topicsDep = $resObj->getterDependence( 'id', 'ResourceTopicModel');
-        if( $topicsDep !== false ) {
-          $topicsArray = array();
-          foreach( $topicsDep as $topicRel ) {
-            $topicsArray[ $topicRel->getter('id') ] = $topicRel->getter('topic');
-            //$topicsIdsArray[$topicRel->getter('topic')] = $topicRel->getter('topic');
-          }
-          $resourceData[ 'topics' ] = $topicsArray;
-          $resourceData[ 'topic' ] = current( $resourceData[ 'topics' ] );
-
-          $topicModel = new TopicModel();
-          foreach( $topicsArray as $i => $topicId ) {
-            if( $t = $topicModel->listItems( [ 'filters' => [ 'id' => $topicId ], 'cache' => $this->cacheQuery ] )->fetch() ) {
-              $resourceTopicList[$topicId] = $t->getter('name');
-            }
-          }
-          $resourceData[ 'topicsName' ] = $resourceTopicList;
-          /**
-            TODO: Asegurarse de que os topics se cargan en orden
-          */
-        }
-
-        // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
-        $resourceData['taxonomies'] = $this->getTermsInfoByGroupIdName( $resourceData['id'] );
-        if( $resourceData['taxonomies'] !== false ) {
-          foreach( $resourceData['taxonomies'] as $idNameTaxgroup => $taxTermArray ) {
-            $resourceData[ $idNameTaxgroup ] = $taxTermArray;
-            // error_log( '$resourceData[ '.$idNameTaxgroup.' ] = : '.print_r( $taxTermArray, true ) );
-          }
-        }
-
-        // Cargo los datos del campo batiburrillo
-        $extraDataDep = $resObj->getterDependence( 'id', 'ExtraDataModel');
-        if( $extraDataDep !== false ) {
-          foreach( $extraDataDep as $extraData ) {
-            foreach( $langAvailable as $lang ) {
-              $resourceData[ $extraData->getter('name').'_'.$lang ] = $extraData->getter( 'value_'.$lang );
-            }
-          }
-        }
-
-        // Amplio la informacion de rType
-        // $resourceData['rTypeIdName'] = $this->getRTypeIdName( $resourceData['rTypeId'] );
-        $rTypeModel = new ResourcetypeModel();
-        $rTypeList = $rTypeModel->listItems( [ 'filters' => [ 'id' => $resourceData['rTypeId'] ], 'cache' => $this->cacheQuery ] );
-        if( $rTypeInfo = $rTypeList->fetch() ) {
-          $resourceData['rTypeName'] = $rTypeInfo->getter( 'name' );
-          $resourceData['rTypeIdName'] = $rTypeInfo->getter( 'idName' );
-        }
-
-        // if( $resourceData && !$this->resData ) {
-        //   $this->resData = $resourceData;
-        // }
-      }
-      // else {
-      //   $resourceData = $this->resData;
-      // }
-      return $resourceData;
+    }
+    else {
+      $resourceobj = $this->resObj;
     }
 
-
+    return( $resourceobj );
+  }
 
 
   /**
@@ -356,7 +157,7 @@ class ResourceController {
    *
    * @return array OR false
    */
-  public function getResourceDataOLD( $resId = false ) {
+  public function getResourceData( $resId = false ) {
     // error_log(__METHOD__);
     $resourceData = false;
 
