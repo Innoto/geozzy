@@ -6,7 +6,9 @@
   </style>
 
   {foreach from=$cogumelo.publicConf.langAvailableIds item=lang}
-    {$rExt.dataForm.formFieldsArray['rextEvent_eventTitle_'|cat:$lang]}
+    {if !empty($rExt.dataForm.formFieldsArray['rextEvent_eventTitle_'|cat:$lang])}
+      {$rExt.dataForm.formFieldsArray['rextEvent_eventTitle_'|cat:$lang]}
+    {/if}
   {/foreach}
 
   <div class="row">
