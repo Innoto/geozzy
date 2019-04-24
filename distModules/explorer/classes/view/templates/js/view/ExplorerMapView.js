@@ -58,11 +58,11 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     that.setMap( this.options.map );
 
     // Preload image
-    var arrow_img = new Image();
+    /*var arrow_img = new Image();
     arrow_img.src = that.options.mapArrowImage;
 
     var arrow_img_empy = new Image();
-    arrow_img_empy.src = that.options.mapArrowImageEmpty;
+    arrow_img_empy.src = that.options.mapArrowImageEmpty;*/
   },
 
   setParentExplorer: function( parentExplorer ) {
