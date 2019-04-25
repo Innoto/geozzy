@@ -19,7 +19,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       showGraph: false,
       hoverGraphDiv: false,
       ShowRouteInZoomLevel: 10,
-      routeResolution: 90,
+      routeResolution: 12,
       showMarkerStart: false,
       showMarkerEnd: false
     });

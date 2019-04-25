@@ -35,7 +35,7 @@ var rextRoutesJs = {
 
     geozzy.rExtMapInstance.resourceMarker.setMap(null);
 
-    routesCollection.url = '/api/routes/id/' + geozzy.rExtRoutesOptions.resourceId;
+    routesCollection.url = '/api/routes/id/' + geozzy.rExtRoutesOptions.resourceId+ '/resolution/'+geozzy.rExtMapInstance.resourceMap.getZoom();
 
 
 

@@ -55,7 +55,7 @@ class RoutesAPIView extends View
                 },
                 {
                   "name": "resolution",
-                  "description": "resolution",
+                  "description": "resolution (according gmaps zoom level values)",
                   "type": "array",
                   "items": {
                     "type": "integer"
