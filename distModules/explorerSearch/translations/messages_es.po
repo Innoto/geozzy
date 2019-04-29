@@ -11,4 +11,4 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/explorerSearch/classes/view/templates/js/ExplorerFilterSearchView.js:13
 msgid "Search"
-msgstr "Buscando"
+msgstr "Buscar"

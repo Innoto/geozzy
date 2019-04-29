@@ -11,7 +11,7 @@ msgstr ""
 
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:10
 msgid "Reservation URL"
-msgstr "URL de reservas"
+msgstr "URL de reserva"
 
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:15
 msgid "Reservation phone"

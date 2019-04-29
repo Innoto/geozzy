@@ -27,7 +27,7 @@ msgstr "URL externa"
 
 #: /home/proxectos/geozzy/distModules/rtypeBlog/classes/controller/RTypeBlogController.php:49
 msgid "Main Resource information"
-msgstr "Información principal del recurso"
+msgstr "Información del Recurso Principal"
 
 #: /home/proxectos/geozzy/distModules/rtypeBlog/classes/controller/RTypeBlogController.php:65
 msgid "Categorization"
@@ -35,4 +35,4 @@ msgstr "Categorización"
 
 #: /home/proxectos/geozzy/distModules/rtypeBlog/classes/controller/RTypeBlogController.php:74
 msgid "Edit Resource"
-msgstr "Editar recurso"
+msgstr "Editar Recurso"
