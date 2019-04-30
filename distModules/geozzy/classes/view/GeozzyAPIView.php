@@ -1981,6 +1981,10 @@ class geozzyAPIView extends View {
         'name' => $valueobject->getter('name', false), 'taxgroup' => $valueobject->getter('taxgroup'),
         'icon' => $valueobject->getter('icon'), 'iconAKey' => $valueobject->getter('iconAKey'),
         'weight' => $valueobject->getter('weight'));
+      if( !empty($valueobject->getter('parent')) ) {
+        $allData['parent'] = $valueobject->getter('parent');
+      }
+
       //$allData = $valueobject->getAllData('onlydata');
       echo $c.json_encode( $allData );
       $c=',';
