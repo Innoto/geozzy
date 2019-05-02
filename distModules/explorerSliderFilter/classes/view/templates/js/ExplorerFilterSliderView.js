@@ -35,6 +35,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         filteredValue: false,
         valueMin: 3,
         valueMax: 100,
+        valuesGrid: false,
         type: 'single',  // (single|double)
         prettify: function(num) {return num;}
       };
@@ -102,6 +103,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           from: that.filteredValue,
           postfix: that.options.postfix,
           keyboard: true,
+          grid: that.options.valuesGrid,
           prettify: function(num) { return that.options.prettify(num); },
           onStart: function (data) {
               //cogumelo.log("onStart");
