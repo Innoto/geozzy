@@ -15,11 +15,11 @@
   Llamadas a metodos:
 
   En ficheros de setup:
-  $conf->setSetupValue( 'mod:nombreModulo:level1:level2', $value );
+  $conf->createSetupValue( 'mod:nombreModulo:level1:level2', $value );
   $value = $conf->getSetupValue( 'mod:nombreModulo:level1:level2' );
 
   En código cogumelo:
-  Cogumelo::setSetupValue( 'mod:nombreModulo:level1:level2', $value );
+  Cogumelo::createSetupValue( 'mod:nombreModulo:level1:level2', $value );
   $value = Cogumelo::getSetupValue( 'mod:nombreModulo:level1:level2' );
 */
 
@@ -28,7 +28,7 @@
 //
 //  Mail sender
 //
-// $conf->setSetupValue( 'mail', array(
+// $conf->createSetupValue( 'mail', array(
 //   'type' => 'smtp',
 //   'host' => 'smtp.gmail.com',
 //   'port' => '587',
@@ -44,35 +44,35 @@
 //
 // Google keys
 //
-// $conf->setSetupValue( 'google:analytics:key', 'UA-.......-1' );
-// $conf->setSetupValue( 'google:maps:key', 'A..................................Q' );
-// $conf->setSetupValue( 'google:recaptcha:key:site', '6..................................T' );
-// $conf->setSetupValue( 'google:recaptcha:key:secret', '6..................................d' );
+// $conf->createSetupValue( 'google:analytics:key', 'UA-.......-1' );
+// $conf->createSetupValue( 'google:maps:key', 'A..................................Q' );
+// $conf->createSetupValue( 'google:recaptcha:key:site', '6..................................T' );
+// $conf->createSetupValue( 'google:recaptcha:key:secret', '6..................................d' );
 
 
 //
 // No se adminten URLs a ficheros solo con su Id
 //
-$conf->setSetupValue( 'mod:filedata:verifyAKeyUrl', true );
+$conf->createSetupValue( 'mod:filedata:verifyAKeyUrl', true );
 
 
 //
 //Activación por defecto compartir redes sociales
 //
-// $conf->setSetupValue( 'shareSocialNetwork:default',true );
+// $conf->createSetupValue( 'shareSocialNetwork:default',true );
 
 
 //
 // Admin.
 //
-$conf->setSetupValue( 'mod:admin:logoPath', '/img/logo.png' );
-$conf->setSetupValue( 'mod:admin:titlePath', 'GeozzySampleApp Admin' );
-// $conf->setSetupValue( 'mod:admin:menuClosed', true );
-// $conf->setSetupValue( 'mod:admin:defaultURL', 'topic/10' );
+$conf->createSetupValue( 'mod:admin:logoPath', '/img/logo.png' );
+$conf->createSetupValue( 'mod:admin:titlePath', 'GeozzySampleApp Admin' );
+// $conf->createSetupValue( 'mod:admin:menuClosed', true );
+// $conf->createSetupValue( 'mod:admin:defaultURL', 'topic/10' );
 
 
 //  Nombre de la carpeta que se utiliza para importar traducciones (carpeta situada en la raíz del proyecto)
-// $conf->setSetupValue( 'mod:admin:importFolder', 'importTranslations' );
+// $conf->createSetupValue( 'mod:admin:importFolder', 'importTranslations' );
 
 
 //
@@ -157,7 +157,7 @@ $C_INDEX_MODULES = [
 //
 // RTypes de "uso interno"
 //
-$conf->setSetupValue( 'mod:geozzy:resource:systemRTypes', [
+$conf->createSetupValue( 'mod:geozzy:resource:systemRTypes', [
   'rtypeUrl',
   'rtypePage',
   'rtypeFile',
@@ -165,14 +165,14 @@ $conf->setSetupValue( 'mod:geozzy:resource:systemRTypes', [
 
 
 // USER PROFILE
-// $conf->setSetupValue( 'mod:geozzyUser:profile', '' );
-// $conf->setSetupValue( 'mod:geozzyUser:recoveryPasswordRedirect', '/asdf' );
+// $conf->createSetupValue( 'mod:geozzyUser:profile', '' );
+// $conf->createSetupValue( 'mod:geozzyUser:recoveryPasswordRedirect', '/asdf' );
 
 
 //
 // Reglas para collections
 //
-$conf->setSetupValue( 'mod:geozzy:resource:collectionTypeRules', [
+$conf->createSetupValue( 'mod:geozzy:resource:collectionTypeRules', [
   'default' => [
     'default' => [
       'listOptions' => [],
@@ -190,7 +190,7 @@ $conf->setSetupValue( 'mod:geozzy:resource:collectionTypeRules', [
 //
 // Establecemos valores comunes para perfiles (colecciones tipo multimedia)
 //
-// $conf->setSetupValue( 'collections:imageProfile', [
+// $conf->createSetupValue( 'collections:imageProfile', [
 //   'default' => 'wmdpi4',
 //   'multimediaThumbnail' => 'imgMultimediaGallery',
 //   'multimediaLong' => 'imageMultimediaLarge'
@@ -200,7 +200,7 @@ $conf->setSetupValue( 'mod:geozzy:resource:collectionTypeRules', [
 //
 // Reglas para comentarios
 //
-$conf->setSetupValue( 'mod:geozzy:resource:commentRules',
+$conf->createSetupValue( 'mod:geozzy:resource:commentRules',
   array(
     'default' => array(
       'moderation' => 'all', // none|verified|all
@@ -214,7 +214,7 @@ $conf->setSetupValue( 'mod:geozzy:resource:commentRules',
 //
 // Alias por defecto en recursos
 //
-$conf->setSetupValue( 'mod:geozzy:resource:urlAliasPatterns', [
+$conf->createSetupValue( 'mod:geozzy:resource:urlAliasPatterns', [
   'default' => '/',
   'rtypeUrl' => [ 'default' => '/url/' ],
   'rtypeFile' => [ 'default' => '/file/' ],
@@ -224,17 +224,17 @@ $conf->setSetupValue( 'mod:geozzy:resource:urlAliasPatterns', [
 //
 // Limitando el contenido del sitemap.xml
 //
-$conf->setSetupValue( 'mod:geozzy:sitemap:ignoreRTypes', [
+$conf->createSetupValue( 'mod:geozzy:sitemap:ignoreRTypes', [
   'rtypeUrl',
   'rtypeFile',
 ]);
-$conf->setSetupValue( 'mod:geozzy:sitemap:regexUrlDeny', [
+$conf->createSetupValue( 'mod:geozzy:sitemap:regexUrlDeny', [
   '#/INTERNO[-_]#',
   '#^(/..)?/userverified/#',
   '#^(/..)?/userprofile#',
 ]);
-// $conf->setSetupValue( 'mod:geozzy:sitemap:regexUrlAllow', [ '#/politica-#', '#cookies#', '#user#' ] );
-// $conf->setSetupValue( 'mod:geozzy:sitemap:disable', true );
+// $conf->createSetupValue( 'mod:geozzy:sitemap:regexUrlAllow', [ '#/politica-#', '#cookies#', '#user#' ] );
+// $conf->createSetupValue( 'mod:geozzy:sitemap:disable', true );
 
 
 
@@ -249,11 +249,11 @@ include 'setup-500.project.filedataImageProfiles.php';
 //  Media server - SIEMPRE AL FINAL!!!
 //
 
-// $conf->setSetupValue( 'publicConf:globalVars', [ 'ALGO' ] );
+// $conf->createSetupValue( 'publicConf:globalVars', [ 'ALGO' ] );
 
-// $conf->setSetupValue( 'publicConf:setupFields', [ 'mod:geozzy:resource:algo' ] );
+// $conf->createSetupValue( 'publicConf:setupFields', [ 'mod:geozzy:resource:algo' ] );
 
-// $conf->setSetupValue( 'publicConf:vars:algo', 1234 );
+// $conf->createSetupValue( 'publicConf:vars:algo', 1234 );
 
 // $conf->addSetupValue( 'mod:mediaserver:publicConf:smarty:setupFields', 'user:session' );
 
