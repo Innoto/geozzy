@@ -92,7 +92,9 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
             //_.without(that.selectedTerms, parseInt( termid ));
 
             delete  that.selectedTerms[$.inArray( parseInt( termid ) , that.selectedTerms )];
-
+            that.selectedTerms = that.selectedTerms.filter(function (el) {
+              return el != null;
+            })
             termLi.removeClass('selected');
           }
           else {
