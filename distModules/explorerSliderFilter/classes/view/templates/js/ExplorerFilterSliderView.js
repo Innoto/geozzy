@@ -53,7 +53,12 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
 
       if( that.options.type === 'single'  && typeof price != "undefined") {
-
+        if (Array.isArray( price ) ) {
+          //alert('doble');
+        }
+        else {
+          //alert('sinxelo');
+        }
         if( price <= that.options.filteredValue || that.options.filteredValue == false ) {
           ret = true;
         }
@@ -63,11 +68,15 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         }
 
 
-
       }
       else
       if(  that.options.type === 'double'  && typeof price != "undefined"  ) {
-
+        if (Array.isArray( price ) ) {
+          //alert('doble');
+        }
+        else {
+          //alert('sinxelo');
+        }
         if( (price >= that.options.filteredValue[0] && price <= that.options.filteredValue[1] ) || that.options.filteredValue == false ) {
           ret = true;
         }

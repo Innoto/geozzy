@@ -73,6 +73,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     that.parentExplorer.bindEvent('mobileTouch', function(ev) {
       setTimeout( function(){
         that.centerOnMarker(ev.id);
+
         that.parentExplorer.displays.map.markerBounce( ev.id );
         setTimeout( function(){
           that.parentExplorer.displays.map.markerBounceEnd( ev.id );
@@ -240,7 +241,8 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     if( !that.markersCreated ) {
       that.parentExplorer.resourceMinimalList.each( function(e) {
 
-//cogumelo.log(that.chooseMarker(e));
+
+      if(typeof e.get('showMarker') === 'undefined' || e.get('showMarker') == 1) {
         var marker = e.mapMarker = new google.maps.Marker({
                   position: new google.maps.LatLng( e.get('lat'), e.get('lng') ),
                   map: that.map,
@@ -277,6 +279,9 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         });
 
         that.parentExplorer.resourceMinimalList.get( e.get('id') ).set('mapMarker', marker );
+      }
+
+
 
       });
     }
@@ -287,14 +292,19 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   hideAllMarkers: function() {
     var that = this;
     that.parentExplorer.resourceMinimalList.each( function(e) {
-      e.mapMarker.setVisible(false);
+      if( e.mapMarker ) {
+        e.mapMarker.setVisible(false);
+      }
+
     });
   },
 
   showAllMarkers: function() {
     var that = this;
     that.parentExplorer.resourceMinimalList.each( function(e) {
-      e.mapMarker.setVisible(true);
+      if( e.mapMarker ) {
+        e.mapMarker.setVisible(true);
+      }
     });
   },
 
@@ -318,8 +328,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     that.hideAllMarkers();
 
     that.parentExplorer.resourceIndex.each( function(e) {
-      e.mapMarker.setIcon( that.chooseMarker(e) );
-      e.mapMarker.setVisible(true);
+      if( e.mapMarker ) {
+        e.mapMarker.setIcon( that.chooseMarker(e) );
+        e.mapMarker.setVisible(true);
+      }
     });
 
 
@@ -351,9 +363,11 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
 
     that.parentExplorer.resourceIndex.each( function( e ) {
-      e.mapMarker.setIcon( that.chooseMarker(e) );
-      e.mapMarker.setVisible(true);
-      that.markers.push( e.mapMarker );
+      if( e.mapMarker ) {
+        e.mapMarker.setIcon( that.chooseMarker(e) );
+        e.mapMarker.setVisible(true);
+        that.markers.push( e.mapMarker );
+      }
     });
 
 
@@ -593,44 +607,37 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   markerBounce: function(id) {
     var that = this;
 
-    //if(!that.parentExplorer.explorerTouchDevice) {
-    that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setOptions({
-      title: 'selected'
-    });
-    //}
-
-    that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( null );
-
-
-    that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
-
-
-    //that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setAnimation(google.maps.Animation.BOUNCE);
-    //setTimeout(function(){ that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setAnimation(null); }, 800);
+    if( that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker') ) {
+      that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setOptions({
+        title: 'selected'
+      });
+      that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( null );
+      that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
+    }
   },
 
   markerBounceEnd: function(id) {
     var that = this;
-
-    that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setOptions({
-      title: ''
-    });
-    that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( null );
-
-    if( that.options.clusterize != false ) {
-
-      $(that.markerClusterer.clusters_).each( function(i,e){
-        if( e.isMarkerAlreadyAdded( that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker') ) == true ) {
-          if(e.markers_.length == 1) {
-            that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
-          }
-        }
+    if( that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker') ) {
+      that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setOptions({
+        title: ''
       });
-    }
-    else {
-      that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
-    }
+      that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( null );
 
+      if( that.options.clusterize != false ) {
+
+        $(that.markerClusterer.clusters_).each( function(i,e){
+          if( e.isMarkerAlreadyAdded( that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker') ) == true ) {
+            if(e.markers_.length == 1) {
+              that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
+            }
+          }
+        });
+      }
+      else {
+        that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
+      }
+    }
   },
 
   panTo: function( id, forcePan ) {
@@ -653,7 +660,13 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       //cogumelo.log(mapDistanceToInnerMargin, mapOuterZone);
 
       // PANTO
-      var toMove = that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() ;
+      //var toMove = that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() ;
+      var toMove = (
+        new google.maps.LatLng(
+          that.parentExplorer.resourceMinimalList.get( id ).get('lat'),
+          that.parentExplorer.resourceMinimalList.get( id ).get('lng')
+        )
+      );
       var P = that.coordToPixel( toMove );
 
       var fromMove = that.map.getCenter();
@@ -684,7 +697,12 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   centerOnMarker: function( id, forcePan ) {
     var that = this;
 
-    that.map.panTo( that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() );
+    that.map.panTo(
+      new google.maps.LatLng(
+        that.parentExplorer.resourceMinimalList.get( id ).get('lat'),
+        that.parentExplorer.resourceMinimalList.get( id ).get('lng')
+      )
+    );
   },
 
   getMapProjection: function() {
