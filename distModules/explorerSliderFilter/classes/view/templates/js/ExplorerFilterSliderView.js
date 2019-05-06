@@ -48,43 +48,65 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       var that = this;
       var ret = true;
 
+      var valueToFilter = [];
 
-      var price =  model.get(that.options.keyToFilter);
+      if (Array.isArray( that.options.keyToFilter ) ) {
+        valueToFilter[0] =  model.get(that.options.keyToFilter[0]);
+        valueToFilter[1] =  model.get(that.options.keyToFilter[1]);
+      }
+      else {
+        valueToFilter =  model.get(that.options.keyToFilter);
+      }
 
 
-      if( that.options.type === 'single'  && typeof price != "undefined") {
-        if (Array.isArray( price ) ) {
-          //alert('doble');
+      if( that.options.type === 'single'  && typeof valueToFilter != "undefined") {
+        if (Array.isArray( valueToFilter ) ) {
+          if( valueToFilter[0] < that.options.filteredValue && valueToFilter[1] > that.options.filteredValue) {
+            ret = true;
+          }
+          else {
+            ret = false;
+          }
         }
         else {
-          //alert('sinxelo');
+          if( valueToFilter <= that.options.filteredValue || that.options.filteredValue == false ) {
+            ret = true;
+          }
+          else
+          {
+            ret = false;
+          }
         }
-        if( price <= that.options.filteredValue || that.options.filteredValue == false ) {
-          ret = true;
-        }
-        else
-        {
-          ret = false;
-        }
-
 
       }
       else
-      if(  that.options.type === 'double'  && typeof price != "undefined"  ) {
-        if (Array.isArray( price ) ) {
-          //alert('doble');
+      if(  that.options.type === 'double'  && typeof valueToFilter != "undefined"  ) {
+        if (Array.isArray( valueToFilter ) ) {
+
+          if(typeof valueToFilter[0] == "undefined" || valueToFilter[0] == false) {
+             valueToFilter[0] = that.options.filteredValue[0];
+          }
+          if(typeof valueToFilter[1] == "undefined" || valueToFilter[1] == false) {
+             valueToFilter[1] = that.options.filteredValue[1];
+          }
+
+          if( valueToFilter[0] <= that.options.filteredValue[1] && valueToFilter[1] >= that.options.filteredValue[0]) {
+            ret = true;
+          }
+          else {
+            ret = false;
+          }
         }
         else {
-          //alert('sinxelo');
-        }
-        if( (price >= that.options.filteredValue[0] && price <= that.options.filteredValue[1] ) || that.options.filteredValue == false ) {
-          ret = true;
-        }
-        else
-        {
-          ret = false;
-        }
+          if( (valueToFilter >= that.options.filteredValue[0] && valueToFilter <= that.options.filteredValue[1] ) || that.options.filteredValue == false ) {
+            ret = true;
+          }
+          else
+          {
+            ret = false;
+          }
 
+        }
 
       }
       else{
