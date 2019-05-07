@@ -24,7 +24,7 @@ geozzy.travelPlannerComponents.TravelPlannerPrintDayView = Backbone.View.extend(
   render: function() {
     var that = this;
     $('body').append( that.modalTemplate({ 'modalId': 'printDayTpModal', 'modalTitle': __('Print Day') }) );
-    that.el = '#printDayTpModal'
+    that.el = '#printDayTpModal';
     that.$el = $(that.el);
 
     that.printContent();

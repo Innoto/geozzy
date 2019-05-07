@@ -22,7 +22,7 @@ geozzy.travelPlannerComponents.TravelPlannerHelpView = Backbone.View.extend({
   render: function() {
     var that = this;
     $('body').append( that.modalTemplate({ 'modalId': 'helpTpModal' }) );
-    that.el = '#helpTpModal'
+    that.el = '#helpTpModal';
     that.$el = $(that.el);
 
     that.helpTpModalTemplate = _.template( $('#helpTpModalTemplate').html() );

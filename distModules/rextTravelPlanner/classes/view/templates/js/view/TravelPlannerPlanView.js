@@ -225,7 +225,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     that.render();
   },
   addRouteTimeRes: function( day, time, positionOnDay){
-    var that = this
+    var that = this;
     var stringTime = '';
 
     if( time !== ''){
@@ -239,7 +239,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     $(resOnDay[positionOnDay]).find('.infoTimeRoute').html(stringTime);
   },
   addRouteTotalTime: function( day, time ){
-    var that = this
+    var that = this;
     var stringTime = '';
 
     if( time !== ''){

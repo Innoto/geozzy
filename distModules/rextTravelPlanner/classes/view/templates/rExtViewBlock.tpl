@@ -7,7 +7,9 @@
           <div class="tp-gotoPlan">{t}Go to my plan{/t} <i class="fa fa-angle-right" aria-hidden="true"></i></div>
           <div class="tp-goAddtoPlan"><i class="fa fa-angle-left" aria-hidden="true"></i> {t}Add Places{/t}</div>
         </div>
+        <div class="travelPlannerHelp"><i class="fa fa-info" aria-hidden="true"></i></div>
       </div>
+
       <div class="travelPlannerFilterBar clearfix">
         <div class="mode mode1">
           <span>{t}Filtros :{/t}</span>
