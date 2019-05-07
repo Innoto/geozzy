@@ -90,7 +90,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
              valueToFilter[1] = that.options.filteredValue[1];
           }
 
-          if( valueToFilter[0] <= that.options.filteredValue[1] && valueToFilter[1] >= that.options.filteredValue[0]) {
+          if( (valueToFilter[0] <= that.options.filteredValue[1] && valueToFilter[1] >= that.options.filteredValue[0]) || that.options.filteredValue == false ) {
             ret = true;
           }
           else {
