@@ -71,17 +71,17 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
         'translate' => true,
         'params' => [ 'type' => 'textarea', 'label' => __( 'Text to share on twitter' ), 'placeholder' => '#TITLE#' ],
         'rules' => [ 'maxlength' => '1000' ]
-      ],
+      ]/*,
       'activeGplus' => [
         'params' => [ 'type' => 'checkbox', 'class' => 'switchery', 'options'=> [ '1' => __('Activate share on Google+') ] ]
-      ]
+      ]*/
     ];
 
     $shareSocialNetwork = Cogumelo::getSetupValue('shareSocialNetwork:default');
     if( !empty( $shareSocialNetwork ) ){
       $fieldsInfo['activeFb']['params']['value'] = 1;
       $fieldsInfo['activeTwitter']['params']['value'] = 1;
-      $fieldsInfo['activeGplus']['params']['value'] = 1;
+      // $fieldsInfo['activeGplus']['params']['value'] = 1;
     }
 
     // $i18nCtrl = new I18nController();
