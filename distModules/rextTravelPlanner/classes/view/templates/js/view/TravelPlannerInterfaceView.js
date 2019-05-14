@@ -15,6 +15,7 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
     "click .addToPlan": "addToPlan",
     "click .tp-gotoPlan": "goToPlan",
     "click .tp-goAddtoPlan": "goAddToPlan",
+    "click .travelPlannerHelp": "getHelp",
     "click .travelPlannerFilterBar .days .filterDay": "filterDay",
 
     "click .travelPlannerMobile .tp-gotoMobilePlan": "goMobilePlan",
@@ -114,7 +115,7 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
   //Bind para cuando cambia un filtro
   changeFilters: function(e){
     var that = this;
-    if($(e.currentTarget).hasClass('filterByFavourites')){      
+    if($(e.currentTarget).hasClass('filterByFavourites')){
       if(that.$('.filterByFavourites').hasClass('active')){
         that.$('.filterByFavourites').removeClass('active');
       }else{
@@ -140,6 +141,13 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
     that.parentTp.travelPlannerMode = 2;
     that.changeTravelPlannerInterface(that.parentTp.travelPlannerMode);
   },
+
+  //Bind para cambiar a modo 2
+  getHelp: function(e){
+    var that = this;
+    that.parentTp.helpTp(false);
+  },
+
   changeTravelPlannerInterface: function(mode){
     var that = this;
     if(mode === 1){

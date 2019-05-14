@@ -119,6 +119,9 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     if(parseInt(that.currentDay)+1 === that.planDays){
       that.$('.travelPlannerMapPlan .filterDay-next').addClass('notVisible');
     }
+    if(that.parentTp.travelPlannerPlanView){
+      that.parentTp.travelPlannerPlanView.markSelectedDay(that.currentDay);
+    }
   },
   printMarkersOnMap: function(){
     var that = this;
