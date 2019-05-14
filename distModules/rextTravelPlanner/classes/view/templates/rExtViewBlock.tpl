@@ -290,7 +290,7 @@
       <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step5.png" class="img-responsive center-block" alt="{t}Step 5 - Travel Planner{/t}">
       <br>
       <br>
-      <p>{t}Before optimizing the route, the desired place of departure should be placed as the first element and the desired arrival place as the last one. Both elements could be the same place.{/t}</p>
+      <p>{t}IMPORTANT: Before optimizing the route, the desired place of departure should be placed as the first element and the desired arrival place as the last one. Both elements could be the same place.{/t}</p>
     </div>
     <div class="stepSix steps">
       <p>{t}STEP 6: Follow your travel plan on your smartphone{/t}</p>
