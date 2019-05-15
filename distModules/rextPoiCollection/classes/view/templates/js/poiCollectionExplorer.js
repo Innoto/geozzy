@@ -52,7 +52,7 @@
       explorerId:'pois',
       explorerSectionName:'Puntos de interese',
       debug:false,
-      aditionalParameters:geozzy.rExtPOIOptions,
+      aditionalParameters:geozzy.rExtPOIOptions, // aquí cárgase ResourceID
       resetLocalStorage: true
     });
 

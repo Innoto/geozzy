@@ -8,7 +8,8 @@ geozzy.model.TaxonomytermModel = Backbone.Model.extend({
     weight:0,
     taxgroup: false,
     deleted: 0,
-    icon: false
+    icon: false,
+    img: false
   }
 
 });

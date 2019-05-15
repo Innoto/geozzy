@@ -93,7 +93,7 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
       $filterRTypeParent = $form_values['rTypeIdName'];
       $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$filterRTypeParent.':poi:listOptions' );
     }
-    
+
     if( !$filter || count($filter) === 0 ){
       $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:poi:listOptions' );
     }
