@@ -289,21 +289,21 @@ geozzy.explorerComponents.listTinyView = Backbone.View.extend({
   resourceTouch: function( element ) {
     var that = this;
 
-    if(that.parentExplorer.explorerTouchDevice){
+    if(cogumelo.publicConf.mod_detectMobile_isTablet){
       that.resourceEvent( element, 'mouseenter');
     }
   },
 
   resourceHover: function( element ) {
     var that = this;
-    if(!that.parentExplorer.explorerTouchDevice){
+    if(!cogumelo.publicConf.mod_detectMobile_isTablet){
       that.resourceEvent( element, 'mouseenter');
     }
   },
 
   resourceOut: function( element ) {
     var that = this;
-    if(!that.parentExplorer.explorerTouchDevice){
+    if(!cogumelo.publicConf.mod_detectMobile_isTablet){
       that.resourceEvent( element, 'mouseleave');
     }
 
