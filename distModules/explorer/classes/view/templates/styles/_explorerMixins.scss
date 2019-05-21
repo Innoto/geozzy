@@ -15,6 +15,7 @@
 
    position: relative;
    height: 100vh;
+   height: calc((var(--vh, 1vh) * 100));
 
   .explorerContainer{
     -webkit-box-sizing: border-box;
@@ -104,6 +105,7 @@
    $explFilter-h: 150px, $explGallery-w: 30%, $explGallery-h: 100%, $explGallery-minh: $explGallery-h, $hheight: $headerHeight) {
    position: relative;
    height: calc(100vh - #{$hheight} );
+   height: calc((var(--vh, 1vh) * 100) - #{$hheight});
    //height: 100vh;
    &.stick{
      height: auto;
@@ -204,6 +206,7 @@
    $explFilter-h: 150px, $explGallery-w: 80%, $explGallery-h: 100%, $hheight: $headerHeight ) {
    position: relative;
    min-height: 100vh;
+   min-height: calc((var(--vh, 1vh) * 100));
   .explorerContainer{
     -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
