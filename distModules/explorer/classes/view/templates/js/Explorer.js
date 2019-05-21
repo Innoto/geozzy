@@ -91,9 +91,6 @@ geozzy.explorer = function( opts ) {
       }
     });
 
-    // render filters
-    that.renderFilters();
-
 
     that.resourceMinimalList.fetch(
       {
@@ -113,6 +110,8 @@ geozzy.explorer = function( opts ) {
           that.applyFilters();
           //that.options.minimalLoadSuccess();
           that.triggerEvent('minimalLoadSuccess',{});
+          // render filters
+          that.renderFilters();
         }
       }
 
