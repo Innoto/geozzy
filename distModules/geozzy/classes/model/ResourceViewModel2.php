@@ -176,7 +176,8 @@ class ResourceViewModel2 extends Model {
     'createdBefore' => ' ( r.timeCreation < ? ) ',
 
     //'termIdListInSet' => ' FIND_IN_SET( ?, geozzy_resource_view.termIdList ) ',
-    'rTypeIdName' => 'rt.idName = ?'
+    'rTypeIdName' => 'rt.idName = ?',
+    'idName' => 'r.idName = ?'
   );
 
 
