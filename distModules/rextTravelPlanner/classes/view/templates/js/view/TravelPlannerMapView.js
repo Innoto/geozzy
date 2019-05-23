@@ -108,19 +108,17 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
 
           $('.iWindow .addToPlan').on('click', function(ev){
             that.addToPlan( e.get('id') );
-          })
+          });
         });
 
         marker.addListener('mouseout', function() {
           //that.infoWindow.close(marker);
-          setTimeout(
-            function() {
-              //smart_infowindow_click_event_opened = false;
-              if(smart_infowindow_is_on_infowindow == false) {
-                that.infoWindow.close();
-              }
+          setTimeout( function() {
+            //smart_infowindow_click_event_opened = false;
+            if(smart_infowindow_is_on_infowindow == false) {
+              that.infoWindow.close();
             }
-          , 10 );
+          }, 10 );
         });
 
         e.set('marker', marker );
@@ -175,14 +173,15 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
     var that = this;
     var retObj = false;
     var iconUrl = false;
+    var iconProfile = false;
     //cogumelo.log(that.parentTp.resources.get(resourceId).get('categoryIds') );
     //currentCategory
 
     if(selected) {
-      var iconProfile = cogumelo.publicConf.geozzyTravelPlanner.markerImgProfileSelected;
+      iconProfile = cogumelo.publicConf.geozzyTravelPlanner.markerImgProfileSelected;
     }
     else {
-      var iconProfile = cogumelo.publicConf.geozzyTravelPlanner.markerImgProfile;
+      iconProfile = cogumelo.publicConf.geozzyTravelPlanner.markerImgProfile;
     }
 
     $.each(that.parentTp.categories, function(i,e) {

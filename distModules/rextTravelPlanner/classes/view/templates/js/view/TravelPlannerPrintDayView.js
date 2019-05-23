@@ -24,7 +24,7 @@ geozzy.travelPlannerComponents.TravelPlannerPrintDayView = Backbone.View.extend(
   render: function() {
     var that = this;
     $('body').append( that.modalTemplate({ 'modalId': 'printDayTpModal', 'modalTitle': __('Print Day') }) );
-    that.el = '#printDayTpModal'
+    that.el = '#printDayTpModal';
     that.$el = $(that.el);
 
     that.printContent();
@@ -68,7 +68,7 @@ geozzy.travelPlannerComponents.TravelPlannerPrintDayView = Backbone.View.extend(
     var data = {
       day : parseInt(that.paramDay)+1,
       route: that.parentTp.travelPlannerMapPlanView.directionsServiceRequest[that.paramDay]
-    }
+    };
 
     if(resourcesToList.length > 0 ){
       data.resources = resourcesToList.toJSON();
@@ -114,8 +114,8 @@ geozzy.travelPlannerComponents.TravelPlannerPrintDayView = Backbone.View.extend(
   //Convertimos los minutos totales de transporte en horas y minutos para pintarlos en el tpl:
   var seconds = totalTimeTransport % 60;
   var rest = (totalTimeTransport - seconds) / 60;
-  var minutes = rest % 60;
-  var hours = (rest - minutes) / 60;
+  minutes = rest % 60;
+  hours = (rest - minutes) / 60;
   var stringTotalTimeTransport = hours + "h " + minutes + " min";
 
   data.routeTimes = routeTimes;
