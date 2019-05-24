@@ -176,7 +176,8 @@ class ResourceViewModel2 extends Model {
     'createdBefore' => ' ( r.timeCreation < ? ) ',
 
     //'termIdListInSet' => ' FIND_IN_SET( ?, geozzy_resource_view.termIdList ) ',
-    'rTypeIdName' => 'rt.idName = ?'
+    'rTypeIdName' => 'rt.idName = ?',
+    'idName' => 'r.idName = ?',
   );
 
 
@@ -185,43 +186,46 @@ class ResourceViewModel2 extends Model {
   var $deploySQL = array();
 
   public function customSelectListItems( $extraArrayParam ) {
-      $consulta = 'SELECT
-        r.id, r.idName, r.rTypeId, rt.idName AS rTypeIdName, r.user, u.email AS userEmail, u.name AS userName, u.surname AS userSurname, r.userUpdate, r.published,
-        {multilang:r.title_$lang,}
-        {multilang:r.shortDescription_$lang,}
-        {multilang:r.mediumDescription_$lang,}
-        {multilang:r.content_$lang,}
-        r.image, fd.name AS imageName, fd.AKey AS imageAKey,
-        r.loc, r.defaultZoom, r.externalUrl,
-        {multilang:GROUP_CONCAT( DISTINCT if(lang="$lang",ua.urlFrom,null)) AS "urlAlias_$lang",}
-        {multilang:r.headKeywords_$lang,}
-        {multilang:r.headDescription_$lang,}
-        {multilang:r.headTitle_$lang,}
-        r.timeCreation, r.timeLastUpdate, r.timeLastPublish,
-        r.countVisits, r.weight,
-        GROUP_CONCAT( DISTINCT rTax.taxonomyterm ORDER BY rTax.weight, rTax.id ) AS termIdList,
-        GROUP_CONCAT( DISTINCT rTopic.topic ORDER BY rTopic.weight, rTopic.id ) AS topicIdList,
-        GROUP_CONCAT( DISTINCT rColl.collection ORDER BY rColl.weight, rColl.id ) AS collIdList,
-        rt.relatedModels AS relatedModels
-      FROM
-        (((((((
-        `geozzy_resource` `r`
-        JOIN `geozzy_resourcetype` `rt` )
-        LEFT JOIN `user_user` `u` ON (`u`.`id` = `r`.`user`) )
-        LEFT JOIN `geozzy_url_alias` `ua` ON (
-          `ua`.`resource` = `r`.`id` AND `ua`.`http` = 0 AND `ua`.`canonical` = 1 ) )
-        LEFT JOIN `filedata_filedata` AS `fd` ON (`r`.`image` = `fd`.`id`) )
-        LEFT JOIN `geozzy_resource_taxonomyterm` `rTax` ON (`r`.`id` = `rTax`.`resource`) )
-        LEFT JOIN `geozzy_resource_topic` `rTopic` ON (`r`.`id` = `rTopic`.`resource`) )
-        LEFT JOIN `geozzy_resource_collections` `rColl` ON (`r`.`id` = `rColl`.`resource`) )
-        WHERE
-            '. $extraArrayParam['strWhere'] . ' AND `rt`.`id` = `r`.`rTypeId`
-        GROUP BY `r`.`id`
-        '. $extraArrayParam['strOrderBy'] . '
-        '. $extraArrayParam['strRange'] . '
-      ';
-      return $consulta;
-    }
+
+    $consulta = 'SELECT
+      r.id, r.idName, r.rTypeId, rt.idName AS rTypeIdName,
+      r.user, u.email AS userEmail, u.name AS userName, u.surname AS userSurname,
+      r.userUpdate, r.published,
+      {multilang:r.title_$lang,}
+      {multilang:r.shortDescription_$lang,}
+      {multilang:r.mediumDescription_$lang,}
+      {multilang:r.content_$lang,}
+      r.image, fd.name AS imageName, fd.AKey AS imageAKey,
+      r.loc, r.defaultZoom, r.externalUrl,
+      {multilang:GROUP_CONCAT( DISTINCT if(lang="$lang",ua.urlFrom,null)) AS "urlAlias_$lang",}
+      {multilang:r.headKeywords_$lang,}
+      {multilang:r.headDescription_$lang,}
+      {multilang:r.headTitle_$lang,}
+      r.timeCreation, r.timeLastUpdate, r.timeLastPublish,
+      r.countVisits, r.weight,
+      GROUP_CONCAT( DISTINCT rTax.taxonomyterm ORDER BY rTax.weight, rTax.id ) AS termIdList,
+      GROUP_CONCAT( DISTINCT rTopic.topic ORDER BY rTopic.weight, rTopic.id ) AS topicIdList,
+      GROUP_CONCAT( DISTINCT rColl.collection ORDER BY rColl.weight, rColl.id ) AS collIdList,
+      rt.relatedModels AS relatedModels
+    FROM
+      (((((((
+      `geozzy_resource` `r`
+      JOIN `geozzy_resourcetype` `rt` )
+      LEFT JOIN `user_user` `u` ON (`u`.`id` = `r`.`user`) )
+      LEFT JOIN `geozzy_url_alias` `ua` ON (
+        `ua`.`resource` = `r`.`id` AND `ua`.`http` = 0 AND `ua`.`canonical` = 1 ) )
+      LEFT JOIN `filedata_filedata` AS `fd` ON (`r`.`image` = `fd`.`id`) )
+      LEFT JOIN `geozzy_resource_taxonomyterm` `rTax` ON (`r`.`id` = `rTax`.`resource`) )
+      LEFT JOIN `geozzy_resource_topic` `rTopic` ON (`r`.`id` = `rTopic`.`resource`) )
+      LEFT JOIN `geozzy_resource_collections` `rColl` ON (`r`.`id` = `rColl`.`resource`) )
+      WHERE
+          '. $extraArrayParam['strWhere'] . ' AND `rt`.`id` = `r`.`rTypeId`
+      GROUP BY `r`.`id`
+      '. $extraArrayParam['strOrderBy'] . '
+      '. $extraArrayParam['strRange'] . '
+    ';
+    return $consulta;
+  }
 
   /*public function customSelectListCount( $extraArrayParam ) {
       return "SELECT count(*) from my_model $extraArrayParam['strSQL']";
