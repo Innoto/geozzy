@@ -119,6 +119,9 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     if(parseInt(that.currentDay)+1 === that.planDays){
       that.$('.travelPlannerMapPlan .filterDay-next').addClass('notVisible');
     }
+    if(that.parentTp.travelPlannerPlanView){
+      that.parentTp.travelPlannerPlanView.markSelectedDay(that.currentDay);
+    }
   },
   printMarkersOnMap: function(){
     var that = this;
@@ -154,12 +157,13 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
   },
   addMarkerOnMap: function(item, type, label){
     var that = this;
-
+    var Icono = false;
     var markSelectedColor = (cogumelo.publicConf.geozzyTravelPlanner.colorMarkerPlanSelected) ? cogumelo.publicConf.geozzyTravelPlanner.colorMarkerPlanSelected : '#E26553';
     var markColor = (cogumelo.publicConf.geozzyTravelPlanner.colorMarkerPlan) ? cogumelo.publicConf.geozzyTravelPlanner.colorMarkerPlan : '#E26553';
+    var gMarker = false;
 
     if(type === "selected"){
-      var Icono = {
+      Icono = {
         path: google.maps.SymbolPath.CIRCLE,
         fillOpacity: 1,
         fillColor: markSelectedColor,
@@ -168,7 +172,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
         strokeColor: '#fff',
         scale: 13
       };
-      var gMarker = new google.maps.Marker({
+      gMarker = new google.maps.Marker({
         map: that.map,
         position: new google.maps.LatLng( item.loc.lat, item.loc.lng ),
         icon: Icono,
@@ -179,7 +183,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
       that.selectedMarkers.push({ id: item.id , marker: gMarker });
     }
     else{
-      var Icono = {
+      Icono = {
         path: google.maps.SymbolPath.CIRCLE,
         fillOpacity: 1,
         fillColor: markColor,
@@ -188,7 +192,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
         strokeColor: '#fff',
         scale: 6
       };
-      var gMarker = new google.maps.Marker({
+      gMarker = new google.maps.Marker({
         map: that.map,
         position: new google.maps.LatLng( item.loc.lat, item.loc.lng ),
         icon: Icono,
@@ -218,13 +222,11 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
       });
 
       gMarker.addListener('mouseout', function() {
-        setTimeout(
-          function() {
-            if(smart_infowindow_is_on_infowindow == false) {
-              that.infoWindow.close();
-            }
+        setTimeout(function() {
+          if(smart_infowindow_is_on_infowindow == false) {
+            that.infoWindow.close();
           }
-        , 10 );
+        } , 10 );
       });
     }
     else{
@@ -314,7 +316,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
   calcRoute: function( dataPoints, optimize ){
     var that = this;
     var firstLoc = false;
-    var lastLoc = false
+    var lastLoc = false;
     var waypointsLoc = [];
 
     var optimizeRes = (optimize) ? true : false;

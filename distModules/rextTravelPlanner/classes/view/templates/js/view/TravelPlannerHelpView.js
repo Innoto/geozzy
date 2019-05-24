@@ -6,23 +6,25 @@ geozzy.travelPlannerComponents.TravelPlannerHelpView = Backbone.View.extend({
   helpTpModalTemplate : false,
   modalTemplate : false,
   parentTp : false,
+  onCloseGetDates: false,
 
   events: {
     "click .selectYourDates": "closeModalResource"
   },
 
-  initialize: function( parentTp ) {
+  initialize: function( parentTp, onCloseGetDates ) {
     var that = this;
     that.delegateEvents();
     that.parentTp = parentTp;
     that.modalTemplate = _.template( geozzy.travelPlannerComponents.modalMdTemplate );
+    that.onCloseGetDates = onCloseGetDates;
     that.render();
   },
 
   render: function() {
     var that = this;
     $('body').append( that.modalTemplate({ 'modalId': 'helpTpModal' }) );
-    that.el = '#helpTpModal'
+    that.el = '#helpTpModal';
     that.$el = $(that.el);
 
     that.helpTpModalTemplate = _.template( $('#helpTpModalTemplate').html() );
@@ -35,7 +37,9 @@ geozzy.travelPlannerComponents.TravelPlannerHelpView = Backbone.View.extend({
     });
     that.$el.on('hidden.bs.modal', function (e) {
       e.target.remove();
-      that.parentTp.getDates();
+      if(that.onCloseGetDates){
+        that.parentTp.getDates();
+      }
     });
     $(document).on('hidden.bs.modal', '.modal', function () {
       $('.modal:visible').length && $(document.body).addClass('modal-open');

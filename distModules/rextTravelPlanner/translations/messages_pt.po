@@ -9,11 +9,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
 msgid "Select Dates"
 msgstr "Selecciona datas"
 
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:192
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:184
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:182
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:180
@@ -161,6 +162,8 @@ msgstr "Otimizar rota do día"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:305
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:305
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:305
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:310
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:310
 msgid ""
 "The route between the first and the last place of the day will be optimized."
 msgstr ""
@@ -176,6 +179,8 @@ msgstr "Otimizar"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:89
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:91
 msgid "Plan"
 msgstr ""
 
@@ -358,3 +363,11 @@ msgstr "Começo"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:387
 msgid "Llegada"
 msgstr "Chegada"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:293
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:293
+msgid ""
+"IMPORTANT: Before optimizing the route, the desired place of departure should be placed "
+"as the first element and the desired arrival place as the last one. Both "
+"elements could be the same place."
+msgstr "IMPORTANTE: Antes de otimizar a rota, o local de partida desejado deve ser colocado como o primeiro elemento e o local de chegada desejado como o último. Ambos os elementos podem ser o mesmo lugar."

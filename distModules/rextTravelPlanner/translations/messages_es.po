@@ -9,11 +9,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
 msgid "Select Dates"
 msgstr "Selecciona las fechas"
 
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:192
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:184
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:182
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:180
@@ -124,6 +125,8 @@ msgstr "Añadir sitios"
 #: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:13
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:15
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:15
 msgid "Filtros :"
 msgstr ""
 
@@ -160,6 +163,8 @@ msgstr "Optimizar"
 #: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:89
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:91
 msgid "Plan"
 msgstr ""
 
@@ -333,6 +338,8 @@ msgstr "¿Comenzamos?"
 #: /home/proxectos/becarios/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:14
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:14
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:14
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:16
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:16
 msgid "Sólo favoritos"
 msgstr ""
 
@@ -359,6 +366,10 @@ msgstr "Imprimir día"
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:383
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:352
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:383
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:357
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:388
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:357
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:388
 msgid "Comienzo"
 msgstr ""
 
@@ -380,5 +391,17 @@ msgstr ""
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:417
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:401
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:417
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:406
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:422
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:406
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:422
 msgid "Llegada"
 msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:293
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:293
+msgid ""
+"IMPORTANT: Before optimizing the route, the desired place of departure should be placed "
+"as the first element and the desired arrival place as the last one. Both "
+"elements could be the same place."
+msgstr "IMPORTANTE: antes de optimizar la ruta, debes establecer como primer elemento el lugar deseado de partida y, como último, el lugar de llegada. Podrá ser el mismo."

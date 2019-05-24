@@ -123,8 +123,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
       that.initPlan();
     }else{
-      that.helpTp();
-      //that.getDates();
+      that.helpTp(true);
     }
 
     geozzy.travelPlannerComponents.routerInstance = new geozzy.travelPlannerComponents.mainRouter();
@@ -149,13 +148,16 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     }
   };
 
+
+
   that.getDates = function(){
     that.travelPlannerGetDatesView = new geozzy.travelPlannerComponents.TravelPlannerGetDatesView(that);
   };
 
-  that.helpTp = function(){
-    that.travelPlannerHelpView = new geozzy.travelPlannerComponents.TravelPlannerHelpView(that);
+  that.helpTp = function(onCloseGetDates){
+    that.travelPlannerHelpView = new geozzy.travelPlannerComponents.TravelPlannerHelpView(that, onCloseGetDates);
   };
+
 
   that.initOptimizeDayModal = function( day ){
     that.travelPlannerOptimizeDayView = new geozzy.travelPlannerComponents.TravelPlannerOptimizeDayView(that, day);
