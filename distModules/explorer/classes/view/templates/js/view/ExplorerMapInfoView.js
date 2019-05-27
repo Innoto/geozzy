@@ -191,10 +191,10 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
     that.ready = false;
     setTimeout(function(){
       if(that.ready == false ) {
-        $('#'+that.divId).fadeOut(300);
+        $('#'+that.divId).fadeOut(50);
         //$('#'+that.divId+ ' *').remove();
       }
-    }, 400);
+    }, 250);
   },
 
   getTopLeftPosition: function() {
