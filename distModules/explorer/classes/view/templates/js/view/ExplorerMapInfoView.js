@@ -104,11 +104,26 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
 
   show: function( id ) {
     var that = this;
-    that.ready = id;
+
     that.createInfoMapDiv();
+
     var resourceInfo = new Backbone.Model(  );
+
     resourceInfo.set(that.parentExplorer.resourceMinimalList.get(id).toJSON());
 
+
+    /*if( id == that.ready) {
+      // se xa está aberto accedemos (para touch)
+      if(that.parentExplorer.explorerTouchDevice) {
+        that.parentExplorer.triggerEvent('resourceClick', {
+          id: id,
+          section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
+        });
+      }
+    }
+    else {*/
+    /*}*/
+    that.ready = id;
     that.parentExplorer.fetchPartialList(
       [id],
       function() {
@@ -147,49 +162,39 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
 
         $( '#'+that.divId ).html( that.template( element ) );
 
-        that.ready = id;
-        setTimeout(function(){
-            that.ready = id;
+        if( that.ready == id){
           $( '#'+that.divId ).show();
-        }, 50);
+          that.moveInfoMapDivWhenBehindMouse();
 
-
-        that.moveInfoMapDivWhenBehindMouse();
-
-        $('#' + that.divId + ' button.buttonTabletClose').on('click', function(ev){
-          that.hide();
-        });
-
-        $('#' + that.divId + ' button.buttonTabletAccess').on('click', function(ev){
-          that.hide();
-          //that.parentExplorer.navigateUrl( $(ev.target).attr('dataResourceAccessButton') );
-          //that.parentExplorer.triggerEvent( 'resourceAccess' , {id: id } );
-          that.parentExplorer.triggerEvent('resourceClick',{
-            id: id,
-            section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
+          $('#' + that.divId + ' button.buttonTabletClose').on('click', function(ev){
+            that.hide();
           });
 
-        });
+          $('#' + that.divId + ' button.buttonTabletAccess').on('click', function(ev){
+            that.hide();
+            //that.parentExplorer.navigateUrl( $(ev.target).attr('dataResourceAccessButton') );
+            //that.parentExplorer.triggerEvent( 'resourceAccess' , {id: id } );
+            that.parentExplorer.triggerEvent('resourceClick',{
+              id: id,
+              section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
+            });
 
+          });
 
+        }
       }
     );
   },
 
   hide: function() {
-    console.log('hide');
     var that = this;
-
     that.ready = false;
-
     setTimeout(function(){
       if(that.ready == false ) {
         $('#'+that.divId).fadeOut(50);
-        //$('#'+that.divId).hide();
+        //$('#'+that.divId+ ' *').remove();
       }
-    }, 200);
-
-
+    }, 250);
   },
 
   getTopLeftPosition: function() {
