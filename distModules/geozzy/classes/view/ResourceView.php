@@ -118,7 +118,7 @@ class ResourceView extends View {
       $resource = $this->actionResourceFormProcess( $form );
     }
     else{
-      $form->addFormError('Error en el formulario', 'formErrors');
+      //$form->addFormError('Error en el formulario', 'formErrors');
     }
     // Enviamos el OK-ERROR a la BBDD y al formulario
     $this->actionResourceFormSuccess( $form, $resource );
