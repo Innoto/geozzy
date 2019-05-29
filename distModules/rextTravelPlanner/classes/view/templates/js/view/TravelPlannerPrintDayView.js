@@ -114,8 +114,8 @@ geozzy.travelPlannerComponents.TravelPlannerPrintDayView = Backbone.View.extend(
   //Convertimos los minutos totales de transporte en horas y minutos para pintarlos en el tpl:
   var seconds = totalTimeTransport % 60;
   var rest = (totalTimeTransport - seconds) / 60;
-  var minutes = rest % 60;
-  var hours = (rest - minutes) / 60;
+  minutes = rest % 60;
+  hours = (rest - minutes) / 60;
   var stringTotalTimeTransport = hours + "h " + minutes + " min";
 
   data.routeTimes = routeTimes;

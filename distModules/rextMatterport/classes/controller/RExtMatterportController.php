@@ -58,14 +58,14 @@ class RExtMatterportController extends RExtController implements RExtInterface {
         'rules' => array( 'maxlength' => 15 )
       ),
       'autostart' => array(
-        'params' => array( 'label' => __( 'Auto-Start Guided Tour' ) ),
+        'params' => array( 'label' => __( 'Number of seconds before the Guided Tour automatically starts (negative number to not start the Guided Tour)' ) ),
         'rules' => array( 'digits' => true )
       ),
       'looped' => array(
         'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __( 'Looped Guided Tour' ) ) )
       ),
       'autoload' => array(
-        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __( 'Auto-Load' ) ) )
+        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __( 'Auto-Load Guided Tour' ) ) )
       ),
       'enableScrollWheel' => array(
         'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __( 'Enable Scroll Wheel') ) )

@@ -12,7 +12,7 @@ class PoisExplorerModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'rextPoiCollection#5',
+      'version' => 'rextPoiCollection#6',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_pois_explorer_index;
@@ -27,6 +27,7 @@ class PoisExplorerModel extends Model
           {multilang:geozzy_resource.shortDescription_$lang as shortDescription_$lang,}
           {multilang:geozzy_resource.mediumDescription_$lang as mediumDescription_$lang,}
           {multilang:geozzy_resource.content_$lang as content_$lang,}
+          {multilang:GROUP_CONCAT( DISTINCT if(lang="$lang",geozzy_url_alias.urlFrom,null)) AS urlAlias_$lang,}
           group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms,
           geozzy_resource.loc as loc,
           IF( geozzy_resourcetype.idName != "rtypePoi", True, False ) as isNormalResource
@@ -41,6 +42,8 @@ class PoisExplorerModel extends Model
         ON geozzy_resource.id = geozzy_resource_taxonomyterm.resource
         LEFT JOIN geozzy_resourcetype
         ON geozzy_resource.rTypeId = geozzy_resourcetype.id
+        LEFT JOIN geozzy_url_alias
+        ON ( geozzy_url_alias.resource = geozzy_resource.id AND geozzy_url_alias.http = 0 AND geozzy_url_alias.canonical = 1 )
 
         WHERE
           geozzy_resource.published = 1 AND
@@ -88,6 +91,11 @@ class PoisExplorerModel extends Model
       'type' => 'VARCHAR',
       'multilang' => true
     ),
+    'urlAlias' => array(
+      'type' => 'VARCHAR',
+      'size' => 2000,
+      'multilang' => true
+    ),
     'terms' => array(
       'type'=>'VARCHAR'
     ),
@@ -103,7 +111,7 @@ class PoisExplorerModel extends Model
   );
 
   static $extraFilters = array(
-    'ids' => ' id IN (?)'
+    'ids' => ' geozzy_pois_explorer_index.id IN (?)'
 
   );
 

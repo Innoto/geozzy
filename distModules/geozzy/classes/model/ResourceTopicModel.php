@@ -39,7 +39,7 @@ class ResourceTopicModel extends Model {
   );
 
   static $extraFilters = array(
-    'taxonomytermnIn' => ' taxonomyterm IN ( ? ) '
+    'taxonomytermnIn' => ' geozzy_resource_topic.taxonomyterm IN ( ? ) '
   );
 
 

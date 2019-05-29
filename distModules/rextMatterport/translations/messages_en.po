@@ -14,7 +14,7 @@ msgid "Model ID"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextMatterport/classes/controller/RExtMatterportController.php:61
-msgid "Auto-Start Guided Tour"
+msgid "Number of seconds before the Guided Tour automatically starts (negative number to not start the Guided Tour)"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextMatterport/classes/controller/RExtMatterportController.php:65
@@ -22,7 +22,7 @@ msgid "Looped Guided Tour"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextMatterport/classes/controller/RExtMatterportController.php:68
-msgid "Auto-Load"
+msgid "Auto-Load Guided Tour"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextMatterport/classes/controller/RExtMatterportController.php:71

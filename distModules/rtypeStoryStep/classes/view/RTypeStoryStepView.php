@@ -92,7 +92,7 @@ class RTypeStoryStepView extends RTypeViewCore implements RTypeViewInterface {
 
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
-    $panel = $this->getPanelBlock( __('<ul style="list-style:none;"><li>Create a new resource</li><li>Working with resource types)</li><li>Assign to this starred)</li></ul>'), __('Assign resources: howto') );
+    $panel = $this->getPanelBlock( '<ul style="list-style:none;"><li>'. __("Create a new resource") .'</li><li>'. __("Working with resource types") .'</li><li>'. __("Assign to this story") .'</li></ul>'. __('Assign resources: howto') );
     $this->template->addToFragment( 'col4', $panel );
     $this->template->exec();
   }

@@ -10,7 +10,9 @@ geozzy.explorerComponents.resourceMinimalModel = Backbone.Model.extend({
     mapVisible: 3,
     mapMarker: false,
     distanceToCenterKm:0,
-    img: false
+    img: false,
+    imageAKey: false,
+    imageName: false
   }
 
 });

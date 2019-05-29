@@ -35,7 +35,7 @@ var rextRoutesJs = {
 
     geozzy.rExtMapInstance.resourceMarker.setMap(null);
 
-    routesCollection.url = '/api/routes/id/' + geozzy.rExtRoutesOptions.resourceId;
+    routesCollection.url = '/api/routes/id/' + geozzy.rExtRoutesOptions.resourceId+ '/resolution/'+geozzy.rExtMapInstance.resourceMap.getZoom();
 
 
 
@@ -49,6 +49,14 @@ var rextRoutesJs = {
             showGraph: geozzy.rExtRoutesOptions.showGraph,
             graphContainer: geozzy.rExtRoutesOptions.graphContainer
           });
+
+          var r = route.options.routeModel;
+          if( typeof r.get('trackPoints')[0] != 'undefined' ) {
+            route.options.map.setCenter(
+              new google.maps.LatLng({lat: r.get('trackPoints')[0][0], lng: r.get('trackPoints')[0][1]})
+            );
+          }
+
         }
       }
     });

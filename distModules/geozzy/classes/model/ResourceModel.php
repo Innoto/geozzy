@@ -136,12 +136,12 @@ class ResourceModel extends Model {
     ',
     'find{multilang}' => ' ( UPPER( geozzy_resource.title_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR geozzy_resource.id = ? )',
     //'find' => " ( UPPER( geozzy_resource.title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR geozzy_resource.id = ? )",
-    'nottopic' => ' geozzy_resource.id NOT IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
-    'intopic' => '  geozzy_resource.id IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
+    'nottopic' => ' geozzy_resource.id NOT IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
+    'intopic' => '  geozzy_resource.id IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
 
-    'inTopicTaxonomyterm' => '  geozzy_resource.id IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.taxonomyterm=? ) ',
+    'inTopicTaxonomyterm' => '  geozzy_resource.id IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.taxonomyterm=? ) ',
 
-    'notintaxonomyterm' => ' geozzy_resource.id NOT IN ( select resource from geozzy_resource_taxonomyterm where geozzy_resource_taxonomyterm.taxonomyterm=? )',
+    'notintaxonomyterm' => ' geozzy_resource.id NOT IN ( select geozzy_resource_taxonomyterm.resource from geozzy_resource_taxonomyterm where geozzy_resource_taxonomyterm.taxonomyterm=? )',
     'inRtype' => ' geozzy_resource.rTypeId IN (?) ',
     'notInRtype' => ' geozzy_resource.rTypeId NOT IN (?) ',
     'ids' => ' geozzy_resource.id IN (?) ',
@@ -155,8 +155,8 @@ class ResourceModel extends Model {
     'notAsigned' => 'geozzy_resource.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources)',
 
     'distance2K' => ' geozzy_resource.loc IS NOT NULL AND ST_Distance_Sphere( geozzy_resource.loc, ST_GeomFromText( ? ) ) < 2000 ',
-    'idGt' => ' id > (?) ',
-    'idLt' => ' id < (?) '
+    'idGt' => ' geozzy_resource.id > (?) ',
+    'idLt' => ' geozzy_resource.id < (?) '
   );
 
 

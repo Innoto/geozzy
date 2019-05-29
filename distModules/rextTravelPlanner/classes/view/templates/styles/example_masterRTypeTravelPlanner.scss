@@ -58,10 +58,28 @@ body{
               }
             }
           }
+          .travelPlannerHelp{
+            height: 32px;
+            width: 32px;
+            @include font-size-big();
+            color: $gzzColor-RS;
+            border: 2px solid $gzzColor-RS;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            text-align: center;
+            cursor: pointer;
+            margin: 12px;
+            padding: 2px;
+            &:hover{
+              color: $gzzColor-text-dark;
+              border: 2px solid $gzzColor-text-dark;
+            }
+          }
           .travelPlannerButtonsBar{
             .tp-goAddtoPlan,
             .tp-gotoPlan{
-              .font-size-big();
+              @include font-size-big();
               background: $gzzColor-RS;
               color: $gzzColor-text-light;
               height: 58px;
@@ -319,13 +337,42 @@ body{
                   @include font-size-bigger();
                 }
                 .optimizeDay{
-                  text-align: right;
-                  @include font-size-small();
+                  font-size: 14px;
+                  margin-top: 5px;
+                  margin-left: 5px;
+                  padding: 5px 10px;
+                  float: right;
+                  text-align: center;
                   font-weight: 600;
-                  color: $gzzColor-RS;
+                  background: $gzzColor-violet;
+                  height: 32px;
+                  color: $gzzColor-text-light;
+                  -webkit-border-radius: 2px;
+                  -moz-border-radius: 2px;
+                  border-radius: 2px;
+                  cursor: pointer;
                   &:hover{
                     text-decoration: underline;
                     cursor: pointer;
+                  }
+                }
+                .printDay{
+                  margin-top: 5px;
+                  float: right;
+                  text-align: center;
+                  font-weight: 600;
+                  background: @gzzColor-violet;
+                  height: 32px;
+                  width: 32px;
+                  line-height: 32px;
+                  vertical-align: middle;
+                  color: @gzzColor-text-light;
+                  -webkit-border-radius: 2px;
+                  -moz-border-radius: 2px;
+                  border-radius: 2px;
+                  cursor: pointer;
+                  &:hover{
+                    text-decoration: underline;
                   }
                 }
               }
@@ -337,6 +384,34 @@ body{
               -moz-border-radius: 2px;
               border-radius: 2px;
             }//.plannerDayPlanner
+            &.selected{
+              .plannerDayHeader{
+                background-color: $gzzColor-violet;
+                padding-right: 10px;
+                .dayTitle{
+                  color: $gzzColor-violet;
+                }
+
+                .infoDay{
+                  color: $gzzColor-text-light;
+                }
+                .infoRight{
+                  color: $gzzColor-text-light;
+                  .showMap{
+                    display: none;
+                  }
+                  .optimizeDay{
+                    background: $gzzColor-bck-5;
+                    color: $gzzColor-violet;
+                  }
+                  .printDay{
+                    background: $gzzColor-bck-5;
+                    color: $gzzColor-violet;
+                  }
+                }
+
+              }
+            }
           }//plannerDay
         }//travelPlannerPlanDaysContainer
       }//travelPlannerPlan
@@ -539,7 +614,7 @@ body{
             .plannerDayHeader{
               position: relative;
               padding: 10px;
-              padding-right: 90px;
+              padding-right: 70px;
               background-color: $gzzColor-bck-3;
               .dayTitle{
                 float:left;
@@ -595,14 +670,24 @@ body{
                   @include font-size-big();
                 }
                 .optimizeDay{
-                  text-align: right;
                   @include font-size-small();
+                  margin-top: 5px;
+                  margin-left: 5px;
+                  padding: 4px 10px;
+                  float: left;
+                  text-align: center;
                   font-weight: 600;
-                  color: $gzzColor-RS;
+                  background: $gzzColor-violet;
+                  height: 28px;
+                  color: $gzzColor-text-light;
+                  -webkit-border-radius: 2px;
+                  -moz-border-radius: 2px;
+                  border-radius: 2px;
+                  cursor: pointer;
                   &:hover{
                     text-decoration: underline;
-                    cursor: pointer;
                   }
+
                 }
               }
 

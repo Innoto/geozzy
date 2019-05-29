@@ -3,12 +3,12 @@
 
 class RoutesController {
 
+  var $resolutionAtZoomZero = 40;
+  var $precissionDigits = 5;
+
   public function __construct() {
     $this->cacheQuery = true;
-
   }
-
-
 
   public function extractPoints( $geom ) {
     $points = array();
@@ -86,7 +86,7 @@ class RoutesController {
 
 
 
-  public function getRoute( $ids, $resolution = 100 ) {
+  public function getRoute( $ids, $zoomLevel = 20 ) {
     rextRoutes::autoIncludes();
     $useraccesscontrol = new UserAccessController();
 
@@ -143,7 +143,7 @@ class RoutesController {
 
           $route['circular'] = $routeVO->getter('circular');
           $route['centroid'] =  [ $cent->y(), $cent->x() ];
-          $route['trackPoints'] = $this->simplifyPoints(  $polygon, $resolution );
+          $route['trackPoints'] = $this->simplifyPoints(  $polygon, $zoomLevel );
         }
         catch(Exception $e) {
             Cogumelo::error( $e->getMessage() );
@@ -162,61 +162,21 @@ class RoutesController {
   }
 
 
-  private function simplifyPoints($polygon, $resolution) {
+  private function simplifyPoints($polygon, $zoomLevel) {
     $pointsFinal = [];
     $points = $this->extractPoints( $polygon );
     $cent = $polygon->centroid();
     $centroid = [ $cent->y(), $cent->x() ];
 
-
-    $minX = $centroid[0];
-    $minY = $centroid[1];
-    $maxX = $centroid[0];
-    $maxY = $centroid[1];
-
-
-
     if( count($points) ) {
 
-      // get max and min
-      foreach( $points as $pk => $point ) {
-        if( $point[0] < $minX ) {
-          $minX = $point[0];
-        }
-        else
-        if( $point[0] > $minX ) {
-          $maxX = $point[0];
-        }
-
-        if( $point[1] < $minY ) {
-          $minY = $point[1];
-        }
-        else
-        if( $point[1] > $minY ) {
-          $maxY = $point[1];
-        }
-
-      }
-
-      // distance beetwen max and min coordinates
-      $geomMaxDist = $this->distanceAB( [$minX,$minY], [$maxX,$maxY] );
-      $admisibleDistBetweenPoints =  $geomMaxDist - (($resolution  )/100) * $geomMaxDist;
-
+      $admisibleDistBetweenPoints = $this->resolutionAtZoomZero / pow($zoomLevel,2);
 
 
       $previusPoint = false;
       foreach( $points as $pk => $point ) {
 
-        /*if( $pk == sizeof($points)-1 ) {
-          $previusPoint = false;
-        }*/
-
         if($previusPoint) {
-          //$points[$pk][2] = $this->distanceAB( $previusPoint, $point  );
-          //$points[$pk][3] = $geomMaxDist;
-          //$points[$pk][3] = $this->distanceAB( $previusPoint, $point  );
-          //$points[$pk][4] = $admisibleDistBetweenPoints;
-
           if( $this->distanceAB( $previusPoint, $point  ) > $admisibleDistBetweenPoints ) {
             $pointsFinal[] = $point;
             $previusPoint = $point;
@@ -227,6 +187,9 @@ class RoutesController {
           $previusPoint = $point;
         }
       }
+
+      $point[0] = round( $point[0], $this->precissionDigits);
+      $point[1] = round( $point[1], $this->precissionDigits);
 
       // allways set final point
       $pointsFinal[ count($pointsFinal) - 1 ] = $point;

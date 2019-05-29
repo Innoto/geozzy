@@ -20,7 +20,7 @@ msgstr "Puedes subir ficheros de hasta 8MB con formato JPG y PNG"
 #: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
 #: /home/proxectos/geozzy/classes/view/templates/rTypeFileFormModalBlock.tpl:22
 msgid "If not uploaded, an automatic thumbnail will be created"
-msgstr ""
+msgstr "Si no se especifica, se genera una miniatura"
 
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/view/templates/rTypeMultiFileAdminFormModalBlock.tpl:19
 #: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19

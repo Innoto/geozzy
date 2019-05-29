@@ -47,10 +47,10 @@ class TaxonomytermModel extends Model {
   );
 
   static $extraFilters = array(
-    'idInCSV' => ' id IN ( ? ) ',
-    'idNameInCSV' => ' idName IN ( ? ) ',
-    'idNames' => ' idName IN ( ? ) ',
-    'taxgroupIn' => ' taxgroup IN ( ? ) '
+    'idInCSV' => ' geozzy_taxonomyterm.id IN ( ? ) ',
+    'idNameInCSV' => ' geozzy_taxonomyterm.idName IN ( ? ) ',
+    'idNames' => ' geozzy_taxonomyterm.idName IN ( ? ) ',
+    'taxgroupIn' => ' geozzy_taxonomyterm.taxgroup IN ( ? ) '
   );
 
 

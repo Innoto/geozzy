@@ -26,7 +26,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rTypeFileFormModalBlock.tpl:22
 #: /home/proxectos/geozzy/classes/view/templates/rTypeFileFormModalBlock.tpl:22
 msgid "If not uploaded, an automatic thumbnail will be created"
-msgstr ""
+msgstr "Se non se especifica, se xera unha miniatura"
 
 #: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
 #: /home/proxectos/geozzy/classes/view/templates/rTypeMultiFileAdminFormModalBlock.tpl:19

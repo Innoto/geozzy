@@ -29,13 +29,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/listSteps.tpl:5
 #: /home/proxectos/geozzy/classes/view/templates/rtypeStoryStep_classes_view_templates_listSteps.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/listSteps.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/listSteps.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/rtypeStoryStep_classes_view_templates_listSteps.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/listSteps.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/rtypeStoryStep_classes_view_templates_listSteps.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/rtypeStoryStep_classes_view_templates_listSteps.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/listSteps.tpl:5
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/templates/listSteps.tpl:5
 msgid "Steps available"
 msgstr ""
 
@@ -106,4 +100,16 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:95
 msgid "Edit Resource"
-msgstr ""
+msgstr "Editar recurso"
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:95
+msgid "Create a new resource"
+msgstr "Crear un novo recurso"
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:95
+msgid "Working with resource types"
+msgstr "Traballando con tipos de recursos"
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:95
+msgid "Assign to this story"
+msgstr "Asignar a esta historia"

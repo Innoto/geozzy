@@ -9,30 +9,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:67
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:11
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:62
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:68
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
-msgid "Select options"
-msgstr "Seleccionar opcións"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:74
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:12
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:74
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:75
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:57
 msgid "Add existing resources"
 msgstr "Engadir recursos existentes"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:87
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:88
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:70
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
-msgid "Edit Collection"
-msgstr "Editar colección"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:18
 msgid "Upload multimedia resource"
@@ -45,6 +27,24 @@ msgstr "Subir múltiples arquivos"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:24
 msgid "Link or embed multimedia resource"
 msgstr "Enlazar ou embeber recurso multimedia"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:11
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:62
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:68
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
+msgid "Select options"
+msgstr "Seleccione opcións"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:87
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:88
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:70
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
+msgid "Edit Collection"
+msgstr "Editar colección"
 
 #: /home/proxectos/geozzy/classes/view/templates/modal.tpl:15
 #: /home/proxectos/geozzy/classes/view/templates/modal.tpl:35
@@ -322,12 +322,6 @@ msgid "Assign selected"
 msgstr "Asignar seleccionados"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
-msgid ""
-"<ul style=\"list-style:none;\"><li>Create a new resource</li><li>Working "
-"with resource types)</li><li>Assign to this starred)</li></ul>"
-msgstr "Aquí poderás destacar contidos"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
 msgid "Assign resources: howto"
 msgstr "Asignar roles: cómo"
@@ -393,10 +387,12 @@ msgid "Stats Page"
 msgstr "Páxina de estadísticas"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
 msgid "Create a new resource"
 msgstr "Crear un novo recurso"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
 msgid "Working with resource types"
 msgstr "Traballando con tipos de recurso"
 
@@ -519,10 +515,6 @@ msgstr "Editar rol"
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:99
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:99
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:99
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:99
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:99
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:99
 msgid "Translates"
 msgstr "Traduccións"
 
@@ -530,26 +522,14 @@ msgstr "Traduccións"
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:103
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:66
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:67
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:103
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:103
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:103
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:103
 msgid "Export"
 msgstr "Exportar"
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:105
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:105
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:105
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:105
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:105
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:105
 msgid "Resources"
 msgstr "Recursos"
 
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:106
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:106
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:106
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:106
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:106
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:106
 msgid "Collections"
@@ -560,17 +540,9 @@ msgstr "Coleccións"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:222
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:235
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:247
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:110
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:110
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:110
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:110
 msgid "Import"
 msgstr "Importar"
 
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:112
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:112
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:112
-#: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:112
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:112
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:112
 msgid "Files"
@@ -582,43 +554,24 @@ msgstr "Ficheiros"
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:90
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:91
 #: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_translatesPage.tpl:91
-#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:53
-#: /home/proxectos/geozzy/classes/view/templates/translatesPage.tpl:91
 msgid "Send"
 msgstr "Enviar"
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:37
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:37
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:37
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:37
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:37
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:37
 msgid "He olvidado mi contraseña"
 msgstr "Esquecín o meu contrasinal"
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:39
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:39
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:39
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:39
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:39
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:39
 msgid "Recuperar contraseña"
 msgstr "Recuperar o contrasinal"
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:40
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:40
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:40
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:40
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:40
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:40
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:38
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:38
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/loginForm.tpl:38
 msgid ""
 "Introduce la dirección de correo electrónico asociada a tu cuenta y te "
 "enviaremos un enlace para restablecer tu contraseña"
@@ -626,30 +579,19 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:45
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:45
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:45
 msgid "Hay errores en el formulario"
 msgstr "Hai erros no formulario"
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:46
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:46
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:46
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:44
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/loginForm.tpl:44
 msgid "Recuperar"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:51
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:51
-#: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:51
 msgid ""
 "Se ha enviado un correo electrónico para recuperar tu cuenta de usuario."
 msgstr "Enviouse un correo electrónico para recuperar a túa conta de usuario."
@@ -670,3 +612,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:133
 msgid "Role"
 msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
+msgid "Assign to this starred"
+msgstr "Asignar a este destacado"

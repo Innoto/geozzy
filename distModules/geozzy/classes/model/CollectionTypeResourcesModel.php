@@ -39,12 +39,12 @@ class CollectionTypeResourcesModel extends Model {
   static $extraFilters = array(
     // Filtro para traer todos os recursos dos rtypes permitidos nunha coleccion ou os recursos nunha coleccion do tipo especificado e o recurso especificado
     // variable: "19,24;34;event" -> "rtype1, rtype2 ... rtypeN; idResource; collectionType"
-    'conditionsRtypeCollection' => " FIND_IN_SET(rTypeId, SUBSTRING_INDEX(?,';',1)) or (
-    	parentResource=SUBSTRING_INDEX(SUBSTRING_INDEX(?,';',2),';',-1)
+    'conditionsRtypeCollection' => " FIND_IN_SET(geozzy_collectiontype_resources.rTypeId, SUBSTRING_INDEX(?,';',1)) or (
+    	geozzy_collectiontype_resources.parentResource=SUBSTRING_INDEX(SUBSTRING_INDEX(?,';',2),';',-1)
     	and
-    	collectionType=SUBSTRING_INDEX(?,';',-1)
+    	geozzy_collectiontype_resources.collectionType=SUBSTRING_INDEX(?,';',-1)
     );",
-    'conditionsRtypenotInCollection' => " rTypeId IN (?) and parentResource IS NULL;"
+    'conditionsRtypenotInCollection' => " geozzy_collectiontype_resources.rTypeId IN (?) and geozzy_collectiontype_resources.parentResource IS NULL;"
 );
 
   var $notCreateDBTable = true;

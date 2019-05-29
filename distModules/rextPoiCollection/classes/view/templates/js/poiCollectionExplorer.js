@@ -29,7 +29,8 @@
   });
 
   var poisResourceExplorerInfowindow = ''+
-  '<div class="poiInfoWindow" <% if( isNormalResource == 1 ) { %> onclick="window.open(\'/'+ cogumelo.publicConf.C_LANG +'/resource/<%- id %>\')"<%}%> >'+
+  // '<div class="poiInfoWindow" <% if( isNormalResource == 1 ) { %> onclick="window.open(\'/'+ cogumelo.publicConf.C_LANG +'/resource/<%- id %>\')"<%}%> >'+
+  '<div class="poiInfoWindow" <% if( isNormalResource == 1 ) { %> onclick="window.open(\'/'+ cogumelo.publicConf.C_LANG +'<%- urlAlias %>\')"<%}%> >'+
     '<div class="poiImg">'+
       '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-image%>/squareCut/<%-image%>.jpg" />'+
     '</div>'+
@@ -51,7 +52,7 @@
       explorerId:'pois',
       explorerSectionName:'Puntos de interese',
       debug:false,
-      aditionalParameters:geozzy.rExtPOIOptions,
+      aditionalParameters:geozzy.rExtPOIOptions, // aquí cárgase ResourceID
       resetLocalStorage: true
     });
 
@@ -62,7 +63,7 @@
 
 
       if( ex.resourceMinimalList.get(o.id).get('isNormalResource') == 1 ) {
-        var win = window.open( '/'+cogumelo.publicConf.C_LANG+'/resource/'+o.id, '_blank');
+        var win = window.open( '/'+cogumelo.publicConf.C_LANG+ex.resourceMinimalList.get(o.id).get('urlAlias'), '_self' );
         win.focus();
       }
 

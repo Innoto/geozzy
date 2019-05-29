@@ -74,7 +74,6 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
     var route = that.options.routeModel;
 
-
     var routeMap = {};
     var routeData = [ ];
 

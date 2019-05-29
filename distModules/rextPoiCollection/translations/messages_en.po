@@ -25,7 +25,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:129
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:145
 msgid "Puntos de interés"
-msgstr ""
+msgstr "Points of interest"
 
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:149
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:137

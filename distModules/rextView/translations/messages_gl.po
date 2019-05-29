@@ -11,4 +11,4 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextView/classes/controller/RExtViewController.php:50
 msgid "viewAlternativeMode"
-msgstr ""
+msgstr "Vistas alternativas"

@@ -48,10 +48,10 @@ class RExtProfilesSocialNetworksController extends RExtController implements REx
     $rExtFieldNames = array();
 
     $fieldsInfo = array(
-      'googleplus' => array(
+      /*'googleplus' => array(
         'params' => array( 'label' => __( 'Google +' ) ),
         'rules' => array( 'maxlength' => 100 )
-      ),
+      ),*/
       'facebook' => array(
         'params' => array( 'label' => __( 'Facebook' ) ),
         'rules' => array( 'maxlength' => 100 )

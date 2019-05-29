@@ -7,7 +7,9 @@
           <div class="tp-gotoPlan">{t}Go to my plan{/t} <i class="fas fa-angle-right" aria-hidden="true"></i></div>
           <div class="tp-goAddtoPlan"><i class="fas fa-angle-left" aria-hidden="true"></i> {t}Add Places{/t}</div>
         </div>
+        <div class="travelPlannerHelp">?</div>
       </div>
+
       <div class="travelPlannerFilterBar clearfix">
         <div class="mode mode1">
           <span>{t}Filtros :{/t}</span>
@@ -128,8 +130,8 @@
       <div class="infoDay"><div class="day"><%- day.dayName %></div><div class="date"><%- day.date %></div></div>
       <div class="infoRight clearfix">
         <div class="clearfix">
-          <div class="infoTime"><i class="far fa-clock" aria-hidden="true"></i> <span>-h --min</span></div>
-          <div class="infoTimeTransport"></div>
+         <div class="infoTimeTransport"></div> 
+	 <div class="infoTime"><i class="far fa-clock" aria-hidden="true"></i> <span>-h --min</span></div>
         </div>
         <div class="showMap"><i class="far fa-map" aria-hidden="true"></i>&nbsp;<i class="fas fa-angle-double-right" aria-hidden="true"></i></div>
         <div class="optimizeDay"><i class="fas fa-magic " aria-hidden="true"></i>&nbsp;<span>{t}Optimize day{/t}</span></div>
@@ -286,6 +288,9 @@
     <div class="stepFive steps">
       <p>{t}STEP 5: You can also optimize your day of visits. Simply click on 'Optimize day'{/t}</p>
       <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step5.png" class="img-fluid center-block" alt="{t}Step 5 - Travel Planner{/t}">
+      <br>
+      <br>
+      <p>{t}Before optimizing the route, the desired place of departure should be placed as the first element and the desired arrival place as the last one. Both elements could be the same place.{/t}</p>
     </div>
     <div class="stepSix steps">
       <p>{t}STEP 6: Follow your travel plan on your smartphone{/t}</p>

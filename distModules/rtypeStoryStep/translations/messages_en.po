@@ -101,3 +101,15 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:95
 msgid "Edit Resource"
 msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:95
+msgid "Create a new resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:95
+msgid "Working with resource types"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:95
+msgid "Assign to this story"
+msgstr ""

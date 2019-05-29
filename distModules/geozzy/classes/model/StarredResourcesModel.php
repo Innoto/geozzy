@@ -48,7 +48,7 @@ class StarredResourcesModel extends Model
   );
 
   static $extraFilters = array(
-    'ids' => ' id IN (?)'
+    'ids' => ' geozzy_starred_resources.id IN (?)'
 
   );
 
