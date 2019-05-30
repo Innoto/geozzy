@@ -186,9 +186,11 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
     );
   },
 
-  hide: function() {
+  hide: function( id ) {
     var that = this;
-    that.ready = false;
+    if(that.ready == id) {
+      that.ready = false;
+    }
     setTimeout(function(){
       if(that.ready == false ) {
         $('#'+that.divId).fadeOut(50);
