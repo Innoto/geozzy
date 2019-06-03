@@ -127,9 +127,9 @@ geozzy.explorerComponents.filterButtonsViewTemplate = "" +
     "<% if(defaultOption){ %> "+
       "<li data-term-id='<%- defaultOption.value %>' > "+
         "<div class='title'><%- defaultOption.title %></div> "+
-        "<img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>-a<%- iconAKey %>/typeIcon/<%- img %>" +
-        "<img class='iconHover' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>-a<%- iconAKey %>/typeIconHover/<%- img %>" +
-        "<img class='iconSelected' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>-a<%- iconAKey %>/typeIconSelected/<%- img %>" +
+        "<img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>-a<%- iconAKey %>/typeIcon/<%- img %> '>" +
+        "<img class='iconHover' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>-a<%- iconAKey %>/typeIconHover/<%- img %>'>" +
+        "<img class='iconSelected' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>-a<%- iconAKey %>/typeIconSelected/<%- img %>'>" +
       "</li>"+
     "<%}%>"+
     "<%= options %>"+
@@ -139,9 +139,9 @@ geozzy.explorerComponents.filterButtonsViewTemplate = "" +
 geozzy.explorerComponents.filterButtonsViewOption = "" +
   "<li data-term-id='<%- id %>'>"+
     "<div class='title'><%- name %></div> "+
-    "<img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>-a<%- iconAKey %>/typeIcon/<%- img %>" +
-    "<img class='iconHover' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>-a<%- iconAKey %>/typeIconHover/<%- img %>" +
-    "<img class='iconSelected' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>-a<%- iconAKey %>/typeIconSelected/<%- img %>" +
+    "<img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>-a<%- iconAKey %>/typeIcon/<%- img %>'>" +
+    "<img class='iconHover' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>-a<%- iconAKey %>/typeIconHover/<%- img %>'>" +
+    "<img class='iconSelected' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>-a<%- iconAKey %>/typeIconSelected/<%- img %>'>" +
   "</li>";
 
 
