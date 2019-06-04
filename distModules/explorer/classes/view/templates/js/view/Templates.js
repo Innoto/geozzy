@@ -6,7 +6,7 @@ geozzy.explorerComponents.mapInfoViewTemplate = ''+
   '<% if('+cogumelo.publicConf.mod_detectMobile_isTablet+'){ %> <button class="buttonTabletClose"><i class="fas fa-times"></i></button> <% } %>' +
   '<div class="gempiContent">'+
     '<div class="gempiImg">'+
-      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/wmdpi4/<%-img%>.jpg">'+
+      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>-a<%- imageAKey %>/wmdpi4/image.jpg">'+
     '</div>'+
     '<div class="gempiInfo">'+
       '<div class="gempiTitle"><%-title%></div>'+
@@ -26,7 +26,7 @@ geozzy.explorerComponents.mapInfoViewMobileTemplate = ''+
     '<div class="closeButton"><i class="fas fa-times"></i></div>' +
 
     '<div class="gempiImg accessButton">'+
-      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/squareCut/<%-img%>.jpg">'+
+      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>-a<%- imageAKey %>/squareCut/image.jpg">'+
     '</div>'+
     '<div class="gempiInfo">'+
       '<div class="gempiTitle"><%-title%></div>'+
@@ -56,7 +56,7 @@ geozzy.explorerComponents.activeListTinyViewTemplate = ''+
 geozzy.explorerComponents.activeListTinyViewElement = ''+
   '<div data-resource-id="<%- id %>" class="col-4 col-sm-2 element element-<%- id %>">'+
     '<div class="elementImg">'+
-      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/wmdpi4/<%- img %>.jpg">'+
+      '<img class="img-fluid" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/wmdpi4/image.jpg">'+
       '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
         '<% if('+cogumelo.publicConf.mod_detectMobile_isTablet+'){ %><button class="buttonTabletAccess btn btn-primary">Discover</button><% } %>'+
       '</div>'+
@@ -134,7 +134,7 @@ geozzy.explorerComponents.filterButtonsViewTemplate = "" +
     "<%}%>"+
     "<%= options %>"+
   "</ul>";
-  "cgmlImg/<%- icon %>-a<%- iconAKey %>/typeIconMain/<%- img %>"
+
 
 geozzy.explorerComponents.filterButtonsViewOption = "" +
   "<li data-term-id='<%- id %>'>"+
