@@ -104,6 +104,12 @@ function successCollectionForm( data ){
 }
 
 var resourceFormMaps = [];
+var resourceFormMapsOnload = [];
+var ll = false;
+function onLoadMaps( onloadFunction ) {
+
+  resourceFormMapsOnload.push(onloadFunction);
+}
 
 function initializeMaps( ) {
   basket.require(
@@ -111,6 +117,10 @@ function initializeMaps( ) {
   ).then(function () {
     $('.location').each( function(i,e) {
       resourceFormMaps.push( new geozzy.rExtMapWidgetForm( $(e) ) );
+    });
+
+    $.each( resourceFormMapsOnload, function(ifunc, efunc) {
+      efunc();
     });
   });
 }

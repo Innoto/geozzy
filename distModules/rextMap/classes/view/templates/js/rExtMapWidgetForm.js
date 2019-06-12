@@ -18,6 +18,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
   that.addressInput = that.segmentDIV.find(".address");
   that.resourceMap = false;
   that.resourceMarker = false;
+  that.blockMarker = false;
 
   that.initializeMap = function( ){
     // Location Map
@@ -90,12 +91,13 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
 
         // Click map event
         google.maps.event.addListener(that.resourceMap, 'click', function(e) {
-          that.resourceMarker.setPosition( e.latLng );
-          that.resourceMarker.setMap( that.resourceMap );
-          that.latInput.val( that.resourceMarker.position.lat() );
-          that.lonInput.val( that.resourceMarker.position.lng() );
-
-          that.defaultZoom.val( that.resourceMap.getZoom() );
+          if( that.blockMarker != true ) {
+            that.resourceMarker.setPosition( e.latLng );
+            that.resourceMarker.setMap( that.resourceMap );
+            that.latInput.val( that.resourceMarker.position.lat() );
+            that.lonInput.val( that.resourceMarker.position.lng() );
+            that.defaultZoom.val( that.resourceMap.getZoom() );
+          }
         });
 
         // map zoom changed
