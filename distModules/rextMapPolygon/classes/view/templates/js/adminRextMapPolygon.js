@@ -19,11 +19,12 @@ var adminRextMapPolygon = function() {
      map: resourceFormMaps[0].resourceMap,
      //paths: coordinates,
      strokeColor: "#555555",
-     strokeOpacity: 0.8,
+     strokeOpacity: 0.2,
      strokeWeight: 2,
      fillColor: "#555555",
-     fillOpacity: 0.5,
-     zIndex: -1
+     fillOpacity: 0.2,
+     zIndex: -1,
+     clickable:false
   };//);
 
   that.icon = {
@@ -80,7 +81,10 @@ var adminRextMapPolygon = function() {
       $.each(that.cornerMarkers, function(i,marker) {
         marker.setMap(resourceFormMaps[0].resourceMap);
       });
+      that.polygon.set( 'fillOpacity' , 0.8 );
+      that.polygon.set( 'strokeOpacity' , 0.8 );
     }
+
   };
 
   that.stopEdit = function() {
@@ -93,6 +97,8 @@ var adminRextMapPolygon = function() {
       $.each(that.cornerMarkers, function(i,marker) {
         marker.setMap(null);
       });
+      that.polygon.set( 'fillOpacity' , that.polygonAttributes.fillOpacity );
+      that.polygon.set( 'strokeOpacity' , that.polygonAttributes.strokeOpacity );
     }
   };
 
