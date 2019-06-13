@@ -61,6 +61,11 @@ var adminRextMapPolygon = function() {
       that.stopEdit();
     });
 
+    $('.rExtMapPolygon .btnClearPolygon').on('click', function(){
+      that.clearAllCorners();
+    });
+
+
     google.maps.event.addListener( resourceFormMaps[0].resourceMap, "rightclick",function(){
       that.removeCorner();
       that.updateInputFromCorners();
@@ -75,6 +80,8 @@ var adminRextMapPolygon = function() {
     $('.rExtMapPolygon .btnEditPolygon').hide();
     $('.rExtMapPolygon .desc').show();
     $('.rExtMapPolygon .btnEndEditPolygon').show();
+    $('.rExtMapPolygon .btnClearPolygon').show();
+
     resourceFormMaps[0].blockMarker = true;
     that.editing = true;
     if( that.cornerMarkers != false) {
@@ -90,6 +97,7 @@ var adminRextMapPolygon = function() {
   that.stopEdit = function() {
     $('.rExtMapPolygon .btnEditPolygon').show();
     $('.rExtMapPolygon .btnEndEditPolygon').hide();
+    $('.rExtMapPolygon .btnClearPolygon').hide();
     $('.rExtMapPolygon .desc').hide();
     resourceFormMaps[0].blockMarker = false;
     that.editing = false;
@@ -141,6 +149,11 @@ var adminRextMapPolygon = function() {
     }
   };
 
+  that.clearAllCorners = function() {
+    while( that.polygon.getPath().getArray().length > 0 ) {
+      that.removeCorner();
+    }
+  };
 
   that.updateInputFromCorners = function() {
     $('.rExtMapPolygon .polygonCorners').val(  that.coordsToArrayStr( that.polygon.getPath().getArray()) );
@@ -153,14 +166,10 @@ var adminRextMapPolygon = function() {
     var polygonCornersArray;
 
     if( polygonCornersText != '') {
-
       eval('polygonCornersArray = new Array(' + polygonCornersText + ');' );
-
       $.each( that.arrayToCoords( polygonCornersArray ), function(i,e){
         that.addCorner(e, true);
       });
-
-
     }
   };
 
