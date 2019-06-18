@@ -1,11 +1,9 @@
-$(document).ready( function(){
 
-  onLoadMaps( function() {
+onLoadMaps( function() {
+  google.maps.event.addListenerOnce( resourceFormMaps[0].resourceMap, "idle", function(ev){
     var adminRextMapPolygonInstance = new adminRextMapPolygon();
-
     adminRextMapPolygonInstance.initialize();
   });
-
 });
 
 
