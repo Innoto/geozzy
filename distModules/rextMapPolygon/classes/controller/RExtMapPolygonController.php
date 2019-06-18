@@ -45,7 +45,7 @@ class RExtMapPolygonController extends RExtController implements RExtInterface {
 
         $fieldsInfo = array(
           'polygonGeometry' => array(
-            'rules' => array( 'digits' => true )
+            'rules' => array( )
           )
         );
 
@@ -59,7 +59,7 @@ class RExtMapPolygonController extends RExtController implements RExtInterface {
         }
 
         $form->loadArrayValues( $valuesArray );
-        //var_dump($valuesArray);exit;
+        //($valuesArray);exit;
         // Add RExt info to form
         foreach( $fieldsInfo as $fieldName => $info ) {
           if( isset( $info[ 'translate' ] ) && $info[ 'translate' ] ) {
@@ -123,6 +123,44 @@ class RExtMapPolygonController extends RExtController implements RExtInterface {
    * @param $resource ResourceModel
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
+    if( !$form->existErrors() ) {
+      //$numericFields = array( 'averagePrice', 'capacity' );
+      $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
+
+      $valuesArray[ 'resource' ] = $resource->getter( 'id' );
+
+//var_dump(json_decode('['.$valuesArray[ 'polygonGeometry' ].']' ));
+      //Route start LOCATION
+      /*
+      if( isset( $valuesArray[ 'polygonGeometry' ] ) && is_array(json_decode('['.$valuesArray[ 'polygonGeometry' ].']' )) ) {
+        Cogumelo::load( 'coreModel/DBUtils.php' );
+        $valuesArray[ 'polygonGeometry' ] = DBUtils::encodeGeometry(
+          array(
+            'type' => 'POLYGON',
+            'data'=> json_decode('['.$valuesArray[ 'polygonGeometry' ].']' )
+          )
+        );
+
+      }
+*/
+
+
+      $this->rExtModel = new RExtMapPolygonModel( $valuesArray );
+      if( $this->rExtModel === false ) {
+        $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
+      }
+    }
+
+
+
+
+
+    if( !$form->existErrors() ) {
+      $saveResult = $this->rExtModel->save();
+      if( $saveResult === false ) {
+        $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
+      }
+    }
   }
 
 

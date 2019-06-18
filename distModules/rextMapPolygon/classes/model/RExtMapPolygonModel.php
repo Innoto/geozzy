@@ -18,7 +18,7 @@ class RExtMapPolygonModel extends Model {
       'key' => 'id'
     ),
     'polygonGeometry' => array(
-      'type' => 'POLYGON'
+      'type' => 'TEXT'
     )
   );
 
