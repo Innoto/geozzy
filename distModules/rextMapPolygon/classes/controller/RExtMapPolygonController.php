@@ -182,6 +182,10 @@ class RExtMapPolygonController extends RExtController implements RExtInterface {
 
      $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
 
+     $rExtViewBlockInfo['template']['full'] = new Template();
+     $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+     $rExtViewBlockInfo['template']['full']->addClientScript('js/publicRextMapPolygon.js', 'rextMapPolygon');
+     $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextMapPolygon' );
 
      return $rExtViewBlockInfo;
    }
