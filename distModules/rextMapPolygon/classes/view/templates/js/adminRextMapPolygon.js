@@ -151,6 +151,7 @@ var adminRextMapPolygon = function() {
     while( that.polygon.getPath().getArray().length > 0 ) {
       that.removeCorner();
     }
+    $('.rExtMapPolygon input.cgmMForm-field-rExtMapPolygon_polygonGeometry').val( '' );
   };
 
   that.updateInputFromCorners = function() {
