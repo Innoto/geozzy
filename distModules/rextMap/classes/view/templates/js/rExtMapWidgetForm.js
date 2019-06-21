@@ -5,6 +5,7 @@ var geozzy = geozzy || {};
 
 */
 
+
 geozzy.rExtMapWidgetForm = function( segmentDIV ) {
   var that = this;
   var resourceLocation = __('Resource location');
