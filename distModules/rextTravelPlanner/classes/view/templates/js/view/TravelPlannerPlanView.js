@@ -60,6 +60,10 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
       'maxDepth': 1,
       'dragClass': "gzznestable dd-dragel",
       callback: function(l, e) {
+        movedDay = $(l).parent().attr('data-day');
+        if(movedDay){
+          that.parentTp.showMap( movedDay );
+        }
         that.fromHtmlToModel();
         that.updateTotalTimes();
         that.parentTp.travelPlannerMapPlanView.clearDirectionsServiceRequest();
@@ -70,6 +74,8 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     that.fromModeltoHtml();
     that.updateTotalTimes();
     that.parentTp.travelPlannerMapPlanView.render();
+    //Una vez pintamos los dias selecionamos el primero
+    that.markSelectedDay(0);
   },
 
   showMapDay: function(e){
@@ -80,6 +86,14 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
       geozzy.travelPlannerComponents.routerInstance.navigate("map", {trigger: true});
     }
   },
+
+  markSelectedDay: function(day){
+    var that = this;
+    $('.travelPlannerPlan .plannerDay').removeClass('selected');
+    $('.travelPlannerPlan .plannerDay-'+day).addClass('selected');
+  },
+
+
   addResourcesPlan: function (idResource, days, t){
     var that = this;
     $.each( days, function(i,d){
@@ -225,7 +239,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     that.render();
   },
   addRouteTimeRes: function( day, time, positionOnDay){
-    var that = this
+    var that = this;
     var stringTime = '';
 
     if( time !== ''){
@@ -239,7 +253,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     $(resOnDay[positionOnDay]).find('.infoTimeRoute').html(stringTime);
   },
   addRouteTotalTime: function( day, time ){
-    var that = this
+    var that = this;
     var stringTime = '';
 
     if( time !== ''){

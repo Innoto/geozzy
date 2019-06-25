@@ -27,4 +27,4 @@ msgstr ""
 
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextReccommended_classes_view_templates_rExtViewBlock.tpl:17
 msgid "Find out!"
-msgstr "Descúbrelos!"
+msgstr "¡Descúbrelos!"

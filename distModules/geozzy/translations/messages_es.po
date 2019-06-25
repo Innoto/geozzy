@@ -106,7 +106,7 @@ msgstr "Menos"
 
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceCollectionViewBlock.tpl:12
 msgid "Find out!"
-msgstr "Averígualo"
+msgstr "¡Descúbrelos!"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:58
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:61
@@ -139,7 +139,7 @@ msgstr "Cargar multimedia"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:132
 msgid "Upload multiple files"
-msgstr "Cargar múltiples ficheros"
+msgstr "Subir múltiples ficheros"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:138
 msgid "Add external link"

@@ -58,6 +58,24 @@ body{
               }
             }
           }
+          .travelPlannerHelp{
+            height: 32px;
+            width: 32px;
+            .font-size-big();
+            color: @gzzColor-RS;
+            border: 2px solid @gzzColor-RS;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            text-align: center;
+            cursor: pointer;
+            margin: 12px;
+            padding: 2px;
+            &:hover{
+              color: @gzzColor-text-dark;
+              border: 2px solid @gzzColor-text-dark;
+            }
+          }
           .travelPlannerButtonsBar{
             .tp-goAddtoPlan,
             .tp-gotoPlan{
@@ -290,7 +308,7 @@ body{
               .infoRight{
                 float: right;
                 .infoTime{
-                  float: left;
+                  float: right;
                   text-align: right;
                   .font-size-small();
                   font-weight: 600;
@@ -298,7 +316,7 @@ body{
                 }
                 .infoTimeTransport{
                   margin-left: 10px;
-                  float: left;
+                  float: right;
                   text-align: right;
                   .font-size-small();
                   font-weight: 600;
@@ -319,15 +337,45 @@ body{
                   .font-size-bigger();
                 }
                 .optimizeDay{
-                  text-align: right;
-                  .font-size-small();
+                  font-size: 14px;
+                  margin-top: 5px;
+                  margin-left: 5px;
+                  padding: 5px 10px;
+                  float: right;
+                  text-align: center;
                   font-weight: 600;
-                  color: @gzzColor-RS;
+                  background: @gzzColor-violet;
+                  height: 32px;
+                  color: @gzzColor-text-light;
+                  -webkit-border-radius: 2px;
+                  -moz-border-radius: 2px;
+                  border-radius: 2px;
+                  cursor: pointer;
                   &:hover{
                     text-decoration: underline;
-                    cursor: pointer;
                   }
                 }
+                .printDay{
+                  margin-top: 5px;
+                  float: right;
+                  text-align: center;
+                  font-weight: 600;
+                  background: @gzzColor-violet;
+                  height: 32px;
+                  width: 32px;
+                  line-height: 32px;
+                  vertical-align: middle;
+                  color: @gzzColor-text-light;
+                  -webkit-border-radius: 2px;
+                  -moz-border-radius: 2px;
+                  border-radius: 2px;
+                  cursor: pointer;
+                  &:hover{
+                    text-decoration: underline;
+                  }
+                }
+
+
               }
 
             }
@@ -337,6 +385,34 @@ body{
               -moz-border-radius: 2px;
               border-radius: 2px;
             }//.plannerDayPlanner
+            &.selected{
+              .plannerDayHeader{
+                background-color: @gzzColor-violet;
+                padding-right: 10px;
+                .dayTitle{
+                  color: @gzzColor-violet;
+                }
+
+                .infoDay{
+                  color: @gzzColor-text-light;
+                }
+                .infoRight{
+                  color: @gzzColor-text-light;
+                  .showMap{
+                    display: none;
+                  }
+                  .optimizeDay{
+                    background: @gzzColor-bck-5;
+                    color: @gzzColor-violet;
+                  }
+                  .printDay{
+                    background: @gzzColor-bck-5;
+                    color: @gzzColor-violet;
+                  }
+                }
+
+              }
+            }
           }//plannerDay
         }//travelPlannerPlanDaysContainer
       }//travelPlannerPlan
@@ -539,7 +615,7 @@ body{
             .plannerDayHeader{
               position: relative;
               padding: 10px;
-              padding-right: 90px;
+              padding-right: 70px;
               background-color: @gzzColor-bck-3;
               .dayTitle{
                 float:left;
@@ -595,13 +671,22 @@ body{
                   .font-size-big();
                 }
                 .optimizeDay{
-                  text-align: right;
                   .font-size-small();
+                  margin-top: 5px;
+                  margin-left: 5px;
+                  padding: 4px 10px;
+                  float: left;
+                  text-align: center;
                   font-weight: 600;
-                  color: @gzzColor-RS;
+                  background: @gzzColor-violet;
+                  height: 28px;
+                  color: @gzzColor-text-light;
+                  -webkit-border-radius: 2px;
+                  -moz-border-radius: 2px;
+                  border-radius: 2px;
+                  cursor: pointer;
                   &:hover{
                     text-decoration: underline;
-                    cursor: pointer;
                   }
                 }
               }
@@ -875,6 +960,223 @@ body{
       margin-top: 20px;
       button{
         margin: 0 10px;
+      }
+    }
+  }
+}
+
+#printDayTpModal{
+
+  .modal-dialog{
+    .modal-content{
+      .modal-body{
+
+        .title{
+          // .font-size-bigger();
+          // padding-bottom: 10px;
+          text-transform:uppercase;
+          font-family: @font-family-titles;
+
+          &.day{
+            font-family:@font-family-base;
+            font-weight: 500;
+            // font-size: 32px;
+            color: @gzzColor-RS !important;
+          }
+        }
+
+        .timeTotal{
+          text-align:center;
+          .font-size-base();
+          font-weight: 500;
+          .infoTotalTime{
+            display:inline-block;
+          }
+          .infoTotalTimeTransport{
+            display:inline-block;
+            margin-right:10px;
+          }
+        }
+        .resource{
+          padding:10px;
+          margin: 15px;
+          border-bottom: 1px solid @gzzColor-RS;
+
+          .startAddress{
+            text-align:center;
+            // margin:20px auto;
+            table{
+              margin:15px auto;
+              .start{
+                font-weight: bold;
+              }
+            }
+
+          }
+
+          .endAddress{
+            text-align:center;
+            // margin:20px auto;
+
+            table{
+              margin:20px auto;
+              .end{
+                font-weight: bold;
+              }
+            }
+
+          }
+
+          .resourceData{
+            text-align:center;
+
+            .infoLeft{
+              float:left;
+              width:40%;
+              padding-top:20px;
+              .imgResource{
+                margin-top: 5px;
+              }
+              .times{
+                text-align:center;
+                margin-top:5px;
+                margin-bottom:10px;
+                .infoTime{
+                  display:inline-block;
+                  .font-size-base();
+                  font-weight: 500;
+                  vertical-align: bottom;
+                }
+                .infoTimeTransport{
+                  display:inline-block;
+                  margin-right: 10px;
+                  .font-size-base();
+                  font-weight: 500;
+                  vertical-align: bottom;
+                }
+              }
+            }
+
+            .infoRight{
+              float:right;
+              width:50%;
+              .directions{
+                margin: 10px 5px;
+
+
+                table.steps{
+                  margin:0 auto;
+                  tr{
+                    border-bottom: 1px solid lightgrey;
+                    td{
+                      padding:10px;
+                      text-align:left;
+                      font-size:@font-size-base;
+                    }
+                  }
+                }
+
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media print{
+  #printDayTpModal{
+    position: static;
+
+    .modal-dialog{
+      margin:0;
+
+      &.modal-lg{
+        width:100%;
+      }
+
+      .modal-content{
+        border:none;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius:0;
+        .modal-header{
+          display:none;
+        }
+
+        .modal-body{
+          .title{
+            margin-top: 15px;
+            font-size:25px;
+            color: @gzzColor-RS !important;
+
+            &.day{
+            font-size:30px;
+              color: @gzzColor-RS !important;
+            }
+
+          }
+
+          .timeTotal{
+            margin-bottom:10px;
+            font-size:14px;
+          }
+          .resource{
+            padding:5px;
+            margin-top: 20px;
+            margin-bottom:20px;
+            .resourceData{
+              .infoLeft{
+                .times{
+                  .infoTime{
+                    font-size:14px;
+                  }
+                  .infoTimeTransport{
+                    font-size:14px;
+                  }
+                }
+              }
+
+              .infoRight{
+                .directions{
+
+                  table.steps{
+                    tr{
+                      td{
+                        font-size: 12px;
+                        padding:5px;
+                      }
+                    }
+                  }
+
+
+                }
+              }
+            }
+
+            .startAddress{
+              font-size: 14px;
+              margin-top:5px;
+              margin-bottom:25px;
+              .start{
+                //font-size: 14px;
+              }
+            }
+
+            .endAddress{
+              font-size: 14px;
+              margin-top:5px;
+              margin-bottom:25px;
+              .end{
+                //font-size: 14px;
+              }
+            }
+
+          }
+        }
       }
     }
   }

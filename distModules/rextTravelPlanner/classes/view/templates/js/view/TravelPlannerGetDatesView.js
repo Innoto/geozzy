@@ -26,7 +26,7 @@ geozzy.travelPlannerComponents.TravelPlannerGetDatesView = Backbone.View.extend(
   render: function() {
     var that = this;
     $('body').append( that.modalTemplate({ 'modalId': 'getDatesTpModal', 'modalTitle': __('Select Dates') }) );
-    that.el = '#getDatesTpModal'
+    that.el = '#getDatesTpModal';
     that.$el = $(that.el);
 
     that.getDatesTpModalTemplate = _.template( $('#getDatesTpModalTemplate').html() );

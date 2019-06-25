@@ -57,7 +57,7 @@ msgstr "Ninguno"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:58
 msgid "Reservation URL"
-msgstr ""
+msgstr "URL de reserva"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:62
 msgid "Reservation phone"
