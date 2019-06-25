@@ -3,7 +3,7 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
-class ResourceViewModel2 extends Model {
+class Resource2ViewModel extends Model {
 
   static $tableName = 'geozzy_resource_view';
 
