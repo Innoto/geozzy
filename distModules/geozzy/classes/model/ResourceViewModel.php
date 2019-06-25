@@ -183,6 +183,7 @@ class ResourceViewModel extends Model {
 
   var $deploySQL = array(
     array(
+      'execOrder' => 1 ,
       'version' => 'geozzy#8',
       'executeOnGenerateModelToo' => true,
       'sql'=> '

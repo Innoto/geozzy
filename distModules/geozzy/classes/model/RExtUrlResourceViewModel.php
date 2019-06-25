@@ -151,6 +151,7 @@ class RExtUrlResourceViewModel extends Model {
 
   var $deploySQL = array(
     array(
+      'execOrder' => 2 ,
       'version' => 'geozzy#1.94',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
