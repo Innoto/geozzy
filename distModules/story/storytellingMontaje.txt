@@ -1,0 +1,57 @@
+PASOS PARA MONTAR STORYTELLING
+
+1/ Añadir estos 5 módulos a 'setup-500.project.php'. (C_ENABLED_MODULES, C_REXT_MODULES, C_RTYPE_MODULES)
+    'story' -> incluir también en C_INDEX_MODULES (modules with their own urls)
+    'rextStory'
+    'rextStoryStep'
+    'rtypeStory' -> incluir también en C_INDEX_MODULES (modules with their own urls)
+    'rtypeStoryStep' -> incluir también en C_INDEX_MODULES (modules with their own urls)
+
+
+2/ Definimos el topic y el método de llamada cuanto entras en la tablas (app/conf/inc/geozzyTopics.php)
+  Ejemplo válido, cambiar si hace falta idName, weight:
+
+  $geozzyTopicsInfo['stories'] = [
+    'name' => [
+      'es' => 'Historia'
+    ],
+    'resourceTypes' => [
+      'rtypeStory' => [ 'weight' => 10 ]
+    ],
+    'weight' => 10
+  ];
+
+  class geozzyTopicsTableExtras {
+    public function stories( $urlParamsList,  $tabla ) {
+      $tabla->setEachRowUrl('"/admin#storysteps/".$rowId."/topic/'.$urlParamsList['topic'].'"');
+      return $tabla;
+    }
+  }
+
+
+3/ Habilitamos el API (app/conf/inc/geozzyAPI.php)
+  geozzyAPI::addModuleAPI( 'story' );
+
+
+4/ Crear viewTerm (app/conf/inc/geozzyRExtViewAppTerms.php)
+  $rExtViewAppInitialTerms[] = [
+    'idName' => 'viewAppStory',
+    'view' => 'PageViewAppStory',
+    'module' => false, // La clase view indicada se encuentra en la App
+    'name' => [
+      'es' => 'Historia'
+    ]
+  ];
+
+
+5/ Tiene relación con el PASO 4. Creamos los siguientes archivos, para completar el montaje de STORYTELLING
+  .php | .tpl | .sass/.less | .js
+  - Creamos el view: app/classes/view/PageViewAppStory.php
+
+  Los siguientes archivos pueden variar de nombre, pero tiene que estar declaro en el PageViewAppStory.php:
+  - Creamos el tpl: app/classes/view/templates/story.tpl
+  (- Creamos el tpl: app/classes/view/templates/storyAcc.tpl) -> en el caso que tengamos un proyecto con accesibilidad habilitada
+  - Creamos el css: app/classes/view/templates/styles/masterStory.sass
+  - Creamos el js: app/classes/view/templates/js/story.js
+  (- Creamos el js: app/classes/view/templates/js/storyAcc.js) -> en el caso que tengamos un proyecto con accesibilidad habilitada
+
