@@ -2,8 +2,83 @@ var geozzy = geozzy || {};
 
 /*
   HTML example to add a form map
-
 */
+
+geozzy.rExtMapWidgetForm  = Backbone.View.extend({
+
+  mapConteiner: '.mapContainer',
+  mapObject: false,
+  toolBarObject: false,
+
+  components: [],
+
+  events: {
+  },
+
+  initialize: function() {
+    var that = this;
+  },
+
+  initializeMap: function(){
+    var that = this;
+    that.$el.append('<div class="resourceLocationMap"></div>');
+
+    var latInit = 0;
+    var lonInit = 0;
+    var zoomInit = 3;
+
+    if(typeof cogumelo.publicConf.admin.adminMap === 'undefined') {
+      cogumelo.log('cogumelo.publicConf.admin.adminMap is not defined in conf');
+    }
+    else {
+      latInit = Number(cogumelo.publicConf.admin.adminMap.defaultLat);
+      lonInit = Number(cogumelo.publicConf.admin.adminMap.defaultLon);
+      zoomInit = Number(cogumelo.publicConf.admin.adminMap.defaultZoom);
+    }
+
+    // gmaps init
+    var mapOptions = {
+      center: { lat: latInit, lng: lonInit },
+      zoom: zoomInit,
+      scrollwheel: false
+    };
+    that.mapObject = new google.maps.Map( that.$el.find('.resourceLocationMap')[0], mapOptions);
+  },
+
+
+  addComponent: function( component ) {
+    var that = this;
+
+    component.parent = that;
+    that.components.push( component );
+    that.toolBarObject.render();
+  }
+
+});
+
+
+geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
+
+  mapConteiner: '.mapContainer',
+  latInput: '.lat input',
+  lonInput: '.lon input',
+  defaultZoomInput: '.zoom input',
+
+  mapObject: false,
+  toolBarObject: false,
+  components: [],
+
+  events: {
+  },
+
+  initialize: function() {
+    var that = this;
+  }
+
+});
+
+
+
 
 geozzy.rExtMapWidgetForm = function( segmentDIV ) {
   var that = this;
