@@ -2,13 +2,110 @@ var geozzy = geozzy || {};
 
 /*
   HTML example to add a form map
-
 */
+geozzy.rExtMapWidgetForm  = Backbone.View.extend({
+
+  mapConteiner: '.mapContainer',
+  dialogConteiner: '.mapContainer',
+  mapObject: false,
+  toolBarObject: false,
+  components: [],
+  events: {},
+
+  initialize: function() {
+    var that = this;
+  },
+
+  initializeMap: function(){
+    var that = this;
+    that.$el.append('<div class="resourceLocationMap"></div>');
+
+    var latInit = 0;
+    var lonInit = 0;
+    var zoomInit = 3;
+
+    if(typeof cogumelo.publicConf.admin.adminMap === 'undefined') {
+      cogumelo.log('cogumelo.publicConf.admin.adminMap is not defined in conf');
+    }
+    else {
+      latInit = Number(cogumelo.publicConf.admin.adminMap.defaultLat);
+      lonInit = Number(cogumelo.publicConf.admin.adminMap.defaultLon);
+      zoomInit = Number(cogumelo.publicConf.admin.adminMap.defaultZoom);
+    }
+
+    // gmaps init
+    var mapOptions = {
+      center: { lat: latInit, lng: lonInit },
+      zoom: zoomInit,
+      scrollwheel: false
+    };
+    that.mapObject = new google.maps.Map( that.$el.find('.resourceLocationMap')[0], mapOptions);
+  },
+
+
+  addComponent: function( component ) {
+    var that = this;
+
+    component.parent = that;
+    that.components.push( component );
+    that.toolBarObject.render();
+  },
+
+  renderDialog: function(content) {
+    var that = this;
+    that.$el.find( that.dialogConteiner );
+  }
+/*
+  trigerEvent: function( eventName ) {
+    var that = this;
+
+    $.each( components, function(i,e){
+      eval('e.'+eventName+'()');
+    });
+  }
+*/
+
+});
+
+
+geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
+  parent: false,
+
+  events: {
+  },
+
+  initialize: function() {
+    var that = this;
+    that.latInput = that.$el.find(".lat input");
+    that.lonInput = that.$el.find(".lon input");
+    that.zoomInput = that.$el.find(".zoom input");
+    that.addressInput = that.$el.find(".address");
+  },
+
+  getToolbarButton: function() {
+    var that = this;
+    return {
+      icon: '',
+      iconHover:'',
+      iconSelected: '',
+      onclick: function() {
+        that.startEdit();
+      }
+    };
+  },
+
+  startEdit: function() {
+    var that = this;
+    return false;
+  }
+
+});
+
+
 
 
 geozzy.rExtMapWidgetForm = function( segmentDIV ) {
   var that = this;
-  var resourceLocation = __('Resource location');
 
   that.segmentDIV = segmentDIV;
 
@@ -19,7 +116,6 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
   that.addressInput = that.segmentDIV.find(".address");
   that.resourceMap = false;
   that.resourceMarker = false;
-  that.blockMarker = false;
 
   that.initializeMap = function( ){
     // Location Map
@@ -34,7 +130,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
         var zoomInit = 3;
 
         if(typeof cogumelo.publicConf.admin.adminMap === 'undefined') {
-          cogumelo.log('cogumelo.publicConf.admin.adminMap is not defined in conf');
+          console.log('cogumelo.publicConf.admin.adminMap is not defined in conf')
         }
         else {
           var latInit = Number(cogumelo.publicConf.admin.adminMap.defaultLat);
@@ -79,7 +175,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
 
         that.resourceMarker = new google.maps.Marker({
           position: new google.maps.LatLng( latValue, lonValue ),
-          title: resourceLocation,
+          title: 'Resource location',
           icon: my_marker,
           draggable: true
         });
@@ -92,13 +188,12 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
 
         // Click map event
         google.maps.event.addListener(that.resourceMap, 'click', function(e) {
-          if( that.blockMarker != true ) {
-            that.resourceMarker.setPosition( e.latLng );
-            that.resourceMarker.setMap( that.resourceMap );
-            that.latInput.val( that.resourceMarker.position.lat() );
-            that.lonInput.val( that.resourceMarker.position.lng() );
-            that.defaultZoom.val( that.resourceMap.getZoom() );
-          }
+          that.resourceMarker.setPosition( e.latLng );
+          that.resourceMarker.setMap( that.resourceMap );
+          that.latInput.val( that.resourceMarker.position.lat() );
+          that.lonInput.val( that.resourceMarker.position.lng() );
+
+          that.defaultZoom.val( that.resourceMap.getZoom() );
         });
 
         // map zoom changed
@@ -129,12 +224,12 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
   that.fillInAddress = function() {
     // Get the place details from the autocomplete object.
     var place = that.autocomplete.getPlace();
-    cogumelo.log(place.geometry.location.lat(), place.geometry.location.lng() );
+    console.log(place.geometry.location.lat(), place.geometry.location.lng() );
 
     var pos = new google.maps.LatLng(
       place.geometry.location.lat(),
       place.geometry.location.lng()
-    );
+    )
 
     that.resourceMap.setCenter( pos );
 
@@ -173,7 +268,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
 
       that.autocomplete = new google.maps.places.Autocomplete(
           ( that.addressInput[0] ),
-          {types: ['geocode','establishment']});
+          {types: ['geocode']});
 
       // When the user selects an address from the dropdown, populate the address
       // fields in the form.
@@ -188,4 +283,4 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
 
   that.initializeMap();
   that.initAddressAutocompletion();
-};
+}
