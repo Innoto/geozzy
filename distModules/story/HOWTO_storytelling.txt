@@ -1,0 +1,78 @@
+HOWTO: Implementar storytelling
+
+https://github.com/Innoto/geozzy/wiki/HOWTO:-Implementar-storytelling
+
+
+1/ Añadir 5 módulos en el archivo de configuración
+Archivo destino: app/conf/setup-500.project.php
+
+Debemos añadir el módulo en los arrays especificados.
+  'story': $C_ENABLED_MODULES, $C_INDEX_MODULES (modules with their own urls)
+
+  'rextStory': $C_REXT_MODULES
+  'rextStoryStep': $C_REXT_MODULES
+
+  'rtypeStory': $C_RTYPE_MODULES, $C_INDEX_MODULES (modules with their own urls)
+  'rtypeStoryStep': $C_RTYPE_MODULES, $C_INDEX_MODULES (modules with their own urls)
+
+
+
+2/ Definimos el topic y el método de llamada cuando entras en la tablas
+Archivo destino: app/conf/inc/geozzyTopics.php
+
+Añadimos el nuevo topic idName: stories (Ejemplo válido. Cambiar si hace falta: idName, weight).
+
+  $geozzyTopicsInfo['stories'] = [
+    'name' => [
+      'es' => 'Historia'
+    ],
+    'resourceTypes' => [
+      'rtypeStory' => [ 'weight' => 10 ]
+    ],
+    'weight' => 10
+  ];
+
+Debemos añadir el siguiente método public function stories para establecer la url de llamada en admin.
+
+  class geozzyTopicsTableExtras {
+    public function stories( $urlParamsList, $tabla ) {
+      $tabla->setEachRowUrl('"/admin#storysteps/".$rowId."/topic/'.$urlParamsList['topic'].'"');
+      return $tabla;
+    }
+  }
+
+
+
+3/ Habilitamos el addModuleAPI
+Archivo destino: app/conf/inc/geozzyAPI.php
+
+  geozzyAPI::addModuleAPI( 'story' );
+
+
+
+4/ Crear viewTerm
+Archivo destino: app/conf/inc/geozzyRExtViewAppTerms.php
+
+  $rExtViewAppInitialTerms[] = [
+    'idName' => 'viewAppStory',
+    'view' => 'PageViewAppStory',
+    'module' => false, // La clase view indicada se encuentra en la App
+    'name' => [
+      'es' => 'Historia'
+    ]
+  ];
+
+
+
+5/ Creamos los siguientes archivos
+Formato de archivos que crearemos: .php | .tpl | .scss/.less | .js
+
+* Creamos el view: app/classes/view/PageViewAppStory.php
+
+Los siguientes archivos pueden variar de nombre, pero tienen que estar declarados en el PageViewAppStory.php:
+
+* Creamos el tpl: app/classes/view/templates/story.tpl
+* Creamos el tpl: app/classes/view/templates/storyAcc.tpl (proyectos con accesibilidad)
+* Creamos el css: app/classes/view/templates/styles/masterStory.scss
+* Creamos el js: app/classes/view/templates/js/story.js
+* Creamos el js: app/classes/view/templates/js/storyAcc.js (proyectos con accesibilidad)
