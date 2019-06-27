@@ -180,8 +180,7 @@ var AdminView = Backbone.View.extend({
         });
       }
     }
-
-    $("#page-wrapper .headSection .navbar-gzz-toggle").click(function(e) {
+    $("#page-wrapper").on('click', '.headSection .navbar-gzz-toggle', function (e) {
       $("#menu-wrapper .sidebar-nav").toggleClass("open");
     });
   },
