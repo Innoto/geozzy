@@ -3,17 +3,14 @@ var geozzy = geozzy || {};
 /*
   HTML example to add a form map
 */
-
 geozzy.rExtMapWidgetForm  = Backbone.View.extend({
 
   mapConteiner: '.mapContainer',
+  dialogConteiner: '.mapContainer',
   mapObject: false,
   toolBarObject: false,
-
   components: [],
-
-  events: {
-  },
+  events: {},
 
   initialize: function() {
     var that = this;
@@ -52,27 +49,54 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
     component.parent = that;
     that.components.push( component );
     that.toolBarObject.render();
+  },
+
+  renderDialog: function(content) {
+    var that = this;
+    that.$el.find( that.dialogConteiner );
   }
+/*
+  trigerEvent: function( eventName ) {
+    var that = this;
+
+    $.each( components, function(i,e){
+      eval('e.'+eventName+'()');
+    });
+  }
+*/
 
 });
 
 
 geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
-
-  mapConteiner: '.mapContainer',
-  latInput: '.lat input',
-  lonInput: '.lon input',
-  defaultZoomInput: '.zoom input',
-
-  mapObject: false,
-  toolBarObject: false,
-  components: [],
+  parent: false,
 
   events: {
   },
 
   initialize: function() {
     var that = this;
+    that.latInput = that.$el.find(".lat input");
+    that.lonInput = that.$el.find(".lon input");
+    that.zoomInput = that.$el.find(".zoom input");
+    that.addressInput = that.$el.find(".address");
+  },
+
+  getToolbarButton: function() {
+    var that = this;
+    return {
+      icon: '',
+      iconHover:'',
+      iconSelected: '',
+      onclick: function() {
+        that.startEdit();
+      }
+    };
+  },
+
+  startEdit: function() {
+    var that = this;
+    return false;
   }
 
 });
