@@ -14,10 +14,12 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
 
   initialize: function() {
     var that = this;
+    that.initializeMap();
   },
 
   initializeMap: function(){
     var that = this;
+
     that.$el.append('<div class="resourceLocationMap"></div>');
 
     var latInit = 0;
@@ -68,6 +70,8 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
 });
 
 
+
+/*
 geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
   parent: false,
 
@@ -101,9 +105,9 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
 
 });
 
+*/
 
-
-
+/*
 geozzy.rExtMapWidgetForm = function( segmentDIV ) {
   var that = this;
 
@@ -284,3 +288,4 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
   that.initializeMap();
   that.initAddressAutocompletion();
 }
+*/
