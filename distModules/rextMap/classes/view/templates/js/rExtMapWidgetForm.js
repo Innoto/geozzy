@@ -50,12 +50,17 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
 
     component.parent = that;
     that.components.push( component );
-    that.toolBarObject.render();
+    component.render();
   },
 
   renderDialog: function(content) {
     var that = this;
     that.$el.find( that.dialogConteiner );
+  },
+
+  addToolBarbutton: function( button ) {
+    var that = this;
+
   }
 /*
   trigerEvent: function( eventName ) {
