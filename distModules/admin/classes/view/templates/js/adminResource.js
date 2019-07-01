@@ -4,8 +4,6 @@ cogumelo.log('Cargamos adminResource.js');
 
 var app = app || {};
 
-var resourceMap = false;
-var resourceMarker = false;
 
 
 $(document).ready( function() {
@@ -29,7 +27,7 @@ $(document).ready( function() {
   });
 
   bindResAdminForm();
-  initializeMaps( );
+  initializeMap( );
 });
 
 function scroll_to_anchor(anchor_id){
@@ -103,22 +101,22 @@ function successCollectionForm( data ){
 
 }
 
-var resourceFormMaps = false;
 //var resourceFormMapsOnload = [];
-var ll = false;
+//var ll = false;
 function onLoadMaps( onloadFunction ) {
-
   //resourceFormMapsOnload.push(onloadFunction);
 }
 
-function initializeMaps( ) {
-  basket.require(
-    { url:  cogumelo.publicConf.media + '/module/rextMap/js/rExtMapWidgetForm.js', skipCache:true }
-  ).then(function () {
-
-    resourceFormMaps = new geozzy.rExtMapWidgetForm({el:'.location'});
+function initializeMap( ) {
+  //basket.require(
+  //   { url:  cogumelo.publicConf.media + '/module/rextMap/js/rExtMapWidgetForm.js', skipCache:true }
+  // ).then(function () {
+  if(typeof resourceFormMap == 'undefined') {
+    resourceFormMap = new geozzy.rExtMapWidgetForm({el:'.location'});
+    resourceFormMap.addComponent( new geozzy.rExtMapWidgetFormPositionView() );
+  }
     /*$.each( resourceFormMapsOnload, function(ifunc, efunc) {
       efunc();
     });*/
-  });
+  //});
 }
