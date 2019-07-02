@@ -1,7 +1,7 @@
 <?php
 geozzy::load( 'controller/RTypeController.php' );
 geozzy::load( 'controller/RExtController.php' );
-cogumelo::load('coreController/Cache.php');
+Cogumelo::load('coreController/Cache.php');
 
 
 
@@ -885,56 +885,58 @@ class ResourceController {
     $filedataCtrl = new FiledataController();
     $newFiledataObj = false;
     if( isset( $fileField['status'] ) ) {
-    // error_log( 'To Model - fileInfo: '. print_r( $fileField['values'], true ) );
-    // error_log( 'To Model - status: '.$fileField['status'] );
-    // error_log( '========' );
-    switch( $fileField['status'] ) {
-      case 'LOADED':
-        if( $fileField['privateMode'] > 0 ) {
-          $fileField['values']['privateMode'] = $fileField['privateMode'];
-        }
-        $newFiledataObj = $filedataCtrl->createNewFile( $fileField['values'] );
-        // error_log( 'To Model - LOADED newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
-        if( $newFiledataObj ) {
-          $modelObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
-          $result = $newFiledataObj;
-        }
-        break;
-      case 'REPLACE':
-        // error_log( 'To Model - fileInfoPrev: '. print_r( $fileField['prev'], true ) );
-        $prevFiledataId = $modelObj->getter( $colName );
-        if( $fileField['privateMode'] > 0 ) {
-          $fileField['values']['privateMode'] = $fileField['privateMode'];
-        }
-        $newFiledataObj = $filedataCtrl->createNewFile( $fileField['values'] );
-        // error_log( 'To Model - REPLACE newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
-        if( $newFiledataObj ) {
-          $modelObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
-          // error_log( 'To Model - deleteFile ID: '.$prevFiledataId );
-          $filedataCtrl->deleteFile( $prevFiledataId );
-          $result = $newFiledataObj;
-        }
-        break;
-      case 'DELETE':
-        if( $prevFiledataId = $modelObj->getter( $colName ) ) {
-          // error_log( 'To Model - DELETE prevFiledataId: '.$prevFiledataId );
-          $filedataCtrl->deleteFile( $prevFiledataId );
-          $modelObj->setter( $colName, null );
-          $result = 'DELETE';
-        }
-        break;
-      case 'EXIST':
-        if( $prevFiledataId = $modelObj->getter( $colName ) ) {
-          // error_log( 'To Model - EXIST-UPDATE prevFiledataId: '.$prevFiledataId );
-          $filedataCtrl->updateInfo( $prevFiledataId, $fileField['values'] );
-          $result = 'EXIST-UPDATE';
-        }
-        break;
-      default:
-        error_log( 'To Model: DEFAULT='.$fileField['status'] );
-        break;
+      // error_log( 'To Model - fileInfo: '. print_r( $fileField['values'], true ) );
+      // error_log( 'To Model - status: '.$fileField['status'] );
+      // error_log( '========' );
+      switch( $fileField['status'] ) {
+        case 'LOADED':
+          if( $fileField['privateMode'] > 0 ) {
+            $fileField['values']['privateMode'] = $fileField['privateMode'];
+          }
+          $newFiledataObj = $filedataCtrl->createNewFile( $fileField['values'] );
+          Cogumelo::debug( 'To Model - LOADED newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
+          if( $newFiledataObj ) {
+            $modelObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
+            $result = $newFiledataObj;
+          }
+          break;
+        case 'REPLACE':
+          Cogumelo::debug( 'To Model - fileInfoPrev: '. print_r( $fileField['prev'], true ) );
+          $prevFiledataId = $modelObj->getter( $colName );
+          if( $fileField['privateMode'] > 0 ) {
+            $fileField['values']['privateMode'] = $fileField['privateMode'];
+          }
+          $newFiledataObj = $filedataCtrl->createNewFile( $fileField['values'] );
+          Cogumelo::debug( 'To Model - REPLACE newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
+          if( $newFiledataObj ) {
+            $modelObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
+            Cogumelo::debug( 'To Model - deleteFile ID: '.$prevFiledataId );
+            $filedataCtrl->deleteFile( $prevFiledataId );
+            $result = $newFiledataObj;
+          }
+          break;
+        case 'DELETE':
+          if( $prevFiledataId = $modelObj->getter( $colName ) ) {
+            Cogumelo::debug( 'To Model - DELETE prevFiledataId: '.$prevFiledataId );
+            $filedataCtrl->deleteFile( $prevFiledataId );
+            $modelObj->setter( $colName, null );
+            $result = 'DELETE';
+          }
+          break;
+        case 'EXIST':
+          if( $prevFiledataId = $modelObj->getter( $colName ) ) {
+            Cogumelo::debug( 'To Model - EXIST-UPDATE prevFiledataId: '.$prevFiledataId );
+            $filedataCtrl->updateInfo( $prevFiledataId, $fileField['values'] );
+            $result = 'EXIST-UPDATE';
+          }
+          break;
+        default:
+          Cogumelo::error( 'To Model: DEFAULT='.$fileField['status'] );
+          Cogumelo::debug( 'To Model: DEFAULT='.$fileField['status'] );
+          break;
+      } // switch
     }
-  }
+
     return $result;
   }
 
@@ -988,7 +990,7 @@ class ResourceController {
     $result = false;
 
     $filedataCtrl = new FiledataController();
-    $filegroupObj = false;
+    // $filegroupObj = false;
 
     if( !empty( $fileGroupField['multiple'] ) && is_array( $fileGroupField['multiple'] ) ) {
 
@@ -998,8 +1000,8 @@ class ResourceController {
       foreach( $fileGroupField['multiple'] as $fileField ) {
         if( isset( $fileField['status'] ) ) {
 
-          cogumelo::debug(__METHOD__.': To Model - status: '.$fileField['status'] );
-          cogumelo::debug(__METHOD__.': ========' );
+          Cogumelo::debug(__METHOD__.': To Model - status: '.$fileField['status'] );
+          Cogumelo::debug(__METHOD__.': ========' );
 
           switch( $fileField['status'] ) {
             case 'LOADED':
@@ -1009,7 +1011,7 @@ class ResourceController {
               // $fileFieldValues = $fileField['values'];
 
               $newFilegroupObj = $filedataCtrl->saveToFileGroup( $fileField['values'], $filegroupId );
-              cogumelo::debug(__METHOD__.': To Model SAVE: newFilegroupObj idGroup, filedataId: '.
+              Cogumelo::debug(__METHOD__.': To Model SAVE: newFilegroupObj idGroup, filedataId: '.
                 $newFilegroupObj->getter( 'idGroup' ).', '.$newFilegroupObj->getter( 'filedataId' ) );
               if( $newFilegroupObj ) {
                 $result = $newFilegroupObj;
@@ -1025,13 +1027,14 @@ class ResourceController {
               $deleteId = $fileField['values']['id'];
 
               $result = $filedataCtrl->deleteFromFileGroup( $deleteId, $filegroupId );
-              cogumelo::debug(__METHOD__.': To Model Delete: '.json_encode($result) );
+              Cogumelo::debug(__METHOD__.': To Model Delete: '.json_encode($result) );
 
               break;
 
 
             default:
-              error_log( 'To Model: DEFAULT='.$fileField['status'] );
+              Cogumelo::error( 'To Model: DEFAULT='.$fileField['status'] );
+              Cogumelo::debug( 'To Model: DEFAULT='.$fileField['status'] );
               break;
           }
         }
@@ -1995,7 +1998,7 @@ class ResourceController {
   }
 
   private function setFormAdminUrlAlias( $form, $fieldName, $resObj ) {
-    cogumelo::debug(__METHOD__.": form, $fieldName, resObj " );
+    Cogumelo::debug(__METHOD__.": form, $fieldName, resObj " );
     if( $form->isFieldDefined( $fieldName ) || $form->isFieldDefined( $fieldName.'_'.$form->langDefault ) ) {
       $resId = $resObj->getter('id');
       foreach( $form->langAvailable as $langId ) {
@@ -2118,7 +2121,7 @@ class ResourceController {
 
 
   public function setUrlAdminAlias( $resId, $langId, $urlAlias ) {
-    cogumelo::debug(__METHOD__."( $resId, $langId, $urlAlias )" );
+    Cogumelo::debug(__METHOD__."( $resId, $langId, $urlAlias )" );
     $result = true;
 
     $aliasId = false;
@@ -2137,12 +2140,12 @@ class ResourceController {
     $aliasObj = ( gettype( $elemsList ) === 'object' ) ? $elemsList->fetch() : false;
     if( gettype( $aliasObj ) === 'object' ) {
       $aliasId = $aliasObj->getter( 'id' );
-      cogumelo::debug(__METHOD__.': Xa existe - '.$aliasId );
+      Cogumelo::debug(__METHOD__.': Xa existe - '.$aliasId );
     }
 
     if( empty( $urlAlias ) ) {
       if( $aliasId ) {
-        cogumelo::debug(__METHOD__.': Borrando '.$aliasId );
+        Cogumelo::debug(__METHOD__.': Borrando '.$aliasId );
         $aliasObj->delete();
       }
     }
@@ -2157,7 +2160,7 @@ class ResourceController {
       }
       else {
         $result = $elemModel->getter( 'id' );
-        cogumelo::debug(__METHOD__.': Creada/Actualizada - '.$result );
+        Cogumelo::debug(__METHOD__.': Creada/Actualizada - '.$result );
       }
     }
 
@@ -2249,7 +2252,8 @@ class ResourceController {
     }
 
     $tempo2 = microtime(true);
-    // Cogumelo::log( __METHOD__.' TEMPO: '. sprintf( "%.3f", $tempo2-$tempo) .' ('.$resId.') '. $_SERVER["REQUEST_URI"], 'Tempos' );
+    Cogumelo::log( __METHOD__.' TEMPO: '. sprintf( "%.3f", $tempo2-$tempo) .' ('.$resId.') '. $_SERVER["REQUEST_URI"], 'Tempos' );
+
     return( $viewBlockInfo );
   } // function getViewBlockInfo()
 
