@@ -20,6 +20,7 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
       map: false,
       drawLine:true,
       lineColor: '#ffffff',
+      lineColorBG: '#555555',
       lineWidth: 2,
       lineDotRadious: 7,
       moveToStep:true,
@@ -204,19 +205,32 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
       var destPointVariation = that.getCurrentStepDOMPositionOverMap();
 
       that.canvasLayer.canvas.style.zIndex = 30;
-      // line
+
+
+      // background line
       that.layerContext.moveTo( originPoint.x, originPoint.y);
-      that.layerContext.strokeStyle = that.options.lineColor;
-      that.layerContext.lineWidth = that.options.lineWidth / scale;
+      that.layerContext.strokeStyle = that.options.lineColorBG;
+      that.layerContext.lineWidth = that.options.lineWidth*2.5 / scale;
       that.layerContext.lineTo( destPoint.x + destPointVariation.x/scale , destPoint.y + destPointVariation.y/scale );
       that.layerContext.stroke();
       that.layerContext.beginPath();
 
 
-      // circle
+
+
+      // background circle
       that.layerContext.fillStyle = that.options.lineColor;
+      that.layerContext.strokeStyle = that.options.lineColorBG;
+      that.layerContext.lineWidth = that.options.lineWidth / scale;
       that.layerContext.arc( originPoint.x, originPoint.y, that.options.lineDotRadious/scale ,0,  2*Math.PI);
       that.layerContext.fill();
+      that.layerContext.stroke();
+      that.layerContext.beginPath();
+      // line
+      that.layerContext.moveTo( originPoint.x, originPoint.y);
+      that.layerContext.strokeStyle = that.options.lineColor;
+      that.layerContext.lineWidth = that.options.lineWidth / scale;
+      that.layerContext.lineTo( destPoint.x + destPointVariation.x/scale , destPoint.y + destPointVariation.y/scale );
       that.layerContext.stroke();
       that.layerContext.beginPath();
     }
