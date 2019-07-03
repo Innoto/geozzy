@@ -10,11 +10,14 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
   mapObject: false,
   toolBarObject: false,
   components: [],
-  events: {},
+  events: {
+    "click .buttonEditLocation": "changeViewMode",
+  },
 
   initialize: function() {
     var that = this;
     that.initializeMap();
+    that.changeViewMode(); //borrar esto
   },
 
   initializeMap: function(){
@@ -60,8 +63,17 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
 
   addToolBarbutton: function( button ) {
     var that = this;
+  },
 
+  changeViewMode: function() {
+    var that =this;
+    that.$el.closest('.card').toggleClass( 'locationFullScreen' );
   }
+
+
+
+
+
 /*
   trigerEvent: function( eventName ) {
     var that = this;

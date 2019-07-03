@@ -146,6 +146,7 @@ ul.panelIdTags{
 }
 
 .location{
+
   .address {
     width:100%;
   }
@@ -162,6 +163,28 @@ ul.panelIdTags{
   }
 }
 
+
+.card.locationFullScreen {
+  position:fixed;
+  left:10px;
+  top:10px;
+  width:100%;
+  height:97vh;
+  z-index: 100;
+
+  .row.location {
+    .buttonEditLocation {
+
+    }
+    .resourceLocationMap {
+      width:100%;
+      height: 400px;
+    }
+  }
+
+
+}
+
 .labelOption{
   .labelText{
     margin-left:10px;
@@ -170,6 +193,7 @@ ul.panelIdTags{
     line-height: 20px;
     vertical-align: middle;
   }
+
 }
 
 .cgmMForm-field-cgIntFrmId,

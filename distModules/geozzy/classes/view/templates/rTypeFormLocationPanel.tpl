@@ -6,7 +6,9 @@
 
 
 <div class="row location">
-
+  <div class="buttonEditLocation btn btn-primary pull-right">
+    <span>Edit location</span>
+  </div>
   <div class="locationForm" style="display:none;">
     <div class="col-md-12">
       <div class="row row-eq-height-vertical-centered">
