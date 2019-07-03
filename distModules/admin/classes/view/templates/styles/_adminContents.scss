@@ -174,7 +174,8 @@ ul.panelIdTags{
 
   .row.location {
     .buttonEditLocation {
-
+      position:absolute;
+      z-index: 101;
     }
     .resourceLocationMap {
       width:100%;
