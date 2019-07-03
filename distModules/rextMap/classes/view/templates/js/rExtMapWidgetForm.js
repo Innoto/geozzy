@@ -27,8 +27,9 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
       '<div class="resourceLocationFrame">'+
       ' <div class="resourceLocationMap"></div>' +
       ' <div class="resourceLocationColumn">'+
-      '  <div class="locationToolBox"></div>' +
-      '  <div class="locationDialog"></div>' +
+      '  <div class="searchBox">Search</div>' +      
+      '  <div class="locationToolBox">Toolbar</div>' +
+      '  <div class="locationDialog">asdfdfas</div>' +
       ' </div>' +
       '</div>'
     );

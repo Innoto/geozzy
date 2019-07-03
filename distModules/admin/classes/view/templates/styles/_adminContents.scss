@@ -211,19 +211,29 @@ ul.panelIdTags{
           display:inline;
         }
       }
+
       .resourceLocationFrame {
         width:100%;
         height: 700px;
         .resourceLocationColumn {
-          .locationToolBox {
+          display:inline;
+          width:30%;
+          .searchBox {
 
+            background-color: blue;
+          }
+          .locationToolBox {
+            height:100px;
+            background-color: red;
           }
           .locationDialog {
-
+            height:300px;
+            background-color: green;
           }
         }
         .resourceLocationMap {
-          width:100%;
+          float:left;
+          width:70%;
           height: 700px;
         }
       }
