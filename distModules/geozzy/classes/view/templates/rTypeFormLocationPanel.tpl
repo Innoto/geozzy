@@ -7,7 +7,8 @@
 
 <div class="row location">
   <div class="buttonEditLocation btn btn-primary pull-right">
-    <span>Edit location</span>
+    <span class="startEdit">Edit location</span>
+    <span class="endEdit">End location edit</span>    
   </div>
   <div class="locationForm" style="display:none;">
     <div class="col-md-12">

@@ -170,6 +170,12 @@ ul.panelIdTags{
     .buttonEditLocation {
       position:absolute;
       z-index: 101;
+      .startEdit {
+        display:inline;
+      }
+      .endEdit {
+        display:none;
+      }
     }
     .resourceLocationFrame {
       position:relative;
@@ -198,6 +204,12 @@ ul.panelIdTags{
       .buttonEditLocation {
         position:absolute;
         z-index: 101;
+        .startEdit {
+          display:none;
+        }
+        .endEdit {
+          display:inline;
+        }
       }
       .resourceLocationFrame {
         width:100%;
