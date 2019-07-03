@@ -164,26 +164,61 @@ ul.panelIdTags{
 }
 
 
-.card.locationFullScreen {
-  position:fixed;
-  left:10px;
-  top:10px;
-  width:100%;
-  height:97vh;
-  z-index: 100;
 
+.card {
   .row.location {
     .buttonEditLocation {
       position:absolute;
       z-index: 101;
     }
-    .resourceLocationMap {
+    .resourceLocationFrame {
+      position:relative;
       width:100%;
-      height: 400px;
+
+      .resourceLocationColumn {
+        display:none;
+      }
+      .resourceLocationMap {
+        width:100%;
+        height: 250px;
+      }
     }
+
   }
 
+  &.locationFullScreen {
+    position:fixed;
+    left:10px;
+    top:10px;
+    width:100%;
+    height:97vh;
+    z-index: 100;
 
+    .row.location {
+      .buttonEditLocation {
+        position:absolute;
+        z-index: 101;
+      }
+      .resourceLocationFrame {
+        width:100%;
+        height: 700px;
+        .resourceLocationColumn {
+          .locationToolBox {
+
+          }
+          .locationDialog {
+
+          }
+        }
+        .resourceLocationMap {
+          width:100%;
+          height: 700px;
+        }
+      }
+
+    }
+
+  }
 }
 
 .labelOption{

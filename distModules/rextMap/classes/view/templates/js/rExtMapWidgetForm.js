@@ -23,7 +23,15 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
   initializeMap: function(){
     var that = this;
 
-    that.$el.append('<div class="resourceLocationMap"></div>');
+    that.$el.append(
+      '<div class="resourceLocationFrame">'+
+      ' <div class="resourceLocationMap"></div>' +
+      ' <div class="resourceLocationColumn">'+
+      '  <div class="locationToolBox"></div>' +
+      '  <div class="locationDialog"></div>' +
+      ' </div>' +
+      '</div>'
+    );
 
     var latInit = 0;
     var lonInit = 0;
