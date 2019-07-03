@@ -50,7 +50,10 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
     var mapOptions = {
       center: { lat: latInit, lng: lonInit },
       zoom: zoomInit,
-      scrollwheel: false
+      scrollwheel: false,
+      mapTypeControl: false,
+      fullscreenControl: false,
+      streetViewControl: false
     };
     that.mapObject = new google.maps.Map( that.$el.find('.resourceLocationMap')[0], mapOptions);
   },
