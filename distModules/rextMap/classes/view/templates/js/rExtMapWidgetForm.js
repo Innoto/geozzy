@@ -27,8 +27,8 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
       '<div class="resourceLocationFrame">'+
       ' <div class="resourceLocationMap"></div>' +
       ' <div class="resourceLocationColumn">'+
-      '  <div class="searchBox">Search</div>' +      
-      '  <div class="locationToolBox">Toolbar</div>' +
+      '  <div class="searchBox"><input class="address"></div>' +
+      '  <div class="locationToolBox"></div>' +
       '  <div class="locationDialog">asdfdfas</div>' +
       ' </div>' +
       '</div>'
@@ -58,7 +58,6 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
     };
     that.mapObject = new google.maps.Map( that.$el.find('.resourceLocationMap')[0], mapOptions);
   },
-
 
   addComponent: function( component ) {
     var that = this;
@@ -101,8 +100,8 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
 
 
 
-
 /*
+
 geozzy.rExtMapWidgetForm = function( segmentDIV ) {
   var that = this;
 
@@ -129,7 +128,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
         var zoomInit = 3;
 
         if(typeof cogumelo.publicConf.admin.adminMap === 'undefined') {
-          console.log('cogumelo.publicConf.admin.adminMap is not defined in conf')
+          console.log('cogumelo.publicConf.admin.adminMap is not defined in conf');
         }
         else {
           var latInit = Number(cogumelo.publicConf.admin.adminMap.defaultLat);
