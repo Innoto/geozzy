@@ -219,8 +219,10 @@ ul.panelIdTags{
           display:inline;
           width:30%;
           .searchBox {
-
             background-color: blue;
+            input {
+              width:200px;
+            }
           }
           .locationToolBox {
             height:100px;
@@ -235,6 +237,7 @@ ul.panelIdTags{
           float:left;
           width:70%;
           height: 700px;
+
         }
       }
 
