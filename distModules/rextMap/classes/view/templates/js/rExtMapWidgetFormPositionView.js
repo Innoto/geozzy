@@ -4,6 +4,7 @@ var geozzy = geozzy || {};
 geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
   parent: false,
   autocomplete:false,
+  editing: false,
   events: {
   },
 
@@ -21,10 +22,11 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
     that.addressInput = that.parent.$el.find(".searchBox .address");
 
 
-    that.parent.addToolBarbutton( {
-        icon: '',
-        iconHover:'',
-        iconSelected: '',
+    that.parent.addToolBarbutton({
+        id: 'position',
+        icon: '<div>Edit marker</div>',
+        iconHover:'<div>Edit marker hover</div>',
+        iconSelected: '<div>Editing marker</div>',
         onclick: function() {
           that.startEdit();
         }
@@ -44,8 +46,8 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
 
     var markerData = {
       title: 'Resource location',
-      icon: my_marker,
-      draggable: true,
+      icon: my_marker
+      //draggable: true,
     };
 
     if( that.latInput.val() != '' ) {
@@ -65,12 +67,16 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
 
     // Click map event
     google.maps.event.addListener(that.parent.mapObject, 'click', function(e) {
-      that.resourceMarker.setPosition( e.latLng );
-      that.resourceMarker.setMap( that.parent.mapObject );
-      that.latInput.val( that.resourceMarker.position.lat() );
-      that.lonInput.val( that.resourceMarker.position.lng() );
 
-      that.zoomInput.val( that.parent.mapObject.getZoom() );
+      if( that.editing == true) {
+        that.resourceMarker.setPosition( e.latLng );
+        that.resourceMarker.setMap( that.parent.mapObject );
+        that.latInput.val( that.resourceMarker.position.lat() );
+        that.lonInput.val( that.resourceMarker.position.lng() );
+
+        that.zoomInput.val( that.parent.mapObject.getZoom() );
+      }
+
     });
 
     // map zoom changed
@@ -147,11 +153,21 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
 
   startEdit: function() {
     var that = this;
+    //that.lockToolbar('position');
+    that.editing = true;
+    that.resourceMarker.setOptions({
+      draggable: true
+    });
+
     return false;
   },
 
   endEdit: function() {
     var that = this;
+    that.editing = false;
+    that.resourceMarker.setOptions({
+      draggable: false
+    });
     return false;
   }
 

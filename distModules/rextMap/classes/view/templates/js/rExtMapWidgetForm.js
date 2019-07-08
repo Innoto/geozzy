@@ -7,6 +7,7 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
 
   mapConteiner: '.mapContainer',
   dialogConteiner: '.mapContainer',
+  mapReady: false,
   mapObject: false,
   toolBarObject: false,
   components: [],
@@ -27,7 +28,7 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
       '<div class="resourceLocationFrame">'+
       ' <div class="resourceLocationMap"></div>' +
       ' <div class="resourceLocationColumn">'+
-      '  <div class="searchBox"><input class="address"></div>' +
+      '  <div class="searchBox"><input class="address"><div class="automaticBtn btn btn-primary pull-right">Automatic Location</div></div>' +
       '  <div class="locationToolBox"></div>' +
       '  <div class="locationDialog">asdfdfas</div>' +
       ' </div>' +
@@ -57,6 +58,9 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
       streetViewControl: false
     };
     that.mapObject = new google.maps.Map( that.$el.find('.resourceLocationMap')[0], mapOptions);
+    google.maps.event.addListenerOnce( that.mapObject ,'idle',function(e) {
+      that.mapReady = true;
+    });
   },
 
   addComponent: function( component ) {
@@ -64,7 +68,16 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
 
     component.parent = that;
     that.components.push( component );
-    component.render();
+
+    if( that.mapReady == true ){
+      component.render();
+    }
+    else {
+      google.maps.event.addListenerOnce( that.mapObject ,'idle',function(e) {
+        component.render();
+      });
+    }
+
   },
 
   renderDialog: function(content) {
@@ -74,6 +87,23 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
 
   addToolBarbutton: function( button ) {
     var that = this;
+
+    that.$el.find('.locationToolBox').append(
+      '<div class="button" idToolButton="'+button.id+'">' +
+      ' <div class="toolboxIcon icon">'+button.icon+'</div>'+
+      ' <div class="toolboxIcon iconHover" style="display:none;">'+button.iconHover+'</div>'+
+      ' <div class="toolboxIcon iconSelected" style="display:none;">'+button.iconSelected+'</div>'+
+      '</div>'
+    );
+
+    var btDiv = that.$el.find('.locationToolBox').find( ".button[idToolButton='" + button.id + "']" );
+    btDiv.on( 'click', function(ev) {
+      btDiv.find('.toolboxIcon').hide();
+      btDiv.find('.toolboxIcon.iconSelected').show();
+      button.onclick();
+    });
+
+
   },
 
   changeViewMode: function() {
