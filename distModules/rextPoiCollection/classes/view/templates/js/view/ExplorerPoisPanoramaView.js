@@ -17,12 +17,12 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
 
   initialize: function( opts ) {
     var that = this;
-
+    // alert(that.options.horizontalAnglePanorama);
     var options = new Object({
       containerDivId: 'panoramaView',
       panoramaImage: false,
-      haov: that.options.horizontalAnglePanorama, /*Default: 360*/
-      vaov: that.options.verticalAnglePanorama /*Default: 50*/
+      haov: geozzy.rExtPOIOptions.horizontalAnglePanorama, /*Default: 360*/
+      vaov: geozzy.rExtPOIOptions.verticalAnglePanorama /*Default: 50*/
     });
 
     that.options = $.extend(true, {}, options, opts);
