@@ -35,7 +35,7 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
       min: 0,
       max: 19,
       onChange: function(data) {
-        that.updateZoomRectangle();
+        that.updateZoomRectangle( true );
       }
     });
 
@@ -79,6 +79,7 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
     google.maps.event.addListener( that.resourceMarker,'dragend',function(e) {
       that.lonInput.val( that.resourceMarker.position.lng() );
       that.latInput.val( that.resourceMarker.position.lat() );
+      that.updateZoomRectangle(false);
     });
 
     // Click map event
@@ -89,9 +90,10 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
         that.resourceMarker.setMap( that.parent.mapObject );
         that.latInput.val( that.resourceMarker.position.lat() );
         that.lonInput.val( that.resourceMarker.position.lng() );
+        that.updateZoomRectangle(false);
 
-        that.zoomInput.val( that.parent.mapObject.getZoom() );
       }
+
 
     });
 
@@ -100,26 +102,39 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
       that.resourceMarker.setMap( that.parent.mapObject);
     }
 
-    that.updateZoomRectangle();
+    that.updateZoomRectangle( true );
 
     that.initAddressAutocompletion();
   },
 
 
-  updateZoomRectangle: function() {
+  updateZoomRectangle: function( updateFromSlider ) {
     var that = this;
 
     if(that.zoomRectangle == false) {
       that.zoomRectangle  = new google.maps.Rectangle();
     }
 
-    if(that.resourceMarker) {
+    var mapPos = that.parent.mapObject.getCenter();
+    var mapZoom = that.parent.mapObject.getZoom();
+
+
+    if(that.resourceMarker ) {
       that.parent.mapObject.setCenter( that.resourceMarker.getPosition() );
     }
 
-    that.parent.mapObject.setZoom( parseInt(that.zoomInput.val()));
+    if( updateFromSlider == true) {
+      that.parent.mapObject.setZoom( parseInt(that.zoomInput.val()));
+    }
+    else {
+      mapZoom = mapZoom+1;
+      that.parent.mapObject.setZoom(mapZoom);
+    }
+
 
     that.zoomRectangle .setOptions({
+      zIndex: -1, // non entorpece
+      clickable:false, // non clickable
       strokeColor: '#666666',
       strokeOpacity: 0.8,
       strokeWeight: 2,
@@ -128,7 +143,16 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
       map: that.parent.mapObject,
       bounds: that.parent.mapObject.getBounds()
     });
-    that.parent.mapObject.setZoom(that.parent.mapObject.getZoom()-1);
+
+
+    if( updateFromSlider == true ){
+      that.parent.mapObject.setZoom(that.parent.mapObject.getZoom()-1);
+    }
+    else {
+      that.parent.mapObject.setZoom(mapZoom-1);
+      that.parent.mapObject.setCenter(mapPos);
+    }
+
   },
 
   initAddressAutocompletion: function() {
@@ -231,9 +255,11 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
 
       that.resourceMarker.setPosition( {lat: parseFloat(that.latInput.val()), lng: parseFloat(that.lonInput.val()) } );
     }
+    that.updateZoomRectangle( true );
 
     that.parent.$el.find( '.resourceLocationFrame .locationDialog .locationFormMap' ).hide();
     that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).hide();
+
     return false;
   },
 
