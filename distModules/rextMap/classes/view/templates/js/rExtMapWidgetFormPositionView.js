@@ -212,9 +212,9 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
   endEditCancel: function() {
     var that = this;
     that.editing = false;
-    /*that.resourceMarker.setOptions({
+    that.resourceMarker.setOptions({
       draggable: false
-    });*/
+    });
 
 
     if( that.startEditlData.lat == false || that.startEditlData.lat == '' ) {
