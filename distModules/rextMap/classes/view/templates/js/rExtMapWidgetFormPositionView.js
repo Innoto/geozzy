@@ -5,6 +5,7 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
   parent: false,
   autocomplete:false,
   editing: false,
+  zoomRectangle: false,
   startEditlData: {
     lat: false,
     lng: false,
@@ -32,7 +33,10 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
     that.zoomInput.ionRangeSlider({
       grid: true,
       min: 0,
-      max: 19
+      max: 19,
+      onChange: function(data) {
+        that.updateZoomRectangle();
+      }
     });
 
 
@@ -95,9 +99,37 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
     if( that.latInput.val() !== '') {
       that.resourceMarker.setMap( that.parent.mapObject);
     }
+
+    that.updateZoomRectangle();
+
     that.initAddressAutocompletion();
   },
 
+
+  updateZoomRectangle: function() {
+    var that = this;
+
+    if(that.zoomRectangle == false) {
+      that.zoomRectangle  = new google.maps.Rectangle();
+    }
+
+    if(that.resourceMarker) {
+      that.parent.mapObject.setCenter( that.resourceMarker.getPosition() );
+    }
+
+    that.parent.mapObject.setZoom( parseInt(that.zoomInput.val()));
+
+    that.zoomRectangle .setOptions({
+      strokeColor: '#666666',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      //fillColor: '#FF0000',
+      fillOpacity: 0,
+      map: that.parent.mapObject,
+      bounds: that.parent.mapObject.getBounds()
+    });
+    that.parent.mapObject.setZoom(that.parent.mapObject.getZoom()-1);
+  },
 
   initAddressAutocompletion: function() {
     var that = this;
