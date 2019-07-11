@@ -13,6 +13,9 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
   components: [],
   events: {
     "click .buttonEditLocation": "changeViewMode",
+    "click  .resourceLocationColumn .locationButtons  .endEditCancel": "endEditCancelComponents",
+    "click .resourceLocationColumn .locationButtons  .endEditSuccess": "endEditSuccessComponents",
+
   },
 
   initialize: function() {
@@ -31,7 +34,10 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
       ' <div class="resourceLocationColumn">'+
       '  <div class="searchBox"><input class="address"><div class="automaticBtn btn btn-primary pull-right">Automatic Location</div></div>' +
       '  <div class="locationToolBox"></div>' +
-      '  <div class="locationButtons" style="display:none;">  <div class="endEditCancel btn btn-warning pull-right">Cancel</div>  <div class="endEditSuccess btn btn-primary pull-right">Ok</div> </div>' +
+      '  <div class="locationButtons" style="display:none;">'+
+      '     <div class="editIcon"> </div> '  +
+      '     <div class="endEditCancel btn btn-warning pull-right">Cancel</div> ' +
+      '     <div class="endEditSuccess btn btn-primary pull-right">Ok</div> </div>' +
       '  <div class="locationDialog">asdfdfas</div>' +
       ' </div>' +
       '</div>'
@@ -76,29 +82,19 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
     that.$el.find('.locationToolBox').append(
       '<div class="button" idToolButton="'+button.id+'">' +
       ' <div class="toolboxIcon icon">'+button.icon+'</div>'+
-      ' <div class="toolboxIcon iconHover" style="display:none;">'+button.iconHover+'</div>'+
-      ' <div class="toolboxIcon iconSelected" style="display:none;">'+button.iconSelected+'</div>'+
       '</div>'
     );
 
     var btDiv = that.$el.find('.locationToolBox').find( ".button[idToolButton='" + button.id + "']" );
     btDiv.on( 'click', function(ev) {
-      btDiv.find('.toolboxIcon').hide();
-      btDiv.find('.toolboxIcon.iconSelected').show();
+      that.$el.find('.resourceLocationColumn  .locationToolBox').hide();
+      that.$el.find( '.resourceLocationColumn .locationButtons .editIcon' ).html(button.icon);
       button.onclick();
     });
 
-    var endEditCancelButton = that.$el.find('.resourceLocationFrame .locationButtons  .endEditCancel');
-    endEditCancelButton.on( 'click', function(ev) {
-      that.endEditCancelComponents();
-    });
-
-    var endEditSuccessButton = that.$el.find('.resourceLocationFrame .locationButtons .endEditSuccess');
-    endEditSuccessButton.on( 'click', function(ev) {
-      that.endEditSuccessComponents();
-    });
-
   },
+
+
 
   changeViewMode: function() {
     var that =this;
@@ -130,6 +126,7 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
 
   endEditCancelComponents: function() {
     var that = this;
+    that.$el.find('.resourceLocationColumn  .locationToolBox').show();
     $.each(that.components, function(i,e){
       e.endEditCancel();
     });
@@ -137,6 +134,7 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
 
   endEditSuccessComponents: function() {
     var that = this;
+    that.$el.find('.resourceLocationColumn  .locationToolBox').show();
     $.each(that.components, function(i,e){
       e.endEditSuccess();
     });

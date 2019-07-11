@@ -33,9 +33,7 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
 
     that.parent.addToolBarbutton({
         id: 'position',
-        icon: '<div>Edit marker</div>',
-        iconHover:'<div>Edit marker hover</div>',
-        iconSelected: '<div>Editing marker</div>',
+        icon: 'll<i class="fa fa-map-marker" aria-hidden="true"></i>',
         onclick: function() {
           that.startEdit();
         }
