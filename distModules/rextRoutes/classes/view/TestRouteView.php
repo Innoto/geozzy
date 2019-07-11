@@ -13,7 +13,7 @@ class TestRouteView extends View
   }
 
   /**
-    Evaluate the access conditions and report if can continue
+   * Evaluate the access conditions and report if can continue
    *
    * @return bool : true -> Access allowed
    **/
@@ -306,7 +306,7 @@ class TestRouteView extends View
         </body>
       </html>
 
-    <?
+    <?php
 
 
 
