@@ -18,6 +18,7 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
   initialize: function() {
     var that = this;
     that.initializeMap();
+
     that.changeViewMode(); //borrar esto
   },
 
@@ -30,6 +31,7 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
       ' <div class="resourceLocationColumn">'+
       '  <div class="searchBox"><input class="address"><div class="automaticBtn btn btn-primary pull-right">Automatic Location</div></div>' +
       '  <div class="locationToolBox"></div>' +
+      '  <div class="locationButtons" style="display:none;">  <div class="endEditCancel btn btn-warning pull-right">Cancel</div>  <div class="endEditSuccess btn btn-primary pull-right">Ok</div> </div>' +
       '  <div class="locationDialog">asdfdfas</div>' +
       ' </div>' +
       '</div>'
@@ -63,23 +65,6 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
     });
   },
 
-  addComponent: function( component ) {
-    var that = this;
-
-    component.parent = that;
-    that.components.push( component );
-
-    if( that.mapReady == true ){
-      component.render();
-    }
-    else {
-      google.maps.event.addListenerOnce( that.mapObject ,'idle',function(e) {
-        component.render();
-      });
-    }
-
-  },
-
   renderDialog: function(content) {
     var that = this;
     that.$el.find( that.dialogConteiner );
@@ -103,17 +88,59 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
       button.onclick();
     });
 
+    var endEditCancelButton = that.$el.find('.resourceLocationFrame .locationButtons  .endEditCancel');
+    endEditCancelButton.on( 'click', function(ev) {
+      that.endEditCancelComponents();
+    });
+
+    var endEditSuccessButton = that.$el.find('.resourceLocationFrame .locationButtons .endEditSuccess');
+    endEditSuccessButton.on( 'click', function(ev) {
+      that.endEditSuccessComponents();
+    });
 
   },
 
   changeViewMode: function() {
     var that =this;
+    if( that.$el.closest('.card').hasClass('locationFullScreen') ) {
+      that.endEditCancelComponents();
+    }
+
     that.$el.closest('.card').toggleClass( 'locationFullScreen' );
+
+
+  },
+
+  addComponent: function( component ) {
+    var that = this;
+
+    component.parent = that;
+    that.components.push( component );
+
+    if( that.mapReady == true ){
+      component.render();
+    }
+    else {
+      google.maps.event.addListenerOnce( that.mapObject ,'idle',function(e) {
+        component.render();
+      });
+    }
+
+  },
+
+  endEditCancelComponents: function() {
+    var that = this;
+    $.each(that.components, function(i,e){
+      e.endEditCancel();
+    });
+  },
+
+  endEditSuccessComponents: function() {
+    var that = this;
+    $.each(that.components, function(i,e){
+      e.endEditSuccess();
+    });
   }
-
-
-
-
 
 /*
   trigerEvent: function( eventName ) {

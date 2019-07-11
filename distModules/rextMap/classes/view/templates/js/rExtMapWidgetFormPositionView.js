@@ -15,6 +15,10 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
   render: function() {
     var that = this;
 
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog' ).append('<div class="locationFormMap" style="display:none;"></div>');
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .locationFormMap' ).html(that.parent.$el.find(' .locationForm').html());
+
+    that.parent.$el.find('.locationForm').remove();
 
     that.latInput = that.parent.$el.find(".lat input");
     that.lonInput = that.parent.$el.find(".lon input");
@@ -159,15 +163,35 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
       draggable: true
     });
 
+    that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).show();
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .locationFormMap' ).show();
+
     return false;
   },
 
-  endEdit: function() {
+  endEditCancel: function() {
     var that = this;
     that.editing = false;
     that.resourceMarker.setOptions({
       draggable: false
     });
+
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .locationFormMap' ).hide();
+    that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).hide();
+    return false;
+  },
+
+  endEditSuccess: function() {
+    var that = this;
+    that.editing = false;
+    that.resourceMarker.setOptions({
+      draggable: false
+    });
+
+
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .locationFormMap' ).hide();
+    that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).hide();
+    
     return false;
   }
 

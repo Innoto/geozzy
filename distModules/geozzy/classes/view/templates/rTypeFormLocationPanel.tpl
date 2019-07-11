@@ -8,9 +8,11 @@
 <div class="row location">
   <div class="buttonEditLocation btn btn-primary pull-right">
     <span class="startEdit">Edit location</span>
-    <span class="endEdit">End location edit</span>    
+    <span class="endEdit">End location edit</span>
   </div>
-  <div class="locationForm" style="display:none;">
+
+
+  <div class="locationForm">
     <div class="col-md-12">
       <div class="row row-eq-height-vertical-centered">
         <div class="col-md-6 col-sm-6 col-12"><input class="address"></div>
