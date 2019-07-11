@@ -1,6 +1,11 @@
 var geozzy = geozzy || {};
 geozzy.explorerComponents = geozzy.explorerComponents || {}; //if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
+$( document ).ready( function()  {
+  var panoramaView = new geozzy.explorerComponents.panoramaView();
+  panoramaView.render();
+} );
+
 
 geozzy.explorerComponents.panoramaView = Backbone.View.extend({
 
@@ -80,8 +85,10 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
 
           "hotSpots": hotSpots*/
         }
-
       );
+
+      console.log(that.panorama);
+
       $('#'+that.options.containerDivId).show();
 
     // }
