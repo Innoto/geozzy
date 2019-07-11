@@ -87,13 +87,11 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
         }
       );
 
-      console.log(that.panorama);
-
       $('#'+that.options.containerDivId).show();
 
     // }
 
-    that.parentExplorer.triggerEvent('onRenderListComplete',{});
+    // that.parentExplorer.triggerEvent('onRenderListComplete',{});
   }
 
 
