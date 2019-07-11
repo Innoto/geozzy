@@ -38,7 +38,7 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
       '     <div class="editIcon"> </div> '  +
       '     <div class="endEditCancel btn btn-warning pull-right">Cancel</div> ' +
       '     <div class="endEditSuccess btn btn-primary pull-right">Ok</div> </div>' +
-      '  <div class="locationDialog">asdfdfas</div>' +
+      '  <div class="locationDialog"></div>' +
       ' </div>' +
       '</div>'
     );

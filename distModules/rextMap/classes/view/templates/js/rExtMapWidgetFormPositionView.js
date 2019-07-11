@@ -22,7 +22,6 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
 
     that.parent.$el.find( '.resourceLocationFrame .locationDialog' ).append('<div class="locationFormMap" style="display:none;"></div>');
     that.parent.$el.find( '.resourceLocationFrame .locationDialog .locationFormMap' ).html(that.parent.$el.find(' .locationForm').html());
-
     that.parent.$el.find('.locationForm').remove();
 
     that.latInput = that.parent.$el.find(".lat input");
@@ -30,10 +29,16 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
     that.zoomInput = that.parent.$el.find(".zoom input");
     that.addressInput = that.parent.$el.find(".searchBox .address");
 
+    that.zoomInput.ionRangeSlider({
+      grid: true,
+      min: 0,
+      max: 19
+    });
+
 
     that.parent.addToolBarbutton({
         id: 'position',
-        icon: 'll<i class="fa fa-map-marker" aria-hidden="true"></i>',
+        icon: '<i class="fa fa-map-marker" aria-hidden="true"></i>', //<i class="fas fa-draw-polygon"></i>
         onclick: function() {
           that.startEdit();
         }
@@ -86,10 +91,6 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
 
     });
 
-    // map zoom changed
-    google.maps.event.addListener(that.parent.mapObject, 'zoom_changed', function(e) {
-      that.zoomInput.val( that.parent.mapObject.getZoom() );
-    });
 
     if( that.latInput.val() !== '') {
       that.resourceMarker.setMap( that.parent.mapObject);
