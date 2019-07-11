@@ -169,7 +169,7 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
     });
 
     that.startEditlData.lat = that.latInput.val();
-    that.startEditlData.lng = that.latInput.val();
+    that.startEditlData.lng = that.lonInput.val();
     that.startEditlData.zoom = that.zoomInput.val();
 
     that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).show();
@@ -181,9 +181,10 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
   endEditCancel: function() {
     var that = this;
     that.editing = false;
-    that.resourceMarker.setOptions({
+    /*that.resourceMarker.setOptions({
       draggable: false
-    });
+    });*/
+
 
     if( that.startEditlData.lat == false || that.startEditlData.lat == '' ) {
       that.resourceMarker.setMap(null);
@@ -192,9 +193,12 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
       that.zoomInput.val('');
     }
     else {
+
       that.latInput.val(that.startEditlData.lat);
       that.lonInput.val(that.startEditlData.lng);
       that.zoomInput.val(that.startEditlData.zoom );
+
+      that.resourceMarker.setPosition( {lat: parseFloat(that.latInput.val()), lng: parseFloat(that.lonInput.val()) } );
     }
 
     that.parent.$el.find( '.resourceLocationFrame .locationDialog .locationFormMap' ).hide();
