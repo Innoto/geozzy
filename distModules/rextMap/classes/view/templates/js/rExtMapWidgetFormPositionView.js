@@ -25,11 +25,14 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
     that.parent.$el.find( '.resourceLocationFrame .locationDialog .locationFormMap' ).html(that.parent.$el.find(' .locationForm').html());
     that.parent.$el.find('.locationForm').remove();
 
+
     that.latInput = that.parent.$el.find(".lat input");
     that.lonInput = that.parent.$el.find(".lon input");
     that.zoomInput = that.parent.$el.find(".zoom input");
     that.addressInput = that.parent.$el.find(".searchBox .address");
 
+    that.zoomInput.val( that.parent.mapObject.getZoom() );
+    
     that.zoomInput.ionRangeSlider({
       grid: true,
       min: 0,
@@ -90,6 +93,7 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
         that.resourceMarker.setMap( that.parent.mapObject );
         that.latInput.val( that.resourceMarker.position.lat() );
         that.lonInput.val( that.resourceMarker.position.lng() );
+
         that.updateZoomRectangle(false);
 
       }

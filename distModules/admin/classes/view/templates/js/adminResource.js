@@ -101,22 +101,7 @@ function successCollectionForm( data ){
 
 }
 
-//var resourceFormMapsOnload = [];
-//var ll = false;
-function onLoadMaps( onloadFunction ) {
-  //resourceFormMapsOnload.push(onloadFunction);
-}
-
 function initializeMap( ) {
-  //basket.require(
-  //   { url:  cogumelo.publicConf.media + '/module/rextMap/js/rExtMapWidgetForm.js', skipCache:true }
-  // ).then(function () {
-  //if(typeof resourceFormMap == 'undefined') {
-    resourceFormMap = new geozzy.rExtMapWidgetForm({el:'.location'});
-    resourceFormMap.addComponent( new geozzy.rExtMapWidgetFormPositionView() );
-  //}
-    /*$.each( resourceFormMapsOnload, function(ifunc, efunc) {
-      efunc();
-    });*/
-  //});
+  resourceFormMap = new geozzy.rExtMapWidgetForm({el:'.location'});
+  resourceFormMap.addComponent( new geozzy.rExtMapWidgetFormPositionView() );
 }
