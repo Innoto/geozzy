@@ -31,8 +31,10 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
     that.zoomInput = that.parent.$el.find(".zoom input");
     that.addressInput = that.parent.$el.find(".searchBox .address");
 
-    that.zoomInput.val( that.parent.mapObject.getZoom() );
-    
+    if( that.zoomInput.val() == ''){
+      that.zoomInput.val( that.parent.mapObject.getZoom() );
+    }
+
     that.zoomInput.ionRangeSlider({
       grid: true,
       min: 0,
@@ -173,7 +175,7 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
 
       // When the user selects an address from the dropdown, populate the address
       // fields in the form.
-      that.autocomplete.addListener('place_changed', that.fillInAddress);
+      //that.autocomplete.addListener('place_changed', that.fillInAddress);
 
       that.addressInput.focus( function() {
         that.geolocate();
@@ -203,7 +205,6 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
     var that = this;
     // Get the place details from the autocomplete object.
     var place = that.autocomplete.getPlace();
-    console.log(place.geometry.location.lat(), place.geometry.location.lng() );
 
     var pos = new google.maps.LatLng(
       place.geometry.location.lat(),
@@ -246,10 +247,10 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
 
 
     if( that.startEditlData.lat == false || that.startEditlData.lat == '' ) {
-      that.resourceMarker.setMap(null);
-      that.latInput.val('');
-      that.lonInput.val('');
-      that.zoomInput.val('');
+      //that.resourceMarker.setMap(null);
+      //that.latInput.val('');
+      //that.lonInput.val('');
+      //that.zoomInput.val('');
     }
     else {
 
@@ -274,9 +275,14 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
       draggable: false
     });
 
-    that.startEditlData.lat = false;
+
+    that.startEditlData.lat = that.latInput.val();
+    that.startEditlData.lng = that.lonInput.val();
+    that.startEditlData.zoom = that.zoomInput.val();
+
+    /*that.startEditlData.lat = false;
     that.startEditlData.lng = false;
-    that.startEditlData.zoom = false;
+    that.startEditlData.zoom = false;*/
 
     that.parent.$el.find( '.resourceLocationFrame .locationDialog .locationFormMap' ).hide();
     that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).hide();
