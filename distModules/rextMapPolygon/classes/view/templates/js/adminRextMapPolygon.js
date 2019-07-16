@@ -61,21 +61,26 @@ geozzy.adminRextMapPolygonView  = Backbone.View.extend({
   render: function() {
     var that = this;
 
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog' ).append('<div class="polygonFormMap" style="display:none;"></div>');
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .polygonFormMap' ).html( $('.rExtMapPolygon').html() );
+    that.parent.$el.find('.rExtMapPolygon').remove();
+
+
+    that.parent.addToolBarbutton({
+      id: 'rExtMapPolygon',
+      icon: '<i class="fa  fa-draw-polygon" aria-hidden="true"></i>',
+      onclick: function() {
+        that.startEdit();
+      }
+    });
+
     that.updateCornersFromInput();
 
-    // events
-    $('.rExtMapPolygon .btnEditPolygon').on('click', function(){
-      that.startEdit();
-
-    });
-
-    $('.rExtMapPolygon .btnEndEditPolygon').on('click', function(){
-      that.stopEdit();
-    });
-
-    $('.rExtMapPolygon .btnClearPolygon').on('click', function(){
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .polygonFormMap .btnClearPolygon').on('click', function(){
       that.clearAllCorners();
     });
+
+
 
 
     google.maps.event.addListener( that.parent.mapObject, "rightclick",function(){
@@ -137,19 +142,19 @@ geozzy.adminRextMapPolygonView  = Backbone.View.extend({
     while( that.polygon.getPath().getArray().length > 0 ) {
       that.removeCorner();
     }
-    $('.rExtMapPolygon input.cgmMForm-field-rExtMapPolygon_polygonGeometry').val( '' );
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .polygonFormMap input.cgmMForm-field-rExtMapPolygon_polygonGeometry').val( '' );
   },
 
   updateInputFromCorners: function() {
     var that = this;
-    $('.rExtMapPolygon input.cgmMForm-field-rExtMapPolygon_polygonGeometry').val(  that.coordsToArrayStr( that.polygon.getPath().getArray()) );
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .polygonFormMap input.cgmMForm-field-rExtMapPolygon_polygonGeometry').val(  that.coordsToArrayStr( that.polygon.getPath().getArray()) );
   },
 
 
   updateCornersFromInput: function() {
     var that = this;
 
-    var polygonCornersText = $('.rExtMapPolygon input.cgmMForm-field-rExtMapPolygon_polygonGeometry').val().replace(/ /g,''); // without spaces
+    var polygonCornersText = that.parent.$el.find( '.resourceLocationFrame .locationDialog .polygonFormMap input.cgmMForm-field-rExtMapPolygon_polygonGeometry').val().replace(/ /g,''); // without spaces
     var polygonCornersArray;
 
     if( polygonCornersText != '') {
@@ -187,13 +192,15 @@ geozzy.adminRextMapPolygonView  = Backbone.View.extend({
   startEdit: function() {
     var that = this;
 
-    $('.rExtMapPolygon .btnEditPolygon').hide();
-    $('.rExtMapPolygon .desc').show();
-    $('.rExtMapPolygon .btnEndEditPolygon').show();
-    $('.rExtMapPolygon .btnClearPolygon').show();
+    that.editing = true;
+
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .polygonFormMap' ).show();
+
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .polygonFormMap .desc').show();
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .polygonFormMap .btnClearPolygon').show();
 
     //resourceFormMaps[0].blockMarker = true;
-    that.editing = true;
+
     if( that.cornerMarkers != false) {
       $.each(that.cornerMarkers, function(i,marker) {
         marker.setMap(that.parent.mapObject);
@@ -207,11 +214,10 @@ geozzy.adminRextMapPolygonView  = Backbone.View.extend({
   endEditCancel: function() {
     var that = this;
 
+    that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).hide();
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .polygonFormMap' ).hide();
 
-    $('.rExtMapPolygon .btnEditPolygon').show();
-    $('.rExtMapPolygon .btnEndEditPolygon').hide();
-    $('.rExtMapPolygon .btnClearPolygon').hide();
-    $('.rExtMapPolygon .desc').hide();
+
     //resourceFormMaps[0].blockMarker = false;
     that.editing = false;
     if( that.cornerMarkers != false) {
@@ -226,10 +232,10 @@ geozzy.adminRextMapPolygonView  = Backbone.View.extend({
   endEditSuccess: function() {
     var that = this;
 
-    $('.rExtMapPolygon .btnEditPolygon').show();
-    $('.rExtMapPolygon .btnEndEditPolygon').hide();
-    $('.rExtMapPolygon .btnClearPolygon').hide();
-    $('.rExtMapPolygon .desc').hide();
+    that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).hide();
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .polygonFormMap' ).hide();
+
+
     //resourceFormMaps[0].blockMarker = false;
     that.editing = false;
     if( that.cornerMarkers != false) {

@@ -89,6 +89,7 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
     btDiv.on( 'click', function(ev) {
       that.$el.find('.resourceLocationColumn  .locationToolBox').hide();
       that.$el.find( '.resourceLocationColumn .locationButtons .editIcon' ).html(button.icon);
+      that.$el.find( '.resourceLocationFrame .locationButtons' ).show();      
       button.onclick();
     });
 

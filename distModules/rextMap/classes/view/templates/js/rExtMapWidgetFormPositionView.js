@@ -232,7 +232,6 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
     that.startEditlData.lng = that.lonInput.val();
     that.startEditlData.zoom = that.zoomInput.val();
 
-    that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).show();
     that.parent.$el.find( '.resourceLocationFrame .locationDialog .locationFormMap' ).show();
 
     return false;

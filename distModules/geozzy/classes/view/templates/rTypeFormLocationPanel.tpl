@@ -39,6 +39,7 @@
 
       </div>
     </div>
+
     {if isset($directions)}
       <div class="col-lg-12 locationDirections">
         {foreach $directions as $dir}
@@ -49,6 +50,11 @@
       </div>
     {/if}
   </div>
+
+
+  {if isset($extraLocationForms)}
+    {$extraLocationForms}
+  {/if}
 </div>
 
 
