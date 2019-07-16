@@ -128,7 +128,9 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
     var that = this;
     that.$el.find('.resourceLocationColumn  .locationToolBox').show();
     $.each(that.components, function(i,e){
-      e.endEditCancel();
+      if( e.editing == true ) {
+        e.endEditCancel();
+      }
     });
   },
 

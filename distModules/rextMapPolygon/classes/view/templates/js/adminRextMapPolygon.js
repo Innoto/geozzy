@@ -1,9 +1,261 @@
-
-//alert('');
+var geozzy = geozzy || {};
 
 $(document).ready(function(){
-  //alert(resourceFormMap);
+  resourceFormMap.addComponent( new geozzy.adminRextMapPolygonView() );
 });
+
+
+
+
+
+
+
+geozzy.adminRextMapPolygonView  = Backbone.View.extend({
+  parent: false,
+  editing: false,
+  events: {
+  },
+
+  cornerMarkers: false,
+  polygon: false,
+  polygonAttributes: { //= new google.maps.Polygon({
+     //map: that.parent.mapObject,
+     //paths: coordinates,
+     strokeColor: "#555555",
+     strokeOpacity: 0.2,
+     strokeWeight: 2,
+     fillColor: "#555555",
+     fillOpacity: 0.2,
+     zIndex: -1,
+     clickable:false
+  },
+
+  icon: {
+      //path: google.maps.SymbolPath.CIRCLE,
+      path: "M -1 -1 L 1 -1 L 1 1 L -1 1 z",
+      strokeColor: "#555555",
+      strokeOpacity: 0,
+      fillColor: "#555555",
+      fillOpacity: 1,
+      scale: 5
+  },
+
+
+
+  marker_options: {
+      //map: map,
+      //icon: that.icon,
+      flat: true,
+      draggable: true,
+      raiseOnDrag: false
+  },
+
+
+  initialize: function() {
+    var that = this;
+
+
+  },
+
+
+  render: function() {
+    var that = this;
+
+    that.updateCornersFromInput();
+
+    // events
+    $('.rExtMapPolygon .btnEditPolygon').on('click', function(){
+      that.startEdit();
+
+    });
+
+    $('.rExtMapPolygon .btnEndEditPolygon').on('click', function(){
+      that.stopEdit();
+    });
+
+    $('.rExtMapPolygon .btnClearPolygon').on('click', function(){
+      that.clearAllCorners();
+    });
+
+
+    google.maps.event.addListener( that.parent.mapObject, "rightclick",function(){
+      that.removeCorner();
+      that.updateInputFromCorners();
+    });
+    google.maps.event.addListener( that.parent.mapObject, "click", function(ev){
+      that.addCorner(ev.latLng);
+      that.updateInputFromCorners();
+    });
+  },
+
+
+  addCorner: function( latLng, force ) {
+    var that = this;
+
+    if( that.editing == true || force == true){
+      if( that.polygon != false ) {
+        that.polygon.getPath().push(latLng);
+      }
+      else {
+        that.polygonAttributes.paths = [latLng];
+        that.polygon = new google.maps.Polygon(that.polygonAttributes);
+        that.polygon.setMap(that.parent.mapObject);
+        that.cornerMarkers = [];
+      }
+
+      var ind = that.polygon.getPath().getArray().length -1;
+
+      that.marker_options.position = latLng;
+      that.marker_options.icon = that.icon;
+      var point = new google.maps.Marker(that.marker_options);
+      if( that.editing ){
+        point.setMap(that.parent.mapObject);
+      }
+      google.maps.event.addListener(point, "drag", function(ev) {
+        that.polygon.getPath().setAt( ind , ev.latLng);
+        that.updateInputFromCorners();
+      });
+      that.cornerMarkers.push(point);
+
+    }
+  },
+
+
+  removeCorner: function( ) {
+    var that = this;
+
+    if( that.editing == true ){
+      var deletedMarker = that.cornerMarkers.pop();
+      deletedMarker.setMap(null);
+      that.polygon.getPath().pop();
+    }
+  },
+
+  clearAllCorners: function() {
+    var that = this;
+
+    while( that.polygon.getPath().getArray().length > 0 ) {
+      that.removeCorner();
+    }
+    $('.rExtMapPolygon input.cgmMForm-field-rExtMapPolygon_polygonGeometry').val( '' );
+  },
+
+  updateInputFromCorners: function() {
+    var that = this;
+    $('.rExtMapPolygon input.cgmMForm-field-rExtMapPolygon_polygonGeometry').val(  that.coordsToArrayStr( that.polygon.getPath().getArray()) );
+  },
+
+
+  updateCornersFromInput: function() {
+    var that = this;
+
+    var polygonCornersText = $('.rExtMapPolygon input.cgmMForm-field-rExtMapPolygon_polygonGeometry').val().replace(/ /g,''); // without spaces
+    var polygonCornersArray;
+
+    if( polygonCornersText != '') {
+      eval('polygonCornersArray = new Array(' + polygonCornersText + ');' );
+      $.each( that.arrayToCoords( polygonCornersArray ), function(i,e){
+        that.addCorner(e, true);
+      });
+    }
+  },
+
+
+  arrayToCoords: function( arr ) {
+    var that = this;
+
+    var cordsArray = [];
+    $.each( arr, function(i,e) {
+      cordsArray.push( new google.maps.LatLng(e[0], e[1]) );
+    });
+    return cordsArray;
+  },
+
+  coordsToArrayStr: function( cords ) {
+    var that = this;
+
+    var cordsStr = '';
+    var coma = '';
+    $.each( cords, function(i,e) {
+      cordsStr += coma + '[' + e.lat().toFixed(7) + ',' + e.lng().toFixed(7) + ']';
+      coma = ',';
+    });
+    return cordsStr;
+  },
+
+
+  startEdit: function() {
+    var that = this;
+
+    $('.rExtMapPolygon .btnEditPolygon').hide();
+    $('.rExtMapPolygon .desc').show();
+    $('.rExtMapPolygon .btnEndEditPolygon').show();
+    $('.rExtMapPolygon .btnClearPolygon').show();
+
+    //resourceFormMaps[0].blockMarker = true;
+    that.editing = true;
+    if( that.cornerMarkers != false) {
+      $.each(that.cornerMarkers, function(i,marker) {
+        marker.setMap(that.parent.mapObject);
+      });
+      that.polygon.set( 'fillOpacity' , 0.8 );
+      that.polygon.set( 'strokeOpacity' , 0.8 );
+    }
+
+  },
+
+  endEditCancel: function() {
+    var that = this;
+
+
+    $('.rExtMapPolygon .btnEditPolygon').show();
+    $('.rExtMapPolygon .btnEndEditPolygon').hide();
+    $('.rExtMapPolygon .btnClearPolygon').hide();
+    $('.rExtMapPolygon .desc').hide();
+    //resourceFormMaps[0].blockMarker = false;
+    that.editing = false;
+    if( that.cornerMarkers != false) {
+      $.each(that.cornerMarkers, function(i,marker) {
+        marker.setMap(null);
+      });
+      that.polygon.set( 'fillOpacity' , that.polygonAttributes.fillOpacity );
+      that.polygon.set( 'strokeOpacity' , that.polygonAttributes.strokeOpacity );
+    }
+  },
+
+  endEditSuccess: function() {
+    var that = this;
+
+    $('.rExtMapPolygon .btnEditPolygon').show();
+    $('.rExtMapPolygon .btnEndEditPolygon').hide();
+    $('.rExtMapPolygon .btnClearPolygon').hide();
+    $('.rExtMapPolygon .desc').hide();
+    //resourceFormMaps[0].blockMarker = false;
+    that.editing = false;
+    if( that.cornerMarkers != false) {
+      $.each(that.cornerMarkers, function(i,marker) {
+        marker.setMap(null);
+      });
+      that.polygon.set( 'fillOpacity' , that.polygonAttributes.fillOpacity );
+      that.polygon.set( 'strokeOpacity' , that.polygonAttributes.strokeOpacity );
+    }
+  }
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*
