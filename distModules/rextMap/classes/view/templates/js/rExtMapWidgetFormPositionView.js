@@ -6,7 +6,7 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
   autocomplete:false,
   editing: false,
   zoomRectangle: false,
-  startEditlData: {
+  startEditData: {
     lat: false,
     lng: false,
     zoom: false
@@ -228,9 +228,9 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
       draggable: true
     });
 
-    that.startEditlData.lat = that.latInput.val();
-    that.startEditlData.lng = that.lonInput.val();
-    that.startEditlData.zoom = that.zoomInput.val();
+    that.startEditData.lat = that.latInput.val();
+    that.startEditData.lng = that.lonInput.val();
+    that.startEditData.zoom = that.zoomInput.val();
 
     that.parent.$el.find( '.resourceLocationFrame .locationDialog .locationFormMap' ).show();
 
@@ -245,7 +245,7 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
     });
 
 
-    if( that.startEditlData.lat == false || that.startEditlData.lat == '' ) {
+    if( that.startEditData.lat == false || that.startEditData.lat == '' ) {
       //that.resourceMarker.setMap(null);
       //that.latInput.val('');
       //that.lonInput.val('');
@@ -253,9 +253,9 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
     }
     else {
 
-      that.latInput.val(that.startEditlData.lat);
-      that.lonInput.val(that.startEditlData.lng);
-      that.zoomInput.val(that.startEditlData.zoom );
+      that.latInput.val(that.startEditData.lat);
+      that.lonInput.val(that.startEditData.lng);
+      that.zoomInput.val(that.startEditData.zoom );
 
       that.resourceMarker.setPosition( {lat: parseFloat(that.latInput.val()), lng: parseFloat(that.lonInput.val()) } );
     }
@@ -275,13 +275,13 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
     });
 
 
-    that.startEditlData.lat = that.latInput.val();
-    that.startEditlData.lng = that.lonInput.val();
-    that.startEditlData.zoom = that.zoomInput.val();
+    that.startEditData.lat = that.latInput.val();
+    that.startEditData.lng = that.lonInput.val();
+    that.startEditData.zoom = that.zoomInput.val();
 
-    /*that.startEditlData.lat = false;
-    that.startEditlData.lng = false;
-    that.startEditlData.zoom = false;*/
+    /*that.startEditData.lat = false;
+    that.startEditData.lng = false;
+    that.startEditData.zoom = false;*/
 
     that.parent.$el.find( '.resourceLocationFrame .locationDialog .locationFormMap' ).hide();
     that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).hide();

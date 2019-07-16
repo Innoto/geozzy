@@ -15,7 +15,7 @@ geozzy.adminRextMapPolygonView  = Backbone.View.extend({
   editing: false,
   events: {
   },
-
+  startEditData: '',
   cornerMarkers: false,
   polygon: false,
   polygonAttributes: { //= new google.maps.Polygon({
@@ -220,6 +220,7 @@ geozzy.adminRextMapPolygonView  = Backbone.View.extend({
       that.polygon.set( 'strokeOpacity' , 0.8 );
     }
 
+    that.startEditData = that.parent.$el.find( '.resourceLocationFrame .locationDialog .polygonFormMap input.cgmMForm-field-rExtMapPolygon_polygonGeometry').val();
   },
 
   endEditCancel: function() {
@@ -228,6 +229,11 @@ geozzy.adminRextMapPolygonView  = Backbone.View.extend({
     that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).hide();
     that.parent.$el.find( '.resourceLocationFrame .locationDialog .polygonFormMap' ).hide();
 
+    // recover polygon before edit
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .polygonFormMap input.cgmMForm-field-rExtMapPolygon_polygonGeometry').val('');
+    that.clearAllCorners();
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .polygonFormMap input.cgmMForm-field-rExtMapPolygon_polygonGeometry').val(that.startEditData);
+    that.updateCornersFromInput();
 
     //resourceFormMaps[0].blockMarker = false;
     that.editing = false;
@@ -238,6 +244,9 @@ geozzy.adminRextMapPolygonView  = Backbone.View.extend({
       that.polygon.set( 'fillOpacity' , that.polygonAttributes.fillOpacity );
       that.polygon.set( 'strokeOpacity' , that.polygonAttributes.strokeOpacity );
     }
+
+
+
   },
 
   endEditSuccess: function() {
