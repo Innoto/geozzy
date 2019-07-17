@@ -1,7 +1,10 @@
 var geozzy = geozzy || {};
 
+
+
 $(document).ready(function(){
-  resourceFormMap.addComponent( new geozzy.adminRextMapPolygonView() );
+  geozzy.adminRextMapPolygonViewInstance = new geozzy.adminRextMapPolygonView();
+  resourceFormMap.addComponent( geozzy.adminRextMapPolygonViewInstance );
 });
 
 
@@ -9,7 +12,7 @@ $(document).ready(function(){
 
 
 
-
+geozzy.adminRextMapPolygonViewInstance = false;
 geozzy.adminRextMapPolygonView  = Backbone.View.extend({
   parent: false,
   editing: false,

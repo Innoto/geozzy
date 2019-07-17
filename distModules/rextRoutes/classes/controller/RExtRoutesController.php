@@ -217,7 +217,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
     //$rExtFieldNames[] = 'FieldNames';
     $form->setField( $this->addPrefix( 'FieldNames' ), array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
 
-    $form->setSuccess( 'onFileUpload', 'adminRextRoutesJs.fileUpload' );
+    $form->setSuccess( 'onFileUpload', 'geozzy.adminRextRoutesViewInstance.fileUpload' );
 
     $form->saveToSession();
 
