@@ -9,6 +9,7 @@ $(document).ready(function(){
 
 geozzy.adminRextRoutesViewInstance = false;
 geozzy.adminRextRoutesView = Backbone.View.extend({
+  editing: true,
   render: function() {
     var that = this;
 
@@ -70,7 +71,34 @@ geozzy.adminRextRoutesView = Backbone.View.extend({
         } );
       }
     } );
+  },
+
+  startEdit: function() {
+    var that = this;
+    that.editing = true;
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .routesFormMap' ).show();
+    that.parent.$el.find( '.resourceLocationFrame .locationButtons .endEditCancel' ).addClass('disabled');
+  },
+
+  endEditCancel: function() {
+    var that = this;
+
+    that.parent.$el.find( '.resourceLocationFrame .locationButtons .endEditCancel' ).removeClass('disabled');
+    that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).hide();
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .routesFormMap' ).hide();
+    that.editing = false;
+  },
+
+  endEditSuccess: function() {
+    var that = this;
+
+    that.parent.$el.find( '.resourceLocationFrame .locationButtons .endEditCancel' ).removeClass('disabled');
+    that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).hide();
+    that.parent.$el.find( '.resourceLocationFrame .locationDialog .routesFormMap' ).hide();
+    that.editing = false;
   }
+
+
 });
 
 
