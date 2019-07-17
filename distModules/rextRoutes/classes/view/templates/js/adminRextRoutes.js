@@ -14,8 +14,7 @@ geozzy.adminRextRoutesView = Backbone.View.extend({
     var that = this;
 
     that.parent.$el.find( '.resourceLocationFrame .locationDialog' ).append('<div class="routesFormMap" style="display:none;"></div>');
-    that.parent.$el.find( '.resourceLocationFrame .locationDialog .routesFormMap' ).html( $('.rExtRoutes').html() );
-    that.parent.$el.find('.rExtRoutes').remove();
+    $('.rExtRoutes').appendTo( '.resourceLocationFrame .locationDialog .routesFormMap' ) ;
 
     if( $('form.cgmMForm-form-resourceEdit').length > 0 ) {
       that.fileUpload( $('form.cgmMForm-form-resourceEdit').attr('id') );

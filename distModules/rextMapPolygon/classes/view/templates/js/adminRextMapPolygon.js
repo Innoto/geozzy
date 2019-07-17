@@ -65,8 +65,7 @@ geozzy.adminRextMapPolygonView  = Backbone.View.extend({
     var that = this;
 
     that.parent.$el.find( '.resourceLocationFrame .locationDialog' ).append('<div class="polygonFormMap" style="display:none;"></div>');
-    that.parent.$el.find( '.resourceLocationFrame .locationDialog .polygonFormMap' ).html( $('.rExtMapPolygon').html() );
-    that.parent.$el.find('.rExtMapPolygon').remove();
+    $('.rExtMapPolygon').appendTo(  '.resourceLocationFrame .locationDialog .polygonFormMap') ;
 
 
     that.parent.addToolBarbutton({
