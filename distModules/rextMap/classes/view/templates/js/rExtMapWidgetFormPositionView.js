@@ -1,12 +1,6 @@
 var geozzy = geozzy || {};
 
 
-$(document).ready(function(){
-  geozzy.rExtMapWidgetFormPositionViewInstance = new geozzy.rExtMapWidgetFormPositionView() ;
-  resourceFormMap.addComponent( geozzy.rExtMapWidgetFormPositionViewInstance );
-});
-
-geozzy.rExtMapWidgetFormPositionViewInstance = false;
 geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
   parent: false,
   autocomplete:false,

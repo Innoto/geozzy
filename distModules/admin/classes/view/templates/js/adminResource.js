@@ -103,4 +103,7 @@ function successCollectionForm( data ){
 
 function initializeMap( ) {
   resourceFormMap = new geozzy.rExtMapWidgetForm({el:'.location'});
+  geozzy.rExtMapWidgetFormPositionViewInstance = new geozzy.rExtMapWidgetFormPositionView() ;
+  resourceFormMap.addComponent( geozzy.rExtMapWidgetFormPositionViewInstance );
+
 }

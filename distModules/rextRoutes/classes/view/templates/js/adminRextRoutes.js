@@ -19,6 +19,15 @@ geozzy.adminRextRoutesView = Backbone.View.extend({
     if( $('form.cgmMForm-form-resourceEdit').length > 0 ) {
       that.fileUpload( $('form.cgmMForm-form-resourceEdit').attr('id') );
     }
+
+    that.parent.addToolBarbutton({
+        id: 'position',
+        icon: '<i class="fa fa-road" aria-hidden="true"></i>', //<i class="fas fa-draw-polygon"></i>
+        onclick: function() {
+          that.startEdit();
+        }
+    });
+
     $('select.cgmMForm-field-rExtRoutes_difficultyEnvironment').select2();
     $('select.cgmMForm-field-rExtRoutes_difficultyItinerary').select2();
     $('select.cgmMForm-field-rExtRoutes_difficultyDisplacement').select2();
