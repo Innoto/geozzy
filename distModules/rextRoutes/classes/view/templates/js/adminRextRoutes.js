@@ -22,7 +22,7 @@ geozzy.adminRextRoutesView = Backbone.View.extend({
     }
 
     that.parent.addToolBarbutton({
-        id: 'position',
+        id: 'rextRoutes',
         icon: '<i class="fa fa-road" aria-hidden="true"></i>', //<i class="fas fa-draw-polygon"></i>
         onclick: function() {
           that.startEdit();
@@ -72,7 +72,7 @@ geozzy.adminRextRoutesView = Backbone.View.extend({
           map: resourceMap,
           routeModel: ruta
         });
-                
+
       }
     } );
   },
