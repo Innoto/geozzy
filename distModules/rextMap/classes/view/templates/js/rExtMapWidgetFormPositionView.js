@@ -22,8 +22,7 @@ geozzy.rExtMapWidgetFormPositionView  = Backbone.View.extend({
     var that = this;
 
     that.parent.$el.find( '.resourceLocationFrame .locationDialog' ).append('<div class="locationFormMap" style="display:none;"></div>');
-    that.parent.$el.find( '.resourceLocationFrame .locationDialog .locationFormMap' ).html(that.parent.$el.find(' .locationForm').html());
-    that.parent.$el.find('.locationForm').remove();
+    $('.locationForm').appendTo( '.resourceLocationFrame .locationDialog .locationFormMap') ;
 
 
     that.latInput = that.parent.$el.find(".lat input");
