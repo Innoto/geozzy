@@ -32,7 +32,7 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
       '<div class="resourceLocationFrame">'+
       ' <div class="resourceLocationMap"></div>' +
       ' <div class="resourceLocationColumn">'+
-      '  <div class="searchBox"><input class="address"><div class="automaticBtn btn btn-primary pull-right">Automatic Location</div></div>' +
+      '  <div class="searchBox"><input class="address"><div class="automaticBtn"><i class="fas fa-crosshairs"></i></div></div>' +
       '  <div class="locationToolBox"></div>' +
       '  <div class="locationButtons" style="display:none;">'+
       '     <div class="editIcon"> </div> '  +

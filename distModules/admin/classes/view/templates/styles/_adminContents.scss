@@ -89,7 +89,7 @@ ul.panelIdTags{
     cursor:pointer;
     display: inline-block;
     list-style-type: none;
-    float:left;
+    /*float:left;*/ 
     margin:2px 9px;
     color: $gzzColor-text-light;
     &:hover{
@@ -135,18 +135,23 @@ ul.panelIdTags{
 .rExtSocialNetwork{
   .network{
     margin: 20px 0px 40px 0px;
-    textarea{height:50px;}
+    textarea{
+      height:50px;
+    }
     .defaultBox{
       font-size:13px;
       margin:5px;
       font-style: italic;
-      .text{font-weight:bold;margin:5px 0px;}
+      .text{
+        font-weight:bold;
+        margin:5px 0px;
+      }
     }
   }
 }
 
+/*
 .location{
-
   .address {
     width:100%;
   }
@@ -156,93 +161,122 @@ ul.panelIdTags{
   }
   .locationData{
     margin-top:25px;
-    .automaticBtn{ margin-top:25px;}
   }
   .locationDirections{
     margin-top:25px;
   }
 }
-
+*/
 
 
 .card {
-  .row.location {
+  .location {
+    position: relative; 
     .buttonEditLocation {
       position:absolute;
-      z-index: 101;
+      top: 8px;
+      right: 8px;
+      z-index: 1;
       .startEdit {
-        display:inline;
+        display: block;
       }
       .endEdit {
-        display:none;
+        display: none;
       }
     }
     .resourceLocationFrame {
       position:relative;
       width:100%;
-
+      
       .resourceLocationColumn {
         display:none;
       }
       .resourceLocationMap {
         width:100%;
         height: 250px;
+        box-shadow: 0 0 3px rgba(0,0,0,.5);
       }
     }
-
   }
 
   &.locationFullScreen {
     position:fixed;
-    left:10px;
-    top:10px;
+    left:0px;
+    top: 0px;
     width:100%;
-    height:97vh;
+    height: 100vh;
     z-index: 100;
+    border-radius: 0;
+    margin: 0 !important;
 
-    .row.location {
-      .buttonEditLocation {
-        position:absolute;
-        z-index: 101;
-        .startEdit {
-          display:none;
-        }
-        .endEdit {
-          display:inline;
-        }
-      }
-
-      .resourceLocationFrame {
-        width:100%;
-        height: 700px;
-        .resourceLocationColumn {
-          display:inline;
-          width:30%;
-          .searchBox {
-            background-color: blue;
-            input {
-              width:200px;
-            }
-          }
-          .locationToolBox {
-            height:100px;
-            background-color: red;
-          }
-          .locationDialog {
-            height:300px;
-    
-          }
-        }
-        .resourceLocationMap {
-          float:left;
-          width:70%;
-          height: 700px;
-
-        }
-      }
-
+    .card-header{
+      background-color: $gzzColor-bck-8;
+      color: $gzzColor-text-light;
+      box-shadow: 0 0 3px rgba(0,0,0,.5);
+      text-transform: uppercase;
     }
 
+    .card-body{
+      padding: 0;
+      & > .row{
+        height: 100%;
+      }
+
+      .location {
+        height: 100%;
+        .buttonEditLocation {
+          position: fixed;
+          z-index: 1;
+          .startEdit {
+            display:none;
+          }
+          .endEdit {
+            display:inline;
+          }
+        }
+        .resourceLocationFrame {
+          width:100%;
+          height:100%;
+          display: flex;
+          flex-wrap: nowrap;
+  
+          .resourceLocationColumn {
+            display: block;
+            width: 400px;
+            flex-basis: 400px;
+            padding: 20px;
+            .searchBox{
+              position: relative;
+              background:red;
+              .address{
+                width: 100%;
+                font-size: 20px;
+                border: 0;
+                padding: 5px 30px 5px 0;
+                border-bottom: 2px solid #333333;
+              }
+              .automaticBtn{
+                position: absolute;
+                right: 0;
+                top: 5px;
+                z-index: 1;
+                font-size: 22px;
+                cursor: pointer;
+              }
+            }
+          }
+          .resourceLocationMap {
+            box-shadow: 1px 1px 3px rgba(0,0,0,.5);
+            height: 100%;
+            width: calc(100% - 400px);
+            flex-basis: calc(100% - 400px);          
+          }
+        }
+        .rExtMapPolygon{
+          display: none;
+        }
+      }
+    }
   }
 }
 
