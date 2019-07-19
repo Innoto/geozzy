@@ -264,6 +264,49 @@ ul.panelIdTags{
                 cursor: pointer;
               }
             }
+            .locationToolBox{
+              margin: 20px 0;
+              display: flex;
+              justify-content: center;
+              
+              .button{
+                flex-basis: 50px;
+                border: 2px solid $gzzColor-text-dark;
+                padding: 5px;
+                margin: 5px;
+                font-size: 22px;
+                text-align: center;
+                cursor: pointer;
+                &:hover{
+                  color: $gzzColor-text-light;
+                  background: $gzzColor-positive;
+                }
+              }
+            }
+            .locationButtons{
+              margin: 20px 0;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              flex-wrap: wrap;
+              align-items: center;
+              
+              .editIcon{
+                width: 50px;
+                border: 2px solid $gzzColor-text-dark;
+                padding: 5px;
+                margin: 5px;
+                font-size: 22px;
+                text-align: center;
+                cursor: pointer;
+                color: $gzzColor-text-light;
+                background: $gzzColor-positive;                
+              }
+
+              .btnActionsContainer{
+                margin-top: 20px;                
+              }
+            }
           }
           .resourceLocationMap {
             box-shadow: 1px 1px 3px rgba(0,0,0,.5);
@@ -273,7 +316,7 @@ ul.panelIdTags{
           }
         }
         .rExtMapPolygon{
-          display: none;
+          
         }
       }
     }
