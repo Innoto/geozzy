@@ -126,8 +126,18 @@ class RExtKMLController extends RExtController implements RExtInterface {
    *
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
    */
-  // parent::getFormBlockInfo( $form );
+   public function getFormBlockInfo( FormController $form ) {
 
+     $formBlockInfo = parent::getFormBlockInfo( $form );
+     $templates = $formBlockInfo['template'];
+
+     $templates['full']->addClientScript('js/adminRextKML.js', 'rextKML');
+     $templates['full']->assign( 'rExtName', $this->rExtName );
+     $templates['full']->assign( 'rExt', $formBlockInfo );
+     $formBlockInfo['template'] = $templates;
+
+     return $formBlockInfo;
+   }
 
   /**
    * Validaciones extra previas a usar los datos
