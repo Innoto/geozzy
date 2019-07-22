@@ -59,7 +59,7 @@ geozzy.adminRextLMLView  = Backbone.View.extend({
 
     that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).hide();
     that.parent.$el.find( '.resourceLocationFrame .locationDialog .kmlFormMap' ).hide();
-    that.parent.$el.find( '.resourceLocationFrame .locationButtons .endEditCancel' ).removeClass('disabled');        
+    that.parent.$el.find( '.resourceLocationFrame .locationButtons .endEditCancel' ).removeClass('disabled');
 
   }
 
