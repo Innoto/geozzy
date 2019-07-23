@@ -192,6 +192,11 @@ class RExtPanoramaController extends RExtController implements RExtInterface {
       if( $rExtModel === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }
+      else {
+        if( $rExtModel->save() === false ) {
+          $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
+        }
+      }
     }
 
     // if( !$form->existErrors() ) {
@@ -216,8 +221,7 @@ class RExtPanoramaController extends RExtController implements RExtInterface {
     }
 
     if( !$form->existErrors() ) {
-      $saveResult = $rExtModel->save();
-      if( $saveResult === false ) {
+      if( $rExtModel->save() === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }
     }
