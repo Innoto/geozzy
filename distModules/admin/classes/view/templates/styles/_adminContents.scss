@@ -89,7 +89,7 @@ ul.panelIdTags{
     cursor:pointer;
     display: inline-block;
     list-style-type: none;
-    /*float:left;*/ 
+    /*float:left;*/
     margin:2px 9px;
     color: $gzzColor-text-light;
     &:hover{
@@ -171,7 +171,7 @@ ul.panelIdTags{
 
 .card {
   .location {
-    position: relative; 
+    position: relative;
     .buttonEditLocation {
       position:absolute;
       top: 8px;
@@ -187,7 +187,7 @@ ul.panelIdTags{
     .resourceLocationFrame {
       position:relative;
       width:100%;
-      
+
       .resourceLocationColumn {
         display:none;
       }
@@ -239,7 +239,7 @@ ul.panelIdTags{
           height:100%;
           display: flex;
           flex-wrap: nowrap;
-  
+
           .resourceLocationColumn {
             display: block;
             width: 400px;
@@ -268,7 +268,7 @@ ul.panelIdTags{
               margin: 20px 0;
               display: flex;
               justify-content: center;
-              
+
               .button{
                 flex-basis: 50px;
                 border: 2px solid $gzzColor-text-dark;
@@ -290,7 +290,7 @@ ul.panelIdTags{
               justify-content: center;
               flex-wrap: wrap;
               align-items: center;
-              
+
               .editIcon{
                 width: 50px;
                 border: 2px solid $gzzColor-text-dark;
@@ -300,23 +300,45 @@ ul.panelIdTags{
                 text-align: center;
                 cursor: pointer;
                 color: $gzzColor-text-light;
-                background: $gzzColor-positive;                
+                background: $gzzColor-positive;
               }
 
               .btnActionsContainer{
-                margin-top: 20px;                
+                margin-top: 20px;
               }
             }
           }
+          
+          .controlMapMainContainer {
+            bottom:35px !important;
+            .controlMapCustom{
+              margin: 10px 0 10px 10px;
+              cursor: pointer;
+              height: 40px;
+              width: 40px;
+              border: 2px solid gzzColor('bck4');
+              -webkit-border-radius: 3px;
+              -moz-border-radius: 3px;
+              border-radius: 3px;
+              -webkit-box-shadow: 0 2px 6px rgba(0,0,0,.3);
+              -moz-box-shadow: 0 2px 6px rgba(0,0,0,.3);
+              box-shadow: 0 2px 6px rgba(0,0,0,.3);
+              &.controlMapMap{ background: url('#{$cogumelo_publicConf_media}/img/explorerControls/map-map.png') no-repeat; }
+              &.controlMapSat{ background: url('#{$cogumelo_publicConf_media}/img/explorerControls/map-sat.png') no-repeat; }
+              &.controlMapRel{ background: url('#{$cogumelo_publicConf_media}/img/explorerControls/map-rel.png') no-repeat; }
+              &.active{ display:none; }
+            }
+          }
+
           .resourceLocationMap {
             box-shadow: 1px 1px 3px rgba(0,0,0,.5);
             height: 100%;
             width: calc(100% - 400px);
-            flex-basis: calc(100% - 400px);          
+            flex-basis: calc(100% - 400px);
           }
         }
         .rExtMapPolygon{
-          
+
         }
       }
     }
