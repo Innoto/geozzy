@@ -43,6 +43,7 @@ geozzy.adminRextLMLView  = Backbone.View.extend({
     that.editing = true;
     that.parent.$el.find( '.resourceLocationFrame .locationDialog .kmlFormMap' ).show();
     that.parent.$el.find( '.resourceLocationFrame .locationButtons .endEditCancel' ).addClass('disabled');
+    that.parent.$el.find( '.resourceLocationFrame .locationButtons .endEditCancel' ).css("pointer-events", "none");
   },
 
   endEditCancel: function() {
@@ -51,6 +52,7 @@ geozzy.adminRextLMLView  = Backbone.View.extend({
     that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).hide();
     that.parent.$el.find( '.resourceLocationFrame .locationDialog .kmlFormMap' ).hide();
     that.parent.$el.find( '.resourceLocationFrame .locationButtons .endEditCancel' ).removeClass('disabled');
+    that.parent.$el.find( '.resourceLocationFrame .locationButtons .endEditCancel' ).css("pointer-events", "auto");
 
   },
 
@@ -60,6 +62,7 @@ geozzy.adminRextLMLView  = Backbone.View.extend({
     that.parent.$el.find( '.resourceLocationFrame .locationButtons' ).hide();
     that.parent.$el.find( '.resourceLocationFrame .locationDialog .kmlFormMap' ).hide();
     that.parent.$el.find( '.resourceLocationFrame .locationButtons .endEditCancel' ).removeClass('disabled');
+    that.parent.$el.find( '.resourceLocationFrame .locationButtons .endEditCancel' ).css("pointer-events", "auto");
 
   }
 
