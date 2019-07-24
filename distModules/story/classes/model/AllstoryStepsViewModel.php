@@ -57,8 +57,8 @@ class AllstoryStepsViewModel extends Model
             geozzy_resource_rext_storystep.urlVideo as urlVideo,
 
 
-            geozzy_resource_rext_event.initDate as initDate,
-            geozzy_resource_rext_event.endDate as endDate,
+            geozzy_resource_rext_event.initDateFirst as initDate,
+            geozzy_resource_rext_event.endDateFirst as endDate,
 
 						geozzy_collection_resources.weight as weight,
             story.id as storyId,
