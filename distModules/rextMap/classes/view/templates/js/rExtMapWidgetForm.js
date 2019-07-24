@@ -102,6 +102,10 @@ geozzy.rExtMapWidgetForm  = Backbone.View.extend({
     var that =this;
     if( that.$el.closest('.card').hasClass('locationFullScreen') ) {
       that.endEditCancelComponents();
+      that.mapObject.setOptions({scrollwheel:false});
+    }
+    else {
+      that.mapObject.setOptions({scrollwheel:true});
     }
 
     that.$el.closest('.card').toggleClass( 'locationFullScreen' );
