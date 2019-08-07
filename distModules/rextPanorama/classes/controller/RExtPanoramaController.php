@@ -79,21 +79,21 @@ class RExtPanoramaController extends RExtController implements RExtInterface {
     $fieldsInfo = [
       'horizontalAngleView' => [
         'params' => [
-          'label' => __('Ángulo de visión horizontal').' '.__('(Grados sexagesimales)'),
+          'label' => __('Horizontal angle of view').' '.__('(in sexagesimal)'),
           'value' => 360
         ],
         'rules' => [ 'digits' => true, 'min' => 0, 'max' => 360 ]
       ],
       'verticalAngleView' => [
         'params' => [
-          'label' => __('Ángulo de visión vertical').' '.__('(Grados sexagesimales)'),
+          'label' => __('Vertical angle of view').' '.__('(in sexagesimal)'),
           'value' => 180
         ],
         'rules' => [ 'digits' => true, 'min' => 0, 'max' => 360 ]
       ],
       'panoramicImage' => [
         'params' => [
-          'label' => __('Panorámica relacionada'), 'type' => 'file',
+          'label' => __('Related panoramic image'), 'type' => 'file',
           'id' => 'rExtPanoramaPanoramicImage', 'destDir' => RExtPanoramaModel::$cols['panoramicImage']['uploadDir']
         ],
         'rules' => [ /*'fileRequired' => true,*/ 'accept' => 'image/jpeg,image/pjpeg'/*, 'maxfilesize' => '6300000'*/ ]
