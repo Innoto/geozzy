@@ -1,6 +1,7 @@
 $( document ).ready( function() {
 
   if( $('.poiModal').length > 0 ) {
+    alert('inizializa modal pois, instanciamos aquí mapa');
     //initializeMap(formId);
     rextPoiJs.bindPoiForm('.poiModal ');
   }

@@ -153,8 +153,7 @@ class RExtPoiController extends RExtController implements RExtInterface {
     $templates['adminExt']->assign( 'rExt', $formBlockInfo );
     $templates['adminExt']->assign( 'res', $resData );
     $templates['adminExt']->addClientScript('js/rextPoi.js', 'rextPoi');
-    /* Hay que añadírselo aquí porque no carga la extensión de contacto */
-    $templates['adminExt']->addClientScript('js/initMap.js', 'geozzy');
+
 
     $formBlockInfo['template'] = $templates;
 
